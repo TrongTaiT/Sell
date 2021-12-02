@@ -402,7 +402,7 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="cboTenKhachHang" min="-2" pref="230" max="-2" attributes="0"/>
-                                                  <EmptySpace pref="41" max="32767" attributes="0"/>
+                                                  <EmptySpace pref="45" max="32767" attributes="0"/>
                                                   <Component id="txtDiaChi" min="-2" pref="230" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
@@ -601,11 +601,13 @@
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="txtDonGia" min="-2" pref="30" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="lblCong" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="lblSoLuong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="lblTru" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLabel10" alignment="3" max="32767" attributes="0"/>
+                                                      <Group type="103" groupAlignment="3" attributes="0">
+                                                          <Component id="lblCong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="lblSoLuong" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="jLabel10" alignment="3" max="32767" attributes="0"/>
+                                                      </Group>
                                                   </Group>
                                               </Group>
                                               <Group type="102" attributes="0">
@@ -634,6 +636,9 @@
                                       <Dimension value="[64, 30]"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboLoaiSanPhamActionPerformed"/>
+                                  </Events>
                                   <AuxValues>
                                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                   </AuxValues>

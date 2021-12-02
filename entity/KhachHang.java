@@ -20,9 +20,25 @@ public class KhachHang {
     Date ngayDK;
     String diaChi;
     boolean gioiTinh;
+
+    public KhachHang(String maKhachHang, String hoTen, Date ngaySinh, String dienThoai, String email, Date ngayDK, String diaChi, boolean gioiTinh) {
+        this.maKhachHang = maKhachHang;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.dienThoai = dienThoai;
+        this.email = email;
+        this.ngayDK = ngayDK;
+        this.diaChi = diaChi;
+        this.gioiTinh = gioiTinh;
+    }
+
+    public KhachHang() {
+    }
+
+    
     @Override
     public String toString() {
-        return this.hoTen;
+        return this.maKhachHang+": "+ this.hoTen;
     }
 
     @Override

@@ -5,6 +5,18 @@
  */
 package com.Sell.UI;
 
+import com.Sell.DAO.CuaHangDAO;
+import com.Sell.DAO.KhachHangDAO;
+import com.Sell.DAO.LoaiHangDAO;
+import com.Sell.DAO.SanPhamDAO;
+import com.Sell.entity.CuaHang;
+import com.Sell.entity.KhachHang;
+import com.Sell.entity.LoaiHang;
+import com.Sell.entity.SanPham;
+import java.util.Date;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author NguyenTruongChinh
@@ -16,6 +28,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
      */
     public QL_HoaDon() {
         initComponents();
+        init();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(25);
     }
 
@@ -241,7 +254,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(cboTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                         .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -303,6 +316,11 @@ public class QL_HoaDon extends javax.swing.JPanel {
 
         cboLoaiSanPham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboLoaiSanPham.setPreferredSize(new java.awt.Dimension(64, 30));
+        cboLoaiSanPham.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboLoaiSanPhamActionPerformed(evt);
+            }
+        });
 
         cboTenSanPham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboTenSanPham.setPreferredSize(new java.awt.Dimension(64, 30));
@@ -380,11 +398,12 @@ public class QL_HoaDon extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTru, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblCong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(lblHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -619,6 +638,11 @@ public class QL_HoaDon extends javax.swing.JPanel {
 
     }//GEN-LAST:event_txtTimKiemFocusLost
 
+    private void cboLoaiSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiSanPhamActionPerformed
+        // TODO add your handling code here:
+        this.fillComboBoxTenSanPham();
+    }//GEN-LAST:event_cboLoaiSanPhamActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddKHToHoaDon;
@@ -628,8 +652,6 @@ public class QL_HoaDon extends javax.swing.JPanel {
     private javax.swing.JButton btnXemTableChiTiet;
     private javax.swing.JButton btnXoaHD;
     private javax.swing.JButton btnXuatHoaDon;
-    private javax.swing.JComboBox<String> cboCuaHang;
-    private javax.swing.JComboBox<String> cboCuaHang1;
     private javax.swing.JComboBox<String> cboLoaiSanPham;
     private javax.swing.JComboBox<String> cboMaCuaHang;
     private javax.swing.JComboBox<String> cboTenKhachHang;
@@ -642,8 +664,6 @@ public class QL_HoaDon extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
@@ -664,8 +684,6 @@ public class QL_HoaDon extends javax.swing.JPanel {
     private javax.swing.JLabel lblHinhAnh;
     private javax.swing.JLabel lblSoLuong;
     private javax.swing.JLabel lblTru;
-    private javax.swing.JPanel panelSearch;
-    private javax.swing.JPanel panelSearch1;
     private javax.swing.JPanel panelSearch2;
     private com.k33ptoo.components.KGradientPanel panelTitle;
     private javax.swing.JTable tblChiTietHoaDon;
@@ -679,8 +697,68 @@ public class QL_HoaDon extends javax.swing.JPanel {
     private javax.swing.JTextField txtTienKhachDua;
     private javax.swing.JTextField txtTienTraLai;
     private javax.swing.JTextField txtTimKiem;
-    private javax.swing.JTextField txtTimKiemChiTiet;
-    private javax.swing.JTextField txtTimKiemChiTiet1;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
+        void init() {
+        fillComboboxTenKhachHang();
+        fillComboboxMaCuaHang();
+        fillComboBoxLoaiHang();
+    }
+
+    KhachHangDAO khachHangDAO = new KhachHangDAO();
+    CuaHangDAO cuaHangDAO = new CuaHangDAO();
+    LoaiHangDAO loaiHangDAO = new LoaiHangDAO();
+    SanPhamDAO sanPhamDAO = new SanPhamDAO();
+
+    void fillComboboxTenKhachHang() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboTenKhachHang.getModel();
+        model.removeAllElements();
+        List<KhachHang> list = khachHangDAO.selectAll();
+        Date now = new Date();
+        model.addElement(new KhachHang("Mã KH", "Họ Tên", now, "", "", now, "", true));
+        for (KhachHang cd : list) {
+            model.addElement(cd);
+        }
+    }
+
+    void fillComboboxMaCuaHang() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboMaCuaHang.getModel();
+        model.removeAllElements();
+        List<CuaHang> list = cuaHangDAO.selectAll();
+//        Object[] tatcaObject = {"Tất cả", "Tất cả", "Tất cả"};
+//        model.addElement(tatcaObject);
+        model.addElement(new CuaHang("Tất cả", "", "cửa hàng", true));
+        for (CuaHang cd : list) {
+            model.addElement(cd);
+        }
+    }
+
+    void fillComboBoxLoaiHang() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboLoaiSanPham.getModel();
+        model.removeAllElements();
+        List<LoaiHang> list = loaiHangDAO.selectAll();
+        model.addElement(new LoaiHang("Tất cả", "Tất cả ", "cửa hàng"));
+        for (LoaiHang cd : list) {
+            model.addElement(cd);
+        }
+        this.fillComboBoxTenSanPham();
+    }
+
+    void fillComboBoxTenSanPham() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboTenSanPham.getModel();
+        try {
+            model.removeAllElements();
+        } catch (Exception e) {
+            System.out.println("Lỗi xóa elements nhưng để try catch lại chạy được");
+        }
+        LoaiHang loaiHang = (LoaiHang) cboLoaiSanPham.getSelectedItem();
+        if (loaiHang != null) {
+            List<SanPham> list = sanPhamDAO.selectByMaLoaiHang(loaiHang.getMaLoai());
+            for (SanPham sp : list) {
+                model.addElement(sp);
+            }
+        } else {
+            model.removeAllElements();
+        }
+    }
 }
