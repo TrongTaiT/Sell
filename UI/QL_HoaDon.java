@@ -623,11 +623,11 @@ public class QL_HoaDon extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelTitleMouseClicked
-        
+
     }//GEN-LAST:event_panelTitleMouseClicked
 
     private void txtTimKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCaretUpdate
-        
+
     }//GEN-LAST:event_txtTimKiemCaretUpdate
 
     private void txtTimKiemFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTimKiemFocusGained
@@ -737,27 +737,26 @@ public class QL_HoaDon extends javax.swing.JPanel {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboLoaiSanPham.getModel();
         model.removeAllElements();
         List<LoaiHang> list = loaiHangDAO.selectAll();
-        model.addElement(new LoaiHang("Tất cả", "Tất cả ", "cửa hàng"));
+//        model.addElement(new LoaiHang("Tất cả", "Tất cả ", "cửa hàng"));
         for (LoaiHang cd : list) {
             model.addElement(cd);
         }
-        this.fillComboBoxTenSanPham();
     }
 
     void fillComboBoxTenSanPham() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboTenSanPham.getModel();
         try {
             model.removeAllElements();
+            
         } catch (Exception e) {
-            System.out.println("Lỗi xóa elements nhưng để try catch lại chạy được");
         }
         LoaiHang loaiHang = (LoaiHang) cboLoaiSanPham.getSelectedItem();
-        if (loaiHang != null ) {
+        if (loaiHang != null) {
             List<SanPham> list = sanPhamDAO.selectByMaLoaiHang(loaiHang.getMaLoai());
             for (SanPham sp : list) {
                 model.addElement(sp);
             }
-        } else {
+        }else{
             model.removeAllElements();
         }
     }
