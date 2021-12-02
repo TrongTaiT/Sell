@@ -752,7 +752,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
             System.out.println("Lỗi xóa elements nhưng để try catch lại chạy được");
         }
         LoaiHang loaiHang = (LoaiHang) cboLoaiSanPham.getSelectedItem();
-        if (loaiHang != null) {
+        if (loaiHang != null ) {
             List<SanPham> list = sanPhamDAO.selectByMaLoaiHang(loaiHang.getMaLoai());
             for (SanPham sp : list) {
                 model.addElement(sp);

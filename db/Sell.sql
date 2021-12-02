@@ -150,8 +150,7 @@ INSERT INTO [dbo].[PhieuGiamGia] (NgayHetHan, MaKhachHang, TrangThai)
 GO
 
 INSERT INTO [dbo].[NHANVIEN]
-    VALUES  ('(AD)','Admin',1,'1996-08-10','0',0,'0',5,'admin',N'Thành phố Hồ Chí Minh', N'(Mã CH)'),
-            ('NV01',N'Lê Bảo Liên',0,'1996-08-10','0784336987',11000000,'lienlbnv01@sell.com',2,'songlong',N'Thành phố Hồ Chí Minh','CH001'),
+    VALUES  ('NV01',N'Lê Bảo Liên',0,'1996-08-10','0784336987',11000000,'lienlbnv01@sell.com',2,'songlong',N'Thành phố Hồ Chí Minh','CH001'),
             ('NV02',N'Nguyễn Trường Giang',1,'1999-12-31','0131283789',10000000,'giangntnv02@sell.com',2,'songlong',N'Thành phố Vinh','CH002'),
             ('NV03',N'Bùi Đình Bảo',1,'1996-03-03','0198392278',10000000,'baobdnv03@sell.com',2,'songlong',N'Thành phố Hà Tĩnh','CH003'),
             ('NV04',N'Lê Thị Mỹ Trâm',0,'1995-10-28','0123893923',10000000,'tramltmnv04@sell.com',2,'songlong',N'Thành phố Đà Nẵng','CH004'),
@@ -164,8 +163,7 @@ GO
 --ADD FOREIGN KEY (MaCuaHang) REFERENCES CuaHang(MaCuaHang)
 
 INSERT INTO [dbo].[CuaHang]
-    VALUES  (N'(Mã CH)', N'Địa chỉ', '(AD)', 1),
-            ('CH001',N'Thành phố Hồ Chí Minh','NV01',1), -- Cửa hàng chính, trụ sở
+    VALUES  ('CH001',N'Thành phố Hồ Chí Minh','NV01',1), -- Cửa hàng chính, trụ sở
             ('CH002',N'Thành phố Vinh','NV02',1),
             ('CH003',N'Thành phố Hà Tĩnh','NV03',0),
             ('CH004',N'Thành phố Đà Nẵng','NV04',1),
@@ -173,8 +171,7 @@ INSERT INTO [dbo].[CuaHang]
 GO
 
 INSERT INTO [dbo].[LoaiHang]
-	VALUES  ('(ML)', N'Loại hàng', N'Ghi chú'),
-            ('ML001', N'Áo Thun', ' T-Shirt' ),
+	VALUES  ('ML001', N'Áo Thun', ' T-Shirt' ),
             ('ML002', N'Quần Kaki', ' Kaki pant' ),
             ('ML003', N'Áo Khoác', ' Jacket' ),
             ('ML004', N'Áo Sơ mi', ' shirt' ),
@@ -183,8 +180,7 @@ INSERT INTO [dbo].[LoaiHang]
 GO
 
 INSERT INTO [dbo].[SanPham]
-     VALUES (N'(Mã SP)', N'Tên sản phẩm', N'Nhà SX', N'Ghi chú', '(ML)', 0),
-            ('SP001','Crypt Keeper Shirt','SKOOT',N'Hàng mới', 'ML004', 700000),
+     VALUES ('SP001','Crypt Keeper Shirt','SKOOT',N'Hàng mới', 'ML004', 700000),
             ('SP002','Graveyard Pants','SKOOT',N'Quần nghĩa địa', 'ML002', 800000),
             ('SP003','Wasted Love Suit','SKOOT',N'Bộ đồ tình yêu lãng phí', 'ML006', 500000),
             ('SP004','Hollow Hoodie','SKOOT',N'Hoodie rỗng', 'ML003', 400000),

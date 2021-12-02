@@ -9,9 +9,11 @@ import AppPackage.AnimationClass;
 import com.Sell.DAO.NhanVien_Dao;
 import com.Sell.Helper.Auth;
 import com.Sell.Helper.DesignHelper;
+import com.Sell.Helper.FrameDragListener;
 import com.Sell.entity.NhanVien;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -545,9 +547,9 @@ int a = 0;
     }
 
     void openMain() {
-        MainJFrame main = new MainJFrame();
-        main.setVisible(true);
-
+        EventQueue.invokeLater(() -> {
+            new FrameDragListener(new MainJFrame());
+        });
     }
 
     void dangNhap() {
@@ -559,6 +561,7 @@ int a = 0;
 
         Auth.user = nhanVien;
         openMain();
+        this.dispose();
 
     }
 
