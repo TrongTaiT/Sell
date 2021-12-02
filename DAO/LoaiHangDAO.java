@@ -25,7 +25,7 @@ public class LoaiHangDAO extends SellDAO<LoaiHang, String> {
     String DELETE_SQL = "DELETE FROM LOAIHANG WHERE MaLoai=?";
     String SELECT_ALL_SQL = "SELECT * FROM LOAIHANG";
     String SELECT_BY_ID = "SELECT * FROM LOAIHANG WHERE MaLoai=?";
-
+    
     @Override
     public void insert(LoaiHang entity) {
         JdbcHelper.executeUpdate(INSERT_SQL,

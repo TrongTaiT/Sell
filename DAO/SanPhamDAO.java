@@ -88,14 +88,17 @@ public class SanPhamDAO extends SellDAO<SanPham, String> {
             throw new RuntimeException(e);
         }
     }
-    
+
     public List<SanPham> selectByIDName(String keyword) {
-        return this.selectBySql(SELECT_BY_ID_NAME, keyword);       
+        return this.selectBySql(SELECT_BY_ID_NAME, keyword);
     }
-     public List<SanPham> selectByMaLoaiHang(String maLoaiHang) {
+
+    public List<SanPham> selectByMaLoaiHang(String maLoaiHang) {
 
         String sql = "  select*from SanPham where MaLoai like ?";
+
         return this.selectBySql(sql, "%" + maLoaiHang + "%");
+
     }
 
 }
