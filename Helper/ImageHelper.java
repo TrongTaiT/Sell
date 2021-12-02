@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -39,7 +40,7 @@ public class ImageHelper {
 
     static public byte[] convertToByteArray(Icon icon) throws IOException {
         BufferedImage bImage = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(),
-                BufferedImage.TYPE_INT_RGB);
+                BufferedImage.SCALE_SMOOTH);
         Graphics2D g = bImage.createGraphics();
         g.drawImage(bImage, null, null);
         icon.paintIcon(null, g, 0, 0);
@@ -66,4 +67,12 @@ public class ImageHelper {
         return new ImageIcon(bImage.getScaledInstance(container.getWidth(),
                 container.getHeight(), BufferedImage.SCALE_SMOOTH));
     }
+
+    public static void setDefaultImage(JLabel container) throws IOException {
+        BufferedImage image = ImageIO.read(new File("src\\Images", "default_image.png"));
+        // https://stackoverflow.com/questions/9147977/getwidth-and-getheight-are-0-after-calling-setpreferredsize
+        // phải setSize vì component trong panel khi chưa được gọi lên sẽ không có size
+        container.setIcon(new ImageIcon(image.getScaledInstance(190, 240, BufferedImage.SCALE_SMOOTH)));
+    }
+
 }

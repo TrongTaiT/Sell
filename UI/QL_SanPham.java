@@ -5,6 +5,7 @@
  */
 package com.Sell.UI;
 
+import com.Sell.DAO.HinhAnhDao;
 import com.Sell.DAO.LoaiHangDAO;
 import com.Sell.DAO.SanPhamDAO;
 import com.Sell.Helper.DesignHelper;
@@ -31,8 +32,9 @@ import javax.swing.table.DefaultTableModel;
  * @author trongtai
  */
 public class QL_SanPham extends javax.swing.JPanel {
-    
+
     List<HinhAnh> listHinhAnh = new ArrayList<>();
+    HinhAnhDao haDAO = new HinhAnhDao();
 
     /**
      * Creates new form CuaHangJPanel
@@ -501,7 +503,7 @@ public class QL_SanPham extends javax.swing.JPanel {
         jPanel7.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 490, 400));
 
         lblHinhAnh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHinhAnh.setText("Hình ảnh");
+        lblHinhAnh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/default_image.png"))); // NOI18N
         lblHinhAnh.setToolTipText("");
         lblHinhAnh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
         jPanel7.add(lblHinhAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 190, 240));
@@ -928,7 +930,6 @@ public class QL_SanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel10jPanel5MouseClicked
 
     private void btnSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSanPhamActionPerformed
-        // TODO add your handling code here:
         panelSanPham.setVisible(true);
         panelLoaiSanPham.setVisible(false);
     }//GEN-LAST:event_btnSanPhamActionPerformed
@@ -938,7 +939,6 @@ public class QL_SanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
     private void btnThemHinhAnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemHinhAnhActionPerformed
-        // Thêm hình ảnh vào JList
         addImage();
     }//GEN-LAST:event_btnThemHinhAnhActionPerformed
 
@@ -1001,7 +1001,7 @@ public class QL_SanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_txtGiaTienFocusGained
 
     private void txtNhaSXFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNhaSXFocusLost
-        
+
         if (txtNhaSX.getText().trim().length() == 0) {
             DesignHelper.addPlaceHolderTextField(txtNhaSX, "Nhà sản xuất");
         }
@@ -1061,7 +1061,7 @@ public class QL_SanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
         fillToTableSanPham();
     }//GEN-LAST:event_cboLoaiSPActionPerformed
-    
+
     public static void main(String[] args) {
         new QL_SanPham().setVisible(true);
     }
@@ -1130,7 +1130,7 @@ public class QL_SanPham extends javax.swing.JPanel {
 
     SanPhamDAO dao = new SanPhamDAO();
     int row = -1;
-    
+
     private void init() {
         setTable();
         fillTable();
@@ -1141,14 +1141,14 @@ public class QL_SanPham extends javax.swing.JPanel {
         setTextField();
         jListHinhAnh.removeAll();
     }
-    
+
     private void setTextField() {
         DesignHelper.addPlaceHolderTextField(txtMaSanPham, "Mã sản phẩm");
         DesignHelper.addPlaceHolderTextField(txtTenSP, "Tên sản phẩm");
         DesignHelper.addPlaceHolderTextField(txtNhaSX, "Nhà sản xuất");
         DesignHelper.addPlaceHolderTextField(txtGhiChu, "Ghi chú");
     }
-    
+
     private void setPlaceHolderForSetForm() {
         DesignHelper.deletePlaceHolderTextField(txtMaSanPham);
         Font font = txtMaSanPham.getFont();
@@ -1158,19 +1158,19 @@ public class QL_SanPham extends javax.swing.JPanel {
         DesignHelper.deletePlaceHolderTextField(txtNhaSX);
         DesignHelper.deletePlaceHolderTextField(txtGhiChu);
     }
-    
+
     private void setTable() {
         DefaultTableModel model = new DefaultTableModel();
-        
+
         model.addColumn("MÃ SP");
         model.addColumn("TÊN SP");
         model.addColumn("NHÀ SX");
         model.addColumn("GIÁ TIỀN");
-        
+
         tblSanPham.setModel(model);
         DesignHelper.setTable(tblSanPham);
     }
-    
+
     private void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
         model.setRowCount(0);
@@ -1183,7 +1183,7 @@ public class QL_SanPham extends javax.swing.JPanel {
                         sp.getTenSP(),
                         sp.getNhaSX(),
                         sp.getGiaTien()
-                    
+
                     });
                 }
             }
@@ -1191,10 +1191,10 @@ public class QL_SanPham extends javax.swing.JPanel {
             System.out.println(e);
         }
     }
-    
+
     void fillCombobox() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboLoaiHang.getModel();
-        
+
         model.removeAllElements();
         List<LoaiHang> list = lhDao.selectAll();
         model.addElement(new LoaiHang("Tất cả", "Loại Hàng ", "cửa hàng"));
@@ -1202,11 +1202,11 @@ public class QL_SanPham extends javax.swing.JPanel {
             model.addElement(lh);
         }
     }
-    
+
     private SanPham getForm() {
         SanPham sp = new SanPham();
         LoaiHang lh = (LoaiHang) cboLoaiHang.getSelectedItem();
-        
+
         sp.setMaSanPham(txtMaSanPham.getText());
         sp.setTenSP(txtTenSP.getText());
         sp.setNhaSX(txtNhaSX.getText());
@@ -1215,7 +1215,7 @@ public class QL_SanPham extends javax.swing.JPanel {
         sp.setGiaTien(Float.parseFloat(txtGiaTien.getText()));
         return sp;
     }
-    
+
     void setForm(SanPham sp) {
         txtMaSanPham.setText(sp.getMaSanPham());
         txtTenSP.setText(sp.getTenSP());
@@ -1229,16 +1229,19 @@ public class QL_SanPham extends javax.swing.JPanel {
         }
         txtGiaTien.setText(sp.getGiaTien() + "");
     }
-    
+
     void edit() {
         this.row = tblSanPham.getSelectedRow();
         String maSP = (String) tblSanPham.getValueAt(this.row, 0);
         SanPham sp = dao.selectById(maSP);
         this.setPlaceHolderForSetForm();
         this.setForm(sp);
+        listHinhAnh.removeAll(listHinhAnh);
+        listHinhAnh.add(haDAO.selectById(maSP));
+        fillElementToJListHinhAnh();
         this.updateStatus();
     }
-    
+
     void insert() {
         SanPham sp = getForm();
         try {
@@ -1248,7 +1251,7 @@ public class QL_SanPham extends javax.swing.JPanel {
             System.out.println(e);
         }
     }
-    
+
     void update() {
         SanPham sp = getForm();
         try {
@@ -1258,13 +1261,13 @@ public class QL_SanPham extends javax.swing.JPanel {
             System.out.println(e);
         }
     }
-    
+
     void delete() {
         String maSP = txtMaSanPham.getText();
         dao.delete(maSP);
         this.fillTable();
     }
-    
+
     void updateStatus() {
         boolean edit = (this.row >= 0);
         boolean first = (this.row == 0);
@@ -1291,27 +1294,22 @@ public class QL_SanPham extends javax.swing.JPanel {
         DesignHelper.setButtonBackgroundColor(new Color(153, 204, 255), new Color(204, 255, 255),
                 btnFirst, btnPrev, btnNext, btnLast);
     }
-    
+
     private void clearForm() {
         this.row = -1;
         SanPham sp = new SanPham();
         setForm(sp);
         setTextField();
         updateStatus();
+        try {
+            ImageHelper.setDefaultImage(lblHinhAnh);
+        } catch (IOException ex) {
+            MsgBox.alert(this, "Lỗi tải ảnh sản phẩm");
+        }
     }
-    
-    private void addImage() {
-        JFileChooser chooser = new JFileChooser();
-//        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-//            File file = chooser.getSelectedFile();
 
-//            XImage.save(file);
-//            try {
-//                lblHinh.setIcon(XImage.readAndResize(lblHinh, file.getName()));
-//            } catch (IOException ex) {
-//                MsgBox.alert(this, "Lỗi tải hình ảnh");
-//            }
-//            lblHinh.setToolTipText(file.getName());
+    private void addImage() {
+        JFileChooser chooser = new JFileChooser("src\\Images");
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "jpeg", "png");
         chooser.setFileFilter(filter);
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
@@ -1319,15 +1317,15 @@ public class QL_SanPham extends javax.swing.JPanel {
                 // Thêm hình ảnh vào listHinhAnh
                 HinhAnh hinhAnh = new HinhAnh();
                 hinhAnh.setMaSanPham(txtMaSanPham.getText());
-                
-                String tempImagePath = chooser.getSelectedFile().getAbsolutePath();
-                hinhAnh.setHinhAnh(ImageHelper.convertToByteArray(tempImagePath));
-                
                 File file = chooser.getSelectedFile();
+
+                String tempImagePath = file.getAbsolutePath();
+                hinhAnh.setHinhAnh(ImageHelper.convertToByteArray(tempImagePath));
+
                 hinhAnh.setTenHinhAnh(file.getName());
-                
+
                 listHinhAnh.add(hinhAnh);
-                addElementToJList();
+                fillElementToJListHinhAnh();
 
                 // hiển thị hình ảnh lên lblHinhAnh
                 lblHinhAnh.setIcon(ImageHelper.resize(lblHinhAnh, tempImagePath));
@@ -1337,8 +1335,8 @@ public class QL_SanPham extends javax.swing.JPanel {
             }
         }
     }
-    
-    private void addElementToJList() {
+
+    private void fillElementToJListHinhAnh() {
         DefaultListModel listModel = new DefaultListModel();
         listModel.removeAllElements();
         for (HinhAnh ha : listHinhAnh) {
@@ -1346,7 +1344,7 @@ public class QL_SanPham extends javax.swing.JPanel {
         }
         jListHinhAnh.setModel(listModel);
     }
-    
+
     private void hienHinhAnh() {
         try {
             if (jListHinhAnh.getSelectedIndex() < 0) {
@@ -1358,7 +1356,7 @@ public class QL_SanPham extends javax.swing.JPanel {
             MsgBox.alert(this, "Lỗi tải hình ảnh");
         }
     }
-    
+
     private void xoaHinhAnh() {
         if (jListHinhAnh.getSelectedIndex() >= 0) {
             listHinhAnh.remove(jListHinhAnh.getSelectedIndex());
@@ -1368,23 +1366,23 @@ public class QL_SanPham extends javax.swing.JPanel {
     /* Form loại hàng của Chinh */
     LoaiHangDAO lhDao = new LoaiHangDAO();
     int rowLH = -1;
-    
+
     void initLoaiHang() {
         setTableLoaiHang();
         fillTableLoaiHang();
     }
-    
+
     void setTableLoaiHang() {
         DefaultTableModel model = new DefaultTableModel();
-        
+
         model.addColumn("MÃ LOẠI");
         model.addColumn("TÊN LOẠI");
         model.addColumn("GHI CHÚ");
-        
+
         tblLoaiSanPham.setModel(model);
         DesignHelper.setTable(tblLoaiSanPham);
     }
-    
+
     void fillTableLoaiHang() {
         DefaultTableModel model = (DefaultTableModel) tblLoaiSanPham.getModel();
         model.setRowCount(0);
@@ -1402,9 +1400,9 @@ public class QL_SanPham extends javax.swing.JPanel {
             System.out.println(e);
         }
     }
-    
+
     LoaiHangDAO loaiHangDAO = new LoaiHangDAO();
-    
+
     void fillComboboxLoaiSP() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboLoaiSP.getModel();
         model.removeAllElements();
@@ -1415,25 +1413,25 @@ public class QL_SanPham extends javax.swing.JPanel {
         }
     }
     SanPhamDAO spdao = new SanPhamDAO();
-    
+
     void fillToTableSanPham() {
         DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
         model.setRowCount(0);
-        
+
         try {
             if (cboLoaiSP.getSelectedIndex() == 0) {
-                
+
                 List<SanPham> loaiHangALL = spdao.selectByMaLoaiHang("");
                 for (SanPham sp : loaiHangALL) {
                     Object[] row = {sp.getMaSanPham(), sp.getTenSP(), sp.getNhaSX(), sp.getGiaTien(), sp.getGhiChu()};
                     model.addRow(row);
                 }
             } else {
-                
+
                 LoaiHang loaiHang = (LoaiHang) cboLoaiSP.getSelectedItem();
-                
+
                 if (loaiHang != null) {
-                    
+
                     List<SanPham> list = spdao.selectByMaLoaiHang(loaiHang.getMaLoai());
                     for (SanPham sp : list) {
                         Object[] row = {sp.getMaSanPham(), sp.getTenSP(), sp.getNhaSX(), sp.getGiaTien(), sp.getGhiChu()};
@@ -1441,12 +1439,12 @@ public class QL_SanPham extends javax.swing.JPanel {
                     }
                 }
             }
-            
+
         } catch (Exception e) {
             // System.out.println("Lỗi nhẹ thôi ko có gì hết! để tb cho vui !");
 
         }
-        
+
     }
-    
+
 }
