@@ -1,9 +1,11 @@
 
 package com.Sell.entity;
 
+import java.util.Date;
+
 public class PhieuGiamGia {
     String maGiamGia ;
-    String ngayGiamGia ;
+    Date ngayGiamGia ;
     String maKhachHang ;
     Boolean trangThai ;
 
@@ -15,11 +17,11 @@ public class PhieuGiamGia {
         this.maGiamGia = maGiamGia;
     }
 
-    public String getNgayGiamGia() {
+    public Date getNgayGiamGia() {
         return ngayGiamGia;
     }
 
-    public void setNgayGiamGia(String ngayGiamGia) {
+    public void setNgayGiamGia(Date ngayGiamGia) {
         this.ngayGiamGia = ngayGiamGia;
     }
 

@@ -21,6 +21,17 @@ public class DateHelper {
         return new Date();
     }
     
+    public static Date getDay(String date){
+        try {
+            fmt.applyPattern("dd");
+            return fmt.parse(date);
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
+    }
+    
+    
+    
     // Đổi định dạng từ string qua ngày
     public static Date toDate(String date, String pattern){
         try {

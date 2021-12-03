@@ -14,17 +14,17 @@ import java.util.List;
  */
 public class PhieuGiamGia_Dao {
 
-    String INSERT_SQL = "INSERT INTO PhieuGiamGia VALUES (?, ?, ?, ? )";
+    String INSERT_SQL = "INSERT INTO PhieuGiamGia VALUES (?, ?, ? )";
     String UPDATE_SQL = "UPDATE PhieuGiamGia SET NgayGiamGia = ?, MaKhachHang = ?, TrangThai = ? where MaGiamGia= ?";
     String DELETE_SQL = "DELETE FROM PhieuGiamGia WHERE MaGiamGia = ?";
     String SELECT_ALL_SQL = "SELECT * FROM PhieuGiamGia";
     String SELECT_BY_ID_SQL = "SELECT * FROM PhieuGiamGia WHERE MaGiamGia = ?";
-
+    String SELECT_BY_MAKH = "SELECT * FROM PHIEUGIAMGIA WHERE MAKHACHHANG = ?";
+    
     public void insert(PhieuGiamGia entity) {
         try {
             JdbcHelper.executeUpdate(INSERT_SQL,
-                    entity.getMaGiamGia(),
-                    DateHelper.toDate(entity.getNgayGiamGia(), "dd/MM/yyyy"),
+                    entity.getNgayGiamGia(),
                     entity.getMaKhachHang(),
                     entity.getTrangThai()
             );
@@ -36,7 +36,7 @@ public class PhieuGiamGia_Dao {
     public void update(PhieuGiamGia entity) {
         try {
             JdbcHelper.executeUpdate(UPDATE_SQL,
-                    DateHelper.toDate(entity.getNgayGiamGia(), "dd/MM/yyyy"),
+                    entity.getNgayGiamGia(),
                     entity.getMaKhachHang(),
                     entity.getTrangThai(),
                     entity.getMaGiamGia()
@@ -56,6 +56,14 @@ public class PhieuGiamGia_Dao {
 
     public List<PhieuGiamGia> selectAll() {
         return this.selectBySql(SELECT_ALL_SQL);
+    }
+    
+    public PhieuGiamGia selectByMaKH(String key) {
+        List<PhieuGiamGia> list = this.selectBySql(SELECT_BY_MAKH, key);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 
     public PhieuGiamGia selectById(String key) {
@@ -92,12 +100,7 @@ public class PhieuGiamGia_Dao {
         PhieuGiamGia model = new PhieuGiamGia();
 
         model.setMaGiamGia(rs.getString(1));
-
-        try {
-            model.setNgayGiamGia(DateHelper.toString(rs.getDate(2), "dd/MM/yyyy"));
-        } catch (Exception e) {
-            model.setNgayGiamGia("");
-        }
+        model.setNgayGiamGia(rs.getDate(2));
         model.setMaKhachHang(rs.getString(3));
         model.setTrangThai(rs.getBoolean(4));
 

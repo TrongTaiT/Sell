@@ -27,7 +27,7 @@ public class KhachHangDAO extends SellDAO<KhachHang, String>{
     String SELECT_ALL_SQL = "SELECT * FROM KhachHang";
     String SELECT_BY_ID_SQL = "SELECT * FROM KhachHang WHERE MaKhachHang = ?";
     String SELECT_BY_KEYWORD = "SELECT * FROM KhachHang WHERE HoTen LIKE ?";
-
+    
     @Override
     public void insert(KhachHang entity) {
         JdbcHelper.executeUpdate(SQL_INSERT,

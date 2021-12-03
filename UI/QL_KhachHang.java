@@ -9,10 +9,12 @@ import com.Sell.DAO.KhachHangDAO;
 import com.Sell.DAO.PhieuGiamGia_Dao;
 import com.Sell.Helper.DateHelper;
 import com.Sell.Helper.DesignHelper;
+import com.Sell.Helper.MsgBox;
 import com.Sell.entity.KhachHang;
 import com.Sell.entity.PhieuGiamGia;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.table.DefaultTableModel;
@@ -939,6 +941,9 @@ public class QL_KhachHang extends javax.swing.JPanel {
 
     private void btnThongTin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongTin1ActionPerformed
         // TODO add your handling code here:
+        panelThongTin.setVisible(true);
+        panelDanhSach.setVisible(false);
+        panelPhieuGiamGia.setVisible(false);
     }//GEN-LAST:event_btnThongTin1ActionPerformed
 
     private void tblPhieuGiamGiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPhieuGiamGiaMouseClicked
@@ -947,6 +952,9 @@ public class QL_KhachHang extends javax.swing.JPanel {
 
     private void btnThongTin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongTin2ActionPerformed
         // TODO add your handling code here:
+        panelDanhSach.setVisible(false);
+        panelThongTin.setVisible(false);
+        panelPhieuGiamGia.setVisible(false);
     }//GEN-LAST:event_btnThongTin2ActionPerformed
 
     private void btnPhieuGiamGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhieuGiamGiaActionPerformed
@@ -1026,6 +1034,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
     void init() {
         setTextField();
         setTable();
+        setTableGiamGia();
         fillTable();
         fillTableGiamGia();
         this.updateStatus();
@@ -1061,6 +1070,17 @@ public class QL_KhachHang extends javax.swing.JPanel {
 
         tblListKhachHang.setModel(model);
         DesignHelper.setTable(tblListKhachHang);
+    }
+
+    void setTableGiamGia() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("SỐ PHIẾU");
+        model.addColumn("NGÀY HẾT HẠN");
+        model.addColumn("MÃ KHÁCH HÀNG");
+        model.addColumn("TRẠNG THÁI");
+
+        tblPhieuGiamGia.setModel(model);
+        DesignHelper.setTable(tblPhieuGiamGia);
     }
 
     void fillTable() {
@@ -1223,14 +1243,13 @@ public class QL_KhachHang extends javax.swing.JPanel {
         DesignHelper.deletePlaceHolderTextField(txtDienThoai);
         DesignHelper.deletePlaceHolderTextField(txtDiaChi);
     }
-    
-    
+
     /* GIẢM GIÁ OK OK OK */
-    
-    
     PhieuGiamGia_Dao gddao = new PhieuGiamGia_Dao();
+
     //tblHocVien double click
     void fillTableGiamGia() {
+        insertGiamGia();
         DefaultTableModel model = (DefaultTableModel) tblPhieuGiamGia.getModel();
 
         // xóa dữ liệu trên table
@@ -1251,5 +1270,37 @@ public class QL_KhachHang extends javax.swing.JPanel {
         } catch (Exception e) {
             System.out.println(e + " loi dong 50*");
         }
+    }
+    PhieuGiamGia_Dao ggDAO = new PhieuGiamGia_Dao();
+
+    void insertGiamGia() {
+        PhieuGiamGia giamGia = getData();
+        PhieuGiamGia pgg = ggDAO.selectByMaKH(giamGia.getMaKhachHang());
+        if (pgg == null) {
+            System.out.println("Không có");
+            try {
+                ggDAO.insert(giamGia);
+                this.fillTable();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    PhieuGiamGia getData() {
+        PhieuGiamGia giamGia = new PhieuGiamGia();
+
+        giamGia.setNgayGiamGia(DateHelper.now());
+        List<KhachHang> list = dao.selectAll();
+        for (KhachHang kh : list) {
+            int ngaySinh = kh.getNgaySinh().getDate();
+            int thangSinh = kh.getNgaySinh().getMonth();
+            if (ngaySinh == DateHelper.now().getDate() && thangSinh == DateHelper.now().getMonth()) {
+                giamGia.setMaKhachHang(kh.getMaKhachHang());
+            }
+        }
+        giamGia.setTrangThai(false);
+        return giamGia;
     }
 }
