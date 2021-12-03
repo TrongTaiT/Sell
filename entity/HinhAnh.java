@@ -11,6 +11,7 @@ package com.Sell.entity;
  */
 public class HinhAnh {
 
+    private int maHinhAnh;
     private String maSanPham;
     private String tenHinhAnh;
     private byte[] hinhAnh;
@@ -21,6 +22,14 @@ public class HinhAnh {
     }
 
     // getters && setters
+    public int getMaHinhAnh() {
+        return maHinhAnh;
+    }
+
+    public void setMaHinhAnh(int maHinhAnh) {
+        this.maHinhAnh = maHinhAnh;
+    }
+
     public String getMaSanPham() {
         return maSanPham;
     }
