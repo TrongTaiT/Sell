@@ -5,17 +5,28 @@
  */
 package com.Sell.UI;
 
+import com.Sell.DAO.ChiTietCuaHangDAO;
 import com.Sell.DAO.CuaHangDAO;
+import com.Sell.DAO.HoaDonBanHang_Dao;
+import com.Sell.DAO.HoaDonChiTiet_DAO;
 import com.Sell.DAO.KhachHangDAO;
 import com.Sell.DAO.LoaiHangDAO;
 import com.Sell.DAO.SanPhamDAO;
+import com.Sell.Helper.DateHelper;
+import com.Sell.Helper.MsgBox;
+import com.Sell.entity.ChiTietCuaHang;
 import com.Sell.entity.CuaHang;
+import com.Sell.entity.HoaDonBanHang;
+import com.Sell.entity.HoaDonChiTiet;
 import com.Sell.entity.KhachHang;
 import com.Sell.entity.LoaiHang;
 import com.Sell.entity.SanPham;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -56,7 +67,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
         txtMaHoaDon = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblSanPham = new javax.swing.JTable();
+        tblChiTietCuaHang = new javax.swing.JTable();
         cboMaCuaHang = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         cboTenKhachHang = new javax.swing.JComboBox<>();
@@ -200,7 +211,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
+        tblChiTietCuaHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -211,10 +222,20 @@ public class QL_HoaDon extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(tblSanPham);
+        tblChiTietCuaHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblChiTietCuaHangMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblChiTietCuaHang);
 
         cboMaCuaHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboMaCuaHang.setPreferredSize(new java.awt.Dimension(64, 30));
+        cboMaCuaHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboMaCuaHangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -240,10 +261,20 @@ public class QL_HoaDon extends javax.swing.JPanel {
 
         cboTenKhachHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboTenKhachHang.setPreferredSize(new java.awt.Dimension(64, 30));
+        cboTenKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboTenKhachHangActionPerformed(evt);
+            }
+        });
 
         btnAddKHToHoaDon.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAddKHToHoaDon.setText("Thêm vào hóa đơn");
         btnAddKHToHoaDon.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnAddKHToHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddKHToHoaDonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -296,6 +327,11 @@ public class QL_HoaDon extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblChiTietHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblChiTietHoaDonMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblChiTietHoaDon);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -331,6 +367,11 @@ public class QL_HoaDon extends javax.swing.JPanel {
         lblCong.setText("+");
         lblCong.setOpaque(true);
         lblCong.setPreferredSize(new java.awt.Dimension(30, 30));
+        lblCong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCongMouseClicked(evt);
+            }
+        });
 
         lblSoLuong.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblSoLuong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -343,6 +384,11 @@ public class QL_HoaDon extends javax.swing.JPanel {
         lblTru.setText("-");
         lblTru.setOpaque(true);
         lblTru.setPreferredSize(new java.awt.Dimension(30, 30));
+        lblTru.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblTruMouseClicked(evt);
+            }
+        });
 
         lblHinhAnh.setText("jLabel9");
         lblHinhAnh.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -350,6 +396,11 @@ public class QL_HoaDon extends javax.swing.JPanel {
         btnThemSPToHoaDon.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnThemSPToHoaDon.setText("Thêm vào hóa đơn");
         btnThemSPToHoaDon.setPreferredSize(new java.awt.Dimension(170, 30));
+        btnThemSPToHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemSPToHoaDonActionPerformed(evt);
+            }
+        });
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Số lượng");
@@ -441,6 +492,11 @@ public class QL_HoaDon extends javax.swing.JPanel {
 
         btnXoaHD.setText("Xóa hóa đơn");
         btnXoaHD.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnXoaHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaHDActionPerformed(evt);
+            }
+        });
 
         btnHuyHoaDon.setText("Hủy hóa đơn");
         btnHuyHoaDon.setPreferredSize(new java.awt.Dimension(150, 30));
@@ -540,7 +596,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE))
+                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
                         .addGap(10, 10, 10)))
                 .addContainerGap())
         );
@@ -643,6 +699,61 @@ public class QL_HoaDon extends javax.swing.JPanel {
         this.fillComboBoxTenSanPham();
     }//GEN-LAST:event_cboLoaiSanPhamActionPerformed
 
+    private void lblCongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCongMouseClicked
+        // TODO add your handling code here:
+        int soLuong = Integer.parseInt(lblSoLuong.getText());
+        soLuong++;
+        lblSoLuong.setText(String.valueOf(soLuong));
+        lblTru.setEnabled(true);
+    }//GEN-LAST:event_lblCongMouseClicked
+
+    private void lblTruMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTruMouseClicked
+        // TODO add your handling code here:
+        int soLuong = Integer.parseInt(lblSoLuong.getText());
+        if(soLuong <= 0){
+            lblTru.setEnabled(false);
+        }
+        else{
+            soLuong--;
+            lblSoLuong.setText(String.valueOf(soLuong));
+        }
+    }//GEN-LAST:event_lblTruMouseClicked
+
+    private void btnXoaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaHDActionPerformed
+        // TODO add your handling code here:
+        this.delete();
+    }//GEN-LAST:event_btnXoaHDActionPerformed
+
+    private void btnThemSPToHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSPToHoaDonActionPerformed
+        // TODO add your handling code here:
+        this.themSPToHoaDon();
+    }//GEN-LAST:event_btnThemSPToHoaDonActionPerformed
+
+    private void cboTenKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTenKhachHangActionPerformed
+        // TODO add your handling code here:
+        this.fillToPanelKhachHang();
+    }//GEN-LAST:event_cboTenKhachHangActionPerformed
+
+    private void tblChiTietCuaHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChiTietCuaHangMouseClicked
+        // TODO add your handling code here:
+        this.editSanPham();
+    }//GEN-LAST:event_tblChiTietCuaHangMouseClicked
+
+    private void tblChiTietHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChiTietHoaDonMouseClicked
+        // TODO add your handling code here:
+        this.hoaDonChiTietToForm();
+    }//GEN-LAST:event_tblChiTietHoaDonMouseClicked
+
+    private void btnAddKHToHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddKHToHoaDonActionPerformed
+        // TODO add your handling code here:
+        this.themTableHoaDon();
+    }//GEN-LAST:event_btnAddKHToHoaDonActionPerformed
+
+    private void cboMaCuaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMaCuaHangActionPerformed
+        // TODO add your handling code here:
+        this.fillToTableChiTietCuaHang();
+    }//GEN-LAST:event_cboMaCuaHangActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddKHToHoaDon;
@@ -686,8 +797,8 @@ public class QL_HoaDon extends javax.swing.JPanel {
     private javax.swing.JLabel lblTru;
     private javax.swing.JPanel panelSearch2;
     private com.k33ptoo.components.KGradientPanel panelTitle;
+    private javax.swing.JTable tblChiTietCuaHang;
     private javax.swing.JTable tblChiTietHoaDon;
-    private javax.swing.JTable tblSanPham;
     private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtDienThoai;
     private javax.swing.JTextField txtDonGia;
@@ -700,43 +811,83 @@ public class QL_HoaDon extends javax.swing.JPanel {
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
         void init() {
-        fillComboboxTenKhachHang();
-        fillComboboxMaCuaHang();
+        fillComboBoxKhachHang();
+        fillComboBoxCuaHang();
         fillComboBoxLoaiHang();
     }
 
-    KhachHangDAO khachHangDAO = new KhachHangDAO();
-    CuaHangDAO cuaHangDAO = new CuaHangDAO();
-    LoaiHangDAO loaiHangDAO = new LoaiHangDAO();
-    SanPhamDAO sanPhamDAO = new SanPhamDAO();
-
-    void fillComboboxTenKhachHang() {
+    KhachHangDAO khdao = new KhachHangDAO();
+    CuaHangDAO chdao = new CuaHangDAO();
+    LoaiHangDAO lhdao = new LoaiHangDAO();
+    SanPhamDAO spdao = new SanPhamDAO();
+    ChiTietCuaHangDAO ctchdao = new ChiTietCuaHangDAO();
+    
+//    void fillComboboxTenKhachHang() {
+//        DefaultComboBoxModel model = (DefaultComboBoxModel) cboTenKhachHang.getModel();
+//        model.removeAllElements();
+//        List<KhachHang> list = khdao.selectAll();
+//        Date now = new Date();
+//        model.addElement(new KhachHang("Mã KH", "Họ Tên", now, "", "", now, "", true));
+//        for (KhachHang cd : list) {
+//            model.addElement(cd);
+//        }
+//    }
+    
+    private void fillComboBoxKhachHang() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboTenKhachHang.getModel();
         model.removeAllElements();
-        List<KhachHang> list = khachHangDAO.selectAll();
-        Date now = new Date();
-        model.addElement(new KhachHang("Mã KH", "Họ Tên", now, "", "", now, "", true));
+        List<KhachHang> list = khdao.selectAll();
         for (KhachHang cd : list) {
             model.addElement(cd);
         }
     }
 
-    void fillComboboxMaCuaHang() {
+    private void fillComboBoxCuaHang() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboMaCuaHang.getModel();
         model.removeAllElements();
-        List<CuaHang> list = cuaHangDAO.selectAll();
-//        Object[] tatcaObject = {"Tất cả", "Tất cả", "Tất cả"};
-//        model.addElement(tatcaObject);
+        List<CuaHang> list = chdao.selectAll();
         model.addElement(new CuaHang("Tất cả", "", "cửa hàng", true));
         for (CuaHang cd : list) {
             model.addElement(cd);
+        }
+    }
+    
+    private void fillToTableChiTietCuaHang() {
+        DefaultTableModel model = (DefaultTableModel) tblChiTietCuaHang.getModel();
+        model.setRowCount(0);
+        String keyword = txtTimKiem.getText();
+        try {
+            if (cboMaCuaHang.getSelectedIndex() == 0) {
+
+                List<ChiTietCuaHang> cuaHangALL = ctchdao.selectByMaCuaHang("", keyword);
+                for (ChiTietCuaHang ctch : cuaHangALL) {
+                    Object[] row = {ctch.getMaCuaHang(), ctch.getMaSanPham(), ctch.getSoLuong()};
+                    model.addRow(row);
+                }
+            } else {
+
+                CuaHang cuaHang = (CuaHang) cboMaCuaHang.getSelectedItem();
+
+                if (cuaHang != null) {
+
+                    List<ChiTietCuaHang> list = ctchdao.selectByMaCuaHang(cuaHang.getMaCH(), keyword);
+                    for (ChiTietCuaHang ctch : list) {
+                        Object[] row = {ctch.getMaCuaHang(), ctch.getMaSanPham(), ctch.getSoLuong()};
+                        model.addRow(row);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            // System.out.println("Lỗi nhẹ thôi ko có gì hết! để tb cho vui !");
+
         }
     }
 
     void fillComboBoxLoaiHang() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboLoaiSanPham.getModel();
         model.removeAllElements();
-        List<LoaiHang> list = loaiHangDAO.selectAll();
+        List<LoaiHang> list = lhdao.selectAll();
 //        model.addElement(new LoaiHang("Tất cả", "Tất cả ", "cửa hàng"));
         for (LoaiHang cd : list) {
             model.addElement(cd);
@@ -752,7 +903,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
         }
         LoaiHang loaiHang = (LoaiHang) cboLoaiSanPham.getSelectedItem();
         if (loaiHang != null) {
-            List<SanPham> list = sanPhamDAO.selectByMaLoaiHang(loaiHang.getMaLoai());
+            List<SanPham> list = spdao.selectByMaLoaiHang(loaiHang.getMaLoai());
             for (SanPham sp : list) {
                 model.addElement(sp);
             }
@@ -760,4 +911,143 @@ public class QL_HoaDon extends javax.swing.JPanel {
             model.removeAllElements();
         }
     }
+    
+//    private void fillComboBoxSanPham() {
+//        DefaultComboBoxModel model = (DefaultComboBoxModel) cboTenSanPham.getModel();
+//        model.removeAllElements();
+//        List<SanPham> list = spdao.selectAll();
+//        for (SanPham cd : list) {
+//            model.addElement(cd);
+//        }
+//    }
+    
+    private void fillToPanelKhachHang() {
+        KhachHang kh = (KhachHang) cboTenKhachHang.getSelectedItem();
+        try {
+            txtDiaChi.setText(kh.getDiaChi());
+            txtDienThoai.setText(kh.getDienThoai());
+            txtNguoiTao.setText("NV04");
+        } catch (Exception e) {
+        }
+    }
+    
+    void editSanPham() {
+        int row = tblChiTietCuaHang.getSelectedRow();
+        String maSP = (String) tblChiTietCuaHang.getValueAt(row, 1);
+        SanPham sp = spdao.selectById(maSP);
+        cboTenSanPham.setSelectedItem(sp);
+        txtNhaSX.setText(sp.getNhaSX());
+        txtDonGia.setText(sp.getGiaTien() + "");
+        lblSoLuong.setText("0");
+        
+    }
+    
+    private void loadHoaDonChiTietTable() {
+        DefaultTableModel model = (DefaultTableModel) tblChiTietHoaDon.getModel();
+        model.setRowCount(0);
+        try {
+            HoaDonChiTiet_DAO dao = new HoaDonChiTiet_DAO();
+            List<HoaDonChiTiet> list = dao.selectAll(txtMaHoaDon.getText());
+            for (HoaDonChiTiet ch : list) {
+                model.addRow(new Object[]{
+                    ch.getMaSanPham(),
+                    ch.getSoLuong(),
+                    ch.getThanhTien(),});
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    private void tongTien() {
+        int row = tblChiTietHoaDon.getRowCount();
+        System.out.println(row);
+        float tong = 0;
+        for (int i = 0; i < row; i++) {
+            float soLuong = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 1) + "");
+            System.out.println("soluong:" + soLuong);
+            float donGia = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 2).toString());
+            System.out.println("don gia:" + donGia);
+
+            tong = tong + soLuong * donGia;
+        }
+        txtTongTien.setText(tong + "");
+    }
+    
+    void fillToForm(HoaDonBanHang hd) {
+        txtMaHoaDon.setText(hd.getMaHDBan());
+        KhachHang kh = khdao.selectById(hd.getMaKhachHang());
+        cboTenKhachHang.setSelectedItem(kh);
+        loadHoaDonChiTietTable();
+    }
+    
+    private void hoaDonChiTietToForm() {
+        HoaDonChiTiet_DAO hdctdao = new HoaDonChiTiet_DAO();
+        HoaDonChiTiet hd = new HoaDonChiTiet();
+        int row = tblChiTietHoaDon.getSelectedRow();
+        String sp = tblChiTietHoaDon.getValueAt(row, 0) + "";
+        
+        SanPham spct = spdao.selectById(sp);
+        cboTenSanPham.setSelectedItem(spct);
+        txtNhaSX.setText(spct.getNhaSX());
+        lblSoLuong.setText("0");
+        txtDonGia.setText(spct.getGiaTien() + "");
+    }
+    
+    private void delete(){
+        int row = tblChiTietHoaDon.getSelectedRow();
+        String HDChiTiet = tblChiTietHoaDon.getValueAt(row, 0) + "";
+        if (MsgBox.confirm(this, "Bạn có muốn xóa hay không?")){
+            try {
+                HoaDonChiTiet_DAO hdctdao = new HoaDonChiTiet_DAO();
+                hdctdao.delete(txtMaHoaDon.getText(), HDChiTiet);
+                this.loadHoaDonChiTietTable();
+                tongTien();
+                fillToTableChiTietCuaHang();
+                MsgBox.alert(this, "Xóa thành công!");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Xóa thất bại!");
+            }
+        }
+    }
+    
+    private void themSPToHoaDon(){
+        HoaDonChiTiet_DAO hdctdao = new HoaDonChiTiet_DAO();
+        HoaDonChiTiet hd = new HoaDonChiTiet();
+        SanPham sp = (SanPham) cboTenSanPham.getSelectedItem();
+        hd.setMaHDBan(txtMaHoaDon.getText());
+        hd.setMaSanPham(sp.getMaSanPham());
+        hd.setSoLuong(lblSoLuong.getText());
+        hd.setThanhTien(sp.getGiaTien());
+        try {
+            hdctdao.insert(hd);
+            loadHoaDonChiTietTable();
+            tongTien();
+            fillToTableChiTietCuaHang();
+            MsgBox.alert(this, "Thêm sản phẩm vào hóa đơn thành công!");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Thêm sản phẩm vào hóa đơn thất bại!");
+        }
+    }
+    
+    private void themTableHoaDon(){
+        HoaDonBanHang_Dao hdbhdao = new HoaDonBanHang_Dao();
+        HoaDonBanHang hd = new HoaDonBanHang();
+        KhachHang kh = (KhachHang) cboTenKhachHang.getSelectedItem();
+        hd.setMaHDBan(txtMaHoaDon.getText());
+        hd.setMaKhachHang(kh.getMaKhachHang());
+        hd.setNgayBan(DateHelper.now());
+        hd.setNoiDung("noi dung dang trong");
+        hd.setTrangThai(true);
+        hd.setMaNhanVien("NV01");
+        hd.setMaCuaHang("CH001");
+        hd.setMaGiamGia("1");
+        try {
+            hdbhdao.insert(hd);
+            MsgBox.alert(this, "Thêm mới hóa đơn thành công!");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Thêm mới hóa đơn thất bại!");
+        }
+    }
+    
 }
