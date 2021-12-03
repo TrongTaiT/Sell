@@ -705,7 +705,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        DesignHelper.next(row, tblListCuaHang);
+        this.next();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void panelTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelTitleMouseClicked
@@ -726,15 +726,15 @@ public class QL_CuaHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
-        DesignHelper.first(row);
+        this.first();
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-        DesignHelper.prev(row);
+        this.prev();
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-        DesignHelper.last(row, tblListCuaHang);
+        this.last();
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void txtTimKiemCuaHangCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCuaHangCaretUpdate
@@ -1011,6 +1011,29 @@ public class QL_CuaHang extends javax.swing.JPanel {
             // System.out.println("Lỗi nhẹ thôi ko có gì hết! để tb cho vui !");
 
         }
+    }
+    
+    void first() {
+        row = 0;
+        edit();
+    }
 
+    void prev() {
+        if (row > 0) {
+            row--;
+            edit();
+        }
+    }
+
+    void next() {
+        if (row < tblListCuaHang.getRowCount() - 1) {
+            row++;
+            edit();
+        }
+    }
+
+    void last() {
+        row = tblListCuaHang.getRowCount() - 1;
+        edit();
     }
 }
