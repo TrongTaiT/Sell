@@ -25,7 +25,8 @@ public class SanPhamDAO extends SellDAO<SanPham, String> {
     String SELECT_ALL_SQL = "SELECT * FROM SANPHAM";
     String SELECT_BY_ID = "SELECT * FROM SANPHAM WHERE MaSanPham=?";
     String SELECT_BY_ID_NAME = "SELECT * FROM SANPHAM WHERE MaSanPham=? OR TenSP=?";
-
+    String SELECT_MALOAI = "SELECT MALOAI WHERE MaSanPham = ? ";
+    
     @Override
     public void insert(SanPham entity) {
         JdbcHelper.executeUpdate(INSERT_SQL,

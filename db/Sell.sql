@@ -131,7 +131,8 @@ GO
 
 -- INSERT VALUES
 INSERT INTO [dbo].[KHACHHANG]
-    VALUES  ('KH01',N'Nguyễn Trọng Tài',1,'1996-07-28', '0784224338','nguyentrongtai.ait@gmail.com',N'Gò Vấp, Thành phố Hồ Chí Minh','2021-11-18'),
+    VALUES  (' ',N'Không có',1,GETDATE(), ' ',' ',N'Địa chỉ',GETDATE()),
+            ('KH01',N'Nguyễn Trọng Tài',1,'1996-07-28', '0784224338','nguyentrongtai.ait@gmail.com',N'Gò Vấp, Thành phố Hồ Chí Minh','2021-11-18'),
             ('KH02',N'Nguyễn Trường Chinh',1,'2001-08-01', '0345148479','chinhnguyen010801@gmail.com',N'quận 12, Thành phố Hồ Chí Minh','2021-11-18'),
             ('KH03',N'Trần Lê Hồng Phúc',1,'2001-01-12','0928923678','phuctlhps15000@fpt.edu.vn',N'quận 12, Thành phố Hồ Chí Minh','2021-11-19'),
             ('KH04',N'Trần Hải Triều',1,'2000-02-08','0988528937','trieuth@gmail.com',N'Gò Vấp, Thành phố Hồ Chí Minh','2021-11-20'),

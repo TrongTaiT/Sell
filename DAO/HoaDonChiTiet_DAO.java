@@ -16,7 +16,7 @@ public class HoaDonChiTiet_DAO {
 
     String INSERT_SQL = "INSERT INTO [HoaDonChiTiet] VALUES (?, ?, ?, ? )";
     String UPDATE_SQL = "UPDATE HoaDonChiTiet SET MaSanPham = ?, SoLuong= ?, ThanhTien = ? where MaHDBan= ?";
-    String DELETE_SQL = "DELETE FROM HoaDonChiTiet WHERE MaHDBan = ?";
+    String DELETE_SQL = "DELETE FROM HoaDonChiTiet WHERE MaHDBan = ? and  MaSanPham=?";
     //dang sua
     String SELECT_ALL_SQL = "SELECT * FROM HoaDonChiTiet WHERE MaHDBan = ?";
     
@@ -48,9 +48,9 @@ public class HoaDonChiTiet_DAO {
         }
     }
 
-    public void delete(String key) {
+    public void delete(String key,String key2) {
         try {
-            JdbcHelper.executeUpdate(DELETE_SQL, key);
+            JdbcHelper.executeUpdate(DELETE_SQL, key,key2);
         } catch (Exception ex) {
             System.out.println(ex + " loi dong 64 nhan vien dao");
         }
