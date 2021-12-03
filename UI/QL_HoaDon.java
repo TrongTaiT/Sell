@@ -213,13 +213,13 @@ public class QL_HoaDon extends javax.swing.JPanel {
 
         tblChiTietCuaHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3"
             }
         ));
         tblChiTietCuaHang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -360,6 +360,11 @@ public class QL_HoaDon extends javax.swing.JPanel {
 
         cboTenSanPham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboTenSanPham.setPreferredSize(new java.awt.Dimension(64, 30));
+        cboTenSanPham.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboTenSanPhamActionPerformed(evt);
+            }
+        });
 
         lblCong.setBackground(new java.awt.Color(204, 204, 204));
         lblCong.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -696,7 +701,10 @@ public class QL_HoaDon extends javax.swing.JPanel {
 
     private void cboLoaiSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiSanPhamActionPerformed
         // TODO add your handling code here:
-        this.fillComboBoxTenSanPham();
+        try {
+            this.fillComboBoxTenSanPham();
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_cboLoaiSanPhamActionPerformed
 
     private void lblCongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCongMouseClicked
@@ -710,10 +718,9 @@ public class QL_HoaDon extends javax.swing.JPanel {
     private void lblTruMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTruMouseClicked
         // TODO add your handling code here:
         int soLuong = Integer.parseInt(lblSoLuong.getText());
-        if(soLuong <= 0){
+        if (soLuong <= 0) {
             lblTru.setEnabled(false);
-        }
-        else{
+        } else {
             soLuong--;
             lblSoLuong.setText(String.valueOf(soLuong));
         }
@@ -735,8 +742,11 @@ public class QL_HoaDon extends javax.swing.JPanel {
     }//GEN-LAST:event_cboTenKhachHangActionPerformed
 
     private void tblChiTietCuaHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChiTietCuaHangMouseClicked
-        // TODO add your handling code here:
-        this.editSanPham();
+        int row = tblChiTietCuaHang.getSelectedRow();
+        String maSP = (String) tblChiTietCuaHang.getValueAt(row, 1);
+        SanPham sp = spdao.selectById(maSP);
+        
+        this.editSanPham(sp );
     }//GEN-LAST:event_tblChiTietCuaHangMouseClicked
 
     private void tblChiTietHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChiTietHoaDonMouseClicked
@@ -753,6 +763,19 @@ public class QL_HoaDon extends javax.swing.JPanel {
         // TODO add your handling code here:
         this.fillToTableChiTietCuaHang();
     }//GEN-LAST:event_cboMaCuaHangActionPerformed
+
+    private void cboTenSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTenSanPhamActionPerformed
+//        try {
+//            LoaiHang lh = (LoaiHang) cboLoaiSanPham.getSelectedItem();
+//            SanPham sp = (SanPham) spdao.selectByMaLoaiHang(lh.getMaLoai());
+//
+//            txtNhaSX.setText(sp.getNhaSX());
+//            lblSoLuong.setText("0");
+//            txtDonGia.setText(sp.getGiaTien() + "");
+//        } catch (Exception e) {
+//            System.out.println("dong 773" + e);
+//        }
+    }//GEN-LAST:event_cboTenSanPhamActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -812,8 +835,9 @@ public class QL_HoaDon extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
         void init() {
         fillComboBoxKhachHang();
-        fillComboBoxCuaHang();
+        
         fillComboBoxLoaiHang();
+        fillComboBoxCuaHang();
     }
 
     KhachHangDAO khdao = new KhachHangDAO();
@@ -821,7 +845,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
     LoaiHangDAO lhdao = new LoaiHangDAO();
     SanPhamDAO spdao = new SanPhamDAO();
     ChiTietCuaHangDAO ctchdao = new ChiTietCuaHangDAO();
-    
+
 //    void fillComboboxTenKhachHang() {
 //        DefaultComboBoxModel model = (DefaultComboBoxModel) cboTenKhachHang.getModel();
 //        model.removeAllElements();
@@ -832,7 +856,6 @@ public class QL_HoaDon extends javax.swing.JPanel {
 //            model.addElement(cd);
 //        }
 //    }
-    
     private void fillComboBoxKhachHang() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboTenKhachHang.getModel();
         model.removeAllElements();
@@ -851,7 +874,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
             model.addElement(cd);
         }
     }
-    
+
     private void fillToTableChiTietCuaHang() {
         DefaultTableModel model = (DefaultTableModel) tblChiTietCuaHang.getModel();
         model.setRowCount(0);
@@ -889,38 +912,27 @@ public class QL_HoaDon extends javax.swing.JPanel {
         model.removeAllElements();
         List<LoaiHang> list = lhdao.selectAll();
 //        model.addElement(new LoaiHang("Tất cả", "Tất cả ", "cửa hàng"));
+
         for (LoaiHang cd : list) {
             model.addElement(cd);
         }
     }
 
     void fillComboBoxTenSanPham() {
+        
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboTenSanPham.getModel();
-        try {
-            model.removeAllElements();
-            
-        } catch (Exception e) {
-        }
         LoaiHang loaiHang = (LoaiHang) cboLoaiSanPham.getSelectedItem();
-        if (loaiHang != null) {
+        model.removeAllElements();
+        if (true) {
             List<SanPham> list = spdao.selectByMaLoaiHang(loaiHang.getMaLoai());
             for (SanPham sp : list) {
                 model.addElement(sp);
             }
-        }else{
-            model.removeAllElements();
+//        } else {
+//            model.removeAllElements();
         }
     }
-    
-//    private void fillComboBoxSanPham() {
-//        DefaultComboBoxModel model = (DefaultComboBoxModel) cboTenSanPham.getModel();
-//        model.removeAllElements();
-//        List<SanPham> list = spdao.selectAll();
-//        for (SanPham cd : list) {
-//            model.addElement(cd);
-//        }
-//    }
-    
+
     private void fillToPanelKhachHang() {
         KhachHang kh = (KhachHang) cboTenKhachHang.getSelectedItem();
         try {
@@ -930,18 +942,22 @@ public class QL_HoaDon extends javax.swing.JPanel {
         } catch (Exception e) {
         }
     }
-    
-    void editSanPham() {
-        int row = tblChiTietCuaHang.getSelectedRow();
-        String maSP = (String) tblChiTietCuaHang.getValueAt(row, 1);
-        SanPham sp = spdao.selectById(maSP);
+
+    void editSanPham(SanPham sp) {
+        
+        //tim loai hang
+        LoaiHang lh =lhdao.selectById(sp.getMaLoai());
+
+        cboLoaiSanPham.setSelectedItem(lh);
+        
         cboTenSanPham.setSelectedItem(sp);
+
         txtNhaSX.setText(sp.getNhaSX());
         txtDonGia.setText(sp.getGiaTien() + "");
         lblSoLuong.setText("0");
-        
+
     }
-    
+
     private void loadHoaDonChiTietTable() {
         DefaultTableModel model = (DefaultTableModel) tblChiTietHoaDon.getModel();
         model.setRowCount(0);
@@ -958,7 +974,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
             System.out.println(e);
         }
     }
-    
+
     private void tongTien() {
         int row = tblChiTietHoaDon.getRowCount();
         System.out.println(row);
@@ -973,31 +989,31 @@ public class QL_HoaDon extends javax.swing.JPanel {
         }
         txtTongTien.setText(tong + "");
     }
-    
+
     void fillToForm(HoaDonBanHang hd) {
         txtMaHoaDon.setText(hd.getMaHDBan());
         KhachHang kh = khdao.selectById(hd.getMaKhachHang());
         cboTenKhachHang.setSelectedItem(kh);
         loadHoaDonChiTietTable();
     }
-    
+
     private void hoaDonChiTietToForm() {
         HoaDonChiTiet_DAO hdctdao = new HoaDonChiTiet_DAO();
         HoaDonChiTiet hd = new HoaDonChiTiet();
         int row = tblChiTietHoaDon.getSelectedRow();
         String sp = tblChiTietHoaDon.getValueAt(row, 0) + "";
-        
+
         SanPham spct = spdao.selectById(sp);
         cboTenSanPham.setSelectedItem(spct);
         txtNhaSX.setText(spct.getNhaSX());
         lblSoLuong.setText("0");
         txtDonGia.setText(spct.getGiaTien() + "");
     }
-    
-    private void delete(){
+
+    private void delete() {
         int row = tblChiTietHoaDon.getSelectedRow();
         String HDChiTiet = tblChiTietHoaDon.getValueAt(row, 0) + "";
-        if (MsgBox.confirm(this, "Bạn có muốn xóa hay không?")){
+        if (MsgBox.confirm(this, "Bạn có muốn xóa hay không?")) {
             try {
                 HoaDonChiTiet_DAO hdctdao = new HoaDonChiTiet_DAO();
                 hdctdao.delete(txtMaHoaDon.getText(), HDChiTiet);
@@ -1010,8 +1026,8 @@ public class QL_HoaDon extends javax.swing.JPanel {
             }
         }
     }
-    
-    private void themSPToHoaDon(){
+
+    private void themSPToHoaDon() {
         HoaDonChiTiet_DAO hdctdao = new HoaDonChiTiet_DAO();
         HoaDonChiTiet hd = new HoaDonChiTiet();
         SanPham sp = (SanPham) cboTenSanPham.getSelectedItem();
@@ -1029,8 +1045,8 @@ public class QL_HoaDon extends javax.swing.JPanel {
             MsgBox.alert(this, "Thêm sản phẩm vào hóa đơn thất bại!");
         }
     }
-    
-    private void themTableHoaDon(){
+
+    private void themTableHoaDon() {
         HoaDonBanHang_Dao hdbhdao = new HoaDonBanHang_Dao();
         HoaDonBanHang hd = new HoaDonBanHang();
         KhachHang kh = (KhachHang) cboTenKhachHang.getSelectedItem();
@@ -1049,5 +1065,5 @@ public class QL_HoaDon extends javax.swing.JPanel {
             MsgBox.alert(this, "Thêm mới hóa đơn thất bại!");
         }
     }
-    
+
 }
