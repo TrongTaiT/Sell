@@ -80,7 +80,7 @@ CREATE TABLE ChiTietCuaHang (
 )
 
 CREATE TABLE HinhAnh (
-	MaHinhAnh int identity(1,1) PRIMARY KEY,
+    MaHinhAnh int identity(1,1) PRIMARY KEY,
     MaSanPham char(7),
     TenHinhAnh nvarchar(255) NOT NULL,
     HinhAnh varBinary(max) null,
