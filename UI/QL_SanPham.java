@@ -17,7 +17,6 @@ import com.Sell.entity.LoaiHang;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -36,7 +35,6 @@ public class QL_SanPham extends javax.swing.JPanel {
     SanPhamDAO spDAO = new SanPhamDAO();
     int row = -1;
     List<HinhAnh> listHinhAnh = new ArrayList<>();
-    List<HinhAnh> listHinhAnhThem = new ArrayList<>();
     List<HinhAnh> listHinhAnhXoa = new ArrayList<>();
     HinhAnhDao haDAO = new HinhAnhDao();
 
@@ -938,7 +936,7 @@ public class QL_SanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSanPhamActionPerformed
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
-        edit();
+        this.edit();
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
     private void btnThemHinhAnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemHinhAnhActionPerformed
@@ -1246,7 +1244,6 @@ public class QL_SanPham extends javax.swing.JPanel {
     }
 
     private void editHinhAnh(String maSP) {
-        listHinhAnhThem.removeAll(listHinhAnhThem);
         listHinhAnhXoa.removeAll(listHinhAnhXoa);
         listHinhAnh.removeAll(listHinhAnh);
         listHinhAnh = haDAO.selectAllById(maSP);
@@ -1263,16 +1260,16 @@ public class QL_SanPham extends javax.swing.JPanel {
     }
 
     private void fillElementToJListHinhAnh() {
+        DefaultListModel listModel = new DefaultListModel();
+        listModel.removeAllElements();
         if (!listHinhAnh.isEmpty()) {
-            DefaultListModel listModel = new DefaultListModel();
-            listModel.removeAllElements();
             for (HinhAnh ha : listHinhAnh) {
                 listModel.addElement(ha);
             }
-            jListHinhAnh.setModel(listModel);
         } else {
             ImageHelper.setDefaultImage(lblHinhAnh);
         }
+        jListHinhAnh.setModel(listModel);
     }
 
     void insert() {
@@ -1283,8 +1280,8 @@ public class QL_SanPham extends javax.swing.JPanel {
             this.fillTable();
 
             // Thêm hình ảnh vào db
-            if (!listHinhAnhThem.isEmpty()) {
-                for (HinhAnh ha : listHinhAnhThem) {
+            if (!listHinhAnh.isEmpty()) {
+                for (HinhAnh ha : listHinhAnh) {
                     ha.setMaSanPham(sp.getMaSanPham());
                     haDAO.insert(ha);
                 }
@@ -1304,10 +1301,12 @@ public class QL_SanPham extends javax.swing.JPanel {
             this.fillTable();
 
             // Thêm hình ở danh sách hình mới listHinhAnhThem
-            if (!listHinhAnhThem.isEmpty()) {
-                for (HinhAnh ha : listHinhAnhThem) {
-                    ha.setMaSanPham(sp.getMaSanPham());
-                    haDAO.insert(ha);
+            if (!listHinhAnh.isEmpty()) {
+                for (HinhAnh ha : listHinhAnh) {
+                    if (ha.getMaSanPham() == null) {
+                        ha.setMaSanPham(sp.getMaSanPham());
+                        haDAO.insert(ha);
+                    }
                 }
             }
             // Xoá hình ở danh sách hình cần xoá listHinhAnhXoa
@@ -1329,13 +1328,13 @@ public class QL_SanPham extends javax.swing.JPanel {
             String maSP = txtMaSanPham.getText();
             // xoá SP trong db
             spDAO.delete(maSP);
-            // xoá ha trong db
-            haDAO.deleteAllByID(maSP);
-            this.fillTable();
+            
+            // hình ảnh tự xoá trong DB, khoá ngoại MaSanPham ON DELETE CASCADE
 
             MsgBox.alert(this, "Xoá sản phẩm thành công");
         } catch (Exception e) {
             MsgBox.alert(this, "Xoá sản phẩm thất bại");
+            e.printStackTrace();
         }
     }
 
@@ -1374,8 +1373,8 @@ public class QL_SanPham extends javax.swing.JPanel {
         updateStatus();
 
         listHinhAnh.removeAll(listHinhAnh);
-        listHinhAnhThem.removeAll(listHinhAnhThem);
         listHinhAnhXoa.removeAll(listHinhAnhXoa);
+        fillElementToJListHinhAnh();
         ImageHelper.setDefaultImage(lblHinhAnh);
     }
 
@@ -1394,7 +1393,6 @@ public class QL_SanPham extends javax.swing.JPanel {
                 hinhAnh.setHinhAnh(ImageHelper.convertToByteArray(tempImagePath));
 
                 hinhAnh.setTenHinhAnh(file.getName());
-                listHinhAnhThem.add(hinhAnh);
                 listHinhAnh.add(hinhAnh);
             }
             fillElementToJListHinhAnh();
@@ -1515,7 +1513,6 @@ public class QL_SanPham extends javax.swing.JPanel {
         } catch (Exception e) {
             // System.out.println("Lỗi nhẹ thôi ko có gì hết! để tb cho vui !");
             e.printStackTrace();
-
         }
 
     }

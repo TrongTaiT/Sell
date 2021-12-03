@@ -21,8 +21,6 @@ public class HinhAnhDao {
             + " VALUES (?,?,?)";
     // Lấy danh sách HinhAnh theo MaSanPham
     String SELECT_ALL_BY_ID_SQL = "SELECT * FROM HINHANH WHERE MaSanPham=?";
-    // Xoá tất cả hình ảnh theo MaSanPham
-    String DELETE_ALL_BY_ID_SQL = "DELETE FROM HINHANH WHERE MaSanPham=?";
     // Xoá hình ảnh theo MaSanPham và dữ liệu byte[] hình ảnh
     String DELETE_SQL = "DELETE FROM HINHANH WHERE MaHinhAnh=?";
 
@@ -36,10 +34,6 @@ public class HinhAnhDao {
     public List<HinhAnh> selectAllById(String maSanPham) {
         List<HinhAnh> list = selectBySql(SELECT_ALL_BY_ID_SQL, maSanPham);
         return list;
-    }
-
-    public void deleteAllByID(String maSanPham) {
-        JdbcHelper.executeUpdate(DELETE_ALL_BY_ID_SQL, maSanPham);
     }
 
     public void delete(HinhAnh ha) {
