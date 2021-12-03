@@ -507,7 +507,6 @@ public class QL_SanPham extends javax.swing.JPanel {
         jPanel7.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 490, 400));
 
         lblHinhAnh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHinhAnh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/default_image.png"))); // NOI18N
         lblHinhAnh.setToolTipText("");
         lblHinhAnh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
         jPanel7.add(lblHinhAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 190, 240));
@@ -1252,21 +1251,13 @@ public class QL_SanPham extends javax.swing.JPanel {
         listHinhAnh.removeAll(listHinhAnh);
         listHinhAnh = haDAO.selectAllById(maSP);
         if (!listHinhAnh.isEmpty()) {
-            try {
-                lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh, listHinhAnh.get(0).getHinhAnh()));
-                jListHinhAnh.setSelectedIndex(1);
-            } catch (IOException ex) {
-                MsgBox.alert(this, "Lỗi tải ảnh sản phẩm");
-            }
+            lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh, listHinhAnh.get(0).getHinhAnh()));
+            jListHinhAnh.setSelectedIndex(1);
         } else {
             DefaultListModel listModel = (DefaultListModel) jListHinhAnh.getModel();
             listModel.removeAllElements();
             jListHinhAnh.setSelectedIndex(-1);
-            try {
-                ImageHelper.setDefaultImage(lblHinhAnh);
-            } catch (IOException ex) {
-                MsgBox.alert(this, "Lỗi tải ảnh sản phẩm");
-            }
+            ImageHelper.setDefaultImage(lblHinhAnh);
         }
         fillElementToJListHinhAnh();
     }
@@ -1280,11 +1271,7 @@ public class QL_SanPham extends javax.swing.JPanel {
             }
             jListHinhAnh.setModel(listModel);
         } else {
-            try {
-                ImageHelper.setDefaultImage(lblHinhAnh);
-            } catch (IOException ex) {
-                MsgBox.alert(this, "Lỗi tải ảnh sản phẩm");
-            }
+            ImageHelper.setDefaultImage(lblHinhAnh);
         }
     }
 
@@ -1389,11 +1376,7 @@ public class QL_SanPham extends javax.swing.JPanel {
         listHinhAnh.removeAll(listHinhAnh);
         listHinhAnhThem.removeAll(listHinhAnhThem);
         listHinhAnhXoa.removeAll(listHinhAnhXoa);
-        try {
-            ImageHelper.setDefaultImage(lblHinhAnh);
-        } catch (IOException ex) {
-            MsgBox.alert(this, "Lỗi tải ảnh sản phẩm");
-        }
+        ImageHelper.setDefaultImage(lblHinhAnh);
     }
 
     private void addImageToList() {
@@ -1402,41 +1385,32 @@ public class QL_SanPham extends javax.swing.JPanel {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "jpeg", "png");
         chooser.setFileFilter(filter);
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            try {
-                // Thêm hình ảnh vào listHinhAnh
-                File[] files = chooser.getSelectedFiles();
-                for (File file : files) {
-                    HinhAnh hinhAnh = new HinhAnh();
+            // Thêm hình ảnh vào listHinhAnh
+            File[] files = chooser.getSelectedFiles();
+            for (File file : files) {
+                HinhAnh hinhAnh = new HinhAnh();
 //                    hinhAnh.setMaSanPham(txtMaSanPham.getText()); // chưa biết Mã sản phẩm
-                    String tempImagePath = file.getAbsolutePath();
-                    hinhAnh.setHinhAnh(ImageHelper.convertToByteArray(tempImagePath));
+                String tempImagePath = file.getAbsolutePath();
+                hinhAnh.setHinhAnh(ImageHelper.convertToByteArray(tempImagePath));
 
-                    hinhAnh.setTenHinhAnh(file.getName());
-                    listHinhAnhThem.add(hinhAnh);
-                    listHinhAnh.add(hinhAnh);
-                }
-                fillElementToJListHinhAnh();
-
-                // hiển thị hình ảnh lên lblHinhAnh
-                lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh,
-                        listHinhAnh.get(listHinhAnh.size() - 1).getHinhAnh()));
-                jListHinhAnh.setSelectedIndex(listHinhAnh.size() - 1);
-            } catch (IOException ex) {
-                MsgBox.alert(this, "Chọn hình ảnh để thêm vào không thành công");
+                hinhAnh.setTenHinhAnh(file.getName());
+                listHinhAnhThem.add(hinhAnh);
+                listHinhAnh.add(hinhAnh);
             }
+            fillElementToJListHinhAnh();
+            // hiển thị hình ảnh lên lblHinhAnh
+            lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh,
+                    listHinhAnh.get(listHinhAnh.size() - 1).getHinhAnh()));
+            jListHinhAnh.setSelectedIndex(listHinhAnh.size() - 1);
         }
     }
 
     private void hienHinhAnh() {
-        try {
-            if (jListHinhAnh.getSelectedIndex() < 0) {
-                return;
-            }
-            lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh,
-                    listHinhAnh.get(jListHinhAnh.getSelectedIndex()).getHinhAnh()));
-        } catch (IOException ex) {
-            MsgBox.alert(this, "Lỗi tải hình ảnh");
+        if (jListHinhAnh.getSelectedIndex() < 0) {
+            return;
         }
+        lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh,
+                listHinhAnh.get(jListHinhAnh.getSelectedIndex()).getHinhAnh()));
     }
 
     private void xoaHinhAnh() {
@@ -1453,19 +1427,11 @@ public class QL_SanPham extends javax.swing.JPanel {
 
         // nếu danh sách vẫn còn HinhAnh hiển thị hình ảnh đầu tiên lên sau khi xoá
         if (!listHinhAnh.isEmpty()) {
-            try {
-                lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh,
-                        listHinhAnh.get(0).getHinhAnh()));
-                jListHinhAnh.setSelectedIndex(0);
-            } catch (IOException ex) {
-                MsgBox.alert(this, "Lỗi tải hình ảnh");
-            }
+            lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh,
+                    listHinhAnh.get(0).getHinhAnh()));
+            jListHinhAnh.setSelectedIndex(0);
         } else {
-            try {
-                ImageHelper.setDefaultImage(lblHinhAnh);
-            } catch (IOException ex) {
-                MsgBox.alert(this, "Lỗi tải hình ảnh");
-            }
+            ImageHelper.setDefaultImage(lblHinhAnh);
         }
     }
 
@@ -1548,6 +1514,7 @@ public class QL_SanPham extends javax.swing.JPanel {
 
         } catch (Exception e) {
             // System.out.println("Lỗi nhẹ thôi ko có gì hết! để tb cho vui !");
+            e.printStackTrace();
 
         }
 
