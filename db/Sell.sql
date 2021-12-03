@@ -80,7 +80,6 @@ CREATE TABLE ChiTietCuaHang (
 )
 
 CREATE TABLE HinhAnh (
-    MaHinhAnh int identity(1,1) PRIMARY KEY,
     MaSanPham char(7) ,
     TenHinhAnh nvarchar(255) NOT NULL,
     HinhAnh varBinary(max) null,
@@ -278,6 +277,7 @@ end
 
 --hủy cập nhật số lượng tồn kho cửa hàng từ hóa đơn CHI TIẾT Bán hàng
 GO
+
 create trigger trg_HuyCapNhatTonKhoCuaHang_BanHang on HoaDonChiTiet
 for delete
 as begin
@@ -288,3 +288,22 @@ as begin
 						on BH.MaHDBan=deleted.MaHDBan
 						where CH.MaSanPham=deleted.MaSanPham
 end 
+
+GO
+
+IF OBJECT_ID('SP_PHIEUGIAMGIA') IS NOT NULL
+	DROP PROC SP_PHIEUGIAMGIA
+GO
+CREATE PROC SP_PHIEUGIAMGIA
+(
+	@NgayHetHan DATE,
+	@MaKhachHang CHAR(7),
+	@TrangThai bit
+)
+AS 
+	BEGIN
+		INSERT INTO PhieuGiamGia(NgayHetHan, MaKhachHang, TrangThai)
+			VALUES (@NgayHetHan, @MaKhachHang, @TrangThai)
+
+	END
+GO
