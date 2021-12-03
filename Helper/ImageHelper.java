@@ -69,7 +69,7 @@ public class ImageHelper {
     }
 
     public static void setDefaultImage(JLabel container) throws IOException {
-        BufferedImage image = ImageIO.read(new File("src\\Images", "default_image.png"));
+        BufferedImage image = ImageIO.read(new File("src\\com\\SELL\\Images", "default_image.png"));
         // https://stackoverflow.com/questions/9147977/getwidth-and-getheight-are-0-after-calling-setpreferredsize
         // phải setSize vì component trong panel khi chưa được gọi lên sẽ không có size
         container.setIcon(new ImageIcon(image.getScaledInstance(190, 240, BufferedImage.SCALE_SMOOTH)));
