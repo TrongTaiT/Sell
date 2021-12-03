@@ -15,17 +15,17 @@ import java.util.List;
  *
  * @author trongtai
  */
-public class HinhAnhDao extends SellDAO<HinhAnh, String> {
+public class HinhAnhDao {
 
     String INSERT_SQL = "INSERT INTO HINHANH(MaSanPham, TenHinhAnh, HinhAnh)"
             + " VALUES (?,?,?)";
-    String UPDATE_SQL = "UPDATE HINHANH SET TenHinhAnh=?, HinhAnh=?"
-            + " WHERE MaSanPham=?";
-    String DELETE_SQL = "DELETE FROM HINHANH WHERE MaSanPham=?";
-//    String SELECT_ALL_SQL = "SELECT * FROM HINHANH WHERE MaSanPham=?";
-    String SELECT_BY_ID = "SELECT * FROM HINHANH WHERE MaSanPham=?";
+    // Lấy danh sách HinhAnh theo MaSanPham
+    String SELECT_ALL_BY_ID_SQL = "SELECT * FROM HINHANH WHERE MaSanPham=?";
+    // Xoá tất cả hình ảnh theo MaSanPham
+    String DELETE_ALL_BY_ID_SQL = "DELETE FROM HINHANH WHERE MaSanPham=?";
+    // Xoá hình ảnh theo MaSanPham và dữ liệu byte[] hình ảnh
+    String DELETE_SQL = "DELETE FROM HINHANH WHERE MaHinhAnh=?";
 
-    @Override
     public void insert(HinhAnh entity) {
         JdbcHelper.executeUpdate(INSERT_SQL,
                 entity.getMaSanPham(),
@@ -33,41 +33,26 @@ public class HinhAnhDao extends SellDAO<HinhAnh, String> {
                 entity.getHinhAnh());
     }
 
-    @Override
-    public void update(HinhAnh entity) {
-        JdbcHelper.executeUpdate(UPDATE_SQL,
-                entity.getTenHinhAnh(),
-                entity.getHinhAnh(),
-                entity.getMaSanPham());
+    public List<HinhAnh> selectAllById(String maSanPham) {
+        List<HinhAnh> list = selectBySql(SELECT_ALL_BY_ID_SQL, maSanPham);
+        return list;
     }
 
-    @Override
-    public void delete(String maSanPham) {
-        JdbcHelper.executeUpdate(DELETE_SQL, maSanPham);
+    public void deleteAllByID(String maSanPham) {
+        JdbcHelper.executeUpdate(DELETE_ALL_BY_ID_SQL, maSanPham);
     }
 
-    @Override
-    public List<HinhAnh> selectAll() {
-//        return this.selectByID();
-        return null;
+    public void delete(HinhAnh ha) {
+        JdbcHelper.executeUpdate(DELETE_SQL, ha.getMaHinhAnh());
     }
 
-    @Override
-    public HinhAnh selectById(String maSanPham) {
-        List<HinhAnh> list = selectBySql(SELECT_BY_ID, maSanPham);
-        if (list.isEmpty()) {
-            return null;
-        }
-        return list.get(0);
-    }
-
-    @Override
     protected List<HinhAnh> selectBySql(String sql, Object... args) {
         List<HinhAnh> list = new ArrayList<>();
         try {
             ResultSet rs = JdbcHelper.executeQuery(sql, args);
             while (rs.next()) {
                 HinhAnh entity = new HinhAnh();
+                entity.setMaHinhAnh(rs.getInt("MaHinhAnh"));
                 entity.setMaSanPham(rs.getString("MaSanPham"));
                 entity.setTenHinhAnh(rs.getString("TenHinhAnh"));
                 entity.setHinhAnh(rs.getBytes("HinhAnh"));
@@ -79,4 +64,5 @@ public class HinhAnhDao extends SellDAO<HinhAnh, String> {
             throw new RuntimeException(e);
         }
     }
+    
 }
