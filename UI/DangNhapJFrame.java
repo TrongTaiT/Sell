@@ -12,6 +12,7 @@ import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.FrameDragListener;
 import com.Sell.entity.NhanVien;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -64,7 +65,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnDangNhap = new javax.swing.JButton();
-        btnQuenmk = new javax.swing.JLabel();
+        lblQuenMk = new javax.swing.JLabel();
         lblshowpass = new javax.swing.JLabel();
         txtan = new javax.swing.JLabel();
         lblKetThuc = new javax.swing.JLabel();
@@ -144,9 +145,20 @@ public class DangNhapJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnQuenmk.setFont(new java.awt.Font("Segoe UI Semilight", 3, 14)); // NOI18N
-        btnQuenmk.setForeground(new java.awt.Color(255, 255, 255));
-        btnQuenmk.setText("Quên mật khẩu ?");
+        lblQuenMk.setFont(new java.awt.Font("Segoe UI Semilight", 3, 14)); // NOI18N
+        lblQuenMk.setForeground(new java.awt.Color(255, 255, 255));
+        lblQuenMk.setText("Quên mật khẩu ?");
+        lblQuenMk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblQuenMkMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblQuenMkMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblQuenMkMouseExited(evt);
+            }
+        });
 
         lblshowpass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblshowpass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/noshowpass.png"))); // NOI18N
@@ -201,7 +213,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(pnlTongLayout.createSequentialGroup()
                         .addGap(169, 169, 169)
-                        .addComponent(btnQuenmk, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblQuenMk, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTongLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -246,7 +258,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnQuenmk)
+                .addComponent(lblQuenMk)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtan)
                 .addGap(23, 23, 23))
@@ -348,6 +360,22 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         dangNhap();
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
+    private void lblQuenMkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMkMouseClicked
+        // TODO add your handling code here:
+        new QuenMatKhauJDialog(this, true).setVisible(true);
+    }//GEN-LAST:event_lblQuenMkMouseClicked
+
+    private void lblQuenMkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMkMouseEntered
+        // TODO add your handling code here:
+        lblQuenMk.setForeground(new Color(0,204,51));
+        lblQuenMk.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_lblQuenMkMouseEntered
+
+    private void lblQuenMkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMkMouseExited
+        // TODO add your handling code here:
+        lblQuenMk.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_lblQuenMkMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -400,11 +428,11 @@ public class DangNhapJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNhap;
-    private javax.swing.JLabel btnQuenmk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblKetThuc;
+    private javax.swing.JLabel lblQuenMk;
     private javax.swing.JLabel lblThuLai;
     private javax.swing.JLabel lblhinhentrai;
     private javax.swing.JLabel lblshowpass;

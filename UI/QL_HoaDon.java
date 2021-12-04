@@ -832,8 +832,8 @@ public class QL_HoaDon extends javax.swing.JPanel {
         int row = tblChiTietCuaHang.getSelectedRow();
         String maSP = (String) tblChiTietCuaHang.getValueAt(row, 1);
         SanPham sp = spdao.selectById(maSP);
-        
-        this.editSanPham(sp );
+
+        this.editSanPham(sp);
     }//GEN-LAST:event_tblChiTietCuaHangMouseClicked
 
     private void tblChiTietHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChiTietHoaDonMouseClicked
@@ -865,7 +865,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
     }//GEN-LAST:event_cboTenSanPhamActionPerformed
 
     private void kGradientPanel1panelInputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel1panelInputMouseClicked
-        
+
     }//GEN-LAST:event_kGradientPanel1panelInputMouseClicked
 
     private void txtTimKiem1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiem1CaretUpdate
@@ -900,7 +900,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
 
     private void tblHoaDonChiTietMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonChiTietMouseEntered
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_tblHoaDonChiTietMouseEntered
 
 
@@ -969,30 +969,30 @@ public class QL_HoaDon extends javax.swing.JPanel {
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
         void init() {
-            setTable();
+        setTable();
         fillComboBoxKhachHang();
-        
+
         fillComboBoxLoaiHang();
         fillComboBoxCuaHang();
-        
+
         fillTableHoaDonBan();
     }
-        
-    void setTable(){
+
+    void setTable() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("MÃ CỬA HÀNG");
         model.addColumn("MÃ SẢN PHẨM");
         model.addColumn("MÃ SỐ LƯỢNG");
         tblChiTietCuaHang.setModel(model);
         DesignHelper.setTable(tblChiTietCuaHang);
-        
+
         DefaultTableModel model2 = new DefaultTableModel();
         model2.addColumn("TÊN SẢN PHẨM");
         model2.addColumn("SỐ LƯỢNG");
         model2.addColumn("ĐƠN GIÁ");
         tblChiTietHoaDon.setModel(model2);
         DesignHelper.setTable(tblChiTietHoaDon);
-        
+
         DefaultTableModel model3 = new DefaultTableModel();
         model3.addColumn("MÃ HÓA ĐƠN");
         model3.addColumn("MÃ KHÁCH HÀNG");
@@ -1084,7 +1084,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
     }
 
     void fillComboBoxTenSanPham() {
-        
+
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboTenSanPham.getModel();
         try {
             model.removeAllElements();
@@ -1114,12 +1114,12 @@ public class QL_HoaDon extends javax.swing.JPanel {
     }
 
     void editSanPham(SanPham sp) {
-        
+
         //tim loai hang
-        LoaiHang lh =lhdao.selectById(sp.getMaLoai());
+        LoaiHang lh = lhdao.selectById(sp.getMaLoai());
 
         cboLoaiSanPham.setSelectedItem(lh);
-        
+
         cboTenSanPham.setSelectedItem(sp);
 
         txtNhaSX.setText(sp.getNhaSX());
@@ -1235,10 +1235,8 @@ public class QL_HoaDon extends javax.swing.JPanel {
             MsgBox.alert(this, "Thêm mới hóa đơn thất bại!");
         }
     }
-    
-    
+
     /* HÓA ĐƠN CHI TIẾT */
-    
     private void fillTableHoaDonBan() {
         DefaultTableModel model = (DefaultTableModel) tblHoaDonChiTiet.getModel();
         model.setRowCount(0);

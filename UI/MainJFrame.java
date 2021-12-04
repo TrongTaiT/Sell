@@ -7,6 +7,8 @@ package com.Sell.UI;
 
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.FrameDragListener;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
@@ -143,7 +145,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         panelMenuAccount = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        lblDangXuat = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         panelMain = new javax.swing.JPanel();
 
@@ -214,6 +216,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblHomeIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHomeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/home-icon.png"))); // NOI18N
+        lblHomeIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblHomeIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblHomeIconMouseClicked(evt);
@@ -270,6 +273,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblNhanVienIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNhanVienIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/users-icon.png"))); // NOI18N
+        lblNhanVienIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblNhanVienIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblNhanVienIconMouseClicked(evt);
@@ -326,6 +330,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblCuaHangIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCuaHangIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/Shop-icon.png"))); // NOI18N
+        lblCuaHangIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCuaHangIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCuaHangIconMouseClicked(evt);
@@ -383,6 +388,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblSanPhamIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSanPhamIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/clothes-icon.png"))); // NOI18N
+        lblSanPhamIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblSanPhamIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblSanPhamIconMouseClicked(evt);
@@ -437,6 +443,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblKhoIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblKhoIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/Warehouse-icon.png"))); // NOI18N
+        lblKhoIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblKhoIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblKhoIconMouseClicked(evt);
@@ -494,6 +501,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblKhachHangIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblKhachHangIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/customer-icon.png"))); // NOI18N
+        lblKhachHangIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblKhachHangIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblKhachHangIconMouseClicked(evt);
@@ -534,6 +542,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblNhapHangIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNhapHangIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/order-icon.png"))); // NOI18N
+        lblNhapHangIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblNhapHangIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblNhapHangIconMouseClicked(evt);
@@ -594,6 +603,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblBanHangIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBanHangIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/sell.png"))); // NOI18N
+        lblBanHangIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBanHangIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBanHangIconMouseClicked(evt);
@@ -665,6 +675,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblDoanhThuIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDoanhThuIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/money-icon.png"))); // NOI18N
+        lblDoanhThuIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblDoanhThuIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblDoanhThuIconMouseClicked(evt);
@@ -872,11 +883,22 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel19.setText("   ĐỔI MẬT KHẨU");
         jLabel19.setPreferredSize(new java.awt.Dimension(200, 30));
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/logout-icon.png"))); // NOI18N
-        jLabel18.setText("   ĐĂNG XUẤT");
-        jLabel18.setPreferredSize(new java.awt.Dimension(200, 30));
+        lblDangXuat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblDangXuat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/logout-icon.png"))); // NOI18N
+        lblDangXuat.setText("   ĐĂNG XUẤT");
+        lblDangXuat.setPreferredSize(new java.awt.Dimension(200, 30));
+        lblDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDangXuatMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblDangXuatMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblDangXuatMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelMenuAccountLayout = new javax.swing.GroupLayout(panelMenuAccount);
         panelMenuAccount.setLayout(panelMenuAccountLayout);
@@ -886,13 +908,13 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelMenuAccountLayout.setVerticalGroup(
             panelMenuAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMenuAccountLayout.createSequentialGroup()
                 .addGroup(panelMenuAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(lblDangXuat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 41, Short.MAX_VALUE))
         );
@@ -1200,6 +1222,23 @@ public class MainJFrame extends javax.swing.JFrame {
         animationMenu();
     }//GEN-LAST:event_lblSanPhamTextMouseClicked
 
+    private void lblDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangXuatMouseClicked
+        // TODO add your handling code here:
+        new DangNhapJFrame().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblDangXuatMouseClicked
+
+    private void lblDangXuatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangXuatMouseEntered
+        // TODO add your handling code here:
+        lblDangXuat.setForeground(new Color(255, 76, 48));
+        lblDangXuat.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_lblDangXuatMouseEntered
+
+    private void lblDangXuatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangXuatMouseExited
+        // TODO add your handling code here:
+        lblDangXuat.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblDangXuatMouseExited
+
     public void showPanel(JPanel panel) {
         childPanel = panel;
         panelMain.removeAll();
@@ -1242,7 +1281,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
@@ -1263,6 +1301,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblBanHangText;
     private javax.swing.JLabel lblCuaHangIcon;
     private javax.swing.JLabel lblCuaHangText;
+    private javax.swing.JLabel lblDangXuat;
     private javax.swing.JLabel lblDoanhThuIcon;
     private javax.swing.JLabel lblDoanhThuText;
     private javax.swing.JLabel lblExit;
@@ -1301,6 +1340,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private void init() {
         this.setLocationRelativeTo(null);
 //        clock();
+        showPanel(new HomeJPanel());
+        click = true;
+        animationMenu();
     }
 
     // bị lỗi conflict với thread ở Menu con

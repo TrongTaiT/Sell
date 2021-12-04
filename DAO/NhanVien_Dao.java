@@ -88,6 +88,13 @@ public class NhanVien_Dao  {
     public List<NhanVien> selectByKeyWord(String keyword){
         return this.selectBySql(SELECT_BY_KEYWORD, "%" + keyword + "%");
     }
+    
+    public void resetPassword(NhanVien entity){
+        String sql = "UPDATE NHANVIEN SET MATKHAU = ? WHERE MANHANVIEN = ?";
+        JdbcHelper.executeUpdate(sql, 
+                entity.getMatKhau(),
+                entity.getMaNV());
+    }
 
     protected List<NhanVien> selectBySql(String sql, Object... args) {
         List<NhanVien> list = new ArrayList<>();
