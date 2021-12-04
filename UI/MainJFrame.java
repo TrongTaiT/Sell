@@ -799,6 +799,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/exit-start-icon.png"))); // NOI18N
+        lblExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblExit.setPreferredSize(new java.awt.Dimension(50, 50));
         lblExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -808,6 +809,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblFullScreen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFullScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/fullscreen-icon.png"))); // NOI18N
+        lblFullScreen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblFullScreen.setPreferredSize(new java.awt.Dimension(50, 50));
         lblFullScreen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -817,6 +819,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblMiniMize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMiniMize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/minimize-icon.jpg"))); // NOI18N
+        lblMiniMize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblMiniMize.setPreferredSize(new java.awt.Dimension(50, 50));
         lblMiniMize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -923,6 +926,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/Users-Administrator-icon.png"))); // NOI18N
+        jLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jLabel17.setPreferredSize(new java.awt.Dimension(60, 60));
         jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {

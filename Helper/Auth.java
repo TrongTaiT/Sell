@@ -24,6 +24,6 @@ public class Auth {
     }
 
     public static boolean isManager() {
-        return Auth.isLogin() && user.getVaiTro() == 3;
+        return Auth.isLogin() && (user.getVaiTro() == 3||user.getVaiTro()==2) ;
     }
 }

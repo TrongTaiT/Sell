@@ -22,6 +22,7 @@ import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 
 import javax.swing.ImageIcon;
@@ -122,6 +123,11 @@ public class DangNhapJFrame extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtmatKhauFocusLost(evt);
+            }
+        });
+        txtmatKhau.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtmatKhauKeyPressed(evt);
             }
         });
 
@@ -375,6 +381,12 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblQuenMk.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_lblQuenMkMouseExited
+
+    private void txtmatKhauKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmatKhauKeyPressed
+         if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+             dangNhap();
+         }
+    }//GEN-LAST:event_txtmatKhauKeyPressed
 
     /**
      * @param args the command line arguments
