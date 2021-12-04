@@ -15,14 +15,27 @@ import com.Sell.Helper.ImageHelper;
 import com.Sell.Helper.MsgBox;
 import com.Sell.entity.LoaiHang;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
@@ -90,6 +103,7 @@ public class QL_SanPham extends javax.swing.JPanel {
         btnThemHinhAnh = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblSanPham = new javax.swing.JTable();
+        lblExpand = new javax.swing.JLabel();
         lblHinhAnh = new javax.swing.JLabel();
         btnXoaHinhAnh = new javax.swing.JButton();
         cboLoaiSP = new javax.swing.JComboBox<>();
@@ -235,6 +249,7 @@ public class QL_SanPham extends javax.swing.JPanel {
         });
 
         cboLoaiHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboLoaiHang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cboLoaiHang.setPreferredSize(new java.awt.Dimension(64, 35));
 
         txtGiaTien.setPreferredSize(new java.awt.Dimension(80, 35));
@@ -492,9 +507,31 @@ public class QL_SanPham extends javax.swing.JPanel {
 
         jPanel7.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 490, 400));
 
+        lblExpand.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblExpand.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/lblExpand_icons8_expand_24px_1.png"))); // NOI18N
+        lblExpand.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 255, 204), new java.awt.Color(0, 204, 204), new java.awt.Color(204, 255, 204), null));
+        lblExpand.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblExpand.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblExpandMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblHinhAnhMouseEntered(evt);
+            }
+        });
+        jPanel7.add(lblExpand, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 5, -1, -1));
+
         lblHinhAnh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHinhAnh.setToolTipText("");
         lblHinhAnh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
+        lblHinhAnh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblHinhAnhMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblHinhAnhMouseExited(evt);
+            }
+        });
         jPanel7.add(lblHinhAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 190, 240));
 
         btnXoaHinhAnh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/btnXoaHinhAnh_icons8_delete_16px.png"))); // NOI18N
@@ -507,6 +544,7 @@ public class QL_SanPham extends javax.swing.JPanel {
         jPanel7.add(btnXoaHinhAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 30, -1));
 
         cboLoaiSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboLoaiSP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cboLoaiSP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cboLoaiSPMouseClicked(evt);
@@ -683,6 +721,18 @@ public class QL_SanPham extends javax.swing.JPanel {
         fillToTableSanPham();
     }//GEN-LAST:event_cboLoaiSPActionPerformed
 
+    private void lblHinhAnhMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhAnhMouseEntered
+        lblExpand.setVisible(true);
+    }//GEN-LAST:event_lblHinhAnhMouseEntered
+
+    private void lblHinhAnhMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhAnhMouseExited
+        lblExpand.setVisible(false);
+    }//GEN-LAST:event_lblHinhAnhMouseExited
+
+    private void lblExpandMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExpandMouseClicked
+        expandImage();
+    }//GEN-LAST:event_lblExpandMouseClicked
+
     public static void main(String[] args) {
         new QL_SanPham().setVisible(true);
     }
@@ -711,6 +761,7 @@ public class QL_SanPham extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JLabel lblExpand;
     private javax.swing.JLabel lblHinhAnh;
     private javax.swing.JPanel panelContent;
     private javax.swing.JPanel panelContents;
@@ -736,6 +787,7 @@ public class QL_SanPham extends javax.swing.JPanel {
         clearForm();
         setTextField();
         jListHinhAnh.removeAll();
+        lblExpand.setVisible(false);
     }
 
     private void setTextField() {
@@ -1105,6 +1157,50 @@ public class QL_SanPham extends javax.swing.JPanel {
     void last() {
         row = tblSanPham.getRowCount() - 1;
         edit();
+    }
+
+    private void expandImage() {
+        JFrame frExpandImage = new JFrame();
+
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = toolkit.getScreenSize();
+        int taskbarHeight = toolkit.getScreenInsets(frExpandImage.getGraphicsConfiguration()).bottom;
+        frExpandImage.setSize(screenSize.width, screenSize.height - taskbarHeight);
+        frExpandImage.setUndecorated(true);
+        frExpandImage.setBackground(Color.gray);
+        frExpandImage.setOpacity(0.8f);
+        frExpandImage.setLayout(new FlowLayout());
+
+        HinhAnh ha = listHinhAnh.get(jListHinhAnh.getSelectedIndex());
+        ByteArrayInputStream bais = new ByteArrayInputStream(ha.getHinhAnh());
+        BufferedImage bImage;
+        try {
+            bImage = ImageIO.read(bais);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        
+        int hinhAnhWidth = bImage.getWidth();
+        int hinhAnhHeight = bImage.getHeight();
+        
+        float scale = hinhAnhWidth / hinhAnhHeight;
+        System.out.println(scale);
+        
+        if (hinhAnhHeight > screenSize.height - 140) {
+            hinhAnhHeight = screenSize.height - 140;
+        }
+
+        ImageIcon expanedImage = new ImageIcon(bImage.getScaledInstance((hinhAnhWidth * scale),
+                hinhAnhHeight, BufferedImage.SCALE_SMOOTH));
+        
+        JLabel lblImageContainer = new JLabel();
+        lblImageContainer.setIcon(expanedImage);
+        
+        frExpandImage.add(lblImageContainer);
+        frExpandImage.setVisible(true);
+    }
+
+    private void renderImage(JPanel pnlImage) {
     }
 
 }

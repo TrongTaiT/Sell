@@ -1,9 +1,11 @@
+package com.Sell.UI;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.Sell.UI;
+
 
 import com.Sell.DAO.CuaHangDAO;
 import com.Sell.DAO.HoaDonNhap_Dao;
@@ -11,7 +13,6 @@ import com.Sell.DAO.SanPhamDAO;
 import com.Sell.Helper.DateHelper;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.MsgBox;
-import com.Sell.entity.ChiTietCuaHang;
 import com.Sell.entity.CuaHang;
 import com.Sell.entity.HoaDonNhap;
 import com.Sell.entity.SanPham;
@@ -23,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author NguyenTruongChinh
+ * @author NguyenTruongChinh ngu học
  */
 public class QL_HoaDonNhap extends javax.swing.JPanel {
 
@@ -600,32 +601,26 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-
         this.clearForm();
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
-
         this.first();
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-
         this.last();
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-
         this.next();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-
         this.prev();
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         panelDanhSach.setVisible(true);
         panelThongTin.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -641,13 +636,11 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel2lblTitleMouseClicked
 
     private void btnThongTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongTinActionPerformed
-
         panelThongTin.setVisible(true);
         panelDanhSach.setVisible(false);
     }//GEN-LAST:event_btnThongTinActionPerformed
 
     private void tblHoaDonNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonNhapMouseClicked
-
         if (evt.getClickCount() == 2) {
             row = tblHoaDonNhap.getSelectedRow();
             this.edit();
@@ -729,7 +722,6 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
     }
 
     void setTextField() {
-
         txtMaNhapHang.setText("Mã nhập hàng");
         txtMaQuanLy.setText("Mã quản lý");
 //        txtMaCuaHang.setText("Mã cửa hàng");
@@ -805,7 +797,9 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
         txtMaQuanLy.setText(hd.getMaquanly());
         lblNgayNhap.setText(DateHelper.toString(hd.getNgayNhap()));
 //        txtMaCuaHang.setText(hd.getMaCuaHang());
-        cboMaCuaHang.setSelectedIndex(0);
+//        cboMaCuaHang.setSelectedIndex(0);
+//        cboMaCuaHang.setSelectedItem(hd.getMaCuaHang());
+        cboMaCuaHang.setSelectedItem(chDAO.selectById(hd.getMaCuaHang()));
         lblMaSanPham.setText(hd.getMaSanPham());
 
         SanPham sp = spDao.selectById(hd.getMaSanPham());
@@ -847,7 +841,7 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
         hd.setGiaTien(Float.parseFloat(txtGiaTien.getText()));
         hd.setMaquanly(txtMaQuanLy.getText());
         hd.setNgayNhap(DateHelper.now());
-        
+
         CuaHang ch = (CuaHang) cboMaCuaHang.getSelectedItem();
         hd.setMaCuaHang(ch.getMaCH());
 
@@ -860,14 +854,18 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
 
     void clearForm() {
         HoaDonNhap hd = new HoaDonNhap();
-
         hd.setNgayNhap(DateHelper.now());
         this.setForm(hd);
+        cboMaCuaHang.setSelectedIndex(0);
+        tblHoaDonNhap.clearSelection();
         this.row = -1;
         this.updateStatus();
     }
 
     void edit() {
+        if (this.row < 0) {
+            return;
+        }
         String mahd = (String) tblHoaDonNhap.getValueAt(row, 0);
         HoaDonNhap hd = dao.selectById(mahd);
         this.setForm(hd);
