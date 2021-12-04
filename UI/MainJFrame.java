@@ -1175,7 +1175,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void lblBanHangIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBanHangIconMouseClicked
         // TODO add your handling code here:
-        showPanel(new QL_HoaDon());
+        showPanel(new QL_HoaDonBanHang());
         click = true;
         animationMenu();
     }//GEN-LAST:event_lblBanHangIconMouseClicked
@@ -1200,7 +1200,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void lblBanHangTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBanHangTextMouseClicked
         // TODO add your handling code here:
-        showPanel(new QL_HoaDon());
+        showPanel(new QL_HoaDonBanHang());
         click = true;
         animationMenu();
     }//GEN-LAST:event_lblBanHangTextMouseClicked

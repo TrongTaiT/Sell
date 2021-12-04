@@ -244,6 +244,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
         btnMoi.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/refresh-icon.png"))); // NOI18N
         btnMoi.setText(" MỚI");
+        btnMoi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMoi.setPreferredSize(new java.awt.Dimension(150, 40));
         btnMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,6 +256,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
         btnThem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/Add.png"))); // NOI18N
         btnThem.setText(" THÊM");
+        btnThem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThem.setPreferredSize(new java.awt.Dimension(150, 40));
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,6 +268,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
         btnXoa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/Delete.png"))); // NOI18N
         btnXoa.setText(" XÓA");
+        btnXoa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnXoa.setPreferredSize(new java.awt.Dimension(150, 40));
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,6 +280,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
         btnSua.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/UPDATE.png"))); // NOI18N
         btnSua.setText(" SỬA");
+        btnSua.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSua.setPreferredSize(new java.awt.Dimension(150, 40));
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -317,6 +321,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
 
         btnFirst.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnFirst.setText("|<");
+        btnFirst.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFirst.setPreferredSize(new java.awt.Dimension(100, 40));
         btnFirst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,6 +331,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
 
         btnPrev.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnPrev.setText("<<");
+        btnPrev.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPrev.setPreferredSize(new java.awt.Dimension(100, 40));
         btnPrev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,6 +341,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
 
         btnNext.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnNext.setText(">>");
+        btnNext.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNext.setPreferredSize(new java.awt.Dimension(100, 40));
         btnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -344,6 +351,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
 
         btnLast.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLast.setText(">|");
+        btnLast.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLast.setPreferredSize(new java.awt.Dimension(100, 40));
         btnLast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -354,6 +362,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("CHI TIẾT CỬA HÀNG");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -556,6 +565,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
         btnThongTin.setBackground(new java.awt.Color(255, 153, 0));
         btnThongTin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnThongTin.setText("THÔNG TIN CỬA HÀNG");
+        btnThongTin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThongTin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThongTinActionPerformed(evt);

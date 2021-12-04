@@ -144,6 +144,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         btnDangNhap.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
         btnDangNhap.setForeground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setText("Đăng Nhập");
+        btnDangNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDangNhap.setOpaque(false);
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +169,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
 
         lblshowpass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblshowpass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/noshowpass.png"))); // NOI18N
+        lblshowpass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblshowpass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblshowpassMouseClicked(evt);
