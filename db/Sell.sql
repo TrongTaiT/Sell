@@ -308,3 +308,26 @@ AS
 
 	END
 GO
+--1 report tong doanh thu theo thang/nam của cả chuỗi sap xep giam dan
+create proc sp_tongdoanhthutheothangtatcasapxepgiamdan (@thang nvarchar(7),@Nam nvarchar(7),@mach NVARchar(7))
+as begin
+	select 
+	bh.MaCuaHang,sum(SoLuong*sp.GiaTien) as tongtien
+	from HoaDonBanHang bh inner join HoaDonChiTiet hdct
+	on bh.MaHDBan=hdct.MaHDBan inner join SanPham sp
+	on hdct.MaSanPham=sp.MaSanPham
+	where  YEAR(NgayBan) like '%'+@Nam+'%' and MONTH(NgayBan) like '%'+@thang+'%' and bh.MaCuaHang LIKE '%'+@mach+'%' 
+	group by bh.MaCuaHang
+	order by tongtien desc
+end
+GO
+
+--report 2 thống kê khách hàng mua nhiều nhất theo tháng năm giảm dần
+create proc sp_thongkekhachhangmuatheothanggiamdan (@thang nvarchar(7),@nam nvarchar(7),@makh nvarchar(7))
+as begin
+	select kh.MaKhachHang ,kh.HoTen,COUNT(MaHDBan) as solanmua
+	from HoaDonBanHang bh inner join KhachHang kh 
+	on bh.MaKhachHang=kh.MaKhachHang
+	where  YEAR(NgayBan) like '%'+@nam+'%'and month(ngayban) like '%'+@thang+'%' and YEAR(NgayBan) like '%'+@nam+'%' and kh.MaKhachHang like '%'+@makh+'%' 
+	group by kh.HoTen, kh.MaKhachHang
+end
