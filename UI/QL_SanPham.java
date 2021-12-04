@@ -32,12 +32,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QL_SanPham extends javax.swing.JPanel {
 
-    private SanPhamDAO spDAO = new SanPhamDAO();
-    private int row = -1;
-    private List<HinhAnh> listHinhAnh = new ArrayList<>();
-    private List<HinhAnh> listHinhAnhXoa = new ArrayList<>();
-    private HinhAnhDao haDAO = new HinhAnhDao();
-    private LoaiHangDAO lhDAO = new LoaiHangDAO();
+    SanPhamDAO spDAO = new SanPhamDAO();
+    int row = -1;
+    List<HinhAnh> listHinhAnh = new ArrayList<>();
+    List<HinhAnh> listHinhAnhXoa = new ArrayList<>();
+    HinhAnhDao haDAO = new HinhAnhDao();
+    LoaiHangDAO lhDAO = new LoaiHangDAO();
 
     /**
      * Creates new form CuaHangJPanel
@@ -545,6 +545,7 @@ public class QL_SanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_panelSanPhamMouseClicked
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
+        this.row = tblSanPham.getSelectedRow();
         this.edit();
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
@@ -553,25 +554,19 @@ public class QL_SanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemHinhAnhActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-        DesignHelper.last(row, tblSanPham);
         last();
-        this.edit();
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        DesignHelper.next(row, tblSanPham);
-        this.edit();
+        next();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-        DesignHelper.prev(row);
-        this.edit();
+        prev();
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
-        DesignHelper.first(row);
-        last();
-        this.edit();
+        first();
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void txtGhiChuFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGhiChuFocusLost
@@ -822,7 +817,11 @@ public class QL_SanPham extends javax.swing.JPanel {
     }
 
     private void edit() {
-        this.row = tblSanPham.getSelectedRow();
+        if (this.row < 0) {
+            return;
+        }
+        tblSanPham.setRowSelectionInterval(row, row);
+
         // đổ sp lên form
         String maSP = (String) tblSanPham.getValueAt(this.row, 0);
         SanPham sp = spDAO.selectById(maSP);
@@ -1073,9 +1072,28 @@ public class QL_SanPham extends javax.swing.JPanel {
         }
     }
 
-    private void last() {
-        this.row = 0;
+    void first() {
+        row = 0;
+        edit();
+    }
 
+    void prev() {
+        if (row > 0) {
+            row--;
+            edit();
+        }
+    }
+
+    void next() {
+        if (row < tblSanPham.getRowCount() - 1) {
+            row++;
+            edit();
+        }
+    }
+
+    void last() {
+        row = tblSanPham.getRowCount() - 1;
+        edit();
     }
 
 }
