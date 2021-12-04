@@ -12,6 +12,7 @@ import com.Sell.DAO.HoaDonChiTiet_DAO;
 import com.Sell.DAO.KhachHangDAO;
 import com.Sell.DAO.LoaiHangDAO;
 import com.Sell.DAO.SanPhamDAO;
+import com.Sell.Helper.Auth;
 import com.Sell.Helper.DateHelper;
 import com.Sell.Helper.MsgBox;
 import com.Sell.entity.ChiTietCuaHang;
@@ -911,8 +912,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboLoaiSanPham.getModel();
         model.removeAllElements();
         List<LoaiHang> list = lhdao.selectAll();
-//        model.addElement(new LoaiHang("Tất cả", "Tất cả ", "cửa hàng"));
-
+        model.addElement(new LoaiHang("Tất cả", "Tất cả ", "cửa hàng"));
         for (LoaiHang cd : list) {
             model.addElement(cd);
         }
@@ -921,6 +921,11 @@ public class QL_HoaDon extends javax.swing.JPanel {
     void fillComboBoxTenSanPham() {
         
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboTenSanPham.getModel();
+        try {
+            model.removeAllElements();
+
+        } catch (Exception e) {
+        }
         LoaiHang loaiHang = (LoaiHang) cboLoaiSanPham.getSelectedItem();
         model.removeAllElements();
         if (true) {
@@ -928,8 +933,8 @@ public class QL_HoaDon extends javax.swing.JPanel {
             for (SanPham sp : list) {
                 model.addElement(sp);
             }
-//        } else {
-//            model.removeAllElements();
+        } else {
+            model.removeAllElements();
         }
     }
 
@@ -1056,7 +1061,7 @@ public class QL_HoaDon extends javax.swing.JPanel {
         hd.setNoiDung("noi dung dang trong");
         hd.setTrangThai(true);
         hd.setMaNhanVien("NV01");
-        hd.setMaCuaHang("CH001");
+        hd.setMaCuaHang(Auth.user.getMaCuaHang());
         hd.setMaGiamGia("1");
         try {
             hdbhdao.insert(hd);
