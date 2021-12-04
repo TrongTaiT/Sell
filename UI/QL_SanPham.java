@@ -32,12 +32,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QL_SanPham extends javax.swing.JPanel {
 
-    SanPhamDAO spDAO = new SanPhamDAO();
-    int row = -1;
-    List<HinhAnh> listHinhAnh = new ArrayList<>();
-    List<HinhAnh> listHinhAnhXoa = new ArrayList<>();
-    HinhAnhDao haDAO = new HinhAnhDao();
-    LoaiHangDAO lhDAO = new LoaiHangDAO();
+    private SanPhamDAO spDAO = new SanPhamDAO();
+    private int row = -1;
+    private List<HinhAnh> listHinhAnh = new ArrayList<>();
+    private List<HinhAnh> listHinhAnhXoa = new ArrayList<>();
+    private HinhAnhDao haDAO = new HinhAnhDao();
+    private LoaiHangDAO lhDAO = new LoaiHangDAO();
 
     /**
      * Creates new form CuaHangJPanel
@@ -554,6 +554,7 @@ public class QL_SanPham extends javax.swing.JPanel {
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
         DesignHelper.last(row, tblSanPham);
+        last();
         this.edit();
     }//GEN-LAST:event_btnLastActionPerformed
 
@@ -569,6 +570,7 @@ public class QL_SanPham extends javax.swing.JPanel {
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
         DesignHelper.first(row);
+        last();
         this.edit();
     }//GEN-LAST:event_btnFirstActionPerformed
 
@@ -660,7 +662,6 @@ public class QL_SanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLoaiSanPhamActionPerformed
 
     private void jListHinhAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListHinhAnhMouseClicked
-        System.out.println(jListHinhAnh.getSelectedIndex());
         hienHinhAnh();
     }//GEN-LAST:event_jListHinhAnhMouseClicked
 
@@ -891,7 +892,7 @@ public class QL_SanPham extends javax.swing.JPanel {
             spDAO.update(sp);
             this.fillTable();
 
-            // Thêm hình ở danh sách hình mới listHinhAnhThem
+            // Thêm hình mới ở danh sách hình listHinhAnhThem
             if (!listHinhAnh.isEmpty()) {
                 for (HinhAnh ha : listHinhAnh) {
                     if (ha.getMaSanPham() == null) {
@@ -903,8 +904,9 @@ public class QL_SanPham extends javax.swing.JPanel {
             // Xoá hình ở danh sách hình cần xoá listHinhAnhXoa
             if (!listHinhAnhXoa.isEmpty()) {
                 for (HinhAnh ha : listHinhAnhXoa) {
-                    ha.setMaSanPham(sp.getMaSanPham());
-                    haDAO.delete(ha);
+                    if (ha.getMaHinhAnh() > 0) {
+                        haDAO.delete(ha);
+                    }
                 }
             }
 
@@ -965,6 +967,7 @@ public class QL_SanPham extends javax.swing.JPanel {
         setForm(sp);
         setTextField();
         updateStatus();
+        tblSanPham.clearSelection();
 
         listHinhAnh.removeAll(listHinhAnh);
         listHinhAnhXoa.removeAll(listHinhAnhXoa);
@@ -1068,6 +1071,11 @@ public class QL_SanPham extends javax.swing.JPanel {
         for (LoaiHang cd : list) {
             model.addElement(cd);
         }
+    }
+
+    private void last() {
+        this.row = 0;
+
     }
 
 }

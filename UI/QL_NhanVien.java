@@ -1131,6 +1131,7 @@ public class QL_NhanVien extends javax.swing.JPanel {
         nv.setGioiTinh(true);
         nv.setVaiTro(1);
         nv.setLuong(0f);
+        tblNhanVien.clearSelection();
        
         this.setForm(nv);
         this.setTextStartAndNew();
