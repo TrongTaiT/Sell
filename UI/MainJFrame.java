@@ -1171,6 +1171,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void lblDoanhThuIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoanhThuIconMouseClicked
         // TODO add your handling code here:
+        showPanel(new ThongKeJPanel());
+        click = true;
+        animationMenu();
     }//GEN-LAST:event_lblDoanhThuIconMouseClicked
 
     private void lblBanHangIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBanHangIconMouseClicked
