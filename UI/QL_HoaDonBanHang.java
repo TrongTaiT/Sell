@@ -10,7 +10,7 @@ import com.Sell.DAO.CuaHangDAO;
 import com.Sell.DAO.HoaDonBanHang_Dao;
 import com.Sell.DAO.HoaDonChiTiet_DAO;
 import com.Sell.DAO.KhachHangDAO;
-import com.Sell.DAO.LoaiSanPhamDAO;
+import com.Sell.DAO.LoaiHangDAO;
 import com.Sell.DAO.NhanVien_Dao;
 import com.Sell.DAO.SanPhamDAO;
 import com.Sell.Helper.Auth;
@@ -1010,7 +1010,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     KhachHangDAO khdao = new KhachHangDAO();
     CuaHangDAO chdao = new CuaHangDAO();
-    LoaiSanPhamDAO lhdao = new LoaiSanPhamDAO();
+    LoaiHangDAO lhdao = new LoaiHangDAO();
     SanPhamDAO spdao = new SanPhamDAO();
     ChiTietCuaHangDAO ctchdao = new ChiTietCuaHangDAO();
     NhanVien_Dao nvdao = new NhanVien_Dao();
