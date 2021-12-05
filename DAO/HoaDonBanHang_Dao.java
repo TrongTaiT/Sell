@@ -40,6 +40,7 @@ public class HoaDonBanHang_Dao {
             );
         } catch (Exception e) {
             System.out.println(e + "loi dong 45 hoa don dao");
+            e.printStackTrace();
         }
     }
 
@@ -57,6 +58,7 @@ public class HoaDonBanHang_Dao {
             );
         } catch (Exception e) {
             System.out.println(e + "loi dong 55 hoa don nhap vien dao");
+            e.printStackTrace();
         }
     }
 
@@ -65,6 +67,7 @@ public class HoaDonBanHang_Dao {
             JdbcHelper.executeUpdate(DELETE_SQL, key);
         } catch (Exception ex) {
             System.out.println(ex + " loi dong 64 nhan vien dao");
+            ex.printStackTrace();
         }
     }
 
