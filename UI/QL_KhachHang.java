@@ -1058,29 +1058,34 @@ public class QL_KhachHang extends javax.swing.JPanel {
     }
 
     void setTable() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("MÃ KH");
-        model.addColumn("HỌ TÊN");
-        model.addColumn("GIỚI TÍNH");
-        model.addColumn("NGÀY SINH");
-        model.addColumn("ĐIỆN THOẠI");
-        model.addColumn("EMAIL");
-        model.addColumn("ĐỊA CHỈ");
-        model.addColumn("NGÀY ĐK");
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.addColumn("MÃ KH");
+//        model.addColumn("HỌ TÊN");
+//        model.addColumn("GIỚI TÍNH");
+//        model.addColumn("NGÀY SINH");
+//        model.addColumn("ĐIỆN THOẠI");
+//        model.addColumn("EMAIL");
+//        model.addColumn("ĐỊA CHỈ");
+//        model.addColumn("NGÀY ĐK");
+//
+//        tblListKhachHang.setModel(model);
 
-        tblListKhachHang.setModel(model);
-        DesignHelper.setTable(tblListKhachHang);
+        String[] columns = {"MÃ KH", "HỌ TÊN", "GIỚI TÍNH", "NGÀY SINH", "ĐIỆN THOẠI",
+            "EMAIL", "ĐỊA CHỈ", "NGÀY ĐK"};
+        DesignHelper.setTable(tblListKhachHang, columns);
     }
 
     void setTableGiamGia() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("SỐ PHIẾU");
-        model.addColumn("NGÀY HẾT HẠN");
-        model.addColumn("MÃ KHÁCH HÀNG");
-        model.addColumn("TRẠNG THÁI");
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.addColumn("SỐ PHIẾU");
+//        model.addColumn("NGÀY HẾT HẠN");
+//        model.addColumn("MÃ KHÁCH HÀNG");
+//        model.addColumn("TRẠNG THÁI");
+//
+//        tblPhieuGiamGia.setModel(model);
 
-        tblPhieuGiamGia.setModel(model);
-        DesignHelper.setTable(tblPhieuGiamGia);
+        String columns[] = {"SỐ PHIẾU", "NGÀY HẾT HẠN", "MÃ KHÁCH HÀNG", "TRẠNG THÁI"};
+        DesignHelper.setTable(tblPhieuGiamGia, columns);
     }
 
     void fillTable() {

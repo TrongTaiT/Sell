@@ -278,7 +278,7 @@
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="jPanel9" pref="37" max="32767" attributes="0"/>
+                                                  <Component id="jPanel9" pref="38" max="32767" attributes="0"/>
                                                   <Component id="jPanel10" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
@@ -370,7 +370,7 @@
                                           <Component id="rdoNam" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="rdoNu" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="64" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="78" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>

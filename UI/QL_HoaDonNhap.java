@@ -742,19 +742,21 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
     }
 
     void setTable() {
-        DefaultTableModel model = new DefaultTableModel();
-
-        model.addColumn("MÃ HÓA ĐƠN");
-        model.addColumn("MÃ SẢN PHẨM");
-        model.addColumn("SỐ LƯỢNG");
-        model.addColumn("GIÁ TIỀN");
-        model.addColumn("MÃ QUẢN LÝ");
-        model.addColumn("NGÀY NHẬP");
-        model.addColumn("GHI CHÚ");
-        model.addColumn("MÃ CỬA HÀNG");
-
-        tblHoaDonNhap.setModel(model);
-        DesignHelper.setTable(tblHoaDonNhap);
+//        DefaultTableModel model = new DefaultTableModel();
+//
+//        model.addColumn("MÃ HÓA ĐƠN");
+//        model.addColumn("MÃ SẢN PHẨM");
+//        model.addColumn("SỐ LƯỢNG");
+//        model.addColumn("GIÁ TIỀN");
+//        model.addColumn("MÃ QUẢN LÝ");
+//        model.addColumn("NGÀY NHẬP");
+//        model.addColumn("GHI CHÚ");
+//        model.addColumn("MÃ CỬA HÀNG");
+//
+//        tblHoaDonNhap.setModel(model);
+        String[] columns = {"MÃ HÓA ĐƠN", "MÃ SẢN PHẨM", "SỐ LƯỢNG", "GIÁ TIỀN",
+            "MÃ QUẢN LÝ", "NGÀY NHẬP", "GHI CHÚ", "MÃ CỬA HÀNG"};
+        DesignHelper.setTable(tblHoaDonNhap, columns);
     }
 
     void fillTable() {
@@ -847,7 +849,7 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
         hd.setGiaTien(Float.parseFloat(txtGiaTien.getText()));
         hd.setMaquanly(txtMaQuanLy.getText());
         hd.setNgayNhap(DateHelper.now());
-        
+
         CuaHang ch = (CuaHang) cboMaCuaHang.getSelectedItem();
         hd.setMaCuaHang(ch.getMaCH());
 

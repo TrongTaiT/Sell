@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
 
 /**
@@ -37,7 +38,7 @@ public class DesignHelper {
         textField.setFont(font);
         textField.setForeground(Color.GRAY);
     }
-    
+
     public static void addPlaceHolderTextField(JTextComponent textField, String placeholderString) {
         textField.setText(placeholderString);
         Font font = textField.getFont();
@@ -54,6 +55,7 @@ public class DesignHelper {
         textField.setForeground(Color.BLACK);
     }
 
+    @Deprecated
     public static void setTable(JTable table) {
         table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
         table.getTableHeader().setBackground(new Color(255, 102, 0));
@@ -62,6 +64,27 @@ public class DesignHelper {
         table.setSelectionForeground(new Color(255, 255, 255));
         table.setGridColor(new Color(255, 255, 255));
         table.setRowHeight(25);
+    }
+    
+    public static void setTable(JTable table, String[] columns) {
+        DefaultTableModel tblModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+        tblModel.setColumnIdentifiers(columns);
+
+        table.setModel(tblModel);
+        table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
+        table.getTableHeader().setBackground(new Color(255, 102, 0));
+        table.getTableHeader().setForeground(Color.WHITE);
+        table.setSelectionBackground(new Color(51, 102, 255));
+        table.setSelectionForeground(new Color(255, 255, 255));
+        table.setGridColor(new Color(255, 255, 255));
+        table.setRowHeight(25);
+        table.setSelectionMode(0);
     }
 
     public static void setButtonBackgroundColor(JButton button, Color enabledColor, Color unenabledColor) {
@@ -80,8 +103,8 @@ public class DesignHelper {
                 button.setBackground(unenabledColor);
             }
         }
-    }    
-   
+    }
+
     public static void first(int row) {
         row = 0;
     }

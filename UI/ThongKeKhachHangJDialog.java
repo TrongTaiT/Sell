@@ -338,6 +338,7 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         model.addColumn("NGÀY MUA GẦN NHẤT");
         model.addColumn("KHOẢNG NGÀY MUA ĐẾN HIỆN TẠI");
         tblthongkekhachhang.setModel(model);
+        
         DesignHelper.setTable(tblthongkekhachhang);
     }
 

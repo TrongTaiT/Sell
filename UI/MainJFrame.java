@@ -1292,7 +1292,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         EventQueue.invokeLater(() -> {
-            new FrameDragListener(new DangNhapJFrame());
+            new FrameDragListener(new MainJFrame());
         });
     }
 

@@ -581,19 +581,19 @@ public class QL_LoaiHang extends javax.swing.JPanel {
     }
 
     private void setTable() {
-        DefaultTableModel tblModel = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                //all cells false
-                return false;
-            }
-        };
+//        DefaultTableModel tblModel = new DefaultTableModel() {
+//            @Override
+//            public boolean isCellEditable(int row, int column) {
+//                //all cells false
+//                return false;
+//            }
+//        };
         String columns[] = {"MÃ LOẠI", "TÊN LOẠI", "GHI CHÚ"};
-        tblModel.setColumnIdentifiers(columns);
-
-        tblLoaiSanPham.setModel(tblModel);
-        tblLoaiSanPham.setSelectionMode(0);
-        DesignHelper.setTable(tblLoaiSanPham);
+//        tblModel.setColumnIdentifiers(columns);
+//
+//        tblLoaiSanPham.setModel(tblModel);
+//        tblLoaiSanPham.setSelectionMode(0);
+        DesignHelper.setTable(tblLoaiSanPham, columns);
     }
 
     private void clearForm() {

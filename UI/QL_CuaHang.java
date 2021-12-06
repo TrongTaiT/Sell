@@ -831,15 +831,16 @@ public class QL_CuaHang extends javax.swing.JPanel {
     }
 
     private void setTable() {
-        DefaultTableModel model = new DefaultTableModel();
-
-        model.addColumn("MÃ CỬA HÀNG");
-        model.addColumn("MÃ QUẢN LÝ");
-        model.addColumn("ĐỊA CHỈ");
-        model.addColumn("TRẠNG THÁI");
-
-        tblListCuaHang.setModel(model);
-        DesignHelper.setTable(tblListCuaHang);
+//        DefaultTableModel model = new DefaultTableModel();
+//
+//        model.addColumn("MÃ CỬA HÀNG");
+//        model.addColumn("MÃ QUẢN LÝ");
+//        model.addColumn("ĐỊA CHỈ");
+//        model.addColumn("TRẠNG THÁI");
+//
+//        tblListCuaHang.setModel(model);
+        String columns[] = {"MÃ CỬA HÀNG", "MÃ QUẢN LÝ", "ĐỊA CHỈ", "TRẠNG THÁI"};
+        DesignHelper.setTable(tblListCuaHang, columns);
     }
 
     private void fillTable() {

@@ -993,21 +993,21 @@ public class QL_NhanVien extends javax.swing.JPanel {
     }
 
     void setTable() {
-        DefaultTableModel tblModel = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                //all cells false
-                return false;
-            }
-        };
+//        DefaultTableModel tblModel = new DefaultTableModel() {
+//            @Override
+//            public boolean isCellEditable(int row, int column) {
+//                //all cells false
+//                return false;
+//            }
+//        };
         String columns[] = {"MÃ NV", "HỌ TÊN", "GIỚI TÍNH", "NGÀY SINH", "ĐIỆN THOẠI",
                 "LƯƠNG", "EMAIL", "VAI TRÒ", "ĐỊA CHỈ", "MÃ CH"};
-        tblModel.setColumnIdentifiers(columns);
+//        tblModel.setColumnIdentifiers(columns);
+//
+//        tblNhanVien.setModel(tblModel);
+//        tblNhanVien.setSelectionMode(0);
 
-        tblNhanVien.setModel(tblModel);
-        tblNhanVien.setSelectionMode(0);
-
-        DesignHelper.setTable(tblNhanVien);
+        DesignHelper.setTable(tblNhanVien, columns);
     }
 
     NhanVien_Dao dao = new NhanVien_Dao();

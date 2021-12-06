@@ -981,7 +981,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         if (listHinhAnh.size() <= 0) {
             return;
         }
-        
+
         if (this.hinhIndex == 0) {
             this.hinhIndex = listHinhAnh.size() - 1;
         } else {
@@ -1086,31 +1086,35 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     }
 
     void setTable() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("MÃ CỬA HÀNG");
-        model.addColumn("MÃ SẢN PHẨM");
-        model.addColumn("MÃ SỐ LƯỢNG");
-        tblChiTietCuaHang.setModel(model);
-        DesignHelper.setTable(tblChiTietCuaHang);
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.addColumn("MÃ CỬA HÀNG");
+//        model.addColumn("MÃ SẢN PHẨM");
+//        model.addColumn("MÃ SỐ LƯỢNG");
+//        tblChiTietCuaHang.setModel(model);
+        String[] chiTietCuaHangColumns = {"MÃ CỬA HÀNG", "MÃ SẢN PHẨM", "MÃ SỐ LƯỢNG"};
+        DesignHelper.setTable(tblChiTietCuaHang, chiTietCuaHangColumns);
 
-        DefaultTableModel model2 = new DefaultTableModel();
-        model2.addColumn("TÊN SẢN PHẨM");
-        model2.addColumn("SỐ LƯỢNG");
-        model2.addColumn("ĐƠN GIÁ");
-        tblChiTietHoaDon.setModel(model2);
-        DesignHelper.setTable(tblChiTietHoaDon);
+//        DefaultTableModel model2 = new DefaultTableModel();
+//        model2.addColumn("TÊN SẢN PHẨM");
+//        model2.addColumn("SỐ LƯỢNG");
+//        model2.addColumn("ĐƠN GIÁ");
+//        tblChiTietHoaDon.setModel(model2);
+        String[] chiTietHoaDonColumns = {"MÃ CỬA HÀNG", "SỐ LƯỢNG", "ĐƠN GIÁ"};
+        DesignHelper.setTable(tblChiTietHoaDon, chiTietHoaDonColumns);
 
-        DefaultTableModel model3 = new DefaultTableModel();
-        model3.addColumn("MÃ HÓA ĐƠN");
-        model3.addColumn("MÃ KHÁCH HÀNG");
-        model3.addColumn("NGÀY BÁN");
-        model3.addColumn("NỘI DUNG");
-        model3.addColumn("TRẠNG THÁI");
-        model3.addColumn("MÃ NV");
-        model3.addColumn("MÃ CH");
-        model3.addColumn("MÃ GIẢM GIÁ");
-        tblHoaDonChiTiet.setModel(model3);
-        DesignHelper.setTable(tblHoaDonChiTiet);
+//        DefaultTableModel model3 = new DefaultTableModel();
+//        model3.addColumn("MÃ HÓA ĐƠN");
+//        model3.addColumn("MÃ KHÁCH HÀNG");
+//        model3.addColumn("NGÀY BÁN");
+//        model3.addColumn("NỘI DUNG");
+//        model3.addColumn("TRẠNG THÁI");
+//        model3.addColumn("MÃ NV");
+//        model3.addColumn("MÃ CH");
+//        model3.addColumn("MÃ GIẢM GIÁ");
+//        tblHoaDonChiTiet.setModel(model3);
+        String[] hoaDonChiTietColumns = {"MÃ HÓA ĐƠN", "MÃ KHÁCH HÀNG", "NGÀY BÁN",
+            "NỘI DUNG", "TRẠNG THÁI", "MÃ NV", "MÃ CH", "MÃ GIẢM GIÁ"};
+        DesignHelper.setTable(tblHoaDonChiTiet, hoaDonChiTietColumns);
     }
 
     KhachHangDAO khdao = new KhachHangDAO();

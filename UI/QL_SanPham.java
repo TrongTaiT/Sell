@@ -816,15 +816,16 @@ public class QL_SanPham extends javax.swing.JPanel {
     }
 
     private void setTable() {
-        DefaultTableModel model = new DefaultTableModel();
-
-        model.addColumn("MÃ SP");
-        model.addColumn("TÊN SP");
-        model.addColumn("NHÀ SX");
-        model.addColumn("GIÁ TIỀN");
-
-        tblSanPham.setModel(model);
-        DesignHelper.setTable(tblSanPham);
+//        DefaultTableModel model = new DefaultTableModel();
+//
+//        model.addColumn("MÃ SP");
+//        model.addColumn("TÊN SP");
+//        model.addColumn("NHÀ SX");
+//        model.addColumn("GIÁ TIỀN");
+//
+//        tblSanPham.setModel(model);
+        String columns[] = {"MÃ SP", "TÊN SP", "NHÀ SX", "GIÁ TIỀN"};
+        DesignHelper.setTable(tblSanPham, columns);
     }
 
     private void fillTable() {
