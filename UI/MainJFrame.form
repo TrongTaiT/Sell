@@ -237,6 +237,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/com/Sell/icons/home-icon.png"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Trang ch&#x1ee7;"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Hand Cursor"/>
                     </Property>
@@ -319,6 +320,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/com/Sell/icons/users-icon.png"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; Nh&#xe2;n vi&#xea;n"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Hand Cursor"/>
                     </Property>
@@ -401,6 +403,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/com/Sell/icons/Shop-icon.png"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; C&#x1eed;a h&#xe0;ng"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Hand Cursor"/>
                     </Property>
@@ -486,6 +489,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/com/Sell/icons/clothes-icon.png"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; S&#x1ea3;n ph&#x1ea9;m"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Hand Cursor"/>
                     </Property>
@@ -570,6 +574,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/com/Sell/icons/Warehouse-icon.png"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; Kho h&#xe0;ng"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Hand Cursor"/>
                     </Property>
@@ -655,6 +660,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/com/Sell/icons/customer-icon.png"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; Kh&#xe1;ch h&#xe0;ng"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Hand Cursor"/>
                     </Property>
@@ -720,6 +726,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/com/Sell/icons/order-icon.png"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; Ho&#xe1; &#x111;&#x1a1;n nh&#x1ead;p h&#xe0;ng"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Hand Cursor"/>
                     </Property>
@@ -806,6 +813,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/com/Sell/icons/sell.png"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; Ho&#xe1; &#x111;&#x1a1;n b&#xe1;n h&#xe0;ng"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Hand Cursor"/>
                     </Property>
@@ -910,6 +918,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/com/Sell/icons/money-icon.png"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; Doanh thu"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Hand Cursor"/>
                     </Property>

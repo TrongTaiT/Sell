@@ -216,6 +216,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblHomeIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHomeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/home-icon.png"))); // NOI18N
+        lblHomeIcon.setToolTipText("Trang chủ");
         lblHomeIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblHomeIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -273,6 +274,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblNhanVienIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNhanVienIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/users-icon.png"))); // NOI18N
+        lblNhanVienIcon.setToolTipText("Quản lý Nhân viên");
         lblNhanVienIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblNhanVienIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -330,6 +332,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblCuaHangIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCuaHangIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/Shop-icon.png"))); // NOI18N
+        lblCuaHangIcon.setToolTipText("Quản lý Cửa hàng");
         lblCuaHangIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCuaHangIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -388,6 +391,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblSanPhamIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSanPhamIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/clothes-icon.png"))); // NOI18N
+        lblSanPhamIcon.setToolTipText("Quản lý Sản phẩm");
         lblSanPhamIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblSanPhamIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -443,6 +447,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblKhoIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblKhoIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/Warehouse-icon.png"))); // NOI18N
+        lblKhoIcon.setToolTipText("Quản lý Kho hàng");
         lblKhoIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblKhoIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -501,6 +506,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblKhachHangIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblKhachHangIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/customer-icon.png"))); // NOI18N
+        lblKhachHangIcon.setToolTipText("Quản lý Khách hàng");
         lblKhachHangIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblKhachHangIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -542,6 +548,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblNhapHangIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNhapHangIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/order-icon.png"))); // NOI18N
+        lblNhapHangIcon.setToolTipText("Quản lý Hoá đơn nhập hàng");
         lblNhapHangIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblNhapHangIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -603,6 +610,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblBanHangIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBanHangIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/sell.png"))); // NOI18N
+        lblBanHangIcon.setToolTipText("Quản lý Hoá đơn bán hàng");
         lblBanHangIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBanHangIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -675,6 +683,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblDoanhThuIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDoanhThuIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/money-icon.png"))); // NOI18N
+        lblDoanhThuIcon.setToolTipText("Quản lý Doanh thu");
         lblDoanhThuIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblDoanhThuIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
