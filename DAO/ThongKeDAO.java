@@ -42,5 +42,19 @@ public class ThongKeDAO {
         String []cols={"MaKhachHang","hoten","solanmua"};
         return this.getListOfArray(sql, cols, nam,thang,makh);
     }
-      
-}
+       public List<Object[]> getThongKeKhachHangItMuaHang(String nam,String thang,String makh) {
+        String sql="exec sp_thongkekhachhangchuamuahangtu6thang ?, ?, ?";
+        String []cols={"MaKhachHang","hoten","solanmua","ngaymua","khoangngay"};
+        return this.getListOfArray(sql, cols, nam,thang,makh);
+    }
+      public List<Object[]> getThongKeSanPhamBanNhieu(String nam,String thang,String masp) {
+        String sql="exec sp_thongkesanphambannhieunhat ?, ?, ?";
+        String []cols={"MaSanPham","TenSP","solanban","soluongbanra","soluongtong"};
+        return this.getListOfArray(sql, cols, nam,thang,masp);
+    }
+        public List<Object[]> getThongKeSanPhamHetHoacNhoHon10(String nam,String thang,String masp,int n) {
+        String sql="exec sp_thongkesanphamsoluonghethoacnhohon10 ?, ?, ?, ?";
+        String []cols={"MaSanPham","TenSP","solanban","soluongbanra","soluongtong"};
+        return this.getListOfArray(sql, cols, nam,thang,masp,n);
+    }
+ }

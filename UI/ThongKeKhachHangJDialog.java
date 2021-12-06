@@ -5,7 +5,17 @@
  */
 package com.Sell.UI;
 
+import com.Sell.DAO.HoaDonBanHang_Dao;
+import com.Sell.DAO.KhachHangDAO;
+import com.Sell.DAO.ThongKeDAO;
+import com.Sell.Helper.DateHelper;
 import com.Sell.Helper.DesignHelper;
+import com.Sell.entity.KhachHang;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,12 +47,13 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        jlistmakhachang = new javax.swing.JList<>();
+        cbonam = new javax.swing.JComboBox<>();
+        cbothang = new javax.swing.JComboBox<>();
+        lbltieude = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblThongKeKhachHang = new javax.swing.JTable();
+        tblthongkekhachhang = new javax.swing.JTable();
+        chkkiemtra = new javax.swing.JCheckBox();
 
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setUndecorated(true);
@@ -104,21 +115,41 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 153));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jlistmakhachang.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jlistmakhachang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlistmakhachangMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jlistmakhachang);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbonam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbonam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbonamActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbothang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbothang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbothangMouseClicked(evt);
+            }
+        });
+        cbothang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbothangActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("jLabel1");
+        lbltieude.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbltieude.setText("jLabel1");
 
-        tblThongKeKhachHang.setModel(new javax.swing.table.DefaultTableModel(
+        tblthongkekhachhang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -129,7 +160,15 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(tblThongKeKhachHang);
+        jScrollPane2.setViewportView(tblthongkekhachhang);
+
+        chkkiemtra.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        chkkiemtra.setText("6 tháng chưa mua hàng kể từ ngày mua gần nhất");
+        chkkiemtra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkkiemtraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -140,30 +179,35 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel1)
-                        .addGap(0, 335, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkkiemtra, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(cbonam, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbothang, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(lbltieude)))
+                        .addGap(0, 339, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(cbonam, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbothang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbltieude))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(chkkiemtra)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -199,6 +243,44 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         this.dispose();
     }//GEN-LAST:event_btnDongActionPerformed
 
+    private void chkkiemtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkkiemtraActionPerformed
+        // TODO add your handling code here:
+
+        if (chkkiemtra.isSelected()) {
+            cbonam.setSelectedIndex(0);
+            cbothang.setSelectedIndex(0);
+            this.kiemTrangaymua();
+            chkkiemtra.setSelected(true);
+        }
+        if (chkkiemtra.isSelected() == false) {
+            fillToTable();
+        }
+    }//GEN-LAST:event_chkkiemtraActionPerformed
+
+    private void jlistmakhachangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlistmakhachangMouseClicked
+        // TODO add your handling code here:
+        this.fillToTable();
+    }//GEN-LAST:event_jlistmakhachangMouseClicked
+
+    private void cbonamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbonamActionPerformed
+        // TODO add your handling code here:
+        nam = (String) cbonam.getSelectedItem();
+        nam = nam.substring(5);
+        chkkiemtra.setSelected(false);
+        this.fillToTable();
+    }//GEN-LAST:event_cbonamActionPerformed
+
+    private void cbothangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbothangMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_cbothangMouseClicked
+
+    private void cbothangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbothangActionPerformed
+        // TODO add your handling code here:
+        this.fillToTable();
+        chkkiemtra.setSelected(false);
+    }//GEN-LAST:event_cbothangActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -219,32 +301,171 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDong;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cbonam;
+    private javax.swing.JComboBox<String> cbothang;
+    private javax.swing.JCheckBox chkkiemtra;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> jlistmakhachang;
+    private javax.swing.JLabel lbltieude;
     private com.k33ptoo.components.KGradientPanel panelTitle;
-    private javax.swing.JTable tblThongKeKhachHang;
+    private javax.swing.JTable tblthongkekhachhang;
     // End of variables declaration//GEN-END:variables
+      // End of variables declaration                   
+    ThongKeDAO thongkedao = new ThongKeDAO();
+    KhachHangDAO khachHangDAO = new KhachHangDAO();
+    HoaDonBanHang_Dao BanHang_Dao = new HoaDonBanHang_Dao();
+    String nam = "";
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
 
-    void init(){
+    void init() {
         this.setLocationRelativeTo(null);
         this.setTable();
+        fillToJlist();
+        fillToComBoBoxNam();
+        fillToComBoboxthang();
+        fillToTable();
     }
-    
-    void setTable(){
+
+    void setTable() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("MÃ KHÁCH HÀNG");
         model.addColumn("TÊN KHÁCH HÀNG");
         model.addColumn("SỐ LẦN MUA");
-        model.addColumn("");
-        
-        tblThongKeKhachHang.setModel(model);
-        DesignHelper.setTable(tblThongKeKhachHang);
+        model.addColumn("NGÀY MUA GẦN NHẤT");
+        model.addColumn("KHOẢNG NGÀY MUA ĐẾN HIỆN TẠI");
+        tblthongkekhachhang.setModel(model);
+        DesignHelper.setTable(tblthongkekhachhang);
+    }
+
+    void fillToJlist() {
+        DefaultListModel listModel = new DefaultListModel();
+        jlistmakhachang.removeAll();
+        List<KhachHang> listkh = khachHangDAO.selectAll();
+        listModel.addElement("Tất cả");
+        for (KhachHang kh : listkh) {
+            listModel.addElement(kh.getMaKhachHang());
+        }
+        jlistmakhachang.setModel(listModel);
+    }
+
+    void fillToComBoboxthang() {
+        DefaultComboBoxModel cbomodel = new DefaultComboBoxModel();
+        cbothang.removeAll();
+        cbomodel.addElement(" Tất cả Tháng ");
+        for (int i = 1; i < 13; i++) {
+            cbomodel.addElement("Tháng " + i);
+        }
+        cbothang.setModel(cbomodel);
+
+    }
+
+    void fillToComBoBoxNam() {
+        DefaultComboBoxModel cbomodel = new DefaultComboBoxModel();
+        cbonam.removeAll();
+        Date date = new Date();
+
+        simpleDateFormat.applyPattern("yyyy");
+        String format = simpleDateFormat.format(date);
+        int nam = Integer.parseInt(format);
+        cbomodel.addElement(" Tất cả năm ");
+        for (int i = 2020; i <= nam; i++) {
+            cbomodel.addElement("Năm " + i);
+        }
+        cbonam.setModel(cbomodel);
+    }
+
+    void fillToTable() {
+        //  String[] header = {"Tổng tiền", "Mã cửa hàng"};
+
+        DefaultTableModel model = (DefaultTableModel) tblthongkekhachhang.getModel();
+        model.setRowCount(0);
+        String thang = null;
+        String thang1;
+        String nam1;
+        if (cbothang.getSelectedIndex() == 0) {
+            thang = "";
+            thang1 = " Tất cả tháng";
+        } else if (cbothang.getSelectedIndex() == 1 || cbothang.getSelectedIndex() == 2) {
+            thang = "0" + String.valueOf(cbothang.getSelectedIndex());
+            thang1 = "Tháng " + cbothang.getSelectedIndex();
+        } else {
+            thang = String.valueOf(cbothang.getSelectedIndex());
+            thang1 = "Tháng " + cbothang.getSelectedIndex();
+        }
+        //lấy năm chọn trên combobox
+        if (cbonam.getSelectedIndex() == 0) {
+            nam = "";
+            nam1 = "Tất cả năm";
+        } else {
+            nam = (String) cbonam.getSelectedItem();
+            nam = nam.substring(4);
+            nam1 = (String) cbonam.getSelectedItem();
+        }
+        //lấy cửa hàng chọn trên jlist
+        String makh = jlistmakhachang.getSelectedValue();
+        if (jlistmakhachang.getSelectedIndex() == 0) {
+            makh = "";
+        }
+
+        List<Object[]> listdoanhthu = thongkedao.getThongKeKhachHang(thang, nam, makh);
+        for (Object[] row : listdoanhthu) {
+
+            model.addRow(new Object[]{row[0], row[1], row[2]});
+
+            //set thanh tieu de
+            lbltieude.setText("Số Lượt mua " + makh + " " + nam1 + " " + thang1);
+
+        }
+    }
+
+    void kiemTrangaymua() {
+        DefaultTableModel model = (DefaultTableModel) tblthongkekhachhang.getModel();
+        model.setRowCount(0);
+
+        String thang = null;
+        String thang1;
+        String nam1;
+        //lấy tháng chọn trên combobox
+        if (cbothang.getSelectedIndex() == 0) {
+            thang = "";
+            thang1 = " Tất cả tháng";
+        } else if (cbothang.getSelectedIndex() == 1 || cbothang.getSelectedIndex() == 2) {
+            thang = "";
+            thang1 = "Tháng " + cbothang.getSelectedIndex();
+        } else {
+            thang = "";
+            thang1 = "Tháng " + cbothang.getSelectedIndex();
+        }
+        //lấy năm chọn trên combobox
+        if (cbonam.getSelectedIndex() == 0) {
+            nam = "";
+            nam1 = "Tất cả năm";
+        } else {
+            nam = (String) "";
+
+            nam1 = (String) cbonam.getSelectedItem();
+        }
+        //lấy cửa hàng chọn trên jlist
+        String makh = jlistmakhachang.getSelectedValue();
+        if (jlistmakhachang.getSelectedIndex() == 0) {
+            makh = "";
+        }
+
+        List<Object[]> listdoanhthu = thongkedao.getThongKeKhachHangItMuaHang(thang, nam, makh);
+        for (Object[] row : listdoanhthu) {
+            Object[] obj = new Object[]{row[0], row[1], row[2], DateHelper.toString((Date) row[3]), row[4]};
+            if (Integer.valueOf((int) row[4]) > 180) {
+                model.addRow(new Object[]{row[0], row[1], row[2], DateHelper.toString((Date) row[3]), row[4]});
+                lbltieude.setText("Số Lượt mua " + makh + " " + nam1 + " " + thang1);
+            }
+            //set thanh tieu de
+            lbltieude.setText("Số Lượt mua " + makh + " " + nam1 + " " + thang1);
+
+        }
+
     }
 }

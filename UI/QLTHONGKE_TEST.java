@@ -252,7 +252,7 @@ public class QLTHONGKE_TEST extends javax.swing.JFrame {
         simpleDateFormat.applyPattern("yyyy");
         String format = simpleDateFormat.format(date);
         int nam = Integer.parseInt(format);
-
+        cbomodel.addElement(" Tất cả năm ");
         for (int i = 2020; i <= nam; i++) {
             cbomodel.addElement("Năm " + i);
         }
@@ -266,17 +266,27 @@ public class QLTHONGKE_TEST extends javax.swing.JFrame {
         model.setRowCount(0);
         String thang = null;
         String thang1;
+        String nam1;
         if (cbothang.getSelectedIndex() == 0) {
             thang = "";
             thang1 = " Tất cả tháng";
+        } else if (cbothang.getSelectedIndex() == 1 || cbothang.getSelectedIndex() == 2) {
+            thang = "0" + String.valueOf(cbothang.getSelectedIndex());
+            thang1 = "Tháng " + cbothang.getSelectedIndex();
         } else {
             thang = String.valueOf(cbothang.getSelectedIndex());
             thang1 = "Tháng " + cbothang.getSelectedIndex();
         }
         //lấy năm chọn trên combobox
-        nam = (String) cbonam.getSelectedItem();
-        nam = nam.substring(4);
+        if (cbonam.getSelectedIndex() == 0) {
+            nam = "";
+            nam1 = "Tất cả năm";
+        } else {
+            nam = (String) cbonam.getSelectedItem();
+            nam = nam.substring(4);
 
+            nam1 = (String) cbonam.getSelectedItem();
+        }
         //lấy cửa hàng chọn trên jlist
         String mach = jlistcuahang.getSelectedValue();
         if (jlistcuahang.getSelectedIndex() == 0) {
@@ -289,11 +299,11 @@ public class QLTHONGKE_TEST extends javax.swing.JFrame {
             model.addRow(new Object[]{row[0], row[1]});
         }
         //set thanh tieu de
-        lbltieude.setText("Tổng doanh thu " + mach + " " + nam + " " + thang1);
+        lbltieude.setText("Tổng doanh thu " + mach + " " + nam1 + " " + thang1);
 
         //set tính tổng
         tinhTong();
-        lbltong.setText("Tổng doanh thu " + mach + "" + thang1 + " năm " + nam + " là " + tong);
+        lbltong.setText("Tổng doanh thu " + mach + "" + thang1 + " " + nam1 + " là " + tong);
     }
 
     void tinhTong() {

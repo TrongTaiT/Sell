@@ -1191,7 +1191,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
         List<LoaiHang> list = lhdao.selectAll();
-        model.addElement(new LoaiHang("Tất cả", "Tất cả ", "cửa hàng"));
+        //  model.addElement(new LoaiHang("Tất cả", "Tất cả ", "cửa hàng"));
         for (LoaiHang cd : list) {
             model.addElement(cd);
         }
