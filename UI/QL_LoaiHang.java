@@ -2,6 +2,7 @@ package com.Sell.UI;
 
 import com.Sell.Helper.DesignHelper;
 import javax.swing.JComponent;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -576,6 +577,23 @@ public class QL_LoaiHang extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void init() {
+        setTable();
+    }
+
+    private void setTable() {
+        DefaultTableModel tblModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+        String columns[] = {"MÃ LOẠI", "TÊN LOẠI", "GHI CHÚ"};
+        tblModel.setColumnIdentifiers(columns);
+
+        tblLoaiSanPham.setModel(tblModel);
+        tblLoaiSanPham.setSelectionMode(0);
+        DesignHelper.setTable(tblLoaiSanPham);
     }
 
     private void clearForm() {

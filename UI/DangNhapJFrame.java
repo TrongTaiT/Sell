@@ -176,6 +176,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
 
         lblKetThuc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblKetThuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/close_1.png"))); // NOI18N
+        lblKetThuc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblKetThuc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblKetThucMouseClicked(evt);
@@ -184,6 +185,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
 
         lblThuLai.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblThuLai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/minus.png"))); // NOI18N
+        lblThuLai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblThuLai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblThuLaiMouseClicked(evt);

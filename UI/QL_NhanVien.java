@@ -741,7 +741,6 @@ public class QL_NhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
-
         if (evt.getClickCount() == 2) {
             row = tblNhanVien.getSelectedRow();
             this.edit();
@@ -994,19 +993,20 @@ public class QL_NhanVien extends javax.swing.JPanel {
     }
 
     void setTable() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("MÃ NV");
-        model.addColumn("HỌ TÊN");
-        model.addColumn("GIỚI TÍNH");
-        model.addColumn("NGÀY SINH");
-        model.addColumn("ĐIỆN THOẠI");
-        model.addColumn("LƯƠNG");
-        model.addColumn("EMAIL");
-        model.addColumn("VAI TRÒ");
-        model.addColumn("ĐỊA CHỈ");
-        model.addColumn("MÃ CH");
+        DefaultTableModel tblModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+        String columns[] = {"MÃ NV", "HỌ TÊN", "GIỚI TÍNH", "NGÀY SINH", "ĐIỆN THOẠI",
+                "LƯƠNG", "EMAIL", "VAI TRÒ", "ĐỊA CHỈ", "MÃ CH"};
+        tblModel.setColumnIdentifiers(columns);
 
-        tblNhanVien.setModel(model);
+        tblNhanVien.setModel(tblModel);
+        tblNhanVien.setSelectionMode(0);
+
         DesignHelper.setTable(tblNhanVien);
     }
 
