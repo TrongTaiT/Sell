@@ -924,6 +924,10 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_tblHoaDonChiTietMouseEntered
 
     private void btnNextHinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextHinhActionPerformed
+        if (listHinhAnh.size() < 0) {
+            return;
+        }
+
         if (this.hinhIndex < listHinhAnh.size() - 1) {
             this.hinhIndex++;
         } else {
@@ -933,6 +937,10 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNextHinhActionPerformed
 
     private void btnPrevHinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevHinhActionPerformed
+        if (listHinhAnh.size() < 0) {
+            return;
+        }
+        
         if (this.hinhIndex == 0) {
             this.hinhIndex = listHinhAnh.size() - 1;
         } else {
