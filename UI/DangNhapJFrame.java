@@ -73,8 +73,6 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         lblThuLai = new javax.swing.JLabel();
         lblthongBao = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         pnlTong.setOpaque(false);
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
@@ -613,13 +611,13 @@ int a = 0;
         String matKhau = new String(txtmatKhau.getPassword());
         NhanVien nhanVien = dao.selectById(taiKhoan);
         String tb = "";
-        if (taiKhoan.length() == 0) {
+        if (taiKhoan.equals("Mã nhân viên")) {
             tb = " Vui lòng nhập tài khoản ";
 
         } else if (nhanVien == null) {
             tb = " Sai tên đăng nhập";
 
-        } else if (txtmatKhau.getText().length() == 0) {
+        } else if (txtmatKhau.getText().equals("Mật khẩu")) {
             tb = " Vui Lòng nhập mật khẩu";
 
         } else if (!matKhau.equals(nhanVien.getMatKhau())) {
@@ -649,6 +647,7 @@ int a = 0;
 
     void init() {
         this.setText();
+        this.openWelcom();
         //add hinh anh de di chuyen
         //add qua trai
         lbl1 = new JLabel("", JLabel.CENTER);
@@ -705,5 +704,9 @@ int a = 0;
                 txtmatKhau.setEchoChar('*');
             }
         }
+    }
+    
+    void openWelcom(){
+        new ChaoJDialog(this, true).setVisible(true);
     }
 }

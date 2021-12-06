@@ -46,26 +46,6 @@ public class QL_KhachHang extends javax.swing.JPanel {
         kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
         jLabel6 = new javax.swing.JLabel();
         kGradientPanel2 = new com.k33ptoo.components.KGradientPanel();
-        panelPhieuGiamGia = new javax.swing.JPanel();
-        panelSearch1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        txtTimKiem1 = new javax.swing.JTextField();
-        jPanel13 = new javax.swing.JPanel();
-        btnThongTin1 = new javax.swing.JButton();
-        btnThongTin2 = new javax.swing.JButton();
-        jPanel14 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblPhieuGiamGia = new javax.swing.JTable();
-        panelDanhSach = new javax.swing.JPanel();
-        panelSearch = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        txtTimKiem = new javax.swing.JTextField();
-        jPanel11 = new javax.swing.JPanel();
-        btnThongTin = new javax.swing.JButton();
-        btnPhieuGiamGia1 = new javax.swing.JButton();
-        jPanel12 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblListKhachHang = new javax.swing.JTable();
         panelThongTin = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -102,6 +82,26 @@ public class QL_KhachHang extends javax.swing.JPanel {
         btnPrev = new javax.swing.JButton();
         btnDanhSach = new javax.swing.JButton();
         btnPhieuGiamGia = new javax.swing.JButton();
+        panelDanhSach = new javax.swing.JPanel();
+        panelSearch = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txtTimKiem = new javax.swing.JTextField();
+        jPanel11 = new javax.swing.JPanel();
+        btnThongTin = new javax.swing.JButton();
+        btnPhieuGiamGia1 = new javax.swing.JButton();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblListKhachHang = new javax.swing.JTable();
+        panelPhieuGiamGia = new javax.swing.JPanel();
+        panelSearch1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        txtTimKiem1 = new javax.swing.JTextField();
+        jPanel13 = new javax.swing.JPanel();
+        btnThongTin1 = new javax.swing.JButton();
+        btnThongTin2 = new javax.swing.JButton();
+        jPanel14 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblPhieuGiamGia = new javax.swing.JTable();
 
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -149,203 +149,6 @@ public class QL_KhachHang extends javax.swing.JPanel {
         kGradientPanel2.setkStartColor(new java.awt.Color(0, 185, 215));
         kGradientPanel2.setPreferredSize(new java.awt.Dimension(1010, 50));
         kGradientPanel2.setLayout(new java.awt.CardLayout());
-
-        panelPhieuGiamGia.setLayout(new java.awt.BorderLayout());
-
-        panelSearch1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("TÌM KIẾM");
-        jLabel4.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelSearch1.add(jLabel4);
-
-        txtTimKiem1.setPreferredSize(new java.awt.Dimension(400, 30));
-        txtTimKiem1.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtTimKiem1CaretUpdate(evt);
-            }
-        });
-        panelSearch1.add(txtTimKiem1);
-
-        panelPhieuGiamGia.add(panelSearch1, java.awt.BorderLayout.PAGE_START);
-
-        jPanel13.setPreferredSize(new java.awt.Dimension(1010, 50));
-
-        btnThongTin1.setBackground(new java.awt.Color(255, 153, 0));
-        btnThongTin1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnThongTin1.setText("THÔNG TIN KHÁCH HÀNG");
-        btnThongTin1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThongTin1ActionPerformed(evt);
-            }
-        });
-
-        btnThongTin2.setBackground(new java.awt.Color(255, 153, 0));
-        btnThongTin2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnThongTin2.setText("DANH SÁCH KHÁCH HÀNG");
-        btnThongTin2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThongTin2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addGap(0, 500, Short.MAX_VALUE)
-                .addComponent(btnThongTin1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnThongTin2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnThongTin2, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(btnThongTin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        panelPhieuGiamGia.add(jPanel13, java.awt.BorderLayout.PAGE_END);
-
-        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane3.setBorder(null);
-
-        tblPhieuGiamGia.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tblPhieuGiamGia.setGridColor(new java.awt.Color(255, 255, 255));
-        tblPhieuGiamGia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblPhieuGiamGiaMouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(tblPhieuGiamGia);
-
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        panelPhieuGiamGia.add(jPanel14, java.awt.BorderLayout.CENTER);
-
-        kGradientPanel2.add(panelPhieuGiamGia, "card4");
-
-        panelDanhSach.setLayout(new java.awt.BorderLayout());
-
-        panelSearch.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("TÌM KIẾM");
-        jLabel2.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelSearch.add(jLabel2);
-
-        txtTimKiem.setPreferredSize(new java.awt.Dimension(400, 30));
-        txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtTimKiemCaretUpdate(evt);
-            }
-        });
-        panelSearch.add(txtTimKiem);
-
-        panelDanhSach.add(panelSearch, java.awt.BorderLayout.PAGE_START);
-
-        jPanel11.setPreferredSize(new java.awt.Dimension(1010, 50));
-
-        btnThongTin.setBackground(new java.awt.Color(255, 153, 0));
-        btnThongTin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnThongTin.setText("THÔNG TIN KHÁCH HÀNG");
-        btnThongTin.setPreferredSize(new java.awt.Dimension(217, 37));
-        btnThongTin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThongTinActionPerformed(evt);
-            }
-        });
-
-        btnPhieuGiamGia1.setBackground(new java.awt.Color(204, 204, 204));
-        btnPhieuGiamGia1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnPhieuGiamGia1.setText("PHIẾU GIẢM GIÁ");
-        btnPhieuGiamGia1.setPreferredSize(new java.awt.Dimension(153, 37));
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addGap(0, 587, Short.MAX_VALUE)
-                .addComponent(btnPhieuGiamGia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThongTin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPhieuGiamGia1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        panelDanhSach.add(jPanel11, java.awt.BorderLayout.PAGE_END);
-
-        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setBorder(null);
-
-        tblListKhachHang.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tblListKhachHang.setGridColor(new java.awt.Color(255, 255, 255));
-        tblListKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblListKhachHangMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tblListKhachHang);
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        panelDanhSach.add(jPanel12, java.awt.BorderLayout.CENTER);
-
-        kGradientPanel2.add(panelDanhSach, "card3");
 
         panelThongTin.setPreferredSize(new java.awt.Dimension(1010, 519));
         panelThongTin.setLayout(new java.awt.BorderLayout());
@@ -777,6 +580,203 @@ public class QL_KhachHang extends javax.swing.JPanel {
         panelThongTin.add(jPanel2, java.awt.BorderLayout.CENTER);
 
         kGradientPanel2.add(panelThongTin, "card2");
+
+        panelDanhSach.setLayout(new java.awt.BorderLayout());
+
+        panelSearch.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("TÌM KIẾM");
+        jLabel2.setPreferredSize(new java.awt.Dimension(100, 40));
+        panelSearch.add(jLabel2);
+
+        txtTimKiem.setPreferredSize(new java.awt.Dimension(400, 30));
+        txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTimKiemCaretUpdate(evt);
+            }
+        });
+        panelSearch.add(txtTimKiem);
+
+        panelDanhSach.add(panelSearch, java.awt.BorderLayout.PAGE_START);
+
+        jPanel11.setPreferredSize(new java.awt.Dimension(1010, 50));
+
+        btnThongTin.setBackground(new java.awt.Color(255, 153, 0));
+        btnThongTin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnThongTin.setText("THÔNG TIN KHÁCH HÀNG");
+        btnThongTin.setPreferredSize(new java.awt.Dimension(217, 37));
+        btnThongTin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongTinActionPerformed(evt);
+            }
+        });
+
+        btnPhieuGiamGia1.setBackground(new java.awt.Color(204, 204, 204));
+        btnPhieuGiamGia1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPhieuGiamGia1.setText("PHIẾU GIẢM GIÁ");
+        btnPhieuGiamGia1.setPreferredSize(new java.awt.Dimension(153, 37));
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addGap(0, 587, Short.MAX_VALUE)
+                .addComponent(btnPhieuGiamGia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnThongTin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPhieuGiamGia1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        panelDanhSach.add(jPanel11, java.awt.BorderLayout.PAGE_END);
+
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setBorder(null);
+
+        tblListKhachHang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblListKhachHang.setGridColor(new java.awt.Color(255, 255, 255));
+        tblListKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblListKhachHangMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblListKhachHang);
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        panelDanhSach.add(jPanel12, java.awt.BorderLayout.CENTER);
+
+        kGradientPanel2.add(panelDanhSach, "card3");
+
+        panelPhieuGiamGia.setLayout(new java.awt.BorderLayout());
+
+        panelSearch1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("TÌM KIẾM");
+        jLabel4.setPreferredSize(new java.awt.Dimension(100, 40));
+        panelSearch1.add(jLabel4);
+
+        txtTimKiem1.setPreferredSize(new java.awt.Dimension(400, 30));
+        txtTimKiem1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTimKiem1CaretUpdate(evt);
+            }
+        });
+        panelSearch1.add(txtTimKiem1);
+
+        panelPhieuGiamGia.add(panelSearch1, java.awt.BorderLayout.PAGE_START);
+
+        jPanel13.setPreferredSize(new java.awt.Dimension(1010, 50));
+
+        btnThongTin1.setBackground(new java.awt.Color(255, 153, 0));
+        btnThongTin1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnThongTin1.setText("THÔNG TIN KHÁCH HÀNG");
+        btnThongTin1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongTin1ActionPerformed(evt);
+            }
+        });
+
+        btnThongTin2.setBackground(new java.awt.Color(255, 153, 0));
+        btnThongTin2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnThongTin2.setText("DANH SÁCH KHÁCH HÀNG");
+        btnThongTin2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongTin2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addGap(0, 500, Short.MAX_VALUE)
+                .addComponent(btnThongTin1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnThongTin2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnThongTin2, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(btnThongTin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        panelPhieuGiamGia.add(jPanel13, java.awt.BorderLayout.PAGE_END);
+
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setBorder(null);
+
+        tblPhieuGiamGia.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblPhieuGiamGia.setGridColor(new java.awt.Color(255, 255, 255));
+        tblPhieuGiamGia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPhieuGiamGiaMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblPhieuGiamGia);
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        panelPhieuGiamGia.add(jPanel14, java.awt.BorderLayout.CENTER);
+
+        kGradientPanel2.add(panelPhieuGiamGia, "card4");
 
         add(kGradientPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -1277,12 +1277,11 @@ public class QL_KhachHang extends javax.swing.JPanel {
         PhieuGiamGia giamGia = getData();
         PhieuGiamGia pgg = ggDAO.selectByMaKH(giamGia.getMaKhachHang());
         if (pgg == null) {
-            System.out.println("Không có");
             try {
                 ggDAO.insert(giamGia);
                 this.fillTable();
             } catch (Exception e) {
-                e.printStackTrace();
+                MsgBox.alert(this, "Hôm nay không có thêm phiếu giảm giá");
             }
         }
 

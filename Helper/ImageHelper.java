@@ -1,6 +1,7 @@
 package com.Sell.Helper;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -34,6 +35,15 @@ public class ImageHelper {
             throw new RuntimeException(ex);
         }
     }
+    
+    static public ImageIcon loadImage(JLabel container, String image) {
+        ImageIcon imageI = new ImageIcon(image);
+        Image img = imageI.getImage();
+        ImageIcon icon = new ImageIcon(img.getScaledInstance(container.getWidth(), container.getHeight(), img.SCALE_SMOOTH));
+        container.setIcon(icon);
+        return icon;
+    }
+    
 
     static public byte[] convertToByteArray(String path) {
         try {

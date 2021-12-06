@@ -13,6 +13,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -83,7 +84,7 @@ public class MainJFrame extends javax.swing.JFrame {
             click2 = false;
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1240,8 +1241,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void lblDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangXuatMouseClicked
         // TODO add your handling code here:
-        new DangNhapJFrame().setVisible(true);
         this.dispose();
+        new DangNhapJFrame().setVisible(true);
     }//GEN-LAST:event_lblDangXuatMouseClicked
 
     private void lblDangXuatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangXuatMouseEntered
@@ -1291,7 +1292,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         EventQueue.invokeLater(() -> {
-            new FrameDragListener(new MainJFrame());
+            new FrameDragListener(new DangNhapJFrame());
         });
     }
 
