@@ -93,6 +93,8 @@ public class QL_SanPham extends javax.swing.JPanel {
         lblHinhAnh = new javax.swing.JLabel();
         btnXoaHinhAnh = new javax.swing.JButton();
         cboLoaiSP = new javax.swing.JComboBox<>();
+        btnPrevHinh = new javax.swing.JButton();
+        btnNextHinh = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1010, 619));
         addFocusListener(new java.awt.event.FocusAdapter() {
@@ -519,6 +521,22 @@ public class QL_SanPham extends javax.swing.JPanel {
         });
         jPanel7.add(cboLoaiSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 420, 240, -1));
 
+        btnPrevHinh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/btnPrev-QLHDBanHang-Actions-arrow-left-icon.png"))); // NOI18N
+        btnPrevHinh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevHinhActionPerformed(evt);
+            }
+        });
+        jPanel7.add(btnPrevHinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 20, -1));
+
+        btnNextHinh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/btnNext-QLHDBanHang-Actions-arrow-right-icon.png"))); // NOI18N
+        btnNextHinh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextHinhActionPerformed(evt);
+            }
+        });
+        jPanel7.add(btnNextHinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 20, -1));
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -683,6 +701,44 @@ public class QL_SanPham extends javax.swing.JPanel {
         fillToTableSanPham();
     }//GEN-LAST:event_cboLoaiSPActionPerformed
 
+    private void btnPrevHinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevHinhActionPerformed
+        if (listHinhAnh.size() <= 0) {
+            return;
+        }
+        int index = jListHinhAnh.getSelectedIndex();
+
+        switch (index) {
+            case -1:
+                index = 0;
+                break;
+            case 0:
+                index = listHinhAnh.size() - 1;
+                break;
+            default:
+                index--;
+                break;
+        }
+        lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh, listHinhAnh.get(index).getHinhAnh()));
+        jListHinhAnh.setSelectedIndex(index);
+    }//GEN-LAST:event_btnPrevHinhActionPerformed
+
+    private void btnNextHinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextHinhActionPerformed
+        if (listHinhAnh.size() <= 0) {
+            return;
+        }
+        int index = jListHinhAnh.getSelectedIndex();
+
+        if (index == -1) {
+            index = 0;
+        } else if (index < listHinhAnh.size() - 1) {
+            index++;
+        } else {
+            index = 0;
+        }
+        lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh, listHinhAnh.get(index).getHinhAnh()));
+        jListHinhAnh.setSelectedIndex(index);
+    }//GEN-LAST:event_btnNextHinhActionPerformed
+
     public static void main(String[] args) {
         new QL_SanPham().setVisible(true);
     }
@@ -693,7 +749,9 @@ public class QL_SanPham extends javax.swing.JPanel {
     private javax.swing.JButton btnLoaiSanPham;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnNextHinh;
     private javax.swing.JButton btnPrev;
+    private javax.swing.JButton btnPrevHinh;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThemHinhAnh;
@@ -849,29 +907,32 @@ public class QL_SanPham extends javax.swing.JPanel {
         listHinhAnhXoa.removeAll(listHinhAnhXoa);
         listHinhAnh.removeAll(listHinhAnh);
         listHinhAnh = haDAO.selectAllById(maSP);
-        if (!listHinhAnh.isEmpty()) {
-            lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh, listHinhAnh.get(0).getHinhAnh()));
-            jListHinhAnh.setSelectedIndex(1);
-        } else {
-            DefaultListModel listModel = (DefaultListModel) jListHinhAnh.getModel();
-            listModel.removeAllElements();
-            jListHinhAnh.setSelectedIndex(-1);
-            ImageHelper.setDefaultImage(lblHinhAnh);
-        }
         fillElementToJListHinhAnh();
+//        if (!listHinhAnh.isEmpty()) {
+//            lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh, listHinhAnh.get(0).getHinhAnh()));
+////            jListHinhAnh.setSelectionInterval(0, 0);
+//            jListHinhAnh.setSelectedIndex(0);
+//        } else {
+//            jListHinhAnh.setSelectedIndex(-1);
+//            ImageHelper.setDefaultImage(lblHinhAnh);
+//        }
     }
 
     private void fillElementToJListHinhAnh() {
         DefaultListModel listModel = new DefaultListModel();
         listModel.removeAllElements();
+        int index = -1;
         if (!listHinhAnh.isEmpty()) {
             for (HinhAnh ha : listHinhAnh) {
                 listModel.addElement(ha);
             }
+            lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh, listHinhAnh.get(0).getHinhAnh()));
+            index = 0;
         } else {
             ImageHelper.setDefaultImage(lblHinhAnh);
         }
         jListHinhAnh.setModel(listModel);
+        jListHinhAnh.setSelectedIndex(index);
     }
 
     void insert() {
