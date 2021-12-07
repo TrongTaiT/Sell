@@ -891,11 +891,21 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         int rowCTHD = tblChiTietHoaDon.getSelectedRow();
         String maSP = (String) tblChiTietHoaDon.getValueAt(rowCTHD, 0);
         SanPham sp = spdao.selectById(maSP);
+        try {
+            fillComboBoxLoaiHang();
+            fillComboBoxTenSanPham();
+            cboTenSanPham.setSelectedItem(sp);
+            LoaiHang lh = lhdao.selectById(sp.getMaLoai());
+            cboLoaiSanPham.setSelectedItem(lh);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         listHinhAnh = new HinhAnhDao().selectAllById(maSP);
         if (!listHinhAnh.isEmpty()) {
             this.hinhIndex = 0;
             lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh, listHinhAnh.get(0).getHinhAnh()));
         }
+
     }//GEN-LAST:event_tblChiTietHoaDonMouseClicked
 
     private void btnAddKHToHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddKHToHoaDonActionPerformed
@@ -1099,7 +1109,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 //        model2.addColumn("SỐ LƯỢNG");
 //        model2.addColumn("ĐƠN GIÁ");
 //        tblChiTietHoaDon.setModel(model2);
-        String[] chiTietHoaDonColumns = {"MÃ CỬA HÀNG", "SỐ LƯỢNG", "ĐƠN GIÁ"};
+        String[] chiTietHoaDonColumns = {"MÃ SẢN PHẨM", "SỐ LƯỢNG", "ĐƠN GIÁ"};
         DesignHelper.setTable(tblChiTietHoaDon, chiTietHoaDonColumns);
 
 //        DefaultTableModel model3 = new DefaultTableModel();
