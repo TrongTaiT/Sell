@@ -325,6 +325,7 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
     void init() {
         this.setLocationRelativeTo(null);
         this.setTable();
+        lbltieude.setText("");
         fillToJlist();
         fillToComBoBoxNam();
         fillToComBoboxthang();
@@ -340,7 +341,7 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         model.addColumn("NGÀY MUA GẦN NHẤT");
         model.addColumn("KHOẢNG NGÀY MUA ĐẾN HIỆN TẠI");
         tblthongkekhachhang.setModel(model);
-        
+
         DesignHelper.setTable(tblthongkekhachhang);
     }
 
@@ -418,9 +419,10 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         for (Object[] row : listdoanhthu) {
 
             model.addRow(new Object[]{row[0], row[1], row[2]});
+
         }
         //set thanh tieu de
-            lbltieude.setText("Số Lượt mua của " + makh + " / " + nam1 + " / " + thang1);
+        lbltieude.setText("Số Lượt mua " + makh + " " + nam1 + " " + thang1);
     }
 
     void kiemTrangaymua() {
