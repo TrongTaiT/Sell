@@ -451,7 +451,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblKhoIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblKhoIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/type-icon.png"))); // NOI18N
-        lblKhoIcon.setToolTipText("Quản lý Kho hàng");
+        lblKhoIcon.setToolTipText("Quản lý Loại hàng");
         lblKhoIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblKhoIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
