@@ -90,7 +90,7 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="TRANG CH&#x1ee6;/ TH&#x1ed0;NG K&#xca;/ TH&#x1ed0;NG K&#xca; KH&#xc1;CH H&#xc0;NG"/>
+            <Property name="text" type="java.lang.String" value="TRANG CH&#x1ee6;/ TH&#x1ed0;NG K&#xca;/ TH&#x1ed0;NG K&#xca; DOANH THU"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[210, 50]"/>
             </Property>

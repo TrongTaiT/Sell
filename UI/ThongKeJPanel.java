@@ -36,19 +36,19 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnThongKeKH = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnThongKeDoanhThu = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnThongKeSP = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -100,11 +100,11 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("- Thống kê khách hàng 6 tháng chưa mua hàng kể từ lần mua mới nhất");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("XEM TẠI ĐÂY");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnThongKeKH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnThongKeKH.setText("XEM TẠI ĐÂY");
+        btnThongKeKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnThongKeKHActionPerformed(evt);
             }
         });
 
@@ -124,7 +124,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btnThongKeKH)
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -138,7 +138,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnThongKeKH)
                 .addContainerGap())
         );
 
@@ -153,8 +153,13 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("- Thống kê doanh thu theo tháng, năm của tất cả cửa hàng sắp xếp giảm dần");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setText("XEM TẠI ĐÂY");
+        btnThongKeDoanhThu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnThongKeDoanhThu.setText("XEM TẠI ĐÂY");
+        btnThongKeDoanhThu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeDoanhThuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -171,7 +176,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                         .addGap(0, 175, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(btnThongKeDoanhThu)
                         .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
@@ -185,7 +190,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(btnThongKeDoanhThu)
                 .addContainerGap())
         );
 
@@ -206,8 +211,13 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("- Thống kê những sản phẩm có số lượng dưới 10");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("XEM TẠI ĐÂY");
+        btnThongKeSP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnThongKeSP.setText("XEM TẠI ĐÂY");
+        btnThongKeSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeSPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -226,7 +236,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(btnThongKeSP)
                         .addContainerGap())))
         );
         jPanel4Layout.setVerticalGroup(
@@ -244,7 +254,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnThongKeSP)
                 .addContainerGap())
         );
 
@@ -281,16 +291,26 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_panelTitlepanelSanPhamMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnThongKeKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeKHActionPerformed
         // TODO add your handling code here:
         new ThongKeKhachHangJDialog(null, true).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnThongKeKHActionPerformed
+
+    private void btnThongKeSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeSPActionPerformed
+        // TODO add your handling code here:
+        new ThongKeSanPhamJDialog(null, true).setVisible(true);
+    }//GEN-LAST:event_btnThongKeSPActionPerformed
+
+    private void btnThongKeDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeDoanhThuActionPerformed
+        // TODO add your handling code here:
+        new ThongKeDoanhThuJDialog(null, true).setVisible(true);
+    }//GEN-LAST:event_btnThongKeDoanhThuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnThongKeDoanhThu;
+    private javax.swing.JButton btnThongKeKH;
+    private javax.swing.JButton btnThongKeSP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

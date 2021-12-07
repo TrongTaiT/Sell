@@ -48,8 +48,8 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jlistmakhachang = new javax.swing.JList<>();
-        cbonam = new javax.swing.JComboBox<>();
-        cbothang = new javax.swing.JComboBox<>();
+        cboNam = new javax.swing.JComboBox<>();
+        cboThang = new javax.swing.JComboBox<>();
         lbltieude = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblthongkekhachhang = new javax.swing.JTable();
@@ -127,22 +127,22 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         });
         jScrollPane1.setViewportView(jlistmakhachang);
 
-        cbonam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbonam.addActionListener(new java.awt.event.ActionListener() {
+        cboNam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboNam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbonamActionPerformed(evt);
+                cboNamActionPerformed(evt);
             }
         });
 
-        cbothang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbothang.addMouseListener(new java.awt.event.MouseAdapter() {
+        cboThang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboThang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cbothangMouseClicked(evt);
+                cboThangMouseClicked(evt);
             }
         });
-        cbothang.addActionListener(new java.awt.event.ActionListener() {
+        cboThang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbothangActionPerformed(evt);
+                cboThangActionPerformed(evt);
             }
         });
 
@@ -162,6 +162,7 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         ));
         jScrollPane2.setViewportView(tblthongkekhachhang);
 
+        chkkiemtra.setBackground(new java.awt.Color(153, 255, 153));
         chkkiemtra.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         chkkiemtra.setText("6 tháng chưa mua hàng kể từ ngày mua gần nhất");
         chkkiemtra.addActionListener(new java.awt.event.ActionListener() {
@@ -184,12 +185,12 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(chkkiemtra, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(cbonam, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(cbothang, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(53, 53, 53)
                                 .addComponent(lbltieude)))
-                        .addGap(0, 339, Short.MAX_VALUE)))
+                        .addGap(0, 335, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -199,15 +200,15 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbonam, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbothang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbltieude))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(chkkiemtra)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -247,8 +248,8 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         // TODO add your handling code here:
 
         if (chkkiemtra.isSelected()) {
-            cbonam.setSelectedIndex(0);
-            cbothang.setSelectedIndex(0);
+            cboNam.setSelectedIndex(0);
+            cboThang.setSelectedIndex(0);
             this.kiemTrangaymua();
             chkkiemtra.setSelected(true);
         }
@@ -262,24 +263,24 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         this.fillToTable();
     }//GEN-LAST:event_jlistmakhachangMouseClicked
 
-    private void cbonamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbonamActionPerformed
+    private void cboNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNamActionPerformed
         // TODO add your handling code here:
-        nam = (String) cbonam.getSelectedItem();
+        nam = (String) cboNam.getSelectedItem();
         nam = nam.substring(5);
         chkkiemtra.setSelected(false);
         this.fillToTable();
-    }//GEN-LAST:event_cbonamActionPerformed
+    }//GEN-LAST:event_cboNamActionPerformed
 
-    private void cbothangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbothangMouseClicked
+    private void cboThangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboThangMouseClicked
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_cbothangMouseClicked
+    }//GEN-LAST:event_cboThangMouseClicked
 
-    private void cbothangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbothangActionPerformed
+    private void cboThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboThangActionPerformed
         // TODO add your handling code here:
         this.fillToTable();
         chkkiemtra.setSelected(false);
-    }//GEN-LAST:event_cbothangActionPerformed
+    }//GEN-LAST:event_cboThangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,8 +302,8 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDong;
-    private javax.swing.JComboBox<String> cbonam;
-    private javax.swing.JComboBox<String> cbothang;
+    private javax.swing.JComboBox<String> cboNam;
+    private javax.swing.JComboBox<String> cboThang;
     private javax.swing.JCheckBox chkkiemtra;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
@@ -327,6 +328,7 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         fillToJlist();
         fillToComBoBoxNam();
         fillToComBoboxthang();
+        jlistmakhachang.setSelectedIndex(0);
         fillToTable();
     }
 
@@ -346,7 +348,7 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         DefaultListModel listModel = new DefaultListModel();
         jlistmakhachang.removeAll();
         List<KhachHang> listkh = khachHangDAO.selectAll();
-        listModel.addElement("Tất cả");
+        listModel.addElement(" Tất cả");
         for (KhachHang kh : listkh) {
             listModel.addElement(kh.getMaKhachHang());
         }
@@ -355,28 +357,28 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
 
     void fillToComBoboxthang() {
         DefaultComboBoxModel cbomodel = new DefaultComboBoxModel();
-        cbothang.removeAll();
+        cboThang.removeAll();
         cbomodel.addElement(" Tất cả Tháng ");
         for (int i = 1; i < 13; i++) {
-            cbomodel.addElement("Tháng " + i);
+            cbomodel.addElement(" Tháng " + i);
         }
-        cbothang.setModel(cbomodel);
+        cboThang.setModel(cbomodel);
 
     }
 
     void fillToComBoBoxNam() {
         DefaultComboBoxModel cbomodel = new DefaultComboBoxModel();
-        cbonam.removeAll();
+        cboNam.removeAll();
         Date date = new Date();
 
         simpleDateFormat.applyPattern("yyyy");
         String format = simpleDateFormat.format(date);
         int nam = Integer.parseInt(format);
-        cbomodel.addElement(" Tất cả năm ");
+        cbomodel.addElement("Tất cả năm ");
         for (int i = 2020; i <= nam; i++) {
             cbomodel.addElement("Năm " + i);
         }
-        cbonam.setModel(cbomodel);
+        cboNam.setModel(cbomodel);
     }
 
     void fillToTable() {
@@ -387,24 +389,24 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         String thang = null;
         String thang1;
         String nam1;
-        if (cbothang.getSelectedIndex() == 0) {
+        if (cboThang.getSelectedIndex() == 0) {
             thang = "";
             thang1 = " Tất cả tháng";
-        } else if (cbothang.getSelectedIndex() == 1 || cbothang.getSelectedIndex() == 2) {
-            thang = "0" + String.valueOf(cbothang.getSelectedIndex());
-            thang1 = "Tháng " + cbothang.getSelectedIndex();
+        } else if (cboThang.getSelectedIndex() == 1 || cboThang.getSelectedIndex() == 2) {
+            thang = "0" + String.valueOf(cboThang.getSelectedIndex());
+            thang1 = "Tháng " + cboThang.getSelectedIndex();
         } else {
-            thang = String.valueOf(cbothang.getSelectedIndex());
-            thang1 = "Tháng " + cbothang.getSelectedIndex();
+            thang = String.valueOf(cboThang.getSelectedIndex());
+            thang1 = "Tháng " + cboThang.getSelectedIndex();
         }
         //lấy năm chọn trên combobox
-        if (cbonam.getSelectedIndex() == 0) {
+        if (cboNam.getSelectedIndex() == 0) {
             nam = "";
             nam1 = "Tất cả năm";
         } else {
-            nam = (String) cbonam.getSelectedItem();
+            nam = (String) cboNam.getSelectedItem();
             nam = nam.substring(4);
-            nam1 = (String) cbonam.getSelectedItem();
+            nam1 = (String) cboNam.getSelectedItem();
         }
         //lấy cửa hàng chọn trên jlist
         String makh = jlistmakhachang.getSelectedValue();
@@ -416,11 +418,9 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         for (Object[] row : listdoanhthu) {
 
             model.addRow(new Object[]{row[0], row[1], row[2]});
-
-            //set thanh tieu de
-            lbltieude.setText("Số Lượt mua " + makh + " " + nam1 + " " + thang1);
-
         }
+        //set thanh tieu de
+            lbltieude.setText("Số Lượt mua của " + makh + " / " + nam1 + " / " + thang1);
     }
 
     void kiemTrangaymua() {
@@ -428,32 +428,31 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         model.setRowCount(0);
 
         String thang = null;
-        String thang1;
-        String nam1;
+        String thangOut;
+        String namOut;
         //lấy tháng chọn trên combobox
-        if (cbothang.getSelectedIndex() == 0) {
+        if (cboThang.getSelectedIndex() == 0) {
             thang = "";
-            thang1 = " Tất cả tháng";
-        } else if (cbothang.getSelectedIndex() == 1 || cbothang.getSelectedIndex() == 2) {
+            thangOut = " Tất cả tháng";
+        } else if (cboThang.getSelectedIndex() == 1 || cboThang.getSelectedIndex() == 2) {
             thang = "";
-            thang1 = "Tháng " + cbothang.getSelectedIndex();
+            thangOut = " Tháng " + cboThang.getSelectedIndex();
         } else {
             thang = "";
-            thang1 = "Tháng " + cbothang.getSelectedIndex();
+            thangOut = " Tháng " + cboThang.getSelectedIndex();
         }
         //lấy năm chọn trên combobox
-        if (cbonam.getSelectedIndex() == 0) {
+        if (cboNam.getSelectedIndex() == 0) {
             nam = "";
-            nam1 = "Tất cả năm";
+            namOut = " Tất cả năm";
         } else {
             nam = (String) "";
-
-            nam1 = (String) cbonam.getSelectedItem();
+            namOut = (String) cboNam.getSelectedItem();
         }
         //lấy cửa hàng chọn trên jlist
         String makh = jlistmakhachang.getSelectedValue();
         if (jlistmakhachang.getSelectedIndex() == 0) {
-            makh = "";
+            makh = " Tất cả";
         }
 
         List<Object[]> listdoanhthu = thongkedao.getThongKeKhachHangItMuaHang(thang, nam, makh);
@@ -461,11 +460,10 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
             Object[] obj = new Object[]{row[0], row[1], row[2], DateHelper.toString((Date) row[3]), row[4]};
             if (Integer.valueOf((int) row[4]) > 180) {
                 model.addRow(new Object[]{row[0], row[1], row[2], DateHelper.toString((Date) row[3]), row[4]});
-                lbltieude.setText("Số Lượt mua " + makh + " " + nam1 + " " + thang1);
+                lbltieude.setText("Số Lượt mua của " + makh + " " + namOut + " " + thangOut);
             }
             //set thanh tieu de
-            lbltieude.setText("Số Lượt mua " + makh + " " + nam1 + " " + thang1);
-
+            lbltieude.setText("Số Lượt mua của " + makh + "/ " + namOut + " / " + thangOut);
         }
 
     }

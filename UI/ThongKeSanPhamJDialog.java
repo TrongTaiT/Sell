@@ -83,7 +83,7 @@ public class ThongKeSanPhamJDialog extends java.awt.Dialog {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 204));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("TRANG CHỦ/ THỐNG KÊ/ THỐNG KÊ KHÁCH HÀNG");
+        jLabel6.setText("TRANG CHỦ/ THỐNG KÊ/ THỐNG KÊ SẢN PHẨM");
         jLabel6.setPreferredSize(new java.awt.Dimension(210, 50));
 
         btnDong.setBackground(new java.awt.Color(255, 0, 0));
@@ -167,6 +167,7 @@ public class ThongKeSanPhamJDialog extends java.awt.Dialog {
         ));
         jScrollPane2.setViewportView(tblsanpham);
 
+        rdotatca.setBackground(new java.awt.Color(153, 255, 153));
         buttonGroup1.add(rdotatca);
         rdotatca.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         rdotatca.setText("Tất cả");
@@ -176,6 +177,7 @@ public class ThongKeSanPhamJDialog extends java.awt.Dialog {
             }
         });
 
+        rdohethang.setBackground(new java.awt.Color(153, 255, 153));
         buttonGroup1.add(rdohethang);
         rdohethang.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         rdohethang.setText("Hết hàng");
@@ -185,6 +187,7 @@ public class ThongKeSanPhamJDialog extends java.awt.Dialog {
             }
         });
 
+        rdosoluongnhohon10.setBackground(new java.awt.Color(153, 255, 153));
         buttonGroup1.add(rdosoluongnhohon10);
         rdosoluongnhohon10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         rdosoluongnhohon10.setLabel("Tổng số lượng bé hơn 10");
@@ -205,20 +208,18 @@ public class ThongKeSanPhamJDialog extends java.awt.Dialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(rdotatca)
-                                .addGap(18, 18, 18)
-                                .addComponent(rdohethang)
-                                .addGap(18, 18, 18)
-                                .addComponent(rdosoluongnhohon10))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(cbonam, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbothang, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)
-                                .addComponent(lbltieude)))
-                        .addGap(0, 339, Short.MAX_VALUE)))
+                        .addComponent(rdotatca)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdohethang)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdosoluongnhohon10)
+                        .addGap(0, 485, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cbonam, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbothang, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(lbltieude, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -227,10 +228,11 @@ public class ThongKeSanPhamJDialog extends java.awt.Dialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbonam, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbothang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbltieude))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbltieude, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cbonam, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbothang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -239,7 +241,7 @@ public class ThongKeSanPhamJDialog extends java.awt.Dialog {
                     .addComponent(rdotatca)
                     .addComponent(rdohethang)
                     .addComponent(rdosoluongnhohon10))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -362,10 +364,12 @@ public class ThongKeSanPhamJDialog extends java.awt.Dialog {
     int n = 0;
 
     void init() {
+        this.setLocationRelativeTo(null);
         this.setTable();
         fillToJlist();
         fillToComBoBoxNam();
         fillToComBoboxthang();
+        jlistmasp.setSelectedIndex(0);
         fillToTable(n);
         rdotatca.setSelected(true);
     }
@@ -428,15 +432,15 @@ public class ThongKeSanPhamJDialog extends java.awt.Dialog {
             thang1 = " Tất cả tháng";
         } else if (cbothang.getSelectedIndex() == 1 || cbothang.getSelectedIndex() == 2) {
             thang = "0" + String.valueOf(cbothang.getSelectedIndex());
-            thang1 = "Tháng " + cbothang.getSelectedIndex();
+            thang1 = " Tháng " + cbothang.getSelectedIndex();
         } else {
             thang = String.valueOf(cbothang.getSelectedIndex());
-            thang1 = "Tháng " + cbothang.getSelectedIndex();
+            thang1 = " Tháng " + cbothang.getSelectedIndex();
         }
         //lấy năm chọn trên combobox
         if (cbonam.getSelectedIndex() == 0) {
             nam = "";
-            nam1 = "Tất cả năm";
+            nam1 = " Tất cả năm ";
         } else {
             nam = (String) cbonam.getSelectedItem();
             nam = nam.substring(4);
@@ -459,6 +463,6 @@ public class ThongKeSanPhamJDialog extends java.awt.Dialog {
                 model.addRow(new Object[]{row[0], row[1], row[2], row[3], row[4]});
             }
         }
-        lbltieude.setText("Số Lượt bán của sản phẩm " + masp + " " + nam1 + " " + thang1);//set thanh tieu de
+        lbltieude.setText("Số Lượt bán của sản phẩm " + masp + " / " + nam1 + " / " + thang1);//set thanh tieu de
     }
 }

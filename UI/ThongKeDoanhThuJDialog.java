@@ -80,7 +80,7 @@ public class ThongKeDoanhThuJDialog extends java.awt.Dialog {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 204));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("TRANG CHỦ/ THỐNG KÊ/ THỐNG KÊ KHÁCH HÀNG");
+        jLabel6.setText("TRANG CHỦ/ THỐNG KÊ/ THỐNG KÊ DOANH THU");
         jLabel6.setPreferredSize(new java.awt.Dimension(210, 50));
 
         btnDong.setBackground(new java.awt.Color(255, 0, 0));
@@ -307,17 +307,19 @@ public class ThongKeDoanhThuJDialog extends java.awt.Dialog {
     float tong = 0;
 
     void init() {
+        this.setLocationRelativeTo(null);
         this.setTable();
         fillToJlist();
         fillToComBoboxthang();
         fillToComBoBoxNam();
+        jlistcuahang.setSelectedIndex(0);
         fillToTable();
     }
 
     void setTable() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("MÃ CỬA HÀNG");
-        model.addColumn("TỔNG TIỀN (vnd)");
+        model.addColumn("TỔNG TIỀN (VNĐ)");
 
         tbldoanhthu.setModel(model);
         DesignHelper.setTable(tbldoanhthu);
@@ -402,12 +404,12 @@ public class ThongKeDoanhThuJDialog extends java.awt.Dialog {
             tong = tong + Float.valueOf(String.valueOf(row[1]));
         }
         //set thanh tieu de
-        lbltieude.setText("Tổng doanh thu " + mach + " " + nam1 + " " + thang1);
+        lbltieude.setText("Tổng doanh thu " + mach + " / " + nam1 + " / " + thang1);
 
         //set tính tổng
         String tongtien = String.format("%0,3f", tong);
         String tongtien1 = tongtien.substring(0, tongtien.lastIndexOf("."));
-        lbltong.setText("Tổng doanh thu " + mach + "" + thang1 + " " + nam1 + " là " + tongtien1 + " vnd");
+        lbltong.setText("Tổng doanh thu " + mach + " / " + thang1 + " / " + nam1 + " là " + tongtien1 + " VNĐ");
     }
 
     void tinhTong() {

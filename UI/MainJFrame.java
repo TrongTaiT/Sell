@@ -435,9 +435,12 @@ public class MainJFrame extends javax.swing.JFrame {
         lblKhoText.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblKhoText.setForeground(new java.awt.Color(255, 255, 255));
         lblKhoText.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblKhoText.setText("QUẢN LÝ KHO");
+        lblKhoText.setText("QUẢN LÝ LOẠI HÀNG");
         lblKhoText.setPreferredSize(new java.awt.Dimension(76, 76));
         lblKhoText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblKhoTextMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblKhoTextMouseEntered(evt);
             }
@@ -447,7 +450,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         lblKhoIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblKhoIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/Warehouse-icon.png"))); // NOI18N
+        lblKhoIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/type-icon.png"))); // NOI18N
         lblKhoIcon.setToolTipText("Quản lý Kho hàng");
         lblKhoIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblKhoIcon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1205,6 +1208,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void lblKhoIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKhoIconMouseClicked
         // TODO add your handling code here:
+        showPanel(new LoaiHang());
+        click = true;
+        animationMenu();
     }//GEN-LAST:event_lblKhoIconMouseClicked
 
     private void lblNhapHangIconMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNhapHangIconMouseEntered
@@ -1255,6 +1261,13 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblDangXuat.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblDangXuatMouseExited
+
+    private void lblKhoTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKhoTextMouseClicked
+        // TODO add your handling code here:
+        showPanel(new LoaiHang());
+        click = true;
+        animationMenu();
+    }//GEN-LAST:event_lblKhoTextMouseClicked
 
     public void showPanel(JPanel panel) {
         childPanel = panel;
