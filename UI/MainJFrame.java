@@ -5,6 +5,7 @@
  */
 package com.Sell.UI;
 
+import com.Sell.Helper.Auth;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.FrameDragListener;
 import java.awt.Color;
@@ -145,8 +146,9 @@ public class MainJFrame extends javax.swing.JFrame {
         panelMenu2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         panelMenuAccount = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
+        lblDoiMatKhau = new javax.swing.JLabel();
         lblDangXuat = new javax.swing.JLabel();
+        lblInfo = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         panelMain = new javax.swing.JPanel();
 
@@ -893,11 +895,22 @@ public class MainJFrame extends javax.swing.JFrame {
         panelMenuAccount.setOpaque(false);
         panelMenuAccount.setPreferredSize(new java.awt.Dimension(1140, 60));
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/changepass-icon.png"))); // NOI18N
-        jLabel19.setText("   ĐỔI MẬT KHẨU");
-        jLabel19.setPreferredSize(new java.awt.Dimension(200, 30));
+        lblDoiMatKhau.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblDoiMatKhau.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDoiMatKhau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/changepass-icon.png"))); // NOI18N
+        lblDoiMatKhau.setText("   ĐỔI MẬT KHẨU");
+        lblDoiMatKhau.setPreferredSize(new java.awt.Dimension(200, 30));
+        lblDoiMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDoiMatKhauMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblDoiMatKhauMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblDoiMatKhauMouseExited(evt);
+            }
+        });
 
         lblDangXuat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblDangXuat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -916,13 +929,17 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        lblInfo.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
+
         javax.swing.GroupLayout panelMenuAccountLayout = new javax.swing.GroupLayout(panelMenuAccount);
         panelMenuAccount.setLayout(panelMenuAccountLayout);
         panelMenuAccountLayout.setHorizontalGroup(
             panelMenuAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMenuAccountLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(lblInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                .addGap(253, 253, 253)
+                .addComponent(lblDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -931,7 +948,8 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(panelMenuAccountLayout.createSequentialGroup()
                 .addGroup(panelMenuAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lblDangXuat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblDoiMatKhau, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 41, Short.MAX_VALUE))
         );
 
@@ -1269,6 +1287,22 @@ public class MainJFrame extends javax.swing.JFrame {
         animationMenu();
     }//GEN-LAST:event_lblKhoTextMouseClicked
 
+    private void lblDoiMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoiMatKhauMouseClicked
+        // TODO add your handling code here:
+        new DoiMatKhauJDialog(this, true).setVisible(true);
+    }//GEN-LAST:event_lblDoiMatKhauMouseClicked
+
+    private void lblDoiMatKhauMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoiMatKhauMouseEntered
+        // TODO add your handling code here:
+        lblDoiMatKhau.setForeground(new Color(255, 76, 48));
+        lblDoiMatKhau.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_lblDoiMatKhauMouseEntered
+
+    private void lblDoiMatKhauMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoiMatKhauMouseExited
+        // TODO add your handling code here:
+        lblDoiMatKhau.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblDoiMatKhauMouseExited
+
     public void showPanel(JPanel panel) {
         childPanel = panel;
         panelMain.removeAll();
@@ -1311,7 +1345,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -1334,10 +1367,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblDangXuat;
     private javax.swing.JLabel lblDoanhThuIcon;
     private javax.swing.JLabel lblDoanhThuText;
+    private javax.swing.JLabel lblDoiMatKhau;
     private javax.swing.JLabel lblExit;
     private javax.swing.JLabel lblFullScreen;
     private javax.swing.JLabel lblHomeIcon;
     private javax.swing.JLabel lblHomeText;
+    private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblKhachHangIcon;
     private javax.swing.JLabel lblKhachHangText;
     private javax.swing.JLabel lblKhoIcon;
@@ -1373,6 +1408,21 @@ public class MainJFrame extends javax.swing.JFrame {
         showPanel(new HomeJPanel());
         click = true;
         animationMenu();
+        this.hello();
+    }
+    
+    private void hello(){
+        String vaiTro;
+        if(Auth.user.getVaiTro() == 1){
+            vaiTro = "Nhân Viên";
+        }else if(Auth.user.getVaiTro() == 2){
+            vaiTro = "Quản Lý";
+        }else if(Auth.user.getVaiTro() == 3){
+            vaiTro = "Giám Đốc";
+        }else{
+            vaiTro = "Đã Nghỉ Việc";
+        }
+        lblInfo.setText(Auth.user.getMaNV().trim() + " - " + Auth.user.getHoTen() + " - " + vaiTro);
     }
 
     // bị lỗi conflict với thread ở Menu con

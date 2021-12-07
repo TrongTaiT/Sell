@@ -20,12 +20,13 @@ public class NhanVien_Dao  {
 
     String INSERT_SQL = "INSERT INTO NhanVien ([MaNhanVien],[HoTen],[GioiTinh],[NgaySinh],[DienThoai],[Luong],[Email],[VaiTro],[MatKhau],[DiaChi],[MaCuaHang])"
             + " VALUES (?, ?, ?, ? ,?, ?, ? ,?,?,?,?)";
-    String UPDATE_SQL = "UPDATE NhanVien SET HoTen = ?, GioiTinh = ?, NgaySinh = ?,DienThoai=?, Luong=?,Email= ?, vaitro =?,Diachi = ?,MaCuaHang = ? WHERE MaNhanVien = ?";
+    String UPDATE_SQL = "UPDATE NhanVien SET HoTen = ?, GioiTinh = ?, NgaySinh = ?, DienThoai=?, Luong=?,Email= ?, VaiTro =?, MatKhau = ?, "
+            + "Diachi = ?, MaCuaHang = ? WHERE MaNhanVien = ?";
     String DELETE_SQL = "DELETE FROM NhanVien WHERE MaNhanVien = ?";
     String SELECT_ALL_SQL = "SELECT * FROM NhanVien";
     String SELECT_BY_ID_SQL = "SELECT * FROM NhanVien WHERE MaNhanVien = ?";
     String SELECT_BY_KEYWORD = "SELECT * FROM NHANVIEN WHERE HoTen LIKE ?";
-
+    
     public void insert(NhanVien entity) {
         try {
             JdbcHelper.executeUpdate(INSERT_SQL,
@@ -42,7 +43,7 @@ public class NhanVien_Dao  {
                     entity.getMaCuaHang()
             );
         } catch (Exception e) {
-            System.out.println(e + "loi dong 37 nhan vien dao");
+            throw new RuntimeException();
         }
     }
 
@@ -56,20 +57,21 @@ public class NhanVien_Dao  {
                     entity.getLuong(),
                     entity.getEmail(),
                     entity.getVaiTro(),
+                    entity.getMatKhau(),
                     entity.getDiaChi(),
                     entity.getMaCuaHang(),
                     entity.getMaNV()
             );
         } catch (Exception e) {
-            System.out.println(e + "loi dong 55 nhan vien dao");
+            e.printStackTrace();
         }
     }
 
     public void delete(String key) {
         try {
             JdbcHelper.executeUpdate(DELETE_SQL, key);
-        } catch (Exception ex) {
-            System.out.println(ex + " loi dong 64 nhan vien dao");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

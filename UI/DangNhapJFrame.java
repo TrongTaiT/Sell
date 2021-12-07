@@ -143,6 +143,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         btnDangNhap.setForeground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setText("Đăng Nhập");
         btnDangNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDangNhap.setFocusable(false);
         btnDangNhap.setOpaque(false);
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -619,7 +620,7 @@ int a = 0;
         } else if (nhanVien == null) {
             tb = " Sai tên đăng nhập";
 
-        } else if (txtmatKhau.getText().equals("Mật khẩu")) {
+        } else if (new String(txtmatKhau.getPassword()).equals("Mật khẩu")) {
             tb = " Vui Lòng nhập mật khẩu";
 
         } else if (!matKhau.equals(nhanVien.getMatKhau())) {

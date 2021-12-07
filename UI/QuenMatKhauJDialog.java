@@ -9,6 +9,7 @@ import com.Sell.DAO.NhanVien_Dao;
 import com.Sell.entity.NhanVien;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.MsgBox;
+import java.awt.Cursor;
 import java.util.Properties;
 import java.util.Random;
 import java.util.logging.Level;
@@ -18,6 +19,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.JComponent;
 
 /**
  *
@@ -92,10 +94,15 @@ public class QuenMatKhauJDialog extends java.awt.Dialog {
         btn_confirm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_confirm.setkBorderRadius(50);
         btn_confirm.setkEndColor(new java.awt.Color(153, 255, 0));
-        btn_confirm.setkHoverEndColor(new java.awt.Color(255, 102, 0));
-        btn_confirm.setkHoverForeGround(new java.awt.Color(255, 0, 0));
-        btn_confirm.setkHoverStartColor(new java.awt.Color(255, 255, 0));
-        btn_confirm.setkStartColor(new java.awt.Color(0, 153, 0));
+        btn_confirm.setkHoverEndColor(new java.awt.Color(183, 250, 83));
+        btn_confirm.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_confirm.setkHoverStartColor(new java.awt.Color(115, 172, 80));
+        btn_confirm.setkStartColor(new java.awt.Color(81, 132, 49));
+        btn_confirm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_confirmMouseEntered(evt);
+            }
+        });
         btn_confirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_confirmActionPerformed(evt);
@@ -106,11 +113,16 @@ public class QuenMatKhauJDialog extends java.awt.Dialog {
         btn_cancel.setText("HỦY");
         btn_cancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_cancel.setkBorderRadius(50);
-        btn_cancel.setkEndColor(new java.awt.Color(255, 204, 204));
-        btn_cancel.setkHoverEndColor(new java.awt.Color(255, 102, 0));
-        btn_cancel.setkHoverForeGround(new java.awt.Color(255, 0, 0));
-        btn_cancel.setkHoverStartColor(new java.awt.Color(255, 255, 0));
-        btn_cancel.setkStartColor(new java.awt.Color(255, 0, 0));
+        btn_cancel.setkEndColor(new java.awt.Color(240, 115, 115));
+        btn_cancel.setkHoverEndColor(new java.awt.Color(246, 167, 167));
+        btn_cancel.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_cancel.setkHoverStartColor(new java.awt.Color(245, 103, 103));
+        btn_cancel.setkStartColor(new java.awt.Color(237, 57, 57));
+        btn_cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_confirmMouseEntered(evt);
+            }
+        });
         btn_cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelActionPerformed(evt);
@@ -226,6 +238,12 @@ public class QuenMatKhauJDialog extends java.awt.Dialog {
         // TODO add your handling code here:
         this.requestFocusInWindow();
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void btn_confirmMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_confirmMouseEntered
+        // TODO add your handling code here:
+        JComponent component = (JComponent) (evt.getSource());
+        component.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btn_confirmMouseEntered
 
     /**
      * @param args the command line arguments

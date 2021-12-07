@@ -1106,6 +1106,8 @@ public class QL_NhanVien extends javax.swing.JPanel {
                 vaiTro = "Đã Nghỉ Việc";
                 break;
         }
+        
+        txtMatKhau.setText(nv.getMatKhau());
 
         cboVaiTro.setSelectedItem(vaiTro);
 
@@ -1192,7 +1194,6 @@ public class QL_NhanVien extends javax.swing.JPanel {
 
     void insert() {
         NhanVien nv = getForm();
-        nv.setMatKhau("null");
         try {
             dao.insert(nv);
             this.fillTable();

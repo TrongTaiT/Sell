@@ -127,6 +127,7 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         });
         jScrollPane1.setViewportView(jlistmakhachang);
 
+        cboNam.setBackground(new java.awt.Color(153, 153, 153));
         cboNam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboNam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
