@@ -25,6 +25,7 @@ public class HoaDonBanHang_Dao {
     String DELETE_SQL = "DELETE FROM HoaDonBanHang WHERE MaHDBan = ?";
     String SELECT_ALL_SQL = "SELECT * FROM HoaDonBanHang";
     String SELECT_BY_ID_SQL = "SELECT * FROM HoaDonBanHang WHERE MaHDBan = ?";
+    String SELECT_BY_MAKH = "SELECT * FROM HOADONBANHANG WHERE MAKHACHHANG = ?";
 
     public void insert(HoaDonBanHang entity) {
         try {
@@ -73,6 +74,14 @@ public class HoaDonBanHang_Dao {
 
     public List<HoaDonBanHang> selectAll() {
         return this.selectBySql(SELECT_ALL_SQL);
+    }
+    
+    public HoaDonBanHang selectByMaKH(String key) {
+        List<HoaDonBanHang> list = this.selectBySql(SELECT_BY_MAKH, key);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 
     public HoaDonBanHang selectById(String key) {

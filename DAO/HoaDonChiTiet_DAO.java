@@ -21,6 +21,8 @@ public class HoaDonChiTiet_DAO {
     String SELECT_ALL_SQL = "SELECT * FROM HoaDonChiTiet WHERE MaHDBan = ?";
     
     String SELECT_BY_ID_SQL = "SELECT * FROM HoaDonChiTiet WHERE MaHDBan = ?";
+    
+    String SELECT_IN = "SELECT * FROM HOADONCHITIET WHERE MASANPHAM = ?";
 
     public void insert(HoaDonChiTiet entity) {
         try {
