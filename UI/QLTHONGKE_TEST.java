@@ -212,7 +212,7 @@ public class QLTHONGKE_TEST extends javax.swing.JFrame {
     CuaHangDAO chdao = new CuaHangDAO();
     HoaDonBanHang_Dao BanHang_Dao = new HoaDonBanHang_Dao();
     String nam = "";
-    double tong = 0;
+    float tong = 0;
 
     void init() {
 
@@ -295,20 +295,23 @@ public class QLTHONGKE_TEST extends javax.swing.JFrame {
 
         List<Object[]> listdoanhthu = thongkedao.getDoanhThu(thang, nam, mach);
         for (Object[] row : listdoanhthu) {
-
-            model.addRow(new Object[]{row[0], row[1]});
+            String tien = String.format("%0,3f", row[1]);
+            String doanhThu=tien.substring(0, tien.lastIndexOf("."));
+            model.addRow(new Object[]{row[0], doanhThu});
+            tong = tong + Float.valueOf(String.valueOf(row[1]));
         }
         //set thanh tieu de
         lbltieude.setText("Tổng doanh thu " + mach + " " + nam1 + " " + thang1);
 
         //set tính tổng
-        tinhTong();
-        lbltong.setText("Tổng doanh thu " + mach + "" + thang1 + " " + nam1 + " là " + tong);
+        String tongtien = String.format("%0,3f", tong);
+        String tongtien1 = tongtien.substring(0, tongtien.lastIndexOf("."));
+        lbltong.setText("Tổng doanh thu " + mach + "" + thang1 + " " + nam1 + " là " + tongtien1);
     }
 
     void tinhTong() {
         for (int i = 0; i < tbldoanhthu.getRowCount(); i++) {
-            tong = tong + (double) tbldoanhthu.getValueAt(i, 1);
+            tong = tong + Float.valueOf(String.valueOf(tbldoanhthu.getValueAt(i, 1)));
         }
 
     }
