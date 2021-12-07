@@ -296,7 +296,7 @@ public class ThongKeSanPhamJDialog extends java.awt.Dialog {
 
     private void cbothangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbothangActionPerformed
         // TODO add your handling code here:
-        n = 1;
+
         this.fillToTable(n);
 
     }//GEN-LAST:event_cbothangActionPerformed
@@ -463,6 +463,22 @@ public class ThongKeSanPhamJDialog extends java.awt.Dialog {
                 model.addRow(new Object[]{row[0], row[1], row[2], row[3], row[4]});
             }
         }
+        //lấy sản phẩm chưa bán được thêm vào table
+        if (nam.equals("") && thang.equals("")) {
+            if (n == 0) {
+                listdoanhthu = thongkedao.getThongKeSanPhamHetChuaBanDuoc(masp);
+                for (Object[] row : listdoanhthu) {
+                    model.addRow(new Object[]{row[0], row[1], row[2], row[3], row[4]});
+                }
+            } else {
+                //lấy sản phẩm chưa bán được có tổng =0 hoac bé hơn 10 vào table thêm vào table
+                listdoanhthu = thongkedao.getThongKeSanPhamHetChuaBanDuoccoTongBang0HoacBeHon10(masp, n);
+                for (Object[] row : listdoanhthu) {
+                    model.addRow(new Object[]{row[0], row[1], row[2], row[3], row[4]});
+                }
+            }
+        }
+
         lbltieude.setText("Số Lượt bán của sản phẩm " + masp + " / " + nam1 + " / " + thang1);//set thanh tieu de
     }
 }
