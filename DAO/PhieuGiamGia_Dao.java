@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class PhieuGiamGia_Dao {
 
-    String INSERT_SQL = "INSERT INTO PhieuGiamGia VALUES (?, ?, ? )";
-    String UPDATE_SQL = "UPDATE PhieuGiamGia SET NgayGiamGia = ?, MaKhachHang = ?, TrangThai = ? where MaGiamGia= ?";
+    String INSERT_SQL = "INSERT INTO PhieuGiamGia VALUES (?, ?, ?, ? )";
+    String UPDATE_SQL = "UPDATE PhieuGiamGia SET NgayGiamGia = ?, GiamGia = ?, MaKhachHang = ?, TrangThai = ? where MaGiamGia= ?";
     String DELETE_SQL = "DELETE FROM PhieuGiamGia WHERE MaGiamGia = ?";
     String SELECT_ALL_SQL = "SELECT * FROM PhieuGiamGia";
     String SELECT_BY_ID_SQL = "SELECT * FROM PhieuGiamGia WHERE MaGiamGia = ?";
@@ -25,6 +25,7 @@ public class PhieuGiamGia_Dao {
         try {
             JdbcHelper.executeUpdate(INSERT_SQL,
                     entity.getNgayGiamGia(),
+                    entity.getGiamGia(),
                     entity.getMaKhachHang(),
                     entity.getTrangThai()
             );
@@ -37,6 +38,7 @@ public class PhieuGiamGia_Dao {
         try {
             JdbcHelper.executeUpdate(UPDATE_SQL,
                     entity.getNgayGiamGia(),
+                    entity.getGiamGia(),
                     entity.getMaKhachHang(),
                     entity.getTrangThai(),
                     entity.getMaGiamGia()
@@ -101,8 +103,9 @@ public class PhieuGiamGia_Dao {
 
         model.setMaGiamGia(rs.getString(1));
         model.setNgayGiamGia(rs.getDate(2));
-        model.setMaKhachHang(rs.getString(3));
-        model.setTrangThai(rs.getBoolean(4));
+        model.setGiamGia(rs.getInt(3));
+        model.setMaKhachHang(rs.getString(4));
+        model.setTrangThai(rs.getBoolean(5));
 
         return model;
     }

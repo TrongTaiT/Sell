@@ -277,6 +277,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tblChiTietCuaHang);
 
         cboMaCuaHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhập mã hóa đơn, mã nhân viên" }));
+        cboMaCuaHang.setToolTipText("");
         cboMaCuaHang.setPreferredSize(new java.awt.Dimension(64, 30));
         cboMaCuaHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -497,11 +498,11 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             }
         });
 
-        txtDiaChi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtDiaChi.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
-        txtDienThoai.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtDienThoai.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
-        txtNguoiTao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtNguoiTao.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
         btnAddKHToHoaDon.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAddKHToHoaDon.setText("Thêm vào hóa đơn");
@@ -620,12 +621,12 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jPanel10.add(cboTenSanPham);
         cboTenSanPham.setBounds(17, 83, 250, 30);
 
-        txtNhaSX.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtNhaSX.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         txtNhaSX.setPreferredSize(new java.awt.Dimension(250, 30));
         jPanel10.add(txtNhaSX);
         txtNhaSX.setBounds(17, 131, 250, 30);
 
-        txtDonGia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtDonGia.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         txtDonGia.setPreferredSize(new java.awt.Dimension(250, 30));
         jPanel10.add(txtDonGia);
         txtDonGia.setBounds(17, 179, 250, 30);
@@ -947,14 +948,16 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         this.hoaDonChiTietToForm();
         int rowCTHD = tblChiTietHoaDon.getSelectedRow();
         String maSP = (String) tblChiTietHoaDon.getValueAt(rowCTHD, 0);
+        String soLuong = (String) tblChiTietHoaDon.getValueAt(rowCTHD, 1);
         SanPham sp = spdao.selectById(maSP);
         try {
+            lblSoLuong.setText(soLuong);
             fillComboBoxLoaiHang();
             fillComboBoxTenSanPham();
             cboTenSanPham.setSelectedItem(sp);
             LoaiHang lh = lhdao.selectById(sp.getMaLoai());
             cboLoaiSanPham.setSelectedItem(lh);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1047,17 +1050,21 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     private void btnDeleteKHToHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteKHToHoaDonActionPerformed
         txtMaHoaDon.setText("");
-        txtNguoiTao.setText("");
+//        txtNguoiTao.setText("");
+        setTextField();
         txtMaHoaDon.setEnabled(true);
-
+        lblCong.setEnabled(false);
+        lblTru.setEnabled(false);
         txtThanhTien.setText("");
+        txtTongTien.setText("");
         txtTienKhachDua.setText("");
         txtGiamgia.setText("");
         try {
             cboTenKhachHang.setSelectedIndex(0);
-            cboMaCuaHang.setSelectedIndex(0);
+            txtNguoiTao.setText(Auth.user.getMaNV());
+            fillComboBoxCuaHang();
             cboLoaiSanPham.setSelectedIndex(0);
-            DefaultTableModel model = (DefaultTableModel) tblHoaDonChiTiet.getModel();
+            DefaultTableModel model = (DefaultTableModel) tblChiTietHoaDon.getModel();
             model.setRowCount(0);
         } catch (Exception e) {
         }
@@ -1078,6 +1085,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
+        this.updateTrangThai();
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
 
@@ -1164,8 +1172,8 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         fillComboBoxKhachHang();
         fillTableHoaDonBan();
     }
-    
-    private void setTextField(){
+
+    private void setTextField() {
         DesignHelper.addPlaceHolderTextField(txtDonGia, "Đơn giá");
         DesignHelper.addPlaceHolderTextField(txtNhaSX, "Nhà SX");
     }
@@ -1198,7 +1206,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 //        model3.addColumn("MÃ GIẢM GIÁ");
 //        tblHoaDonChiTiet.setModel(model3);
         String[] hoaDonChiTietColumns = {"MÃ HÓA ĐƠN", "MÃ KHÁCH HÀNG", "NGÀY BÁN",
-            "NỘI DUNG", "TRẠNG THÁI", "MÃ NV", "MÃ CH", "MÃ GIẢM GIÁ"};
+            "NỘI DUNG", "TRẠNG THÁI", "MÃ NV", "MÃ CH"};
         DesignHelper.setTable(tblHoaDonChiTiet, hoaDonChiTietColumns);
     }
 
@@ -1312,12 +1320,9 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         KhachHang kh = (KhachHang) cboTenKhachHang.getSelectedItem();
         try {
             txtDiaChi.setText(kh.getDiaChi());
-            DesignHelper.deletePlaceHolderTextField(txtDiaChi);
             txtDienThoai.setText(kh.getDienThoai());
-            DesignHelper.deletePlaceHolderTextField(txtDienThoai);
             if (txtNguoiTao.getText().length() == 0) {
                 txtNguoiTao.setText(Auth.user.getMaNV());
-                DesignHelper.deletePlaceHolderTextField(txtNguoiTao);
                 txtNguoiTao.setEditable(false);
             }
         } catch (Exception e) {
@@ -1334,9 +1339,9 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         cboTenSanPham.setSelectedItem(sp);
 
         txtNhaSX.setText(sp.getNhaSX());
-        DesignHelper.deletePlaceHolderTextField(txtNhaSX);
+        DesignHelper.deletePlaceHolderTextField2(txtNhaSX);
         txtDonGia.setText(sp.getGiaTien() + "");
-        DesignHelper.deletePlaceHolderTextField(txtDonGia);
+        DesignHelper.deletePlaceHolderTextField2(txtDonGia);
         lblSoLuong.setText("0");
 
     }
@@ -1373,7 +1378,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             thanhTien = thanhTien + soLuong * donGia;
         }
         txtThanhTien.setText(DesignHelper.formatCurrency(thanhTien));
-        tong=thanhTien - (thanhTien * giamGia / 100);
+        tong = thanhTien - (thanhTien * giamGia / 100);
         txtTongTien.setText(DesignHelper.formatCurrency(tong));
     }
 
@@ -1395,10 +1400,10 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         SanPham spct = spdao.selectById(sp);
         cboTenSanPham.setSelectedItem(spct);
         txtNhaSX.setText(spct.getNhaSX());
-        DesignHelper.deletePlaceHolderTextField(txtNhaSX);
+        DesignHelper.deletePlaceHolderTextField2(txtNhaSX);
         lblSoLuong.setText("0");
         txtDonGia.setText(spct.getGiaTien() + "");
-        DesignHelper.deletePlaceHolderTextField(txtDonGia);
+        DesignHelper.deletePlaceHolderTextField2(txtDonGia);
     }
 
     private void delete() {
@@ -1445,7 +1450,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         hd.setMaKhachHang(kh.getMaKhachHang());
         hd.setNgayBan(DateHelper.now());
         hd.setNoiDung("noi dung dang trong");
-        hd.setTrangThai(true);
+        hd.setTrangThai(false);
         hd.setMaNhanVien(Auth.user.getMaNV());
         hd.setMaCuaHang(Auth.user.getMaCuaHang());
         hd.setMaGiamGia("1");
@@ -1471,19 +1476,18 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                     ch.getMaKhachHang(),
                     DateHelper.toString(ch.getNgayBan()),
                     ch.getNoiDung(),
-                    ch.getTrangThai(),
+                    ch.getTrangThai() ? "Đã thanh toán" : "Chưa thanh toán",
                     ch.getMaNhanVien(),
-                    ch.getMaCuaHang(),
-                    ch.getMaGiamGia()});
+                    ch.getMaCuaHang()});
             }
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-    
-    private HoaDonBanHang getData(){
+
+    private HoaDonBanHang getData() {
         HoaDonBanHang hd = new HoaDonBanHang();
-        
+
         KhachHang kh = (KhachHang) cboTenKhachHang.getSelectedItem();
         hd.setMaHDBan(txtMaHoaDon.getText());
         hd.setMaKhachHang(kh.getMaKhachHang());
@@ -1494,32 +1498,46 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         hd.setMaCuaHang(Auth.user.getMaCuaHang());
         return hd;
     }
-    
-    private void setGiamGia(){
+
+    private void setGiamGia() {
         HoaDonBanHang hd = getData();
         HoaDonBanHang_Dao hdbhDAO = new HoaDonBanHang_Dao();
         PhieuGiamGia_Dao ggDAO = new PhieuGiamGia_Dao();
         HoaDonBanHang hdbh = hdbhDAO.selectByMaKH(hd.getMaKhachHang());
         PhieuGiamGia pgg = ggDAO.selectByMaKH(hd.getMaKhachHang());
-        if(hd.getMaKhachHang().trim().equals("(Mã KH)")){
+        if (hd.getMaKhachHang().trim().equals("(Mã KH)")) {
             txtGiamgia.setText("0");
             txtGiamgia.setEditable(false);
-        }else if(pgg != null && pgg.getTrangThai() == false){
+        } else if (pgg != null && pgg.getTrangThai() == false) {
             txtGiamgia.setText("10");
             txtGiamgia.setEditable(false);
-        }else if(!hd.getMaKhachHang().equals("(Mã KH)")){
+        } else if (!hd.getMaKhachHang().equals("(Mã KH)")) {
             txtGiamgia.setText("5");
             txtGiamgia.setEditable(false);
         }
     }
-    
-    private void tongTien(){
+
+    private void tongTien() {
         float tong;
         float thanhTien = Float.parseFloat(txtThanhTien.getText());
         float giamGia = Float.parseFloat(txtGiamgia.getText());
-        
+
         tong = thanhTien - (thanhTien * giamGia / 100);
         txtTongTien.setText(DesignHelper.formatCurrency(tong));
+    }
+
+    private void updateTrangThai() {
+        HoaDonBanHang hdbh = getData();
+        HoaDonBanHang_Dao dao = new HoaDonBanHang_Dao();
+        hdbh.setTrangThai(true);
+        try {
+            String maHD = txtMaHoaDon.getText();
+            dao.update(hdbh);
+            this.fillTableHoaDonBan();
+            MsgBox.alert(this, "Thanh toán thành công!");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Thanh toán thất bại!");
+        }
     }
 
 }

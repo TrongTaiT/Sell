@@ -1084,7 +1084,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
 //
 //        tblPhieuGiamGia.setModel(model);
 
-        String columns[] = {"SỐ PHIẾU", "NGÀY HẾT HẠN", "MÃ KHÁCH HÀNG", "TRẠNG THÁI"};
+        String columns[] = {"SỐ PHIẾU", "NGÀY HẾT HẠN", "GIẢM GIÁ (%)", "MÃ KHÁCH HÀNG", "TRẠNG THÁI"};
         DesignHelper.setTable(tblPhieuGiamGia, columns);
     }
 
@@ -1266,6 +1266,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
                 Object[] row = {
                     entity.getMaGiamGia(),
                     entity.getNgayGiamGia(),
+                    entity.getGiamGia(),
                     entity.getMaKhachHang(),
                     entity.getTrangThai() ? "Đã sử dụng" : "Chưa sử dụng"
 
@@ -1294,7 +1295,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
 
     PhieuGiamGia getData() {
         PhieuGiamGia giamGia = new PhieuGiamGia();
-
+        
         giamGia.setNgayGiamGia(DateHelper.now());
         List<KhachHang> list = dao.selectAll();
         for (KhachHang kh : list) {
@@ -1304,6 +1305,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
                 giamGia.setMaKhachHang(kh.getMaKhachHang());
             }
         }
+        giamGia.setGiamGia(10);
         giamGia.setTrangThai(false);
         return giamGia;
     }

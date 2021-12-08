@@ -55,6 +55,14 @@ public class DesignHelper {
         textField.setFont(font);
         textField.setForeground(Color.BLACK);
     }
+    
+    public static void deletePlaceHolderTextField2(JTextComponent textField) {
+        Font font = textField.getFont();
+        font = font.deriveFont(Font.PLAIN);
+        textField.setFont(font);
+        textField.setForeground(Color.BLACK);
+    }
+    
     public static String formatCurrency(float money) {
         DecimalFormat formatter = new DecimalFormat("###,###.##");
         return formatter.format(money);

@@ -6,8 +6,17 @@ import java.util.Date;
 public class PhieuGiamGia {
     String maGiamGia ;
     Date ngayGiamGia ;
+    int giamGia;
     String maKhachHang ;
     Boolean trangThai ;
+
+    public int getGiamGia() {
+        return giamGia;
+    }
+
+    public void setGiamGia(int giamGia) {
+        this.giamGia = giamGia;
+    }
 
     public String getMaGiamGia() {
         return maGiamGia;
