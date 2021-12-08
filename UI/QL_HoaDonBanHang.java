@@ -1078,6 +1078,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
+        this.updateTrangThai();
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
 
@@ -1500,6 +1501,20 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         
         tong = thanhTien - (thanhTien * giamGia / 100);
         txtTongTien.setText(String.valueOf(tong));
+    }
+    
+    private void updateTrangThai() {
+        HoaDonBanHang hdbh = getData();
+        HoaDonBanHang_Dao dao = new HoaDonBanHang_Dao();
+        hdbh.setTrangThai(true);
+        try {
+            String maHD = txtMaHoaDon.getText();
+            dao.update(hdbh);
+            this.fillTableHoaDonBan();
+            MsgBox.alert(this, "Thanh toán thành công!");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Thanh toán thất bại!");
+        }
     }
 
 }
