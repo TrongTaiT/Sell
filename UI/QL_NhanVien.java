@@ -14,11 +14,22 @@ import com.Sell.entity.CuaHang;
 import com.Sell.entity.NhanVien;
 import java.awt.Color;
 import java.awt.Font;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -47,15 +58,6 @@ public class QL_NhanVien extends javax.swing.JPanel {
         kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        panelDanhSach = new javax.swing.JPanel();
-        panelSearch = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        txtTimKiem = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
-        btnThongTin = new javax.swing.JButton();
-        jPanel8 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblNhanVien = new javax.swing.JTable();
         panelThongTin = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
@@ -86,13 +88,21 @@ public class QL_NhanVien extends javax.swing.JPanel {
         btnSua = new javax.swing.JButton();
         btnMoi = new javax.swing.JButton();
         btnXuatExcel = new javax.swing.JButton();
-        btnIn = new javax.swing.JButton();
         btnFirst = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
         btnPrev = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
+        panelDanhSach = new javax.swing.JPanel();
+        panelSearch = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txtTimKiem = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        btnThongTin = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblNhanVien = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(1010, 619));
         setLayout(new java.awt.BorderLayout());
@@ -138,101 +148,6 @@ public class QL_NhanVien extends javax.swing.JPanel {
             }
         });
         jPanel4.setLayout(new java.awt.CardLayout());
-
-        panelDanhSach.setLayout(new java.awt.BorderLayout());
-
-        panelSearch.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("TÌM KIẾM");
-        jLabel1.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelSearch.add(jLabel1);
-
-        txtTimKiem.setPreferredSize(new java.awt.Dimension(400, 30));
-        txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtTimKiemCaretUpdate(evt);
-            }
-        });
-        panelSearch.add(txtTimKiem);
-
-        panelDanhSach.add(panelSearch, java.awt.BorderLayout.PAGE_START);
-
-        jPanel5.setPreferredSize(new java.awt.Dimension(1010, 50));
-
-        btnThongTin.setBackground(new java.awt.Color(255, 153, 0));
-        btnThongTin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnThongTin.setText("THÔNG TIN NHÂN VIÊN");
-        btnThongTin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnThongTin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThongTinActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 785, Short.MAX_VALUE)
-                .addComponent(btnThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(btnThongTin, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        panelDanhSach.add(jPanel5, java.awt.BorderLayout.PAGE_END);
-
-        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setBorder(null);
-
-        tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblNhanVien.setGridColor(new java.awt.Color(255, 255, 255));
-        tblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblNhanVienMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tblNhanVien);
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1015, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        panelDanhSach.add(jPanel8, java.awt.BorderLayout.CENTER);
-
-        jPanel4.add(panelDanhSach, "card3");
 
         panelThongTin.setBackground(new java.awt.Color(255, 255, 255));
         panelThongTin.setPreferredSize(new java.awt.Dimension(1010, 619));
@@ -538,13 +453,11 @@ public class QL_NhanVien extends javax.swing.JPanel {
         btnXuatExcel.setText(" EXCEL");
         btnXuatExcel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnXuatExcel.setPreferredSize(new java.awt.Dimension(150, 40));
-
-        btnIn.setBackground(new java.awt.Color(255, 255, 0));
-        btnIn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/Very-Basic-Print-icon.png"))); // NOI18N
-        btnIn.setText(" IN");
-        btnIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnIn.setPreferredSize(new java.awt.Dimension(150, 40));
+        btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatExcelActionPerformed(evt);
+            }
+        });
 
         btnFirst.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnFirst.setText("|<");
@@ -611,7 +524,7 @@ public class QL_NhanVien extends javax.swing.JPanel {
                         .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
                         .addComponent(btnXuatExcel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFunctionLayout.createSequentialGroup()
                         .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -622,10 +535,7 @@ public class QL_NhanVien extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFunctionLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panelFunctionLayout.setVerticalGroup(
@@ -640,9 +550,7 @@ public class QL_NhanVien extends javax.swing.JPanel {
                         .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFunctionLayout.createSequentialGroup()
                         .addComponent(btnXuatExcel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(76, 76, 76)
                         .addGroup(panelFunctionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(panelFunctionLayout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
@@ -707,6 +615,101 @@ public class QL_NhanVien extends javax.swing.JPanel {
         panelThongTin.add(jPanel11, java.awt.BorderLayout.PAGE_END);
 
         jPanel4.add(panelThongTin, "card3");
+
+        panelDanhSach.setLayout(new java.awt.BorderLayout());
+
+        panelSearch.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("TÌM KIẾM");
+        jLabel1.setPreferredSize(new java.awt.Dimension(100, 40));
+        panelSearch.add(jLabel1);
+
+        txtTimKiem.setPreferredSize(new java.awt.Dimension(400, 30));
+        txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTimKiemCaretUpdate(evt);
+            }
+        });
+        panelSearch.add(txtTimKiem);
+
+        panelDanhSach.add(panelSearch, java.awt.BorderLayout.PAGE_START);
+
+        jPanel5.setPreferredSize(new java.awt.Dimension(1010, 50));
+
+        btnThongTin.setBackground(new java.awt.Color(255, 153, 0));
+        btnThongTin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnThongTin.setText("THÔNG TIN NHÂN VIÊN");
+        btnThongTin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnThongTin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongTinActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 785, Short.MAX_VALUE)
+                .addComponent(btnThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(btnThongTin, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        panelDanhSach.add(jPanel5, java.awt.BorderLayout.PAGE_END);
+
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setBorder(null);
+
+        tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblNhanVien.setGridColor(new java.awt.Color(255, 255, 255));
+        tblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNhanVienMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblNhanVien);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1015, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        panelDanhSach.add(jPanel8, java.awt.BorderLayout.CENTER);
+
+        jPanel4.add(panelDanhSach, "card3");
 
         add(jPanel4, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -891,11 +894,15 @@ public class QL_NhanVien extends javax.swing.JPanel {
         this.find();
     }//GEN-LAST:event_txtTimKiemCaretUpdate
 
+    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
+        // TODO add your handling code here:
+        this.outPutExcel();
+    }//GEN-LAST:event_btnXuatExcelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btgGioiTinh;
     private javax.swing.JButton btnFirst;
-    private javax.swing.JButton btnIn;
     private javax.swing.JButton btnLast;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnNext;
@@ -1265,6 +1272,52 @@ public class QL_NhanVien extends javax.swing.JPanel {
     void last() {
         row = tblNhanVien.getRowCount() - 1;
         edit();
+    }
+    
+    void outPutExcel() {
+        TableModel model = tblNhanVien.getModel();
+        JFileChooser excelExportChooser = new JFileChooser();
+        excelExportChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        excelExportChooser.setDialogTitle("Save Excel File");
+        //filter the file
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Files", "*.xls", "xls", "xlsx", "xlsn");
+        excelExportChooser.addChoosableFileFilter(filter);
+        excelExportChooser.setFileFilter(filter);
+        int excelchooser = excelExportChooser.showSaveDialog(null);
+        if (excelchooser == JFileChooser.APPROVE_OPTION) {
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("SalesReturnsDetails");
+            XSSFRow row;
+            XSSFCell cell;
+            try {
+                // write the column headers
+                row = sheet.createRow(0);
+                for (int j = 0; j < model.getColumnCount(); j++) {
+                    cell = row.createCell(j);
+                    cell.setCellValue(model.getColumnName(j));
+                }
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    row = sheet.createRow(i + 1);
+                    for (int j = 0; j < model.getColumnCount(); j++) {
+                        cell = row.createCell(j);
+                        cell.setCellValue(model.getValueAt(i, j).toString());
+                    }
+                }
+            } catch (Exception e) {
+                //JOptionPane.showMessageDialog(null, "xuất file thành công");
+            }
+            FileOutputStream excelFIS;
+            try {
+                excelFIS = new FileOutputStream(excelExportChooser.getSelectedFile() + ".xlsx");
+                workbook.write(excelFIS);
+                workbook.close();
+                MsgBox.alert(this, "Xuât File thành công!");
+            } catch (FileNotFoundException ex) {
+                System.out.println(ex);
+            } catch (IOException ex) {
+                System.out.println(ex);
+            }
+        }
     }
 
 //    public boolean validateform() {

@@ -14,10 +14,21 @@ import com.Sell.entity.KhachHang;
 import com.Sell.entity.PhieuGiamGia;
 import java.awt.Color;
 import java.awt.Font;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -75,7 +86,6 @@ public class QL_KhachHang extends javax.swing.JPanel {
         btnSua = new javax.swing.JButton();
         btnMoi = new javax.swing.JButton();
         btnXuatExcel = new javax.swing.JButton();
-        btnIn = new javax.swing.JButton();
         btnFirst = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
@@ -365,7 +375,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
                             .addComponent(txtDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -427,12 +437,11 @@ public class QL_KhachHang extends javax.swing.JPanel {
         btnXuatExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/Logos-Excel-icon.png"))); // NOI18N
         btnXuatExcel.setText(" EXCEL");
         btnXuatExcel.setPreferredSize(new java.awt.Dimension(150, 40));
-
-        btnIn.setBackground(new java.awt.Color(255, 255, 0));
-        btnIn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/Very-Basic-Print-icon.png"))); // NOI18N
-        btnIn.setText(" IN");
-        btnIn.setPreferredSize(new java.awt.Dimension(150, 40));
+        btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatExcelActionPerformed(evt);
+            }
+        });
 
         btnFirst.setBackground(new java.awt.Color(204, 255, 255));
         btnFirst.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -511,7 +520,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
                         .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                         .addComponent(btnPhieuGiamGia)
                         .addGap(18, 18, 18)
                         .addComponent(btnDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -524,9 +533,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelFunctionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnIn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnXuatExcel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btnXuatExcel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panelFunctionLayout.setVerticalGroup(
@@ -541,9 +548,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
                         .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFunctionLayout.createSequentialGroup()
                         .addComponent(btnXuatExcel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(76, 76, 76)
                         .addGroup(panelFunctionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelFunctionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -964,11 +969,15 @@ public class QL_KhachHang extends javax.swing.JPanel {
         panelDanhSach.setVisible(false);
     }//GEN-LAST:event_btnPhieuGiamGiaActionPerformed
 
+    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
+        // TODO add your handling code here:
+        this.outPutExcel();
+    }//GEN-LAST:event_btnXuatExcelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDanhSach;
     private javax.swing.JButton btnFirst;
-    private javax.swing.JButton btnIn;
     private javax.swing.JButton btnLast;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnNext;
@@ -1308,5 +1317,51 @@ public class QL_KhachHang extends javax.swing.JPanel {
         giamGia.setGiamGia(10);
         giamGia.setTrangThai(false);
         return giamGia;
+    }
+    
+    void outPutExcel() {
+        TableModel model = tblListKhachHang.getModel();
+        JFileChooser excelExportChooser = new JFileChooser();
+        excelExportChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        excelExportChooser.setDialogTitle("Save Excel File");
+        //filter the file
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Files", "*.xls", "xls", "xlsx", "xlsn");
+        excelExportChooser.addChoosableFileFilter(filter);
+        excelExportChooser.setFileFilter(filter);
+        int excelchooser = excelExportChooser.showSaveDialog(null);
+        if (excelchooser == JFileChooser.APPROVE_OPTION) {
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("SalesReturnsDetails");
+            XSSFRow row;
+            XSSFCell cell;
+            try {
+                // write the column headers
+                row = sheet.createRow(0);
+                for (int j = 0; j < model.getColumnCount(); j++) {
+                    cell = row.createCell(j);
+                    cell.setCellValue(model.getColumnName(j));
+                }
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    row = sheet.createRow(i + 1);
+                    for (int j = 0; j < model.getColumnCount(); j++) {
+                        cell = row.createCell(j);
+                        cell.setCellValue(model.getValueAt(i, j).toString());
+                    }
+                }
+            } catch (Exception e) {
+                //JOptionPane.showMessageDialog(null, "xuất file thành công");
+            }
+            FileOutputStream excelFIS;
+            try {
+                excelFIS = new FileOutputStream(excelExportChooser.getSelectedFile() + ".xlsx");
+                workbook.write(excelFIS);
+                workbook.close();
+                MsgBox.alert(this, "Xuât File thành công!");
+            } catch (FileNotFoundException ex) {
+                System.out.println(ex);
+            } catch (IOException ex) {
+                System.out.println(ex);
+            }
+        }
     }
 }
