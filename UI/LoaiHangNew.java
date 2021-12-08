@@ -5,22 +5,31 @@
  */
 package com.Sell.UI;
 
+import com.Sell.entity.LoaiHang;
+import com.Sell.DAO.LoaiHangDAO;
 import com.Sell.Helper.DesignHelper;
+import com.Sell.Helper.MsgBox;
+import java.awt.Color;
+import java.awt.Font;
+import java.util.List;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author NguyenTruongChinh
  */
-public class LoaiHang extends javax.swing.JPanel {
+public class LoaiHangNew extends javax.swing.JPanel {
 
     int row = -1;
-    
+
     /**
      * Creates new form LoaiHang
      */
-    public LoaiHang() {
+    public LoaiHangNew() {
         initComponents();
+        init();
     }
 
     /**
@@ -41,13 +50,9 @@ public class LoaiHang extends javax.swing.JPanel {
         panelSanPham = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        btnLoaiSanPham = new javax.swing.JButton();
         panelInput = new javax.swing.JPanel();
-        txtMaSanPham = new javax.swing.JTextField();
-        txtTenSP = new javax.swing.JTextField();
-        txtNhaSX = new javax.swing.JTextField();
-        cboLoaiHang = new javax.swing.JComboBox<>();
-        txtGiaTien = new javax.swing.JTextField();
+        txtMaLoai = new javax.swing.JTextField();
+        txtTenLoai = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtGhiChu = new javax.swing.JTextArea();
         panelFunction = new javax.swing.JPanel();
@@ -144,59 +149,30 @@ public class LoaiHang extends javax.swing.JPanel {
                 jPanel7panelSanPhamMouseClicked(evt);
             }
         });
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnLoaiSanPham.setBackground(new java.awt.Color(255, 153, 0));
-        btnLoaiSanPham.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnLoaiSanPham.setText("SẢN PHẨM");
-        btnLoaiSanPham.setPreferredSize(new java.awt.Dimension(150, 40));
-        btnLoaiSanPham.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoaiSanPhamActionPerformed(evt);
-            }
-        });
-        jPanel7.add(btnLoaiSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 420, -1, -1));
-
-        txtMaSanPham.setPreferredSize(new java.awt.Dimension(80, 35));
-        txtMaSanPham.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtMaSanPhamFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtMaSanPhamFocusLost(evt);
+        panelInput.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelInputMouseClicked(evt);
             }
         });
 
-        txtTenSP.setPreferredSize(new java.awt.Dimension(80, 35));
-        txtTenSP.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtMaLoai.setPreferredSize(new java.awt.Dimension(80, 35));
+        txtMaLoai.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtTenSPFocusGained(evt);
+                txtMaLoaiFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtTenSPFocusLost(evt);
+                txtMaLoaiFocusLost(evt);
             }
         });
 
-        txtNhaSX.setPreferredSize(new java.awt.Dimension(80, 35));
-        txtNhaSX.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtTenLoai.setPreferredSize(new java.awt.Dimension(80, 35));
+        txtTenLoai.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtNhaSXFocusGained(evt);
+                txtTenLoaiFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNhaSXFocusLost(evt);
-            }
-        });
-
-        cboLoaiHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboLoaiHang.setPreferredSize(new java.awt.Dimension(64, 35));
-
-        txtGiaTien.setPreferredSize(new java.awt.Dimension(80, 35));
-        txtGiaTien.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtGiaTienFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtGiaTienFocusLost(evt);
+                txtTenLoaiFocusLost(evt);
             }
         });
 
@@ -219,31 +195,22 @@ public class LoaiHang extends javax.swing.JPanel {
             .addGroup(panelInputLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboLoaiHang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtMaSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTenSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNhaSX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtGiaTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtMaLoai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtTenLoai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelInputLayout.setVerticalGroup(
             panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInputLayout.createSequentialGroup()
-                .addComponent(cboLoaiHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtMaSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(txtNhaSX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(txtGiaTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addComponent(txtMaLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(txtTenLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
         );
-
-        jPanel7.add(panelInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 320));
 
         btnMoi.setBackground(new java.awt.Color(51, 255, 255));
         btnMoi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -294,19 +261,15 @@ public class LoaiHang extends javax.swing.JPanel {
         panelFunctionLayout.setHorizontalGroup(
             panelFunctionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFunctionLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addGroup(panelFunctionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(panelFunctionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFunctionLayout.createSequentialGroup()
-                        .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFunctionLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
         panelFunctionLayout.setVerticalGroup(
             panelFunctionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,8 +284,6 @@ public class LoaiHang extends javax.swing.JPanel {
                     .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-
-        jPanel7.add(panelFunction, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 325, 270, 100));
 
         btnFirst.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnFirst.setText("|<");
@@ -383,8 +344,6 @@ public class LoaiHang extends javax.swing.JPanel {
                 .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel7.add(panelDieuKhien, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 432, -1, -1));
-
         tblLoaiSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -411,7 +370,33 @@ public class LoaiHang extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tblLoaiSanPham);
 
-        jPanel7.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 670, 400));
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelFunction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelDieuKhien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(panelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(panelFunction, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(panelDieuKhien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -443,62 +428,30 @@ public class LoaiHang extends javax.swing.JPanel {
         component.requestFocus();
     }//GEN-LAST:event_jLabel1panelSanPhamMouseClicked
 
-    private void btnLoaiSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoaiSanPhamActionPerformed
-        // TODO add your handling code here:
-        //        panelLoaiSanPham.setVisible(true);
-        //        panelSanPham.setVisible(false);
-    }//GEN-LAST:event_btnLoaiSanPhamActionPerformed
-
-    private void txtMaSanPhamFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaSanPhamFocusGained
-        if (txtMaSanPham.getText().equals("Mã sản phẩm")) {
-            DesignHelper.deletePlaceHolderTextField(txtMaSanPham);
+    private void txtMaLoaiFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaLoaiFocusGained
+        if (txtMaLoai.getText().equals("Mã loại")) {
+            DesignHelper.deletePlaceHolderTextField(txtMaLoai);
         }
-    }//GEN-LAST:event_txtMaSanPhamFocusGained
+    }//GEN-LAST:event_txtMaLoaiFocusGained
 
-    private void txtMaSanPhamFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaSanPhamFocusLost
-        if (txtMaSanPham.getText().trim().length() == 0) {
-            DesignHelper.addPlaceHolderTextField(txtMaSanPham, "Mã sản phẩm");
+    private void txtMaLoaiFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaLoaiFocusLost
+        if (txtMaLoai.getText().trim().length() == 0) {
+            DesignHelper.addPlaceHolderTextField(txtMaLoai, "Mã loại");
         }
-    }//GEN-LAST:event_txtMaSanPhamFocusLost
+    }//GEN-LAST:event_txtMaLoaiFocusLost
 
-    private void txtTenSPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTenSPFocusGained
-        if (txtTenSP.getText().equals("Tên sản phẩm")) {
-            DesignHelper.deletePlaceHolderTextField(txtTenSP);
+    private void txtTenLoaiFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTenLoaiFocusGained
+        if (txtTenLoai.getText().equals("Tên loại")) {
+            DesignHelper.deletePlaceHolderTextField(txtTenLoai);
         }
-    }//GEN-LAST:event_txtTenSPFocusGained
+    }//GEN-LAST:event_txtTenLoaiFocusGained
 
-    private void txtTenSPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTenSPFocusLost
-        if (txtTenSP.getText().trim().length() == 0) {
-            txtTenSP.setText("Tên sản phẩm");
-            DesignHelper.addPlaceHolderTextField(txtTenSP);
+    private void txtTenLoaiFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTenLoaiFocusLost
+        if (txtTenLoai.getText().trim().length() == 0) {
+            txtTenLoai.setText("Tên loại");
+            DesignHelper.addPlaceHolderTextField(txtTenLoai);
         }
-    }//GEN-LAST:event_txtTenSPFocusLost
-
-    private void txtNhaSXFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNhaSXFocusGained
-        if (txtNhaSX.getText().equals("Nhà sản xuất")) {
-            txtNhaSX.setText("");
-            DesignHelper.deletePlaceHolderTextField(txtNhaSX);
-        }
-    }//GEN-LAST:event_txtNhaSXFocusGained
-
-    private void txtNhaSXFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNhaSXFocusLost
-        if (txtNhaSX.getText().trim().length() == 0) {
-            DesignHelper.addPlaceHolderTextField(txtNhaSX, "Nhà sản xuất");
-        }
-    }//GEN-LAST:event_txtNhaSXFocusLost
-
-    private void txtGiaTienFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGiaTienFocusGained
-        if (txtGiaTien.getText().equals("Giá tiền")) {
-            txtGiaTien.setText("");
-            DesignHelper.deletePlaceHolderTextField(txtGiaTien);
-        }
-    }//GEN-LAST:event_txtGiaTienFocusGained
-
-    private void txtGiaTienFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGiaTienFocusLost
-        if (txtGiaTien.getText().trim().length() == 0) {
-            DesignHelper.addPlaceHolderTextField(txtGiaTien, "Giá tiền");
-        }
-    }//GEN-LAST:event_txtGiaTienFocusLost
+    }//GEN-LAST:event_txtTenLoaiFocusLost
 
     private void txtGhiChuFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGhiChuFocusGained
         if (txtGhiChu.getText().equals("Ghi chú")) {
@@ -561,18 +514,22 @@ public class LoaiHang extends javax.swing.JPanel {
         component.requestFocus();
     }//GEN-LAST:event_panelSanPhamMouseClicked
 
+    private void panelInputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelInputMouseClicked
+        // TODO add your handling code here:
+        JComponent component = (JComponent) evt.getSource();
+        component.requestFocus();
+    }//GEN-LAST:event_panelInputMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
     private javax.swing.JButton btnLast;
-    private javax.swing.JButton btnLoaiSanPham;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JComboBox<String> cboLoaiHang;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel3;
@@ -589,14 +546,17 @@ public class LoaiHang extends javax.swing.JPanel {
     private com.k33ptoo.components.KGradientPanel panelTitle;
     private javax.swing.JTable tblLoaiSanPham;
     private javax.swing.JTextArea txtGhiChu;
-    private javax.swing.JTextField txtGiaTien;
-    private javax.swing.JTextField txtMaSanPham;
-    private javax.swing.JTextField txtNhaSX;
-    private javax.swing.JTextField txtTenSP;
+    private javax.swing.JTextField txtMaLoai;
+    private javax.swing.JTextField txtTenLoai;
     // End of variables declaration//GEN-END:variables
 
+    LoaiHangDAO dao = new LoaiHangDAO();
+
     private void init() {
+        setTextField();
         setTable();
+        this.fillTable();
+        updateStatus();
     }
 
     private void setTable() {
@@ -615,32 +575,161 @@ public class LoaiHang extends javax.swing.JPanel {
         DesignHelper.setTable(tblLoaiSanPham, columns);
     }
 
-    private void clearForm() {
+    private void setTextField() {
+        DesignHelper.addPlaceHolderTextField(txtMaLoai, "Mã loại");
+        DesignHelper.addPlaceHolderTextField(txtTenLoai, "Tên loại");
+        DesignHelper.addPlaceHolderTextField(txtGhiChu, "Ghi chú");
+    }
+    
+    private void setPlaceholderForSetForm() {
+        DesignHelper.deletePlaceHolderTextField(txtMaLoai);
+        Font font = txtMaLoai.getFont();
+        font = font.deriveFont(Font.BOLD);
+        txtMaLoai.setFont(font);
+        DesignHelper.deletePlaceHolderTextField(txtTenLoai);
+        DesignHelper.deletePlaceHolderTextField(txtGhiChu);
     }
 
-    private void insert() {
+    private void clearForm() {
+        LoaiHang nv = new LoaiHang();
+        tblLoaiSanPham.clearSelection();
+       
+        this.setForm(nv);
+        this.setTextField();
+        this.row = -1;
+        this.updateStatus();
+    }
+    
+    private LoaiHang getForm() {
+        LoaiHang lh = new LoaiHang();
+        
+        lh.setMaLoai(txtMaLoai.getText());
+        lh.setTenLoai(txtTenLoai.getText());
+        lh.setGhiChu(txtGhiChu.getText());
+        return lh;
+    }
+    
+    private void setForm(LoaiHang lh) {
+        txtMaLoai.setText(lh.getMaLoai());
+        txtTenLoai.setText(lh.getTenLoai());
+        txtGhiChu.setText(lh.getGhiChu());
+    }
+    
+    private void edit() {
+        String maLoai = (String) tblLoaiSanPham.getValueAt(row, 0);
+        LoaiHang lh = dao.selectById(maLoai);
+        this.setPlaceholderForSetForm();
+        this.setForm(lh);
+        this.updateStatus();
+    }
+    
+    void updateStatus() {
+        boolean edit = (this.row >= 0);
+        boolean first = (this.row == 0);
+        boolean last = (this.row == tblLoaiSanPham.getRowCount() - 1);
+
+        // trạng thái form
+        txtMaLoai.setEditable(!edit);
+        btnThem.setEnabled(!edit);
+        btnXoa.setEnabled(edit);
+        btnSua.setEnabled(edit);
+
+        // điều khiển
+        btnFirst.setEnabled(edit && !first);
+        btnPrev.setEnabled(edit && !first);
+        btnNext.setEnabled(edit && !last);
+        btnLast.setEnabled(edit && !last);
+
+        // nút trạng thái
+        DesignHelper.setButtonBackgroundColor(btnThem, new Color(51, 255, 0), new Color(102, 255, 102));
+        DesignHelper.setButtonBackgroundColor(btnXoa, new Color(255, 0, 0), new Color(255, 102, 102));
+        DesignHelper.setButtonBackgroundColor(btnSua, new Color(255, 255, 0), new Color(255, 255, 153));
+
+        // nút điều khiển
+        DesignHelper.setButtonBackgroundColor(new Color(153, 204, 255), new Color(204, 255, 255),
+                btnFirst, btnPrev, btnNext, btnLast);
+    }
+
+    private void fillTable() {
+        DefaultTableModel model = (DefaultTableModel) tblLoaiSanPham.getModel();
+        model.setRowCount(0);
+        try {
+            List<LoaiHang> list = dao.selectAll();
+            for (LoaiHang lh : list) {
+                model.addRow(new Object[]{
+                    lh.getMaLoai(),
+                    lh.getTenLoai(),
+                    lh.getGhiChu()
+                });
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    private void insert(){
+        LoaiHang lh = getForm();
+        try {
+            dao.insert(lh);
+            this.fillTable();
+            this.clearForm();
+            MsgBox.alert(this, "Thêm thành công!");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Thêm không thành công!");
+        }
     }
 
     private void delete() {
+        if (true) {
+//            String manv = txtMaNV.getText();
+            if (MsgBox.confirm(this, "Bạn có muốn xóa hay không?")) {
+                try {
+                    String maLoai = txtMaLoai.getText();
+                    dao.delete(maLoai);
+                    this.fillTable();
+                    this.clearForm();
+                    JOptionPane.showMessageDialog(this, "Xoá thành công");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Xoá không thành công");
+                }
+            }
+        }
     }
 
     private void update() {
+        LoaiHang lh = getForm();
+        try {
+            dao.update(lh);
+            this.fillTable();
+            MsgBox.alert(this, "Cập nhật thành công!");
+
+        } catch (Exception e) {
+            MsgBox.alert(this, "Cập nhật không thành công!");
+        }
     }
 
     private void first() {
+        row = 0;
+        edit();
     }
 
     private void prev() {
+        if (row > 0) {
+            row--;
+            edit();
+        }
     }
 
     private void next() {
+        if (row < tblLoaiSanPham.getRowCount() - 1) {
+            row++;
+            edit();
+        }
     }
 
     private void last() {
+        row = tblLoaiSanPham.getRowCount() - 1;
+        edit();
     }
-
-    private void edit() {
-    }
-
 
 }

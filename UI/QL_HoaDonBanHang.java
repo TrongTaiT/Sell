@@ -307,6 +307,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "5. THANH TOÁN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Light", 1, 14))); // NOI18N
         jPanel11.setPreferredSize(new java.awt.Dimension(1000, 191));
 
+        txtTienKhachDua.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTienKhachDua.setPreferredSize(new java.awt.Dimension(6, 25));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -318,6 +319,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setText("Tiền khách đưa");
 
+        txtThanhTien.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtThanhTien.setPreferredSize(new java.awt.Dimension(6, 25));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -326,7 +328,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel15.setText("Giảm giá");
 
-        txtGiamgia.setEditable(false);
+        txtGiamgia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtGiamgia.setPreferredSize(new java.awt.Dimension(6, 25));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -358,6 +360,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel17.setText("Tiền trả lại");
 
+        txtTienTraLai1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTienTraLai1.setPreferredSize(new java.awt.Dimension(6, 25));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -366,6 +369,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setText("Tiền thu về");
 
+        txtTienTraLai2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTienTraLai2.setPreferredSize(new java.awt.Dimension(6, 25));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -374,6 +378,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel21.setText("Tổng tiền");
 
+        txtTongTien.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTongTien.setPreferredSize(new java.awt.Dimension(6, 25));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -470,7 +475,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                             .addComponent(jLabel21)
                             .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel22))
-                        .addGap(0, 76, Short.MAX_VALUE))
+                        .addGap(0, 79, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -491,6 +496,12 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 cboTenKhachHangActionPerformed(evt);
             }
         });
+
+        txtDiaChi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        txtDienThoai.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        txtNguoiTao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         btnAddKHToHoaDon.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAddKHToHoaDon.setText("Thêm vào hóa đơn");
@@ -519,7 +530,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(cboTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -609,10 +620,12 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jPanel10.add(cboTenSanPham);
         cboTenSanPham.setBounds(17, 83, 250, 30);
 
+        txtNhaSX.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNhaSX.setPreferredSize(new java.awt.Dimension(250, 30));
         jPanel10.add(txtNhaSX);
         txtNhaSX.setBounds(17, 131, 250, 30);
 
+        txtDonGia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtDonGia.setPreferredSize(new java.awt.Dimension(250, 30));
         jPanel10.add(txtDonGia);
         txtDonGia.setBounds(17, 179, 250, 30);
@@ -707,7 +720,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE))
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1146,9 +1159,15 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     void init() {
+        setTextField();
         setTable();
         fillComboBoxKhachHang();
         fillTableHoaDonBan();
+    }
+    
+    private void setTextField(){
+        DesignHelper.addPlaceHolderTextField(txtDonGia, "Đơn giá");
+        DesignHelper.addPlaceHolderTextField(txtNhaSX, "Nhà SX");
     }
 
     void setTable() {
@@ -1293,9 +1312,13 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         KhachHang kh = (KhachHang) cboTenKhachHang.getSelectedItem();
         try {
             txtDiaChi.setText(kh.getDiaChi());
+            DesignHelper.deletePlaceHolderTextField(txtDiaChi);
             txtDienThoai.setText(kh.getDienThoai());
+            DesignHelper.deletePlaceHolderTextField(txtDienThoai);
             if (txtNguoiTao.getText().length() == 0) {
                 txtNguoiTao.setText(Auth.user.getMaNV());
+                DesignHelper.deletePlaceHolderTextField(txtNguoiTao);
+                txtNguoiTao.setEditable(false);
             }
         } catch (Exception e) {
         }
@@ -1311,7 +1334,9 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         cboTenSanPham.setSelectedItem(sp);
 
         txtNhaSX.setText(sp.getNhaSX());
+        DesignHelper.deletePlaceHolderTextField(txtNhaSX);
         txtDonGia.setText(sp.getGiaTien() + "");
+        DesignHelper.deletePlaceHolderTextField(txtDonGia);
         lblSoLuong.setText("0");
 
     }
@@ -1370,8 +1395,10 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         SanPham spct = spdao.selectById(sp);
         cboTenSanPham.setSelectedItem(spct);
         txtNhaSX.setText(spct.getNhaSX());
+        DesignHelper.deletePlaceHolderTextField(txtNhaSX);
         lblSoLuong.setText("0");
         txtDonGia.setText(spct.getGiaTien() + "");
+        DesignHelper.deletePlaceHolderTextField(txtDonGia);
     }
 
     private void delete() {
@@ -1476,10 +1503,13 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         PhieuGiamGia pgg = ggDAO.selectByMaKH(hd.getMaKhachHang());
         if(hd.getMaKhachHang().trim().equals("(Mã KH)")){
             txtGiamgia.setText("0");
+            txtGiamgia.setEditable(false);
         }else if(pgg != null && pgg.getTrangThai() == false){
             txtGiamgia.setText("10");
+            txtGiamgia.setEditable(false);
         }else if(!hd.getMaKhachHang().equals("(Mã KH)")){
             txtGiamgia.setText("5");
+            txtGiamgia.setEditable(false);
         }
     }
     
