@@ -253,23 +253,29 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
             cboThang.setSelectedIndex(0);
             this.kiemTrangaymua();
             chkkiemtra.setSelected(true);
-        }
-        if (chkkiemtra.isSelected() == false) {
+        } else {
             fillToTable();
         }
     }//GEN-LAST:event_chkkiemtraActionPerformed
 
     private void jlistmakhachangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlistmakhachangMouseClicked
         // TODO add your handling code here:
-        this.fillToTable();
+        if (chkkiemtra.isSelected()) {
+            this.kiemTrangaymua();
+        } else {
+            this.fillToTable();
+        }
     }//GEN-LAST:event_jlistmakhachangMouseClicked
 
     private void cboNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNamActionPerformed
         // TODO add your handling code here:
+
         nam = (String) cboNam.getSelectedItem();
         nam = nam.substring(5);
         chkkiemtra.setSelected(false);
         this.fillToTable();
+
+
     }//GEN-LAST:event_cboNamActionPerformed
 
     private void cboThangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboThangMouseClicked
@@ -279,8 +285,8 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
 
     private void cboThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboThangActionPerformed
         // TODO add your handling code here:
-        this.fillToTable();
         chkkiemtra.setSelected(false);
+        this.fillToTable();
     }//GEN-LAST:event_cboThangActionPerformed
 
     /**
@@ -340,7 +346,7 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         model.addColumn("TÊN KHÁCH HÀNG");
         model.addColumn("SỐ LẦN MUA");
         model.addColumn("NGÀY MUA GẦN NHẤT");
-        model.addColumn("KHOẢNG NGÀY MUA ĐẾN HIỆN TẠI");
+        model.addColumn("TỪ NGÀY MUA ĐẾN HIỆN TẠI");
         tblthongkekhachhang.setModel(model);
 
         DesignHelper.setTable(tblthongkekhachhang);
@@ -419,18 +425,18 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         List<Object[]> listdoanhthu = thongkedao.getThongKeKhachHang(thang, nam, makh);
         for (Object[] row : listdoanhthu) {
 
-            model.addRow(new Object[]{row[0], row[1], row[2]});
+            model.addRow(new Object[]{row[0], row[1], row[2], row[3], row[4]});
 
         }
         //set thanh tieu de
-        lbltieude.setText("Số Lượt mua " + makh + " " + nam1 + " " + thang1);
+        lbltieude.setText("Số Lượt mua " + makh + " / " + nam1 + " / " + thang1);
     }
 
     void kiemTrangaymua() {
         DefaultTableModel model = (DefaultTableModel) tblthongkekhachhang.getModel();
         model.setRowCount(0);
 
-        String thang = null;
+        String thang;
         String thangOut;
         String namOut;
         //lấy tháng chọn trên combobox
@@ -455,7 +461,7 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         //lấy cửa hàng chọn trên jlist
         String makh = jlistmakhachang.getSelectedValue();
         if (jlistmakhachang.getSelectedIndex() == 0) {
-            makh = " Tất cả";
+            makh = "";
         }
 
         List<Object[]> listdoanhthu = thongkedao.getThongKeKhachHangItMuaHang(thang, nam, makh);
@@ -463,7 +469,7 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
             Object[] obj = new Object[]{row[0], row[1], row[2], DateHelper.toString((Date) row[3]), row[4]};
             if (Integer.valueOf((int) row[4]) > 180) {
                 model.addRow(new Object[]{row[0], row[1], row[2], DateHelper.toString((Date) row[3]), row[4]});
-                lbltieude.setText("Số Lượt mua của " + makh + " " + namOut + " " + thangOut);
+                lbltieude.setText("Số Lượt mua của " + makh + " / " + namOut + " / " + thangOut);
             }
             //set thanh tieu de
             lbltieude.setText("Số Lượt mua của " + makh + "/ " + namOut + " / " + thangOut);

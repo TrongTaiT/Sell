@@ -42,7 +42,7 @@ public class ThongKeDAO {
 
     public List<Object[]> getThongKeKhachHang(String nam, String thang, String makh) {
         String sql = "exec sp_thongkekhachhangmuatheothanggiamdan ?, ?, ?";
-        String[] cols = {"MaKhachHang", "hoten", "solanmua"};
+        String[] cols = {"MaKhachHang", "hoten", "solanmua","ngaymua","khoangngay"};
         return this.getListOfArray(sql, cols, nam, thang, makh);
     }
 
