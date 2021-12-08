@@ -20,10 +20,12 @@ import java.awt.Font;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
@@ -67,7 +69,6 @@ public class QL_SanPham extends javax.swing.JPanel {
         panelSanPham = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        btnLoaiSanPham = new javax.swing.JButton();
         panelInput = new javax.swing.JPanel();
         txtMaSanPham = new javax.swing.JTextField();
         txtTenSP = new javax.swing.JTextField();
@@ -194,18 +195,6 @@ public class QL_SanPham extends javax.swing.JPanel {
             }
         });
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnLoaiSanPham.setBackground(new java.awt.Color(255, 153, 0));
-        btnLoaiSanPham.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnLoaiSanPham.setText("LOẠI SẢN PHẨM");
-        btnLoaiSanPham.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLoaiSanPham.setPreferredSize(new java.awt.Dimension(150, 40));
-        btnLoaiSanPham.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoaiSanPhamActionPerformed(evt);
-            }
-        });
-        jPanel7.add(btnLoaiSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 420, -1, -1));
 
         txtMaSanPham.setPreferredSize(new java.awt.Dimension(80, 35));
         txtMaSanPham.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -510,11 +499,6 @@ public class QL_SanPham extends javax.swing.JPanel {
         jPanel7.add(btnXoaHinhAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 30, -1));
 
         cboLoaiSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboLoaiSP.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cboLoaiSPMouseClicked(evt);
-            }
-        });
         cboLoaiSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboLoaiSPActionPerformed(evt);
@@ -678,12 +662,6 @@ public class QL_SanPham extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtMaSanPhamFocusGained
 
-    private void btnLoaiSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoaiSanPhamActionPerformed
-        // TODO add your handling code here:
-//        panelLoaiSanPham.setVisible(true);
-//        panelSanPham.setVisible(false);
-    }//GEN-LAST:event_btnLoaiSanPhamActionPerformed
-
     private void jListHinhAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListHinhAnhMouseClicked
         hienHinhAnh();
     }//GEN-LAST:event_jListHinhAnhMouseClicked
@@ -691,10 +669,6 @@ public class QL_SanPham extends javax.swing.JPanel {
     private void btnXoaHinhAnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaHinhAnhActionPerformed
         xoaHinhAnh();
     }//GEN-LAST:event_btnXoaHinhAnhActionPerformed
-
-    private void cboLoaiSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboLoaiSPMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboLoaiSPMouseClicked
 
     private void cboLoaiSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiSPActionPerformed
         fillToTableSanPham();
@@ -745,7 +719,6 @@ public class QL_SanPham extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
     private javax.swing.JButton btnLast;
-    private javax.swing.JButton btnLoaiSanPham;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnNextHinh;
@@ -872,6 +845,7 @@ public class QL_SanPham extends javax.swing.JPanel {
     }
 
     private void setForm(SanPham sp) {
+        resetBorder();
         txtMaSanPham.setText(sp.getMaSanPham());
         txtTenSP.setText(sp.getTenSP());
         txtNhaSX.setText(sp.getNhaSX());
@@ -936,14 +910,17 @@ public class QL_SanPham extends javax.swing.JPanel {
     }
 
     void insert() {
-//        if (validates() == false) {
-//            return;
-//        }
+        if (validates() == false) {
+            return;
+        }
+        if (ValidationHelper.isNotDuplicatedID(this, txtMaSanPham, "Mã sản phẩm",
+                spDAO.selectById(txtMaSanPham.getText())) == false) {
+            return;
+        }
         try {
             // Thêm sản phẩm vào db
             SanPham sp = getForm();
             spDAO.insert(sp);
-            this.fillTable();
 
             // Thêm hình ảnh vào db
             if (!listHinhAnh.isEmpty()) {
@@ -952,7 +929,9 @@ public class QL_SanPham extends javax.swing.JPanel {
                     haDAO.insert(ha);
                 }
             }
+            this.fillTable();
 
+            
             MsgBox.alert(this, "Thêm sản phẩm thành công");
         } catch (Exception e) {
             MsgBox.alert(this, "Thêm sản phẩm thất bại");
@@ -960,6 +939,9 @@ public class QL_SanPham extends javax.swing.JPanel {
     }
 
     void update() {
+        if (validates() == false) {
+            return;
+        }
         try {
             // Sửa sản phẩm vào db
             SanPham sp = getForm();
@@ -1047,6 +1029,12 @@ public class QL_SanPham extends javax.swing.JPanel {
         listHinhAnhXoa.removeAll(listHinhAnhXoa);
         fillElementToJListHinhAnh();
         ImageHelper.setDefaultImage(lblHinhAnh);
+        resetBorder();
+    }
+    
+    private void resetBorder() {
+        ValidationHelper.resetBorderColor(cboLoaiHang, txtMaSanPham, txtTenSP,
+                txtNhaSX, txtGiaTien, txtGhiChu);
     }
 
     private void addImageToList() {
@@ -1113,8 +1101,8 @@ public class QL_SanPham extends javax.swing.JPanel {
 
                 List<SanPham> loaiHangALL = spDAO.selectByMaLoaiHang("");
                 for (SanPham sp : loaiHangALL) {
-                    Object[] row = {sp.getMaSanPham(), sp.getTenSP(), sp.getNhaSX(), sp.getGiaTien(), sp.getGhiChu()};
-                    model.addRow(row);
+                    Object[] rowData = {sp.getMaSanPham(), sp.getTenSP(), sp.getNhaSX(), sp.getGiaTien(), sp.getGhiChu()};
+                    model.addRow(rowData);
                 }
             } else {
 
@@ -1124,16 +1112,14 @@ public class QL_SanPham extends javax.swing.JPanel {
 
                     List<SanPham> list = spDAO.selectByMaLoaiHang(loaiHang.getMaLoai());
                     for (SanPham sp : list) {
-                        Object[] row = {sp.getMaSanPham(), sp.getTenSP(), sp.getNhaSX(), sp.getGiaTien(), sp.getGhiChu()};
-                        model.addRow(row);
+                        Object[] rowData = {sp.getMaSanPham(), sp.getTenSP(), sp.getNhaSX(), sp.getGiaTien(), sp.getGhiChu()};
+                        model.addRow(rowData);
                     }
                 }
             }
 
         } catch (Exception e) {
-            // System.out.println("Lỗi nhẹ thôi ko có gì hết! để tb cho vui !");
             e.printStackTrace();
-
         }
     }
 
@@ -1171,18 +1157,30 @@ public class QL_SanPham extends javax.swing.JPanel {
         edit();
     }
 
-//    private boolean validates() {
-//        if (listHinhAnh.size() == 0) {
-//            MsgBox.alert(this, "Chọn ảnh cho sản phẩm!");
-//        }
-//        if (ValidationHelper.isEnoughLength(this, txtMaSanPham, "Mã sản phẩm", 7) == false) {
-//            return false;
-//        }
-//        if (ValidationHelper.isValidName(this, txtTenSP, "Tên sản phẩm") == false) {
-//            return false;
-//        }
-//        if (ValidationHelper.)
-//        return true;
-//    }
-
+    private boolean validates() {
+        if (ValidationHelper.isPickedCombobox(this, cboLoaiHang, "Loại sản phẩm") == false) {
+            return false;
+        }
+        if (ValidationHelper.isValidLength(this, txtMaSanPham, "Mã sản phẩm", 7) == false) {
+            return false;
+        }
+        if (ValidationHelper.isValidLength(this, txtTenSP, "Tên sản phẩm", 225) == false) {
+            return false;
+        }
+        if (ValidationHelper.isValidLength(this, txtNhaSX, "Nhà sản xuất", 225) == false) {
+            return false;
+        }
+        if (ValidationHelper.isNumberField(this, txtGiaTien, "Giá tiền", 0.0) == false) {
+            return false;
+        }
+        if (ValidationHelper.isValidLengthNullableField(this, txtGhiChu, "Ghi chú", 225) == false) {
+            return false;
+        }
+        if (listHinhAnh.isEmpty()) {
+            MsgBox.alert(this, "Chọn ảnh cho sản phẩm!");
+            return false;
+        }
+        return true;
+    }
+    
 }

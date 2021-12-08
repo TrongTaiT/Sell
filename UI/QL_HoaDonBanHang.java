@@ -1531,7 +1531,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         HoaDonBanHang_Dao dao = new HoaDonBanHang_Dao();
         hdbh.setTrangThai(true);
         try {
-            String maHD = txtMaHoaDon.getText();
+//            String maHD = txtMaHoaDon.getText();
             dao.update(hdbh);
             this.fillTableHoaDonBan();
             MsgBox.alert(this, "Thanh toán thành công!");
