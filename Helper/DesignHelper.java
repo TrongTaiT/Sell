@@ -42,7 +42,8 @@ public class DesignHelper {
 
     public static void addPlaceHolderTextField(JTextComponent textField, String placeholderString) {
         textField.setText(placeholderString);
-        Font font = textField.getFont();
+        textField.setToolTipText(placeholderString);
+        Font font = textField.getFont();        
         font = font.deriveFont(Font.ITALIC);
         textField.setFont(font);
         textField.setForeground(Color.GRAY);

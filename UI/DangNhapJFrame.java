@@ -299,34 +299,33 @@ public class DangNhapJFrame extends javax.swing.JFrame {
 
     private void txtTaiKhoanFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTaiKhoanFocusGained
         // TODO add your handling code here:
-        if(txtTaiKhoan.getText().equals("Mã nhân viên")){
+        if (txtTaiKhoan.getText().equals("Mã nhân viên")) {
             txtTaiKhoan.setText("");
             DesignHelper.deletePlaceHolderTextField(txtTaiKhoan);
-            txtTaiKhoan.setForeground(new Color(255,255,255));
+            txtTaiKhoan.setForeground(new Color(255, 255, 255));
         }
     }//GEN-LAST:event_txtTaiKhoanFocusGained
 
     private void txtTaiKhoanFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTaiKhoanFocusLost
         // TODO add your handling code here:
-        if(txtTaiKhoan.getText().trim().length() == 0){
-            txtTaiKhoan.setText("Mã nhân viên");
-            DesignHelper.addPlaceHolderTextField(txtTaiKhoan);
+        if (txtTaiKhoan.getText().trim().length() == 0) {
+            DesignHelper.addPlaceHolderTextField(txtTaiKhoan, "Mã nhân viên");
         }
     }//GEN-LAST:event_txtTaiKhoanFocusLost
 
     private void txtmatKhauFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtmatKhauFocusGained
         // TODO add your handling code here:
-        if(txtmatKhau.getText().equals("Mật khẩu")){
+        if (txtmatKhau.getText().equals("Mật khẩu")) {
             txtmatKhau.setText("");
             txtmatKhau.setEchoChar('\u25cf');
             DesignHelper.deletePlaceHolderTextField(txtmatKhau);
-            txtmatKhau.setForeground(new Color(255,255,255));
+            txtmatKhau.setForeground(new Color(255, 255, 255));
         }
     }//GEN-LAST:event_txtmatKhauFocusGained
 
     private void txtmatKhauFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtmatKhauFocusLost
         // TODO add your handling code here:
-        if(txtmatKhau.getText().trim().length() == 0){
+        if (txtmatKhau.getText().trim().length() == 0) {
             txtmatKhau.setText("Mật khẩu");
             txtmatKhau.setEchoChar('\u0000');
             DesignHelper.addPlaceHolderTextField(txtmatKhau);
@@ -376,19 +375,19 @@ public class DangNhapJFrame extends javax.swing.JFrame {
 
     private void lblQuenMkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMkMouseEntered
         // TODO add your handling code here:
-        lblQuenMk.setForeground(new Color(0,204,51));
+        lblQuenMk.setForeground(new Color(0, 204, 51));
         lblQuenMk.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_lblQuenMkMouseEntered
 
     private void lblQuenMkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMkMouseExited
         // TODO add your handling code here:
-        lblQuenMk.setForeground(new Color(255,255,255));
+        lblQuenMk.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_lblQuenMkMouseExited
 
     private void txtmatKhauKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmatKhauKeyPressed
-         if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
-             dangNhap();
-         }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            dangNhap();
+        }
     }//GEN-LAST:event_txtmatKhauKeyPressed
 
     /**
@@ -635,15 +634,15 @@ int a = 0;
         return true;
 
     }
-    
-    void setText(){
+
+    void setText() {
         txtTaiKhoan.setText("Mã nhân viên");
         txtmatKhau.setText("Mật khẩu");
         txtmatKhau.setEchoChar('\u0000');
         this.styleHolder();
     }
-    
-    void styleHolder(){
+
+    void styleHolder() {
         DesignHelper.addPlaceHolderTextField(txtTaiKhoan);
         DesignHelper.addPlaceHolderTextField(txtmatKhau);
     }
@@ -693,7 +692,6 @@ int a = 0;
 //        txtmatKhau.setText("   Vui lòng nhập mật khẩu");
 //        txtmatKhau.setFont(new Font("Segoe UI Light", 2, 15));
 //        txtmatKhau.setEchoChar((char) 0);
-
         //add nhac nho tai khoan
 //        txtTaiKhoan.setText("   Vui lòng nhập tài khoản");
 //        txtTaiKhoan.setFont(new Font("Segoe UI Light", 2, 15));
@@ -708,8 +706,8 @@ int a = 0;
             }
         }
     }
-    
-    void openWelcom(){
+
+    void openWelcom() {
         new ChaoJDialog(this, true).setVisible(true);
     }
 }

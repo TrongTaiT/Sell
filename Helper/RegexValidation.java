@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  *
  * @author Dev-StOrM
  */
-public class RegexValidation {    
+public class RegexValidation {
 
     public static boolean isNumber(Object object) {
         try {
