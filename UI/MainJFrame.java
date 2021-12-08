@@ -1413,14 +1413,19 @@ public class MainJFrame extends javax.swing.JFrame {
     
     private void hello(){
         String vaiTro;
-        if(Auth.user.getVaiTro() == 1){
-            vaiTro = "Nhân Viên";
-        }else if(Auth.user.getVaiTro() == 2){
-            vaiTro = "Quản Lý";
-        }else if(Auth.user.getVaiTro() == 3){
-            vaiTro = "Giám Đốc";
-        }else{
-            vaiTro = "Đã Nghỉ Việc";
+        switch (Auth.user.getVaiTro()) {
+            case 1:
+                vaiTro = "Nhân Viên";
+                break;
+            case 2:
+                vaiTro = "Quản Lý";
+                break;
+            case 3:
+                vaiTro = "Giám Đốc";
+                break;
+            default:
+                vaiTro = "Đã Nghỉ Việc";
+                break;
         }
         lblInfo.setText(Auth.user.getMaNV().trim() + " - " + Auth.user.getHoTen() + " - " + vaiTro);
     }

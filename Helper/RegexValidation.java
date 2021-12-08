@@ -11,7 +11,16 @@ import java.util.regex.Pattern;
  *
  * @author Dev-StOrM
  */
-public class Validator {
+public class RegexValidation {    
+
+    public static boolean isNumber(Object object) {
+        try {
+            Double.parseDouble(((String) object));
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
 
     // alphabet including Unicode UTF-8
     static final public boolean isValidName(String str) {
@@ -24,7 +33,6 @@ public class Validator {
 
         return NAME_PATTERN.matcher(str).matches();
     }
-    //hihi
 
     // Vietnam phone number, only contain 10 -> 12 numberic characters
     static final public boolean isValidPhoneNumber(String str) {
@@ -32,14 +40,6 @@ public class Validator {
         final Pattern PHONE_PATTERN = Pattern.compile(PHONE_REGEX);
 
         return PHONE_PATTERN.matcher(str).matches();
-    }
-
-    // check valid for MaSV
-    static final public boolean isValidMaSV(String str) {
-        final String MASV_REGEX = "^SV\\d{3}$"; // exp: "SV001";
-        final Pattern MASV_PATTERN = Pattern.compile(MASV_REGEX);
-
-        return MASV_PATTERN.matcher(str).matches();
     }
 
     // local-part + @ + domain part
@@ -71,4 +71,12 @@ public class Validator {
 
         return PASSOWRD_PATTERN.matcher(str).matches();
     }
+
+//    // check valid for MaSV
+//    static final public boolean isValidMaSV(String str) {
+//        final String MASV_REGEX = "^SV\\d{3}$"; // exp: "SV001";
+//        final Pattern MASV_PATTERN = Pattern.compile(MASV_REGEX);
+//
+//        return MASV_PATTERN.matcher(str).matches();
+//    }
 }

@@ -5,9 +5,11 @@
  */
 package com.Sell.Helper;
 
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -15,117 +17,180 @@ import javax.swing.JTextField;
  */
 public class ValidationHelper {
 
+    public static Color validColor = new Color(54, 215, 183);
+    public static Color errorColor = new Color(245, 230, 83);
+
     // need additional method trim();
-    static public boolean isNullField(Component component, JTextField txt, String fieldName) {
-        if (txt.getText().equals("")) {
+    static public boolean isNotNullField(Component component, JTextComponent txt,
+            String fieldName, String placeholder) {
+        
+        // check null
+        if (txt.getText().trim().equals("") || txt.getText().trim().equals(placeholder)) {
             MsgBox.alert(component, "Nhập " + fieldName + "!");
-            txt.requestFocus();
-            return true;
+            txt.setBorder(new LineBorder(errorColor));
+            return false;
         }
-        return false;
+
+        // else
+        txt.setBorder(new LineBorder(validColor));
+        return true;
+
     }
 
-    static public boolean isValidPassword(Component component, JPasswordField pwd, String fieldName) {
+    static public boolean isValidPassword(Component component, JPasswordField pwd,
+            String fieldName, String placeholder) {
+
         String password = new String(pwd.getPassword());
-        if (ValidationHelper.isNullField(component, pwd, fieldName) == true) {
+        // check null
+        if (password.equals("") || password.equals(placeholder)) {
+            MsgBox.alert(component, "Nhập " + fieldName + "!");
+            pwd.setBorder(new LineBorder(errorColor));
             return false;
-        } else if (password.length() < 8 || password.length() > 36) {
+        }
+
+        // check length (regex contains check length but to visualize to user, it must have another check length)
+        if (password.length() < 8 || password.length() > 36) {
             MsgBox.alert(component, "Nhập " + fieldName + " phải có độ dài từ 8 đến 36 kí tự");
-            pwd.requestFocus();
-            return false;
-        } else if (Validator.isValidPassword(password) == false) {
-            MsgBox.alert(component, "Nhập " + fieldName + " phải chứa ít nhất một kí tự: viết thường + số + "
-                    + "viết hoa + đặc biệt ('!','@','#','&','(',')'...)");
-            pwd.requestFocus();
+            pwd.setBorder(new LineBorder(errorColor));
             return false;
         }
+
+        // check regex (if not strictly follow the rules in regex, this can be commented to remove)
+        if (RegexValidation.isValidPassword(password) == false) {
+            MsgBox.alert(component, "Nhập " + fieldName + " phải chứa ít nhất một kí tự: viết thường VÀ số VÀ "
+                    + "viết hoa VÀ đặc biệt ('!','@','#','&','(',')'...)");
+            pwd.setBorder(new LineBorder(errorColor));
+            return false;
+        }
+
+        // else
+        pwd.setBorder(new LineBorder(validColor));
         return true;
     }
 
-    public static boolean isValidName(Component component, JTextField txt, String fieldName) {
-        if (ValidationHelper.isNullField(component, txt, fieldName) == true) {
+    public static boolean isValidName(Component component, JTextComponent txt,
+            String fieldName, String placeholder) {
+
+        // check null
+        if (ValidationHelper.isNotNullField(component, txt, fieldName, placeholder) == false) {
             return false;
         }
-        if (Validator.isValidName(txt.getText()) == false) {
+
+        // check regex
+        if (RegexValidation.isValidName(txt.getText()) == false) {
             MsgBox.alert(component, "Nhập " + fieldName + " chưa hợp lệ!");
-            txt.requestFocus();
+            txt.setBorder(new LineBorder(errorColor));
             return false;
         }
+
+        // else
+        txt.setBorder(new LineBorder(validColor));
         return true;
     }
 
-    public static boolean isValidPhoneNumber(Component component, JTextField txt, String fieldName) {
-        if (ValidationHelper.isNullField(component, txt, fieldName) == true) {
+    public static boolean isValidPhoneNumber(Component component, JTextComponent txt,
+            String fieldName, String placeholder) {
+
+        // check null
+        if (ValidationHelper.isNotNullField(component, txt, fieldName, placeholder) == false) {
             return false;
         }
-        if (Validator.isValidPhoneNumber(txt.getText()) == false) {
+
+        // check regex
+        if (RegexValidation.isValidPhoneNumber(txt.getText()) == false) {
             MsgBox.alert(component, "Nhập " + fieldName + " chưa hợp lệ!");
-            txt.requestFocus();
+            txt.setBorder(new LineBorder(errorColor));
             return false;
         }
+
+        // else
+        txt.setBorder(new LineBorder(validColor));
         return true;
     }
 
-    public static boolean isValidEmail(Component component, JTextField txt, String fieldName) {
-        if (ValidationHelper.isNullField(component, txt, fieldName) == true) {
+    public static boolean isValidEmail(Component component, JTextComponent txt,
+            String fieldName, String placeholder) {
+
+        // check null
+        if (ValidationHelper.isNotNullField(component, txt, fieldName, placeholder) == false) {
             return false;
         }
-        if (Validator.isValidEmail(txt.getText()) == false) {
+
+        // check regex
+        if (RegexValidation.isValidEmail(txt.getText()) == false) {
             MsgBox.alert(component, "Nhập " + fieldName + " chưa hợp lệ!");
-            txt.requestFocus();
+            txt.setBorder(new LineBorder(errorColor));
             return false;
         }
+
+        // else
+        txt.setBorder(new LineBorder(validColor));
         return true;
     }
 
-    public static boolean isNumber(Object object) {
-        try {
-            Double.parseDouble(((String) object));
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
-    }
+    public static boolean isNumberField(Component component, JTextComponent txt,
+            String fieldName, String placeholder) {
 
-    public static boolean isNumberField(Component component, JTextField txt, String fieldName) {
-        if (isNullField(component, txt, fieldName) == true) {
+        // check null
+        if (isNotNullField(component, txt, fieldName, placeholder) == false) {
             return false;
         }
+
+        // check valid number
         try {
             Double.parseDouble(txt.getText());
         } catch (NumberFormatException e) {
             MsgBox.alert(component, "Nhập " + fieldName + " phải là số");
-            txt.requestFocus();
+            txt.setBorder(new LineBorder(errorColor));
             return false;
         }
+
+        // else
+        txt.setBorder(new LineBorder(validColor));
         return true;
     }
 
-    public static boolean isNumberField(Component component, JTextField txt, String fieldName, Double min) {
-        if (isNumberField(component, txt, fieldName) == false) {
+    public static boolean isNumberField(Component component, JTextComponent txt,
+            String fieldName, String placeholder, Double min) {
+
+        // check numberfield
+        if (isNumberField(component, txt, fieldName, placeholder) == false) {
             return false;
         }
+
+        // check condition : greater than min
         boolean condition = (Double.parseDouble(txt.getText()) > min);
         if (condition == false) {
             MsgBox.alert(component, "Nhập " + fieldName + " phải lớn hơn " + min);
-            txt.requestFocus();
+            txt.setBorder(new LineBorder(errorColor));
             return false;
         }
+
+        // else
+        txt.setBorder(new LineBorder(validColor));
         return true;
     }
 
-    public static boolean isNumberField(Component component, JTextField txt, String fieldName, Double min, Double max) {
-        if (isNumberField(component, txt, fieldName) == false) {
+    public static boolean isNumberField(Component component, JTextComponent txt,
+            String fieldName, String placeholder, Double min, Double max) {
+
+        // check numberfield
+        if (isNumberField(component, txt, fieldName, placeholder) == false) {
             return false;
         }
+
+        // check condition : greater than min and smaller than max
         Double number = Double.parseDouble(txt.getText());
         boolean condition = (number > min) && (number < max);
         if (condition == false) {
             MsgBox.alert(component, "Nhập " + fieldName + " phải lớn hơn " + min
                     + " và nhỏ hơn " + max);
-            txt.requestFocus();
+            txt.setBorder(new LineBorder(errorColor));
             return false;
         }
+
+        // else
+        txt.setBorder(new LineBorder(validColor));
         return true;
     }
 
