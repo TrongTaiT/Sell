@@ -1336,17 +1336,20 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     private void thanhTien() {
         int row = tblChiTietHoaDon.getRowCount();
         System.out.println(row);
-        float tong = 0;
+        float thanhTien = 0;
+        float tong;
+        float giamGia = Float.parseFloat(txtGiamgia.getText());
         for (int i = 0; i < row; i++) {
             float soLuong = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 1) + "");
             System.out.println("soluong:" + soLuong);
             float donGia = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 2).toString());
             System.out.println("don gia:" + donGia);
 
-            tong = tong + soLuong * donGia;
+            thanhTien = thanhTien + soLuong * donGia;
         }
-        txtThanhTien.setText(tong + "");
-        tongTien();
+        txtThanhTien.setText(DesignHelper.formatCurrency(thanhTien));
+        tong=thanhTien - (thanhTien * giamGia / 100);
+        txtTongTien.setText(DesignHelper.formatCurrency(tong));
     }
 
     void fillToForm(HoaDonBanHang hd) {
@@ -1486,7 +1489,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         float giamGia = Float.parseFloat(txtGiamgia.getText());
         
         tong = thanhTien - (thanhTien * giamGia / 100);
-        txtTongTien.setText(String.valueOf(tong));
+        txtTongTien.setText(DesignHelper.formatCurrency(tong));
     }
 
 }

@@ -8,6 +8,7 @@ package com.Sell.Helper;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.text.DecimalFormat;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -54,7 +55,10 @@ public class DesignHelper {
         textField.setFont(font);
         textField.setForeground(Color.BLACK);
     }
-
+    public static String formatCurrency(float money) {
+        DecimalFormat formatter = new DecimalFormat("###,###.##");
+        return formatter.format(money);
+    }
     @Deprecated
     public static void setTable(JTable table) {
         table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));

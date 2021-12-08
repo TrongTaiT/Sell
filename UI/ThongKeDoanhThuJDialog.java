@@ -398,18 +398,18 @@ public class ThongKeDoanhThuJDialog extends java.awt.Dialog {
 
         List<Object[]> listdoanhthu = thongkedao.getDoanhThu(thang, nam, mach);
         for (Object[] row : listdoanhthu) {
-            String tien = String.format("%0,3f", row[1]);
-            String doanhThu = tien.substring(0, tien.lastIndexOf("."));
-            model.addRow(new Object[]{row[0], doanhThu});
+            String tien = DesignHelper.formatCurrency(Float.valueOf(String.valueOf(row[1])));
+
+            model.addRow(new Object[]{row[0], tien});
             tong = tong + Float.valueOf(String.valueOf(row[1]));
         }
         //set thanh tieu de
         lbltieude.setText("Tổng doanh thu " + mach + " / " + nam1 + " / " + thang1);
 
         //set tính tổng
-        String tongtien = String.format("%0,3f", tong);
-        String tongtien1 = tongtien.substring(0, tongtien.lastIndexOf("."));
-        lbltong.setText("Tổng doanh thu " + mach + " / " + thang1 + " / " + nam1 + " là " + tongtien1 + " VNĐ");
+        String tongtien = DesignHelper.formatCurrency(tong);
+
+        lbltong.setText("Tổng doanh thu " + mach + " / " + thang1 + " / " + nam1 + " là " + tongtien + " VNĐ");
     }
 
     void tinhTong() {
