@@ -309,6 +309,11 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
         txtTienKhachDua.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTienKhachDua.setPreferredSize(new java.awt.Dimension(6, 25));
+        txtTienKhachDua.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTienKhachDuaKeyReleased(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setText("Thành tiền");
@@ -954,7 +959,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             cboTenSanPham.setSelectedItem(sp);
             LoaiHang lh = lhdao.selectById(sp.getMaLoai());
             cboLoaiSanPham.setSelectedItem(lh);
-            
+            lblSoLuong.setText((String) tblChiTietHoaDon.getValueAt(rowCTHD, 1));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1081,6 +1086,12 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         this.updateTrangThai();
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
+    private void txtTienKhachDuaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachDuaKeyReleased
+        // TODO add your handling code here:
+        String tienKhachDua=txtTienKhachDua.getText();
+        this.tinhTienThanhToan(tienKhachDua, tienthuve);
+    }//GEN-LAST:event_txtTienKhachDuaKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddKHToHoaDon;
@@ -1204,7 +1215,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     ChiTietCuaHangDAO ctchdao = new ChiTietCuaHangDAO();
     NhanVien_Dao nvdao = new NhanVien_Dao();
     HoaDonChiTiet_DAO hdctdao = new HoaDonChiTiet_DAO();
-
+    float tienthuve;
 //    void fillComboboxTenKhachHang() {
 //        DefaultComboBoxModel model = (DefaultComboBoxModel) cboTenKhachHang.getModel();
 //        model.removeAllElements();
@@ -1350,17 +1361,20 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     private void thanhTien() {
         int row = tblChiTietHoaDon.getRowCount();
         System.out.println(row);
-        float tong = 0;
+        float thanhTien = 0;
+        float tong;
+        float giamGia = Float.parseFloat(txtGiamgia.getText());
         for (int i = 0; i < row; i++) {
             float soLuong = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 1) + "");
             System.out.println("soluong:" + soLuong);
             float donGia = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 2).toString());
             System.out.println("don gia:" + donGia);
-
-            tong = tong + soLuong * donGia;
+            thanhTien = thanhTien + soLuong * donGia;
         }
-        txtThanhTien.setText(tong + "");
-        tongTien();
+        txtThanhTien.setText(DesignHelper.formatCurrency(thanhTien));
+        tong = thanhTien - (thanhTien * giamGia / 100);
+        txtTongTien.setText(DesignHelper.formatCurrency(tong));
+        tienthuve=tong;
     }
 
     void fillToForm(HoaDonBanHang hd) {
@@ -1464,10 +1478,10 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             System.out.println(e);
         }
     }
-    
-    private HoaDonBanHang getData(){
+
+    private HoaDonBanHang getData() {
         HoaDonBanHang hd = new HoaDonBanHang();
-        
+
         KhachHang kh = (KhachHang) cboTenKhachHang.getSelectedItem();
         hd.setMaHDBan(txtMaHoaDon.getText());
         hd.setMaKhachHang(kh.getMaKhachHang());
@@ -1478,29 +1492,38 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         hd.setMaCuaHang(Auth.user.getMaCuaHang());
         return hd;
     }
-    
-    private void setGiamGia(){
+
+    private void setGiamGia() {
         HoaDonBanHang hd = getData();
         HoaDonBanHang_Dao hdbhDAO = new HoaDonBanHang_Dao();
         PhieuGiamGia_Dao ggDAO = new PhieuGiamGia_Dao();
         HoaDonBanHang hdbh = hdbhDAO.selectByMaKH(hd.getMaKhachHang());
         PhieuGiamGia pgg = ggDAO.selectByMaKH(hd.getMaKhachHang());
-        if(hd.getMaKhachHang().trim().equals("(Mã KH)")){
+        if (hd.getMaKhachHang().trim().equals("(Mã KH)")) {
             txtGiamgia.setText("0");
-        }else if(pgg != null && pgg.getTrangThai() == false){
+        } else if (pgg != null && pgg.getTrangThai() == false) {
             txtGiamgia.setText("10");
-        }else if(!hd.getMaKhachHang().equals("(Mã KH)")){
+        } else if (!hd.getMaKhachHang().equals("(Mã KH)")) {
             txtGiamgia.setText("5");
         }
     }
-    
-    private void tongTien(){
+
+    private void tongTien() {
         float tong;
         float thanhTien = Float.parseFloat(txtThanhTien.getText());
         float giamGia = Float.parseFloat(txtGiamgia.getText());
-        
+
         tong = thanhTien - (thanhTien * giamGia / 100);
-        txtTongTien.setText(String.valueOf(tong));
+        txtTongTien.setText(DesignHelper.formatCurrency(tong)); 
+    }
+    
+    private void tinhTienThanhToan(String tienKhachDua, float tongTien) {
+        float tienTraLai = 0;
+        float tienKhachTra = Float.parseFloat(tienKhachDua);
+
+        tienTraLai = tienKhachTra - tongTien;
+        txtTienTraLai1.setText(DesignHelper.formatCurrency(tienTraLai));
+        txtTienTraLai2.setText(DesignHelper.formatCurrency(tongTien));
     }
     
     private void updateTrangThai() {
