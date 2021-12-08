@@ -13,6 +13,7 @@ import com.Sell.entity.HinhAnh;
 import com.Sell.entity.SanPham;
 import com.Sell.Helper.ImageHelper;
 import com.Sell.Helper.MsgBox;
+import com.Sell.Helper.ValidationHelper;
 import com.Sell.entity.LoaiHang;
 import java.awt.Color;
 import java.awt.Font;
@@ -600,14 +601,12 @@ public class QL_SanPham extends javax.swing.JPanel {
 
     private void txtGhiChuFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGhiChuFocusLost
         if (txtGhiChu.getText().trim().length() == 0) {
-            txtGhiChu.setText("Ghi chú");
-            DesignHelper.addPlaceHolderTextField(txtGhiChu);
+            DesignHelper.addPlaceHolderTextField(txtGhiChu, "Ghi chú");
         }
     }//GEN-LAST:event_txtGhiChuFocusLost
 
     private void txtGhiChuFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGhiChuFocusGained
         if (txtGhiChu.getText().equals("Ghi chú")) {
-            txtGhiChu.setText("");
             DesignHelper.deletePlaceHolderTextField(txtGhiChu);
         }
     }//GEN-LAST:event_txtGhiChuFocusGained
@@ -937,6 +936,9 @@ public class QL_SanPham extends javax.swing.JPanel {
     }
 
     void insert() {
+//        if (validates() == false) {
+//            return;
+//        }
         try {
             // Thêm sản phẩm vào db
             SanPham sp = getForm();
@@ -1168,5 +1170,19 @@ public class QL_SanPham extends javax.swing.JPanel {
         row = tblSanPham.getRowCount() - 1;
         edit();
     }
+
+//    private boolean validates() {
+//        if (listHinhAnh.size() == 0) {
+//            MsgBox.alert(this, "Chọn ảnh cho sản phẩm!");
+//        }
+//        if (ValidationHelper.isEnoughLength(this, txtMaSanPham, "Mã sản phẩm", 7) == false) {
+//            return false;
+//        }
+//        if (ValidationHelper.isValidName(this, txtTenSP, "Tên sản phẩm") == false) {
+//            return false;
+//        }
+//        if (ValidationHelper.)
+//        return true;
+//    }
 
 }
