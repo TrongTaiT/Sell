@@ -747,10 +747,10 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jPanel6.add(jPanel8);
@@ -826,6 +826,11 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         panelSearch1.add(txtTimKiem1);
 
         btnXoaHoaDon.setText("Xóa hóa đơn");
+        btnXoaHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaHoaDonActionPerformed(evt);
+            }
+        });
         panelSearch1.add(btnXoaHoaDon);
 
         jPanel5.add(panelSearch1, java.awt.BorderLayout.PAGE_START);
@@ -1097,6 +1102,24 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         String tienKhachDua = txtTienKhachDua.getText();
         this.tinhTienThanhToan(tienKhachDua, tienthuve);
     }//GEN-LAST:event_txtTienKhachDuaKeyReleased
+
+    private void btnXoaHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaHoaDonActionPerformed
+        int row =tblHoaDonChiTiet.getSelectedRow();
+        String maHD = (String)tblChiTietHoaDon.getValueAt(row, 0);
+        if (MsgBox.confirm(this, "Bạn có muốn xóa hay không?")) {
+            try {
+                HoaDonBanHang_Dao hdctdao = new HoaDonBanHang_Dao();
+                hdctdao.delete(maHD);
+                fillTableHoaDonBan();
+                
+                MsgBox.alert(this, "Xóa thành công!");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Xóa thất bại!");
+            }
+        }
+        
+        
+    }//GEN-LAST:event_btnXoaHoaDonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
