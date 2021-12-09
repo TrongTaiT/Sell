@@ -21,6 +21,15 @@ public class HoaDonBanHang {
     String MaNhanVien;
     String MaCuaHang;
     String MaGiamGia;
+    Float ThanhTien ;
+
+    public Float getThanhTien() {
+        return ThanhTien;
+    }
+
+    public void setThanhTien(Float ThanhTien) {
+        this.ThanhTien = ThanhTien;
+    }
 
     public String getMaHDBan() {
         return MaHDBan;

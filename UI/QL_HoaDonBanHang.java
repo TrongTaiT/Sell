@@ -1204,7 +1204,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 //        model3.addColumn("MÃ GIẢM GIÁ");
 //        tblHoaDonChiTiet.setModel(model3);
         String[] hoaDonChiTietColumns = {"MÃ HÓA ĐƠN", "MÃ KHÁCH HÀNG", "NGÀY BÁN",
-            "NỘI DUNG", "TRẠNG THÁI", "MÃ NV", "MÃ CH", "MÃ GIẢM GIÁ"};
+            "NỘI DUNG", "TRẠNG THÁI", "MÃ NV", "MÃ CH", "MÃ GIẢM GIÁ","THÀNH TIỀN"};
         DesignHelper.setTable(tblHoaDonChiTiet, hoaDonChiTietColumns);
     }
 
@@ -1447,6 +1447,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         hd.setMaNhanVien(Auth.user.getMaNV());
         hd.setMaCuaHang(Auth.user.getMaCuaHang());
         hd.setMaGiamGia("1");
+        hd.setThanhTien(0f);
         try {
             hdbhdao.insert(hd);
             this.setGiamGia();
@@ -1472,7 +1473,10 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                     ch.getTrangThai(),
                     ch.getMaNhanVien(),
                     ch.getMaCuaHang(),
-                    ch.getMaGiamGia()});
+                    ch.getMaGiamGia(),
+                    ch.getThanhTien()
+                });
+                    
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -1530,6 +1534,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         HoaDonBanHang hdbh = getData();
         HoaDonBanHang_Dao dao = new HoaDonBanHang_Dao();
         hdbh.setTrangThai(true);
+        hdbh.setThanhTien(Float.parseFloat(txtThanhTien.getText()));
         try {
 //            String maHD = txtMaHoaDon.getText();
             dao.update(hdbh);

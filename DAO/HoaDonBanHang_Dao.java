@@ -19,9 +19,9 @@ import java.util.List;
  */
 public class HoaDonBanHang_Dao {
 
-    String INSERT_SQL = "INSERT INTO HoaDonBanHang VALUES (?, ?, ?, ? ,?, ?, ?, ? )";
+    String INSERT_SQL = "INSERT INTO HoaDonBanHang VALUES (?, ?, ?, ? ,?, ?, ?, ?,? )";
     String UPDATE_SQL = "UPDATE HoaDonBanHang SET [MaKhachHang] = ?, [NgayBan] = ?, [NoiDung] = ?,"
-            + "[TrangThai]=?, [MaNhanVien]=?,[MaCuaHang]= ?, [MaGiamGia]=? where MaHDBan= ?";
+            + "[TrangThai]=?, [MaNhanVien]=?,[MaCuaHang]= ?, [MaGiamGia]=? ,ThanhTien=? where MaHDBan= ?";
     String DELETE_SQL = "DELETE FROM HoaDonBanHang WHERE MaHDBan = ?";
     String SELECT_ALL_SQL = "SELECT * FROM HoaDonBanHang";
     String SELECT_BY_ID_SQL = "SELECT * FROM HoaDonBanHang WHERE MaHDBan = ?";
@@ -37,7 +37,9 @@ public class HoaDonBanHang_Dao {
                     entity.getTrangThai(),
                     entity.getMaNhanVien(),
                     entity.getMaCuaHang(),
-                    entity.getMaGiamGia()
+                    entity.getMaGiamGia(),
+                    entity.getThanhTien()
+                    
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,6 +56,7 @@ public class HoaDonBanHang_Dao {
                     entity.getMaNhanVien(),
                     entity.getMaCuaHang(),
                     entity.getMaGiamGia(),
+                    entity.getThanhTien(),
                     entity.getMaHDBan()
             );
         } catch (Exception e) {
@@ -121,7 +124,7 @@ public class HoaDonBanHang_Dao {
         model.setMaNhanVien(rs.getString(6));
         model.setMaCuaHang(rs.getString(7));
         model.setMaGiamGia(rs.getString(8));
-
+        model.setThanhTien(rs.getFloat(9));
         return model;
     }
 
