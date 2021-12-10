@@ -7,8 +7,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -35,7 +33,7 @@ public class ImageHelper {
             throw new RuntimeException(ex);
         }
     }
-    
+
     static public ImageIcon loadImage(JLabel container, String image) {
         ImageIcon imageI = new ImageIcon(image);
         Image img = imageI.getImage();
@@ -43,7 +41,6 @@ public class ImageHelper {
         container.setIcon(icon);
         return icon;
     }
-    
 
     static public byte[] convertToByteArray(String path) {
         try {
@@ -110,11 +107,16 @@ public class ImageHelper {
             throw new RuntimeException(ex);
         }
     }
-    
-    public static ImageIcon readAndResize(JComponent container, String fileName) throws IOException {
-        BufferedImage image = ImageIO.read(new File("Images", fileName));
-        return new ImageIcon(image.getScaledInstance(container.getWidth(),
-                container.getHeight(), BufferedImage.SCALE_SMOOTH));
+
+    public static ImageIcon readAndResize(JComponent container, String fileName) {
+        try {
+//            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/logo.png")));
+            BufferedImage image = ImageIO.read(new File("src\\com\\SELL\\Images", fileName));
+            return new ImageIcon(image.getScaledInstance(container.getWidth(),
+                    container.getHeight(), BufferedImage.SCALE_SMOOTH));
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
 }

@@ -8,10 +8,14 @@ package com.Sell.UI;
 import com.Sell.Helper.Auth;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.FrameDragListener;
+import com.Sell.Helper.ImageHelper;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
@@ -24,6 +28,18 @@ import javax.swing.Timer;
  * @author NguyenTruongChinh
  */
 public class MainJFrame extends javax.swing.JFrame {
+    
+    private String[] imageList = {
+        "slide0.jpg",
+        "slide1.jpg",
+        "slide2.jpg",
+        "slide3.jpg",
+        "slide4.jpg",
+        "slide5.jpg",
+        "slide6.jpg"
+    };
+    
+    private int indexSlide = 0;
 
     /**
      * Creates new form MainJFrame
@@ -151,6 +167,7 @@ public class MainJFrame extends javax.swing.JFrame {
         lblInfo = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         panelMain = new javax.swing.JPanel();
+        lblSlide = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1000,6 +1017,9 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
         panelMain.setLayout(new java.awt.BorderLayout());
+        panelMain.add(lblSlide, java.awt.BorderLayout.CENTER);
+        lblSlide.getAccessibleContext().setAccessibleParent(this);
+
         jPanel4.add(panelMain, java.awt.BorderLayout.CENTER);
 
         panelFullForm.add(jPanel4, java.awt.BorderLayout.CENTER);
@@ -1036,11 +1056,6 @@ public class MainJFrame extends javax.swing.JFrame {
             this.setExtendedState(MainJFrame.NORMAL);
         }
     }//GEN-LAST:event_lblFullScreenMouseClicked
-
-    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
-
-        displayUser();
-    }//GEN-LAST:event_jLabel17MouseClicked
 
     private void lblNhanVienTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNhanVienTextMouseEntered
 
@@ -1154,15 +1169,11 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lblHomeTextMouseExited
 
     private void lblHomeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeIconMouseClicked
-
-        showPanel(new HomeJPanel());
+//        initSlideShow();
+        showPanel(new SlideShowJPanel());
         click = true;
         animationMenu();
     }//GEN-LAST:event_lblHomeIconMouseClicked
-
-    private void panelMainFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelMainFocusGained
-
-    }//GEN-LAST:event_panelMainFocusGained
 
     private void lblMenuFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblMenuFocusLost
 
@@ -1266,45 +1277,12 @@ public class MainJFrame extends javax.swing.JFrame {
         animationMenu();
     }//GEN-LAST:event_lblSanPhamTextMouseClicked
 
-    private void lblDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangXuatMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-        new DangNhapJFrame().setVisible(true);
-    }//GEN-LAST:event_lblDangXuatMouseClicked
-
-    private void lblDangXuatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangXuatMouseEntered
-        // TODO add your handling code here:
-        lblDangXuat.setForeground(new Color(255, 76, 48));
-        lblDangXuat.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_lblDangXuatMouseEntered
-
-    private void lblDangXuatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangXuatMouseExited
-        // TODO add your handling code here:
-        lblDangXuat.setForeground(Color.BLACK);
-    }//GEN-LAST:event_lblDangXuatMouseExited
-
     private void lblKhoTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKhoTextMouseClicked
         // TODO add your handling code here:
         showPanel(new QL_LoaiHang());
         click = true;
         animationMenu();
     }//GEN-LAST:event_lblKhoTextMouseClicked
-
-    private void lblDoiMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoiMatKhauMouseClicked
-        // TODO add your handling code here:
-        new DoiMatKhauJDialog(this, true).setVisible(true);
-    }//GEN-LAST:event_lblDoiMatKhauMouseClicked
-
-    private void lblDoiMatKhauMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoiMatKhauMouseEntered
-        // TODO add your handling code here:
-        lblDoiMatKhau.setForeground(new Color(255, 76, 48));
-        lblDoiMatKhau.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_lblDoiMatKhauMouseEntered
-
-    private void lblDoiMatKhauMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoiMatKhauMouseExited
-        // TODO add your handling code here:
-        lblDoiMatKhau.setForeground(Color.BLACK);
-    }//GEN-LAST:event_lblDoiMatKhauMouseExited
 
     private void lblDoanhThuTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoanhThuTextMouseClicked
         // TODO add your handling code here:
@@ -1313,12 +1291,47 @@ public class MainJFrame extends javax.swing.JFrame {
         animationMenu();
     }//GEN-LAST:event_lblDoanhThuTextMouseClicked
 
-    public void showPanel(JPanel panel) {
-        childPanel = panel;
-        panelMain.removeAll();
-        panelMain.add(childPanel);
-        panelMain.validate();
-    }
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+
+        displayUser();
+    }//GEN-LAST:event_jLabel17MouseClicked
+
+    private void lblDangXuatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangXuatMouseExited
+        // TODO add your handling code here:
+        lblDangXuat.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblDangXuatMouseExited
+
+    private void lblDangXuatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangXuatMouseEntered
+        // TODO add your handling code here:
+        lblDangXuat.setForeground(new Color(255, 76, 48));
+        lblDangXuat.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_lblDangXuatMouseEntered
+
+    private void lblDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangXuatMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new DangNhapJFrame().setVisible(true);
+    }//GEN-LAST:event_lblDangXuatMouseClicked
+
+    private void lblDoiMatKhauMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoiMatKhauMouseExited
+        // TODO add your handling code here:
+        lblDoiMatKhau.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblDoiMatKhauMouseExited
+
+    private void lblDoiMatKhauMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoiMatKhauMouseEntered
+        // TODO add your handling code here:
+        lblDoiMatKhau.setForeground(new Color(255, 76, 48));
+        lblDoiMatKhau.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_lblDoiMatKhauMouseEntered
+
+    private void lblDoiMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoiMatKhauMouseClicked
+        // TODO add your handling code here:
+        new DoiMatKhauJDialog(this, true).setVisible(true);
+    }//GEN-LAST:event_lblDoiMatKhauMouseClicked
+
+    private void panelMainFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelMainFocusGained
+
+    }//GEN-LAST:event_panelMainFocusGained
 
     /**
      * @param args the command line arguments
@@ -1395,6 +1408,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblNhapHangText;
     private javax.swing.JLabel lblSanPhamIcon;
     private javax.swing.JLabel lblSanPhamText;
+    private javax.swing.JLabel lblSlide;
     private javax.swing.JPanel panelBanHangItem;
     private javax.swing.JPanel panelCuaHangItem;
     private javax.swing.JPanel panelDieuKhienMenu;
@@ -1414,11 +1428,59 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void init() {
         this.setLocationRelativeTo(null);
-//        clock();
-        showPanel(new HomeJPanel());
+        showPanel(new SlideShowJPanel());
         click = true;
         animationMenu();
         this.hello();
+        
+//        initSlideShow();
+    }
+    
+    public void showPanel(JPanel panel) {
+        panelMain.removeAll();
+        panelMain.add(panel);
+        panelMain.validate();
+//        lblSlide.setVisible(false);
+    }
+    
+//    public void showPanel(JPanel panel) {
+//        try {                        
+//            for (int i = 1; i < panelMain.getComponentCount(); i++) {
+//                panelMain.remove(1);
+//            }
+//        } catch (ArrayIndexOutOfBoundsException e) {
+//        }
+//        panelMain.removeAll();
+//        panelMain.add(panel);
+//        panelMain.validate();
+//        lblSlide.setVisible(false);
+//    }
+    
+    private void initSlideShow() {
+        setBackGround(imageList[0]);
+        indexSlide++;
+        startSlideShow();
+        lblSlide.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                setBackGround(imageList[indexSlide]);
+            }
+        });
+        lblSlide.setVisible(true);
+    }
+
+    private void setBackGround(String fileName) {
+        lblSlide.setIcon(ImageHelper.readAndResize(lblSlide, fileName));
+    }
+
+    private void startSlideShow() {
+        new Timer(3000, (ActionEvent e) -> {
+            setBackGround(imageList[indexSlide]);
+            indexSlide++;
+            if (indexSlide == imageList.length) {
+                indexSlide = 0;
+            }
+        }).start();
     }
     
     private void hello(){
