@@ -66,6 +66,12 @@ public class QuenMatKhauJDialog extends java.awt.Dialog {
             }
         });
 
+        kGradientPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kGradientPanel1MouseClicked(evt);
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -244,6 +250,12 @@ public class QuenMatKhauJDialog extends java.awt.Dialog {
         JComponent component = (JComponent) (evt.getSource());
         component.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_btn_confirmMouseEntered
+
+    private void kGradientPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel1MouseClicked
+        // TODO add your handling code here:
+        JComponent component = (JComponent) evt.getSource();
+        component.requestFocusInWindow();
+    }//GEN-LAST:event_kGradientPanel1MouseClicked
 
     /**
      * @param args the command line arguments

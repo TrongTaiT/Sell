@@ -15,6 +15,7 @@ import com.Sell.entity.ChiTietCuaHang;
 import com.Sell.entity.CuaHang;
 import com.Sell.entity.HoaDonNhap;
 import com.Sell.entity.SanPham;
+import java.awt.Dimension;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
@@ -65,6 +66,7 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         panelInput = new javax.swing.JPanel();
+        txtFocus = new javax.swing.JTextField();
         txtMaNhapHang = new javax.swing.JTextField();
         txtMaQuanLy = new javax.swing.JTextField();
         txtSoLuong = new javax.swing.JTextField();
@@ -264,14 +266,40 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
             }
         });
 
+        txtFocus.setBorder(null);
+
         txtMaNhapHang.setText("Mã nhập hàng");
         txtMaNhapHang.setPreferredSize(new java.awt.Dimension(200, 35));
+        txtMaNhapHang.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtMaNhapHangFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtMaNhapHangFocusLost(evt);
+            }
+        });
 
         txtMaQuanLy.setText("Mã quản lý");
         txtMaQuanLy.setPreferredSize(new java.awt.Dimension(200, 35));
+        txtMaQuanLy.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtMaQuanLyFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtMaQuanLyFocusLost(evt);
+            }
+        });
 
         txtSoLuong.setText("Số lượng");
         txtSoLuong.setPreferredSize(new java.awt.Dimension(200, 35));
+        txtSoLuong.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSoLuongFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSoLuongFocusLost(evt);
+            }
+        });
 
         cboTenSanPham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên sản phẩm" }));
         cboTenSanPham.setMinimumSize(new java.awt.Dimension(64, 35));
@@ -297,7 +325,7 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMaSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                .addComponent(lblMaSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -310,6 +338,14 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
         txtGhiChu.setColumns(20);
         txtGhiChu.setRows(5);
         txtGhiChu.setText("Ghi chú");
+        txtGhiChu.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtGhiChuFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtGhiChuFocusLost(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtGhiChu);
 
         jPanel10.setOpaque(false);
@@ -328,7 +364,7 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNgayNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                .addComponent(lblNgayNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -340,6 +376,14 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
 
         txtGiaTien.setText("Giá tiền");
         txtGiaTien.setPreferredSize(new java.awt.Dimension(200, 35));
+        txtGiaTien.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtGiaTienFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtGiaTienFocusLost(evt);
+            }
+        });
 
         cboMaCuaHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -349,31 +393,35 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
             panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInputLayout.createSequentialGroup()
                 .addContainerGap(37, Short.MAX_VALUE)
-                .addGroup(panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInputLayout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cboTenSanPham, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInputLayout.createSequentialGroup()
-                        .addComponent(txtMaNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtMaQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelInputLayout.createSequentialGroup()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInputLayout.createSequentialGroup()
+                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cboTenSanPham, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInputLayout.createSequentialGroup()
+                                .addComponent(txtMaNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtMaQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelInputLayout.createSequentialGroup()
+                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtGiaTien, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtGiaTien, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(cboMaCuaHang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(cboMaCuaHang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(27, 27, 27))
         );
         panelInputLayout.setVerticalGroup(
             panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInputLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addComponent(txtFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtMaNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -394,6 +442,8 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
+
+        txtFocus.setPreferredSize(new Dimension(0,0));
 
         panelFunction.setBackground(new java.awt.Color(255, 255, 255));
         panelFunction.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -517,7 +567,7 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 277, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFunctionLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -556,7 +606,7 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
                 .addComponent(panelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelFunction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 52, Short.MAX_VALUE))
+                .addGap(0, 58, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel3);
@@ -669,6 +719,76 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cboTenSanPhamActionPerformed
 
+    private void txtMaNhapHangFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaNhapHangFocusGained
+        // TODO add your handling code here:
+        if(txtMaNhapHang.getText().equals("Mã nhập hàng")){
+            DesignHelper.deletePlaceHolderTextField(txtMaNhapHang);
+        }
+    }//GEN-LAST:event_txtMaNhapHangFocusGained
+
+    private void txtMaNhapHangFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaNhapHangFocusLost
+        // TODO add your handling code here:
+        if(txtMaNhapHang.getText().trim().length() == 0){
+            DesignHelper.addPlaceHolderTextField(txtMaNhapHang, "Mã nhập hàng");
+        }
+    }//GEN-LAST:event_txtMaNhapHangFocusLost
+
+    private void txtMaQuanLyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaQuanLyFocusGained
+        // TODO add your handling code here:
+        if(txtMaQuanLy.getText().equals("Mã quản lý")){
+            DesignHelper.deletePlaceHolderTextField(txtMaQuanLy);
+        }
+    }//GEN-LAST:event_txtMaQuanLyFocusGained
+
+    private void txtMaQuanLyFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaQuanLyFocusLost
+        // TODO add your handling code here:
+        if(txtMaQuanLy.getText().trim().length() == 0){
+            DesignHelper.addPlaceHolderTextField(txtMaQuanLy, "Mã quản lý");
+        }
+    }//GEN-LAST:event_txtMaQuanLyFocusLost
+
+    private void txtSoLuongFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSoLuongFocusGained
+        // TODO add your handling code here:
+        if(txtSoLuong.getText().equals("Số lượng")){
+            DesignHelper.deletePlaceHolderTextField(txtSoLuong);
+        }
+    }//GEN-LAST:event_txtSoLuongFocusGained
+
+    private void txtSoLuongFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSoLuongFocusLost
+        // TODO add your handling code here:
+        if(txtSoLuong.getText().trim().length() == 0){
+            DesignHelper.addPlaceHolderTextField(txtSoLuong, "Số lượng");
+        }
+    }//GEN-LAST:event_txtSoLuongFocusLost
+
+    private void txtGiaTienFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGiaTienFocusGained
+        // TODO add your handling code here:
+        if(txtGiaTien.getText().equals("Giá tiền")){
+            DesignHelper.deletePlaceHolderTextField(txtGiaTien);
+        }
+    }//GEN-LAST:event_txtGiaTienFocusGained
+
+    private void txtGiaTienFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGiaTienFocusLost
+        // TODO add your handling code here:
+        if(txtGiaTien.getText().trim().length() == 0){
+            DesignHelper.addPlaceHolderTextField(txtGiaTien, "Giá tiền");
+        }
+    }//GEN-LAST:event_txtGiaTienFocusLost
+
+    private void txtGhiChuFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGhiChuFocusGained
+        // TODO add your handling code here:
+        if(txtGhiChu.getText().equals("Ghi chú")){
+            DesignHelper.deletePlaceHolderTextField(txtGhiChu);
+        }
+    }//GEN-LAST:event_txtGhiChuFocusGained
+
+    private void txtGhiChuFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGhiChuFocusLost
+        // TODO add your handling code here:
+        if(txtGhiChu.getText().trim().length() == 0){
+            DesignHelper.addPlaceHolderTextField(txtGhiChu, "Ghi chú");
+        }
+    }//GEN-LAST:event_txtGhiChuFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
@@ -708,6 +828,7 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
     private javax.swing.JPanel panelSearch;
     private javax.swing.JPanel panelThongTin;
     private javax.swing.JTable tblHoaDonNhap;
+    private javax.swing.JTextField txtFocus;
     private javax.swing.JTextArea txtGhiChu;
     private javax.swing.JTextField txtGiaTien;
     private javax.swing.JTextField txtMaNhapHang;
@@ -726,19 +847,17 @@ public class QL_HoaDonNhap extends javax.swing.JPanel {
         fillTable();
         fillCombobox();
         fillCboMaCuaHang();
+        lblTitle.requestFocus();
     }
 
     void setTextField() {
-
-        txtMaNhapHang.setText("Mã nhập hàng");
-        txtMaQuanLy.setText("Mã quản lý");
-//        txtMaCuaHang.setText("Mã cửa hàng");
+        DesignHelper.addPlaceHolderTextField(txtMaNhapHang, "Mã nhập hàng");
+        DesignHelper.addPlaceHolderTextField(txtMaQuanLy, "Mã quản lý");
         lblMaSanPham.setText("");
-        cboTenSanPham.setSelectedItem("Tên sản phẩm");
+        DesignHelper.addPlaceHolderTextField(txtSoLuong, "Số lượng");
+        DesignHelper.addPlaceHolderTextField(txtGiaTien, "Giá tiền");
+        DesignHelper.addPlaceHolderTextField(txtGhiChu, "Ghi chú");
         lblNgayNhap.setText(DateHelper.toString(DateHelper.now()));
-        txtSoLuong.setText("Số lượng");
-        txtGiaTien.setText("Giá tiền (VNĐ)");
-        txtGhiChu.setText("Ghi chú");
     }
 
     void setTable() {

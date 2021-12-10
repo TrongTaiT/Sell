@@ -679,6 +679,9 @@ public class MainJFrame extends javax.swing.JFrame {
         lblDoanhThuText.setText("XEM DOANH THU");
         lblDoanhThuText.setPreferredSize(new java.awt.Dimension(76, 76));
         lblDoanhThuText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDoanhThuTextMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblDoanhThuTextMouseEntered(evt);
             }
@@ -1302,6 +1305,13 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblDoiMatKhau.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblDoiMatKhauMouseExited
+
+    private void lblDoanhThuTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoanhThuTextMouseClicked
+        // TODO add your handling code here:
+        showPanel(new ThongKeJPanel());
+        click = true;
+        animationMenu();
+    }//GEN-LAST:event_lblDoanhThuTextMouseClicked
 
     public void showPanel(JPanel panel) {
         childPanel = panel;

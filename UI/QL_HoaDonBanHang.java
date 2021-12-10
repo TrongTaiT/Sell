@@ -1626,44 +1626,4 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         } catch (Exception e) {
         }
     }
-
-//    float fixCuaChinh(){
-//        int row = tblChiTietHoaDon.getRowCount();
-//        System.out.println(row);
-////        float thanhTien = 0;
-//        int soLuong = 0;
-//        float donGia = 0;
-//        float tong;
-//        float giamGia = Float.parseFloat(txtGiamgia.getText());
-//        for (int i = 0; i < row; i++) {
-//            String maSP = tblChiTietHoaDon.getValueAt(i, 0).toString();
-//            soLuong = Integer.parseInt(tblChiTietHoaDon.getValueAt(i, 1) + "");
-//            System.out.println("soluong:" + soLuong);
-//            SanPham sp = (SanPham) cboTenSanPham.getSelectedItem();
-//            HoaDonChiTiet_DAO dao = new HoaDonChiTiet_DAO();
-//            HoaDonChiTiet hdct = new HoaDonChiTiet();
-//            int soLuongThem = Integer.parseInt(lblSoLuong.getText());
-//            if(sp.getMaSanPham().equals(maSP)){
-//                soLuong = soLuong + soLuongThem;
-//                hdct.setMaHDBan(txtMaHoaDon.getText());
-//                hdct.setSoLuong(String.valueOf(soLuong));
-//                hdct.setMaSanPham(sp.getMaSanPham());
-//                dao.updateSL(hdct);
-//                loadHoaDonChiTietTable();
-//            }
-//            donGia = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 2).toString());
-//            System.out.println("don gia:" + donGia);
-//        }
-//        thanhTien = thanhTien + soLuong * donGia;
-//            txtThanhTien.setText(DesignHelper.formatCurrency(thanhTien));
-////        tong = thanhTien - (thanhTien * giamGia / 100);
-//        if (txtGiamgia.getText().isEmpty()) {
-//            tong = thanhTien ;
-//        } else {
-//            tong = thanhTien - (thanhTien * giamGia / 100);
-//        }
-//        txtTongTien.setText(DesignHelper.formatCurrency(tong));
-//        tienthuve = tong;
-//        return tienthuve;
-//    }
 }
