@@ -336,7 +336,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if (showPass) {
-            ImageIcon iconPass = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//icons//noshowpass.png"));
+            ImageIcon iconPass = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//Images//noshowpass.png"));
             lblshowpass.setIcon(iconPass);
             showPass = false;
 
@@ -344,7 +344,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
                 txtmatKhau.setEchoChar('\u25cf');
             }
         } else {
-            ImageIcon iconPass = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//icons//showpass.png"));
+            ImageIcon iconPass = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//Images//showpass.png"));
             lblshowpass.setIcon(iconPass);
             txtmatKhau.setEchoChar((char) 0);
             showPass = true;
@@ -511,6 +511,7 @@ int a = 0;
     private JLabel lbl2;
     private JLabel lbl3;
     private JLabel lbl4;
+    private JLabel lbl5;
     AnimationClass anim = new AnimationClass();
 
     void chayDongHo() {
@@ -656,7 +657,7 @@ int a = 0;
         lbl1.setBackground(Color.red);
         lbl1.setOpaque(true);
         lbl1.setBounds(220, 170, 70, 70);
-        ImageIcon icon1 = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//icons//phuc2.png"));
+        ImageIcon icon1 = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//Images//phuc2.png"));
         lbl1.setIcon(icon1);
         pnl1.add(lbl1);
         //add xuongduoi
@@ -664,7 +665,7 @@ int a = 0;
         lbl2.setBackground(Color.black);
         lbl2.setOpaque(true);
         lbl2.setBounds(110, 170, 70, 70);
-        ImageIcon icon2 = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//icons//trieu1.png"));
+        ImageIcon icon2 = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//Images//thienphuc.png"));
         lbl2.setIcon(icon2);
         pnl1.add(lbl2);
         //add qua phai
@@ -672,7 +673,7 @@ int a = 0;
         lbl3.setBackground(Color.pink);
         lbl3.setOpaque(true);
         lbl3.setBounds(110, 320, 70, 70);
-        ImageIcon icon3 = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//icons//tai1.png"));
+        ImageIcon icon3 = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//Images//tai1.png"));
         lbl3.setIcon(icon3);
         pnl1.add(lbl3);
         //add len tren
@@ -680,10 +681,17 @@ int a = 0;
         lbl4.setBackground(Color.green);
         lbl4.setOpaque(true);
         lbl4.setBounds(220, 320, 70, 70);
-        ImageIcon icon4 = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//icons//chinh1.png"));
+        ImageIcon icon4 = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//Images//chinh1.png"));
         lbl4.setIcon(icon4);
         pnl1.add(lbl4);
-
+        //add thien phuc
+        lbl5 = new JLabel("", JLabel.CENTER);
+        lbl5.setBackground(Color.green);
+        lbl5.setOpaque(true);
+        lbl5.setBounds(160, 245, 70, 70);
+        ImageIcon icon5 = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//Images//trieu2.png"));
+        lbl5.setIcon(icon5);
+        pnl1.add(lbl5);
         //chinh sua textfield
         txtTaiKhoan.setBackground(getBackground());
         txtmatKhau.setBackground(getBackground());
@@ -697,7 +705,7 @@ int a = 0;
 //        txtTaiKhoan.setFont(new Font("Segoe UI Light", 2, 15));
         //set icon show pass
         if (showPass) {
-            ImageIcon iconPass = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//icons//noshowpass.png"));
+            ImageIcon iconPass = new ImageIcon(getClass().getClassLoader().getResource("com//Sell//Images//noshowpass.png"));
             lblshowpass.setIcon(iconPass);
             showPass = false;
             // set an mat khau
