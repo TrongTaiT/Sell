@@ -10,6 +10,7 @@ import com.Sell.DAO.NhanVien_Dao;
 import com.Sell.Helper.DateHelper;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.MsgBox;
+import com.Sell.Helper.ValidationHelper;
 import com.Sell.entity.CuaHang;
 import com.Sell.entity.NhanVien;
 import java.awt.Color;
@@ -1091,6 +1092,7 @@ public class QL_NhanVien extends javax.swing.JPanel {
     }
 
     void setForm(NhanVien nv) {
+        resetBorder();
         txtMaNV.setText(nv.getMaNV());
         txtHoTen.setText(nv.getHoTen());
         txtNgaySinh.setDate(nv.getNgaySinh());
@@ -1189,6 +1191,7 @@ public class QL_NhanVien extends javax.swing.JPanel {
         this.setTextStartAndNew();
         this.row = -1;
         this.updateStatus();
+        resetBorder();
     }
 
     void edit() {
@@ -1200,6 +1203,13 @@ public class QL_NhanVien extends javax.swing.JPanel {
     }
 
     void insert() {
+        if(validates()==false){
+            return;
+        }
+        if(ValidationHelper.isNotDuplicatedID(this, txtMaNV,"Mã nhân viên", 
+                dao.selectById(txtMaNV.getText()))==false){
+            return;
+        }
         NhanVien nv = getForm();
         try {
             dao.insert(nv);
@@ -1213,6 +1223,9 @@ public class QL_NhanVien extends javax.swing.JPanel {
     }
 
     void update() {
+        if(validates()==false){
+            return;
+        }
         NhanVien nv = getForm();
         try {
             dao.update(nv);
@@ -1333,4 +1346,43 @@ public class QL_NhanVien extends javax.swing.JPanel {
 //        }
 //        return true;
 //    }
+    private void resetBorder(){
+        ValidationHelper.resetBorderColor(cboVaiTro,cboCuaHang,txtMaNV,txtHoTen,txtMatKhau,txtDienThoai
+        ,txtEmail,txtLuong,txtDiaChi);
+    }
+    private boolean validates(){
+        
+        if(ValidationHelper.isValidLength(this, txtMaNV, "Mã nhân viên", 7)==false){
+            return  false;
+        }
+        if(ValidationHelper.isValidName(this, txtHoTen,"Họ và tên",50 )==false){
+            return false;
+        }
+        if(ValidationHelper.isValidPassword(this, txtMatKhau, "Mật khẩu")==false){
+            return false;
+        }
+        if(ValidationHelper.isPickedCombobox(this, cboVaiTro, "Vai Trò")==false){
+            return false;
+        }
+        if(ValidationHelper.isValidEmail(this, txtEmail, "Email", 320)==false){
+            return false;
+        }
+        if(ValidationHelper.isValidPhoneNumber(this, txtDienThoai, "Điện thoại", 15)==false){
+            return false;
+        }
+        if(ValidationHelper.isNumberField(this, txtLuong, "Lương", 0.0)==false){
+            return false;
+        }
+        if(ValidationHelper.isValidLengthNullableField(this, txtDiaChi, "Địa chỉ", 255)==false){
+            return false;
+        }
+        if(ValidationHelper.isPickedCombobox(this, cboCuaHang, "Cửa hàng")==false){
+            return false;
+        }
+        if(txtNgaySinh.getDate()==null){
+            MsgBox.alert(this, "Chọn ngày sinh !");
+            return false;
+        }
+        return true;
+    }
 }
