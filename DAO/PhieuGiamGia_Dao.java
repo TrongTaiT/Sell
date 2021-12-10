@@ -20,6 +20,7 @@ public class PhieuGiamGia_Dao {
     String SELECT_ALL_SQL = "SELECT * FROM PhieuGiamGia";
     String SELECT_BY_ID_SQL = "SELECT * FROM PhieuGiamGia WHERE MaGiamGia = ?";
     String SELECT_BY_MAKH = "SELECT * FROM PHIEUGIAMGIA WHERE MAKHACHHANG = ?";
+    String SELECT_IN = "SELECT MAKHACHHANG FROM PHIEUGIAMGIA WHERE MAKHACHHANG IN(SELECT MAKHACHHANG FROM HOADONBANHANG)";
     
     public void insert(PhieuGiamGia entity) {
         try {
@@ -66,6 +67,10 @@ public class PhieuGiamGia_Dao {
             return null;
         }
         return list.get(0);
+    }
+    
+    public List<PhieuGiamGia> selectIn(String maKH){
+        return this.selectBySql(SELECT_IN, maKH);
     }
 
     public PhieuGiamGia selectById(String key) {
