@@ -424,7 +424,7 @@ public class ThongKeKhachHangJDialog extends java.awt.Dialog {
         List<Object[]> listdoanhthu = thongkedao.getThongKeKhachHang(thang, nam, makh);
         for (Object[] row : listdoanhthu) {
 
-            model.addRow(new Object[]{row[0], row[1], row[2], row[3], row[4]});
+            model.addRow(new Object[]{row[0], row[1], row[2], DateHelper.toString((Date) row[3]), row[4]});
 
         }
         //set thanh tieu de

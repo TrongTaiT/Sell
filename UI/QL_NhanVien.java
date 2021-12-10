@@ -1370,7 +1370,7 @@ public class QL_NhanVien extends javax.swing.JPanel {
 //    }
     private void resetBorder(){
         ValidationHelper.resetBorderColor(cboVaiTro,cboCuaHang,txtMaNV,txtHoTen,txtMatKhau,txtDienThoai
-        ,txtEmail,txtLuong,txtDiaChi);
+        ,txtEmail,txtLuong,txtDiaChi,txtNgaySinh);
     }
     private boolean validates(){
         

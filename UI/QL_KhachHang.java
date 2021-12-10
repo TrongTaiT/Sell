@@ -11,6 +11,7 @@ import com.Sell.DAO.PhieuGiamGia_Dao;
 import com.Sell.Helper.DateHelper;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.MsgBox;
+import com.Sell.Helper.ValidationHelper;
 import com.Sell.entity.HoaDonBanHang;
 import com.Sell.entity.HoaDonChiTiet;
 import com.Sell.entity.KhachHang;
@@ -1137,6 +1138,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
     }
 
     KhachHang getForm() {
+        resetBorder();
         KhachHang kh = new KhachHang();
         kh.setMaKhachHang(txtMaKH.getText());
         kh.setHoTen(txtHoTen.getText());
@@ -1166,9 +1168,17 @@ public class QL_KhachHang extends javax.swing.JPanel {
         setTextField();
         this.row = -1;
         updateStatus();
+        resetBorder();
     }
 
     void insert() {
+        if (validates() == false) {
+            return;
+        }
+        if (ValidationHelper.isNotDuplicatedID(this, txtMaKH, "Mã khách hàng",
+                dao.selectById(txtMaKH.getText())) == false) {
+            return;
+        }
         KhachHang kh = getForm();
         try {
             dao.insert(kh);
@@ -1180,6 +1190,9 @@ public class QL_KhachHang extends javax.swing.JPanel {
     }
 
     void update() {
+        if(validates()==false){
+            return;
+        }
         KhachHang kh = getForm();
         try {
             dao.update(kh);
@@ -1318,15 +1331,14 @@ public class QL_KhachHang extends javax.swing.JPanel {
             } catch (Exception e) {
                 MsgBox.alert(this, "Hôm nay không có thêm phiếu giảm giá");
             }
-        }
-        else{
+        } else {
             MsgBox.alert(this, "Hôm nay không có thêm phiếu giảm giá");
         }
     }
 
     PhieuGiamGia getData() {
         PhieuGiamGia giamGia = new PhieuGiamGia();
-        
+
         giamGia.setNgayGiamGia(DateHelper.now());
         List<KhachHang> list = dao.selectAll();
         for (KhachHang kh : list) {
@@ -1340,7 +1352,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
         giamGia.setTrangThai(false);
         return giamGia;
     }
-    
+
 //    void updateTrangThaiGG(){
 //        PhieuGiamGia giamGia = getData();
 //        HoaDonBanHang_Dao bhDAO = new HoaDonBanHang_Dao();
@@ -1353,7 +1365,6 @@ public class QL_KhachHang extends javax.swing.JPanel {
 //            }
 //        }
 //    }
-    
     void outPutExcel() {
         TableModel model = tblListKhachHang.getModel();
         JFileChooser excelExportChooser = new JFileChooser();
@@ -1398,5 +1409,33 @@ public class QL_KhachHang extends javax.swing.JPanel {
                 System.out.println(ex);
             }
         }
+    }
+
+    private void resetBorder() {
+        ValidationHelper.resetBorderColor(txtMaKH, txtHoTen, txtDienThoai,
+                 txtEmail, txtDiaChi, txtNgaySinh);
+    }
+
+    private boolean validates() {
+        if (ValidationHelper.isValidLength(this, txtMaKH, "Mã khách hàng", 7) == false) {
+            return false;
+        }
+        if (ValidationHelper.isValidName(this, txtHoTen, "Họ và tên", 50) == false) {
+            return false;
+        }
+        if (ValidationHelper.isValidEmail(this, txtEmail, "Email", 320) == false) {
+            return false;
+        }
+        if (ValidationHelper.isValidPhoneNumber(this, txtDienThoai, "Điện thoại", 15) == false) {
+            return false;
+        }
+        if (ValidationHelper.isValidLengthNullableField(this, txtDiaChi, "Địa chỉ", 255) == false) {
+            return false;
+        }
+        if (txtNgaySinh.getDate() == null) {
+            MsgBox.alert(this, "Chọn ngày sinh !");
+            return false;
+        }
+        return true;
     }
 }
