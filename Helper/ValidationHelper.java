@@ -23,58 +23,66 @@ public class ValidationHelper {
     public static Color validColor = new Color(0, 230, 64);
     public static Color errorColor = new Color(242, 38, 19);
 
-    static public boolean isNotNullField(Component parent, JTextComponent txt, String fieldName) {
+    public static boolean isNotNull(String text, String placeholder) {
+        return !(text.equals("") || text.equals(placeholder));
+    }
+
+    public static boolean isValidLength(String text, int maxLength) {
+        return text.length() <= maxLength;
+    }
+
+    public static boolean isNotNullField(Component parent, JTextComponent txtField, String fieldName) {
 
         // check null
-        if (txt.getText().equals("") || txt.getText().equals(fieldName)) {
+        if (txtField.getText().equals("") || txtField.getText().equals(fieldName)) {
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase() + "!");
-            txt.setBorder(new LineBorder(errorColor));
+            setErrorFor(txtField);
             return false;
         }
 
         // else
-        txt.setBorder(new LineBorder(validColor));
+        setValidFor(txtField);
         return true;
     }
-    
-    static public boolean isValidLengthNullableField(Component parent, JTextComponent txt,
+
+    public static boolean isValidLengthNullableField(Component parent, JTextComponent txtField,
             String fieldName, int maxLength) {
-        
+
         // check length
-        if (txt.getText().length() > maxLength) {
-            txt.setBorder(new LineBorder(errorColor));
+        if (txtField.getText().length() > maxLength) {
+            setErrorFor(txtField);
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase()
                     + " phải có độ dài nhỏ hơn " + maxLength);
             return false;
         }
 
         // else
-        txt.setBorder(new LineBorder(validColor));
+        setValidFor(txtField);
         return true;
     }
 
-    static public boolean isValidLength(Component parent, JTextComponent txt,
+    public static boolean isValidLength(Component parent, JTextComponent txtField,
             String fieldName, int maxLength) {
 
         // check null
-        if (isNotNullField(parent, txt, fieldName) == false) {
+        if (isNotNullField(parent, txtField, fieldName) == false) {
             return false;
         }
 
         // check length
-        if (txt.getText().length() > maxLength) {
-            txt.setBorder(new LineBorder(errorColor));
+        if (txtField.getText().length() > maxLength) {
+            setErrorFor(txtField);
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase()
                     + " phải có độ dài nhỏ hơn " + maxLength);
             return false;
         }
 
         // else
-        txt.setBorder(new LineBorder(validColor));
+        setValidFor(txtField);
         return true;
     }
 
-    static public boolean isValidPassword(Component parent, JPasswordField pwd, 
+    public static boolean isValidPassword(Component parent, JPasswordField pwd,
             String fieldName) {
 
         String password = new String(pwd.getPassword());
@@ -106,153 +114,153 @@ public class ValidationHelper {
         return true;
     }
 
-    public static boolean isValidName(Component parent, JTextComponent txt, 
+    public static boolean isValidName(Component parent, JTextComponent txtField,
             String fieldName, int maxLength) {
 
         // check null
-        if (ValidationHelper.isNotNullField(parent, txt, fieldName) == false) {
+        if (ValidationHelper.isNotNullField(parent, txtField, fieldName) == false) {
             return false;
         }
-        
+
         // check length
-        if (txt.getText().length() > maxLength) {
-            txt.setBorder(new LineBorder(errorColor));
+        if (txtField.getText().length() > maxLength) {
+            setErrorFor(txtField);
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase()
                     + " phải có độ dài nhỏ hơn " + maxLength);
             return false;
         }
 
         // check regex
-        if (RegexValidation.isValidName(txt.getText()) == false) {
-            txt.setBorder(new LineBorder(errorColor));
+        if (RegexValidation.isValidName(txtField.getText()) == false) {
+            setErrorFor(txtField);
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase() + " chưa hợp lệ!");
             return false;
         }
 
         // else
-        txt.setBorder(new LineBorder(validColor));
+        setValidFor(txtField);
         return true;
     }
 
-    public static boolean isValidPhoneNumber(Component parent, JTextComponent txt,
+    public static boolean isValidPhoneNumber(Component parent, JTextComponent txtField,
             String fieldName, int maxLength) {
 
         // check null
-        if (ValidationHelper.isNotNullField(parent, txt, fieldName) == false) {
+        if (ValidationHelper.isNotNullField(parent, txtField, fieldName) == false) {
             return false;
         }
-        
+
         // check length
-        if (txt.getText().length() > maxLength) {
-            txt.setBorder(new LineBorder(errorColor));
+        if (txtField.getText().length() > maxLength) {
+            setErrorFor(txtField);
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase()
                     + " phải có độ dài nhỏ hơn " + maxLength);
             return false;
         }
 
         // check regex
-        if (RegexValidation.isValidPhoneNumber(txt.getText()) == false) {
-            txt.setBorder(new LineBorder(errorColor));
+        if (RegexValidation.isValidPhoneNumber(txtField.getText()) == false) {
+            setErrorFor(txtField);
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase() + " chưa hợp lệ!");
             return false;
         }
 
         // else
-        txt.setBorder(new LineBorder(validColor));
+        setValidFor(txtField);
         return true;
     }
 
-    public static boolean isValidEmail(Component parent, JTextComponent txt,
+    public static boolean isValidEmail(Component parent, JTextComponent txtField,
             String fieldName, int maxLength) {
 
         // check null
-        if (ValidationHelper.isNotNullField(parent, txt, fieldName) == false) {
+        if (ValidationHelper.isNotNullField(parent, txtField, fieldName) == false) {
             return false;
         }
-        
+
         // check length
-        if (txt.getText().length() > maxLength) {
-            txt.setBorder(new LineBorder(errorColor));
+        if (txtField.getText().length() > maxLength) {
+            setErrorFor(txtField);
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase()
                     + " phải có độ dài nhỏ hơn " + maxLength);
             return false;
         }
 
         // check regex
-        if (RegexValidation.isValidEmail(txt.getText()) == false) {
-            txt.setBorder(new LineBorder(errorColor));
+        if (RegexValidation.isValidEmail(txtField.getText()) == false) {
+            setErrorFor(txtField);
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase() + " chưa hợp lệ!");
             return false;
         }
 
         // else
-        txt.setBorder(new LineBorder(validColor));
+        setValidFor(txtField);
         return true;
     }
 
-    public static boolean isNumberField(Component parent, JTextComponent txt,
+    public static boolean isNumberField(Component parent, JTextComponent txtField,
             String fieldName) {
 
         // check null
-        if (isNotNullField(parent, txt, fieldName) == false) {
+        if (isNotNullField(parent, txtField, fieldName) == false) {
             return false;
         }
 
         // check valid number
         try {
-            Double.parseDouble(txt.getText());
+            Double.parseDouble(txtField.getText());
         } catch (NumberFormatException e) {
-            txt.setBorder(new LineBorder(errorColor));
+            setErrorFor(txtField);
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase() + " phải là số");
             return false;
         }
 
         // else
-        txt.setBorder(new LineBorder(validColor));
+        setValidFor(txtField);
         return true;
     }
 
-    public static boolean isNumberField(Component parent, JTextComponent txt,
+    public static boolean isNumberField(Component parent, JTextComponent txtField,
             String fieldName, Double min) {
 
         // check numberfield
-        if (isNumberField(parent, txt, fieldName) == false) {
+        if (isNumberField(parent, txtField, fieldName) == false) {
             return false;
         }
 
         // check condition : greater than min
-        boolean condition = (Double.parseDouble(txt.getText()) > min);
+        boolean condition = (Double.parseDouble(txtField.getText()) > min);
         if (condition == false) {
-            txt.setBorder(new LineBorder(errorColor));
+            setErrorFor(txtField);
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase() + " phải lớn hơn " + min);
             return false;
         }
 
         // else
-        txt.setBorder(new LineBorder(validColor));
+        setValidFor(txtField);
         return true;
     }
 
-    public static boolean isNumberField(Component parent, JTextComponent txt,
+    public static boolean isNumberField(Component parent, JTextComponent txtField,
             String fieldName, Double min, Double max) {
 
         // check numberfield
-        if (isNumberField(parent, txt, fieldName) == false) {
+        if (isNumberField(parent, txtField, fieldName) == false) {
             return false;
         }
 
         // check condition : greater than min and smaller than max
-        Double number = Double.parseDouble(txt.getText());
+        Double number = Double.parseDouble(txtField.getText());
         boolean condition = (number > min) && (number < max);
         if (condition == false) {
-            txt.setBorder(new LineBorder(errorColor));
+            setErrorFor(txtField);
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase() + " phải lớn hơn " + min
                     + " và nhỏ hơn " + max);
             return false;
         }
 
         // else
-        txt.setBorder(new LineBorder(validColor));
+        setValidFor(txtField);
         return true;
     }
 
@@ -260,27 +268,41 @@ public class ValidationHelper {
 
         // check selected index is equals to first place, as placeholder in design
         if (comboBox.getSelectedIndex() == 0) {
-            comboBox.setBorder(new LineBorder(errorColor));
+            setErrorFor(comboBox);
             MsgBox.alert(parent, "Chọn " + cboName.toLowerCase() + "!");
             return false;
         } else {
-            comboBox.setBorder(new LineBorder(validColor));
+            setValidFor(comboBox);
             return true;
         }
     }
 
-    public static boolean isNotDuplicatedID(Component parent, JTextComponent txt,
+    public static boolean isNotDuplicatedID(Component parent, JTextComponent txtField,
             String fieldName, Object object) {
 
         // check if the object exists
         if (object != null) {
-            txt.setBorder(new LineBorder(errorColor));
+            setErrorFor(txtField);
             MsgBox.alert(parent, "Đã tồn tại " + fieldName + " này!\n"
                     + "Vui lòng chọn mã khác!");
             return false;
         }
 
-        txt.setBorder(new LineBorder(validColor));
+        setValidFor(txtField);
+        return true;
+    }
+
+    public static boolean isExistEntity(Component parent, JTextComponent txtField,
+            String fieldName, Object object) {
+        
+        // check if the object exists
+        if (object == null) {
+            setErrorFor(txtField);
+            MsgBox.alert(parent, "Không tồn tại " + fieldName.toLowerCase() + " này!\n"
+                    + "Vui lòng kiểm tra lại!");
+            return false;
+        }
+        
         return true;
     }
 
@@ -288,6 +310,14 @@ public class ValidationHelper {
         for (JComponent component : componets) {
             component.setBorder(new LineBorder(Color.gray));
         }
+    }
+
+    public static void setErrorFor(JComponent component) {
+        component.setBorder(new LineBorder(errorColor));
+    }
+
+    public static void setValidFor(JComponent component) {
+        component.setBorder(new LineBorder(validColor));
     }
 
 }

@@ -8,8 +8,10 @@ package com.Sell.UI;
 
 import com.Sell.DAO.ChiTietCuaHangDAO;
 import com.Sell.DAO.CuaHangDAO;
+import com.Sell.DAO.NhanVien_Dao;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.MsgBox;
+import com.Sell.Helper.ValidationHelper;
 import com.Sell.entity.ChiTietCuaHang;
 import com.Sell.entity.CuaHang;
 import java.awt.Color;
@@ -451,7 +453,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -483,7 +485,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
                         .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelDieuKhien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -546,14 +548,6 @@ public class QL_CuaHang extends javax.swing.JPanel {
         txtTimKiemChiTiet.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtTimKiemChiTietCaretUpdate(evt);
-            }
-        });
-        txtTimKiemChiTiet.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtTimKiemChiTietFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtTimKiemChiTietFocusLost(evt);
             }
         });
         panelSearch.add(txtTimKiemChiTiet);
@@ -686,24 +680,13 @@ public class QL_CuaHang extends javax.swing.JPanel {
 
     }//GEN-LAST:event_txtTimKiemCuaHangFocusLost
 
-    private void txtTimKiemChiTietFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTimKiemChiTietFocusGained
-
-    }//GEN-LAST:event_txtTimKiemChiTietFocusGained
-
-    private void txtTimKiemChiTietFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTimKiemChiTietFocusLost
-
-    }//GEN-LAST:event_txtTimKiemChiTietFocusLost
-
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         this.insert();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void tblListCuaHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListCuaHangMouseClicked
-
-        if (evt.getClickCount() == 2) {
-            this.row = tblListCuaHang.getSelectedRow();
-            this.edit();
-        }
+        this.row = tblListCuaHang.getSelectedRow();
+        this.edit();
     }//GEN-LAST:event_tblListCuaHangMouseClicked
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -727,10 +710,6 @@ public class QL_CuaHang extends javax.swing.JPanel {
         fillToTableChiTietCuaHang();
     }//GEN-LAST:event_cboCuaHangActionPerformed
 
-    private void txtTimKiemChiTietCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemChiTietCaretUpdate
-        fillToTableChiTietCuaHang();
-    }//GEN-LAST:event_txtTimKiemChiTietCaretUpdate
-
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         this.clearForm();
     }//GEN-LAST:event_btnMoiActionPerformed
@@ -750,6 +729,10 @@ public class QL_CuaHang extends javax.swing.JPanel {
     private void txtTimKiemCuaHangCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCuaHangCaretUpdate
         this.find();
     }//GEN-LAST:event_txtTimKiemCuaHangCaretUpdate
+
+    private void txtTimKiemChiTietCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemChiTietCaretUpdate
+        fillToTableChiTietCuaHang();
+    }//GEN-LAST:event_txtTimKiemChiTietCaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -888,6 +871,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
     }
 
     private void setForm(CuaHang ch) {
+        resetBorder();
         txtMaCuaHang.setText(ch.getMaCH());
         txtMaQuanLy.setText(ch.getMaQuanLy());
         String trangThai;
@@ -914,9 +898,18 @@ public class QL_CuaHang extends javax.swing.JPanel {
         this.setTextStartAndNew();
         this.row = -1;
         this.updateStatus();
+        resetBorder();
     }
 
     private void insert() {
+        if (validates() == false) {
+            return;
+        }
+        if (ValidationHelper.isNotDuplicatedID(this, txtMaCuaHang, "Mã cửa hàng",
+                chdao.selectById(txtMaCuaHang.getText())) == false) {
+            return;
+        }
+
         CuaHang ch = getForm();
         try {
             dao.insert(ch);
@@ -928,6 +921,9 @@ public class QL_CuaHang extends javax.swing.JPanel {
     }
 
     private void update() {
+        if (validates() == false) {
+            return;
+        }
         CuaHang ch = getForm();
         try {
             dao.update(ch);
@@ -940,10 +936,13 @@ public class QL_CuaHang extends javax.swing.JPanel {
 
     private void delete() {
         try {
-            String maCH = txtMaCuaHang.getText();
-            dao.delete(maCH);
-            this.fillTable();
-            MsgBox.alert(this, "Xóa thành công!");
+            if (new ChiTietCuaHangDAO().selectById(txtMaCuaHang.getText()) == null) {
+                dao.delete(txtMaCuaHang.getText());
+                this.fillTable();
+                MsgBox.alert(this, "Xóa thành công!");
+            } else {
+                MsgBox.alert(this, "Cửa hàng này vẫn đang còn hoạt động, không thể xoá!");
+            }
         } catch (Exception e) {
             MsgBox.alert(this, "Xóa thất bại");
         }
@@ -984,8 +983,6 @@ public class QL_CuaHang extends javax.swing.JPanel {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboCuaHang.getModel();
         model.removeAllElements();
         List<CuaHang> list = chdao.selectAll();
-//        Object[] tatcaObject = {"Tất cả", "Tất cả", "Tất cả"};
-//        model.addElement(tatcaObject);
         model.addElement(new CuaHang("Tất cả", "", "cửa hàng", true));
         for (CuaHang cd : list) {
             model.addElement(cd);
@@ -1023,7 +1020,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
 
         }
     }
-    
+
     void first() {
         row = 0;
         edit();
@@ -1046,5 +1043,29 @@ public class QL_CuaHang extends javax.swing.JPanel {
     void last() {
         row = tblListCuaHang.getRowCount() - 1;
         edit();
+    }
+
+    private boolean validates() {
+        if (ValidationHelper.isValidLength(this, txtMaCuaHang, "Mã cửa hàng", 7) == false) {
+            return false;
+        }
+        if (ValidationHelper.isValidLength(this, txtMaQuanLy, "Mã quản lý", 7) == false) {
+            return false;
+        }
+        if (ValidationHelper.isExistEntity(this, txtMaQuanLy, "Mã quản lý",
+                new NhanVien_Dao().selectById(txtMaQuanLy.getText())) != false) {
+            return false;
+        }
+        if (ValidationHelper.isPickedCombobox(this, cboTrangThai, "Trạng thái") == false) {
+            return false;
+        }
+        if (ValidationHelper.isValidLengthNullableField(this, txtDiaChi, "Địa chỉ", 225) == false) {
+            return false;
+        }
+        return true;
+    }
+
+    private void resetBorder() {
+        ValidationHelper.resetBorderColor(txtMaCuaHang, txtMaQuanLy, cboTrangThai, txtDiaChi);
     }
 }

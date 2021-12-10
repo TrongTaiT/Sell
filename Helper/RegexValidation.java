@@ -16,10 +16,10 @@ public class RegexValidation {
     public static boolean isNumber(Object object) {
         try {
             Double.parseDouble(((String) object));
+            return true;
         } catch (NumberFormatException e) {
             return false;
         }
-        return true;
     }
 
     // alphabet including Unicode UTF-8
