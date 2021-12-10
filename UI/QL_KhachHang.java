@@ -5,11 +5,14 @@
  */
 package com.Sell.UI;
 
+import com.Sell.DAO.HoaDonBanHang_Dao;
 import com.Sell.DAO.KhachHangDAO;
 import com.Sell.DAO.PhieuGiamGia_Dao;
 import com.Sell.Helper.DateHelper;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.MsgBox;
+import com.Sell.entity.HoaDonBanHang;
+import com.Sell.entity.HoaDonChiTiet;
 import com.Sell.entity.KhachHang;
 import com.Sell.entity.PhieuGiamGia;
 import java.awt.Color;
@@ -1157,8 +1160,9 @@ public class QL_KhachHang extends javax.swing.JPanel {
         try {
             dao.insert(kh);
             this.fillTable();
+            MsgBox.alert(this, "Thêm thành công!");
         } catch (Exception e) {
-            System.out.println(e);
+            MsgBox.alert(this, "Thêm thất bại!");
         }
     }
 
@@ -1167,8 +1171,9 @@ public class QL_KhachHang extends javax.swing.JPanel {
         try {
             dao.update(kh);
             this.fillTable();
+            MsgBox.alert(this, "Sửa thành công!");
         } catch (Exception e) {
-            System.out.println(e);
+            MsgBox.alert(this, "Sửa thất bại!");
         }
     }
 
@@ -1176,6 +1181,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
         String maKH = txtMaKH.getText();
         dao.delete(maKH);
         this.fillTable();
+        MsgBox.alert(this, "Xóa thành công!");
     }
 
     void find() {
@@ -1264,6 +1270,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
     //tblHocVien double click
     void fillTableGiamGia() {
         insertGiamGia();
+//        updateTrangThaiGG();
         DefaultTableModel model = (DefaultTableModel) tblPhieuGiamGia.getModel();
 
         // xóa dữ liệu trên table
@@ -1299,7 +1306,9 @@ public class QL_KhachHang extends javax.swing.JPanel {
                 MsgBox.alert(this, "Hôm nay không có thêm phiếu giảm giá");
             }
         }
-
+        else{
+            MsgBox.alert(this, "Hôm nay không có thêm phiếu giảm giá");
+        }
     }
 
     PhieuGiamGia getData() {
@@ -1318,6 +1327,19 @@ public class QL_KhachHang extends javax.swing.JPanel {
         giamGia.setTrangThai(false);
         return giamGia;
     }
+    
+//    void updateTrangThaiGG(){
+//        PhieuGiamGia giamGia = getData();
+//        HoaDonBanHang_Dao bhDAO = new HoaDonBanHang_Dao();
+//        List<PhieuGiamGia> list = ggDAO.selectIn();
+//        for(PhieuGiamGia gg : list){
+//            if(gg.getTrangThai() == false){
+//                gg.setTrangThai(true);
+//                ggDAO.update(gg);
+//                MsgBox.alert(this, "ok");
+//            }
+//        }
+//    }
     
     void outPutExcel() {
         TableModel model = tblListKhachHang.getModel();

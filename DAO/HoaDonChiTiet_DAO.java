@@ -48,6 +48,18 @@ public class HoaDonChiTiet_DAO {
             System.out.println(e + "loi dong 55 hoa phieu giam gia vien dao");
         }
     }
+    
+    public void updateSL(HoaDonChiTiet entity) {
+        try {
+            JdbcHelper.executeUpdate(UPDATE_SQLSL,
+                    entity.getSoLuong(),
+                    entity.getMaHDBan(),
+                    entity.getMaSanPham()
+            );
+        } catch (Exception e) {
+            System.out.println(e + "loi dong 55 hoa phieu giam gia vien dao");
+        }
+    }
 
     public void delete(String key, String key2) {
         try {

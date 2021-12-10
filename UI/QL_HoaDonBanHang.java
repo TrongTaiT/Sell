@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
+import sun.misc.FloatingDecimal;
 
 /**
  *
@@ -1040,6 +1041,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             panelHoaDonChiTiet.setVisible(false);
             this.fillToForm(hd);
             txtMaHoaDon.setEnabled(false);
+            txtTongTien.setText(DesignHelper.formatCurrency(hd.getThanhTien()));
         }
     }//GEN-LAST:event_tblHoaDonChiTietMouseClicked
 
@@ -1232,7 +1234,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     private javax.swing.JTextField txtTimKiem1;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
-    float thanhTien = 0;
+    
 
     void init() {
         setTable();
@@ -1268,7 +1270,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 //        model3.addColumn("MÃ GIẢM GIÁ");
 //        tblHoaDonChiTiet.setModel(model3);
         String[] hoaDonChiTietColumns = {"MÃ HÓA ĐƠN", "MÃ KHÁCH HÀNG", "NGÀY BÁN",
-            "NỘI DUNG", "TRẠNG THÁI", "MÃ NV", "MÃ CH", "MÃ GIẢM GIÁ", "THÀNH TIỀN"};
+            "NỘI DUNG", "TRẠNG THÁI", "MÃ NV", "MÃ CH", "THÀNH TIỀN"};
         DesignHelper.setTable(tblHoaDonChiTiet, hoaDonChiTietColumns);
     }
 
@@ -1402,7 +1404,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
         txtNhaSX.setText(sp.getNhaSX());
         txtDonGia.setText(sp.getGiaTien() + "");
-        lblSoLuong.setText("0");
+        lblSoLuong.setText("1");
 
     }
 
@@ -1422,15 +1424,19 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             System.out.println(e);
         }
     }
-
-    private void thanhTien() {
+float thanhTien = 0;
+    private float thanhTien() {
         int row = tblChiTietHoaDon.getRowCount();
         System.out.println(row);
         thanhTien = 0;
         float tong;
         float giamGia = Float.parseFloat(txtGiamgia.getText());
+            SanPham sp = (SanPham) cboTenSanPham.getSelectedItem();
+            HoaDonChiTiet_DAO dao = new HoaDonChiTiet_DAO();
+            HoaDonChiTiet hdct = new HoaDonChiTiet();
         for (int i = 0; i < row; i++) {
-            float soLuong = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 1) + "");
+            String maSP = tblChiTietHoaDon.getValueAt(i, 0).toString();
+            int soLuong = Integer.parseInt(tblChiTietHoaDon.getValueAt(i, 1) + "");
             System.out.println("soluong:" + soLuong);
 
             float donGia = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 2).toString());
@@ -1438,7 +1444,6 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
             thanhTien = thanhTien + soLuong * donGia;
         }
-        txtThanhTien.setText(DesignHelper.formatCurrency(thanhTien));
 //        tong = thanhTien - (thanhTien * giamGia / 100);
         if (txtGiamgia.getText().isEmpty()) {
             tong = thanhTien;
@@ -1447,6 +1452,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         }
         txtTongTien.setText(DesignHelper.formatCurrency(tong));
         tienthuve = tong;
+        return tienthuve;
     }
 
     void fillToForm(HoaDonBanHang hd) {
@@ -1467,7 +1473,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         SanPham spct = spdao.selectById(sp);
         cboTenSanPham.setSelectedItem(spct);
         txtNhaSX.setText(spct.getNhaSX());
-        lblSoLuong.setText("0");
+        lblSoLuong.setText(hd.getSoLuong());
         txtDonGia.setText(spct.getGiaTien() + "");
     }
 
@@ -1501,6 +1507,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             hdctdao.insert(hd);
             loadHoaDonChiTietTable();
             thanhTien();
+//            fixCuaChinh();
             fillToTableChiTietCuaHang();
             MsgBox.alert(this, "Thêm sản phẩm vào hóa đơn thành công!");
         } catch (Exception e) {
@@ -1550,7 +1557,6 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                     ch.getTrangThai()?"Đã thanh toán":"Chưa thanh toán",
                     ch.getMaNhanVien(),
                     ch.getMaCuaHang(),
-                    ch.getMaGiamGia(),
                     ch.getThanhTien()
                 });
 
@@ -1589,14 +1595,15 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         }
     }
 
-    private void tongTien() {
-        float tong;
-        float thanhTien = Float.parseFloat(txtThanhTien.getText());
-        float giamGia = Float.parseFloat(txtGiamgia.getText());
-
-        tong = thanhTien - (thanhTien * giamGia / 100);
-        txtTongTien.setText(DesignHelper.formatCurrency(tong));
-    }
+//    private float tongTien() {
+//        float tong;
+//        float thanhTien = Float.parseFloat(txtThanhTien.getText());
+//        float giamGia = Float.parseFloat(txtGiamgia.getText());
+//
+//        tong = thanhTien - (thanhTien * giamGia / 100);
+//        txtTongTien.setText(DesignHelper.formatCurrency(tong));
+//        return FloatingDecimal.parseFloat(String.valueOf(tong));
+//    }
 
     private void tinhTienThanhToan(String tienKhachDua, float tongTien) {
         float tienTraLai = 0;
@@ -1611,7 +1618,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         HoaDonBanHang hdbh = getData();
         HoaDonBanHang_Dao dao = new HoaDonBanHang_Dao();
         hdbh.setTrangThai(true);
-        hdbh.setThanhTien(thanhTien);
+        hdbh.setThanhTien(thanhTien());
         try {
 //            String maHD = txtMaHoaDon.getText();
             dao.update(hdbh);
@@ -1621,5 +1628,45 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             MsgBox.alert(this, "Thanh toán thất bại!");
         }
     }
+    
+//    float fixCuaChinh(){
+//        int row = tblChiTietHoaDon.getRowCount();
+//        System.out.println(row);
+////        float thanhTien = 0;
+//        int soLuong = 0;
+//        float donGia = 0;
+//        float tong;
+//        float giamGia = Float.parseFloat(txtGiamgia.getText());
+//        for (int i = 0; i < row; i++) {
+//            String maSP = tblChiTietHoaDon.getValueAt(i, 0).toString();
+//            soLuong = Integer.parseInt(tblChiTietHoaDon.getValueAt(i, 1) + "");
+//            System.out.println("soluong:" + soLuong);
+//            SanPham sp = (SanPham) cboTenSanPham.getSelectedItem();
+//            HoaDonChiTiet_DAO dao = new HoaDonChiTiet_DAO();
+//            HoaDonChiTiet hdct = new HoaDonChiTiet();
+//            int soLuongThem = Integer.parseInt(lblSoLuong.getText());
+//            if(sp.getMaSanPham().equals(maSP)){
+//                soLuong = soLuong + soLuongThem;
+//                hdct.setMaHDBan(txtMaHoaDon.getText());
+//                hdct.setSoLuong(String.valueOf(soLuong));
+//                hdct.setMaSanPham(sp.getMaSanPham());
+//                dao.updateSL(hdct);
+//                loadHoaDonChiTietTable();
+//            }
+//            donGia = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 2).toString());
+//            System.out.println("don gia:" + donGia);
+//        }
+//        thanhTien = thanhTien + soLuong * donGia;
+//            txtThanhTien.setText(DesignHelper.formatCurrency(thanhTien));
+////        tong = thanhTien - (thanhTien * giamGia / 100);
+//        if (txtGiamgia.getText().isEmpty()) {
+//            tong = thanhTien ;
+//        } else {
+//            tong = thanhTien - (thanhTien * giamGia / 100);
+//        }
+//        txtTongTien.setText(DesignHelper.formatCurrency(tong));
+//        tienthuve = tong;
+//        return tienthuve;
+//    }
 
 }
