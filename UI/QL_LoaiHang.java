@@ -9,6 +9,7 @@ import com.Sell.entity.LoaiHang;
 import com.Sell.DAO.LoaiHangDAO;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.MsgBox;
+import com.Sell.Helper.ValidationHelper;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
@@ -580,7 +581,7 @@ public class QL_LoaiHang extends javax.swing.JPanel {
         DesignHelper.addPlaceHolderTextField(txtTenLoai, "Tên loại");
         DesignHelper.addPlaceHolderTextField(txtGhiChu, "Ghi chú");
     }
-    
+
     private void setPlaceholderForSetForm() {
         DesignHelper.deletePlaceHolderTextField(txtMaLoai);
         Font font = txtMaLoai.getFont();
@@ -593,28 +594,30 @@ public class QL_LoaiHang extends javax.swing.JPanel {
     private void clearForm() {
         LoaiHang nv = new LoaiHang();
         tblLoaiSanPham.clearSelection();
-       
+
         this.setForm(nv);
         this.setTextField();
         this.row = -1;
         this.updateStatus();
+        resetBorder();
     }
-    
+
     private LoaiHang getForm() {
         LoaiHang lh = new LoaiHang();
-        
+
         lh.setMaLoai(txtMaLoai.getText());
         lh.setTenLoai(txtTenLoai.getText());
         lh.setGhiChu(txtGhiChu.getText());
         return lh;
     }
-    
+
     private void setForm(LoaiHang lh) {
+        resetBorder();
         txtMaLoai.setText(lh.getMaLoai());
         txtTenLoai.setText(lh.getTenLoai());
         txtGhiChu.setText(lh.getGhiChu());
     }
-    
+
     private void edit() {
         String maLoai = (String) tblLoaiSanPham.getValueAt(row, 0);
         LoaiHang lh = dao.selectById(maLoai);
@@ -622,7 +625,7 @@ public class QL_LoaiHang extends javax.swing.JPanel {
         this.setForm(lh);
         this.updateStatus();
     }
-    
+
     void updateStatus() {
         boolean edit = (this.row >= 0);
         boolean first = (this.row == 0);
@@ -666,8 +669,15 @@ public class QL_LoaiHang extends javax.swing.JPanel {
             System.out.println(e);
         }
     }
-    
-    private void insert(){
+
+    private void insert() {
+        if (validates() == false) {
+            return;
+        }
+        if (ValidationHelper.isNotDuplicatedID(this, txtMaLoai, "Mã loại",
+                dao.selectById(txtMaLoai.getText())) == false) {
+            return;
+        }
         LoaiHang lh = getForm();
         try {
             dao.insert(lh);
@@ -697,6 +707,9 @@ public class QL_LoaiHang extends javax.swing.JPanel {
     }
 
     private void update() {
+        if(validates()==false){
+            return;
+        }
         LoaiHang lh = getForm();
         try {
             dao.update(lh);
@@ -730,6 +743,24 @@ public class QL_LoaiHang extends javax.swing.JPanel {
     private void last() {
         row = tblLoaiSanPham.getRowCount() - 1;
         edit();
+    }
+
+    private void resetBorder() {
+        ValidationHelper.resetBorderColor(txtMaLoai, txtTenLoai, txtGhiChu);
+    }
+
+    private boolean validates() {
+
+        if (ValidationHelper.isValidLength(this, txtMaLoai, "Mã loại", 7) == false) {
+            return false;
+        }
+        if (ValidationHelper.isValidLength(this, txtTenLoai, "Tên loại", 255) == false) {
+            return false;
+        }
+        if (ValidationHelper.isValidLengthNullableField(this, txtGhiChu, "Ghi chú", 255) == false) {
+            return false;
+        }
+        return true;
     }
 
 }

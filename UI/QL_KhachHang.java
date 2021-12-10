@@ -1075,6 +1075,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
         txtDiaChi.setText("Địa chỉ");
         txtNgayDK.setText(DateHelper.toString(DateHelper.now(), "dd/MM/yyyy"));
         txtNgayDK.setEditable(false);
+        txtNgaySinh.setDate(null);
         DesignHelper.addPlaceHolderTextField(txtMaKH);
         DesignHelper.addPlaceHolderTextField(txtHoTen);
         DesignHelper.addPlaceHolderTextField(txtEmail);
@@ -1138,7 +1139,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
     }
 
     KhachHang getForm() {
-        resetBorder();
+        
         KhachHang kh = new KhachHang();
         kh.setMaKhachHang(txtMaKH.getText());
         kh.setHoTen(txtHoTen.getText());
@@ -1152,6 +1153,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
     }
 
     void setForm(KhachHang kh) {
+        resetBorder();
         txtMaKH.setText(kh.getMaKhachHang());
         txtHoTen.setText(kh.getHoTen());
         rdoNam.setSelected(kh.getGioiTinh());
