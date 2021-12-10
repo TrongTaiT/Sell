@@ -127,7 +127,6 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         btnNextHinh = new javax.swing.JButton();
         btnPrevHinh = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
         panelHoaDonChiTiet = new javax.swing.JPanel();
         kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -186,7 +185,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTitleLayout.createSequentialGroup()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 705, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 733, Short.MAX_VALUE)
                 .addComponent(btnXemTableChiTiet1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -688,7 +687,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             }
         });
         jPanel10.add(btnThemSPToHoaDon);
-        btnThemSPToHoaDon.setBounds(433, 232, 100, 30);
+        btnThemSPToHoaDon.setBounds(333, 232, 200, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -714,15 +713,6 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         });
         jPanel10.add(btnPrevHinh);
         btnPrevHinh.setBounds(320, 100, 20, 33);
-
-        btnUpdate.setText("jButton1");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-        jPanel10.add(btnUpdate);
-        btnUpdate.setBounds(340, 230, 79, 25);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -804,7 +794,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 823, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 629, Short.MAX_VALUE)
                 .addComponent(btnBanHang)
                 .addContainerGap())
         );
@@ -942,10 +932,23 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaHDActionPerformed
 
     private void btnThemSPToHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSPToHoaDonActionPerformed
-        // TODO add your handling code here:
+        int row = tblChiTietHoaDon.getRowCount();
+        SanPham sp = (SanPham) cboTenSanPham.getSelectedItem();
+        boolean check = false;
 
-        this.themSPToHoaDon();
-
+        for (int i = 0; i < row; i++) {
+            String maSP = (String) tblChiTietHoaDon.getValueAt(i, 0);
+            if (maSP.equalsIgnoreCase(sp.getMaSanPham())) {
+                check = true;
+                break;
+            }
+        }
+        if (check == true) {
+            updateSoLuong();
+        } else {
+            themSPToHoaDon();
+        }
+        fillToTableChiTietCuaHang();
     }//GEN-LAST:event_btnThemSPToHoaDonActionPerformed
 
     private void cboTenKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTenKhachHangActionPerformed
@@ -1144,24 +1147,6 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnXoaHoaDonActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        try {
-            int row = tblChiTietHoaDon.getSelectedRow();
-            String maSP = (String) tblChiTietHoaDon.getValueAt(row, 0);
-
-            HoaDonChiTiet hd = new HoaDonChiTiet();
-
-            hd.setMaHDBan(txtMaHoaDon.getText());
-            hd.setMaSanPham(maSP);
-            hd.setSoLuong(lblSoLuong.getText());
-
-            hdctdao.update(hd);
-            loadHoaDonChiTietTable();
-            thanhTien();
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddKHToHoaDon;
@@ -1172,7 +1157,6 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     private javax.swing.JButton btnPrevHinh;
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnThemSPToHoaDon;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnXemTableChiTiet1;
     private javax.swing.JButton btnXoaHD;
     private javax.swing.JButton btnXoaHoaDon;
@@ -1249,7 +1233,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     }
 
     void setTable() {
-        String[] chiTietCuaHangColumns = {"MÃ CỬA HÀNG", "MÃ SẢN PHẨM", "MÃ SỐ LƯỢNG"};
+        String[] chiTietCuaHangColumns = {"MÃ CỬA HÀNG", "MÃ SẢN PHẨM", "TỒN KHO"};
         DesignHelper.setTable(tblChiTietCuaHang, chiTietCuaHangColumns);
         String[] chiTietHoaDonColumns = {"MÃ SẢN PHẨM", "SỐ LƯỢNG", "ĐƠN GIÁ"};
         DesignHelper.setTable(tblChiTietHoaDon, chiTietHoaDonColumns);
@@ -1621,6 +1605,24 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             MsgBox.alert(this, "Thanh toán thành công!");
         } catch (Exception e) {
             MsgBox.alert(this, "Thanh toán thất bại!");
+        }
+    }
+
+    private void updateSoLuong() {
+        try {
+            int row = tblChiTietHoaDon.getSelectedRow();
+            String maSP = (String) tblChiTietHoaDon.getValueAt(row, 0);
+
+            HoaDonChiTiet hd = new HoaDonChiTiet();
+
+            hd.setMaHDBan(txtMaHoaDon.getText());
+            hd.setMaSanPham(maSP);
+            hd.setSoLuong(lblSoLuong.getText());
+
+            hdctdao.update(hd);
+            loadHoaDonChiTietTable();
+            thanhTien();
+        } catch (Exception e) {
         }
     }
 
