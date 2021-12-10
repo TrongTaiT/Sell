@@ -110,5 +110,11 @@ public class ImageHelper {
             throw new RuntimeException(ex);
         }
     }
+    
+    public static ImageIcon readAndResize(JComponent container, String fileName) throws IOException {
+        BufferedImage image = ImageIO.read(new File("Images", fileName));
+        return new ImageIcon(image.getScaledInstance(container.getWidth(),
+                container.getHeight(), BufferedImage.SCALE_SMOOTH));
+    }
 
 }
