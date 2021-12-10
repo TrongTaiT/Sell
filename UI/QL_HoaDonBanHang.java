@@ -1055,7 +1055,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         panelHoaDonChiTiet.setVisible(true);
         panelBanHang.setVisible(false);
         fillTableHoaDonBan();
-        
+
     }//GEN-LAST:event_btnXemTableChiTiet1ActionPerformed
 
     private void tblHoaDonChiTietMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonChiTietMouseEntered
@@ -1121,17 +1121,22 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     private void btnXoaHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaHoaDonActionPerformed
         int row = tblHoaDonChiTiet.getSelectedRow();
-        String maHD = (String) tblChiTietHoaDon.getValueAt(row, 0);
-        if (MsgBox.confirm(this, "Bạn có muốn xóa hay không?")) {
-            try {
-                HoaDonBanHang_Dao hdctdao = new HoaDonBanHang_Dao();
-                hdctdao.delete(maHD);
-                fillTableHoaDonBan();
+        try {
+            String maHD = (String) tblHoaDonChiTiet.getValueAt(row, 0);
+            System.out.println(maHD);
 
-                MsgBox.alert(this, "Xóa thành công!");
-            } catch (Exception e) {
-                MsgBox.alert(this, "Xóa thất bại!");
+            if (MsgBox.confirm(this, "Bạn có muốn xóa hoá đơn: "+maHD+" không?")) {
+                try {
+                    HoaDonBanHang_Dao hdctdao = new HoaDonBanHang_Dao();
+                    hdctdao.delete(maHD);
+                    fillTableHoaDonBan();
+
+                    MsgBox.alert(this, "Xóa thành công!");
+                } catch (Exception e) {
+                    MsgBox.alert(this, "Xóa thất bại!");
+                }
             }
+        } catch (Exception e) {
         }
 
 
@@ -1234,7 +1239,6 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     private javax.swing.JTextField txtTimKiem1;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
-    
 
     void init() {
         setTable();
@@ -1424,16 +1428,17 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             System.out.println(e);
         }
     }
-float thanhTien = 0;
+    float thanhTien = 0;
+
     private float thanhTien() {
         int row = tblChiTietHoaDon.getRowCount();
         System.out.println(row);
         thanhTien = 0;
         float tong;
         float giamGia = Float.parseFloat(txtGiamgia.getText());
-            SanPham sp = (SanPham) cboTenSanPham.getSelectedItem();
-            HoaDonChiTiet_DAO dao = new HoaDonChiTiet_DAO();
-            HoaDonChiTiet hdct = new HoaDonChiTiet();
+        SanPham sp = (SanPham) cboTenSanPham.getSelectedItem();
+        HoaDonChiTiet_DAO dao = new HoaDonChiTiet_DAO();
+        HoaDonChiTiet hdct = new HoaDonChiTiet();
         for (int i = 0; i < row; i++) {
             String maSP = tblChiTietHoaDon.getValueAt(i, 0).toString();
             int soLuong = Integer.parseInt(tblChiTietHoaDon.getValueAt(i, 1) + "");
@@ -1554,7 +1559,7 @@ float thanhTien = 0;
                     ch.getMaKhachHang(),
                     DateHelper.toString(ch.getNgayBan()),
                     ch.getNoiDung(),
-                    ch.getTrangThai()?"Đã thanh toán":"Chưa thanh toán",
+                    ch.getTrangThai() ? "Đã thanh toán" : "Chưa thanh toán",
                     ch.getMaNhanVien(),
                     ch.getMaCuaHang(),
                     ch.getThanhTien()
@@ -1604,7 +1609,6 @@ float thanhTien = 0;
 //        txtTongTien.setText(DesignHelper.formatCurrency(tong));
 //        return FloatingDecimal.parseFloat(String.valueOf(tong));
 //    }
-
     private void tinhTienThanhToan(String tienKhachDua, float tongTien) {
         float tienTraLai = 0;
         float tienKhachTra = Float.parseFloat(tienKhachDua);
@@ -1628,7 +1632,7 @@ float thanhTien = 0;
             MsgBox.alert(this, "Thanh toán thất bại!");
         }
     }
-    
+
 //    float fixCuaChinh(){
 //        int row = tblChiTietHoaDon.getRowCount();
 //        System.out.println(row);
@@ -1668,5 +1672,4 @@ float thanhTien = 0;
 //        tienthuve = tong;
 //        return tienthuve;
 //    }
-
 }
