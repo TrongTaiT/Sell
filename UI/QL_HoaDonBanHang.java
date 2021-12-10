@@ -996,8 +996,8 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     private void btnAddKHToHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddKHToHoaDonActionPerformed
         // TODO add your handling code here:
-        this.themTableHoaDon();
-        fillComboBoxCuaHang();
+        this.themHoaDonMoi();
+
     }//GEN-LAST:event_btnAddKHToHoaDonActionPerformed
 
     private void cboMaCuaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMaCuaHangActionPerformed
@@ -1042,6 +1042,8 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             this.fillToForm(hd);
             txtMaHoaDon.setEnabled(false);
             txtTongTien.setText(DesignHelper.formatCurrency(hd.getThanhTien()));
+            fillComboBoxCuaHang();
+            thanhTien();
         }
     }//GEN-LAST:event_tblHoaDonChiTietMouseClicked
 
@@ -1125,7 +1127,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             String maHD = (String) tblHoaDonChiTiet.getValueAt(row, 0);
             System.out.println(maHD);
 
-            if (MsgBox.confirm(this, "Bạn có muốn xóa hoá đơn: "+maHD+" không?")) {
+            if (MsgBox.confirm(this, "Bạn có muốn xóa hoá đơn: " + maHD + " không?")) {
                 try {
                     HoaDonBanHang_Dao hdctdao = new HoaDonBanHang_Dao();
                     hdctdao.delete(maHD);
@@ -1247,32 +1249,10 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     }
 
     void setTable() {
-//        DefaultTableModel model = new DefaultTableModel();
-//        model.addColumn("MÃ CỬA HÀNG");
-//        model.addColumn("MÃ SẢN PHẨM");
-//        model.addColumn("MÃ SỐ LƯỢNG");
-//        tblChiTietCuaHang.setModel(model);
         String[] chiTietCuaHangColumns = {"MÃ CỬA HÀNG", "MÃ SẢN PHẨM", "MÃ SỐ LƯỢNG"};
         DesignHelper.setTable(tblChiTietCuaHang, chiTietCuaHangColumns);
-
-//        DefaultTableModel model2 = new DefaultTableModel();
-//        model2.addColumn("TÊN SẢN PHẨM");
-//        model2.addColumn("SỐ LƯỢNG");
-//        model2.addColumn("ĐƠN GIÁ");
-//        tblChiTietHoaDon.setModel(model2);
         String[] chiTietHoaDonColumns = {"MÃ SẢN PHẨM", "SỐ LƯỢNG", "ĐƠN GIÁ"};
         DesignHelper.setTable(tblChiTietHoaDon, chiTietHoaDonColumns);
-
-//        DefaultTableModel model3 = new DefaultTableModel();
-//        model3.addColumn("MÃ HÓA ĐƠN");
-//        model3.addColumn("MÃ KHÁCH HÀNG");
-//        model3.addColumn("NGÀY BÁN");
-//        model3.addColumn("NỘI DUNG");
-//        model3.addColumn("TRẠNG THÁI");
-//        model3.addColumn("MÃ NV");
-//        model3.addColumn("MÃ CH");
-//        model3.addColumn("MÃ GIẢM GIÁ");
-//        tblHoaDonChiTiet.setModel(model3);
         String[] hoaDonChiTietColumns = {"MÃ HÓA ĐƠN", "MÃ KHÁCH HÀNG", "NGÀY BÁN",
             "NỘI DUNG", "TRẠNG THÁI", "MÃ NV", "MÃ CH", "THÀNH TIỀN"};
         DesignHelper.setTable(tblHoaDonChiTiet, hoaDonChiTietColumns);
@@ -1308,7 +1288,10 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     private void fillComboBoxCuaHang() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboMaCuaHang.getModel();
-        model.removeAllElements();
+        try {
+            model.removeAllElements();
+        } catch (Exception e) {
+        }
         List<CuaHang> list = chdao.selectAll();
         model.addElement(new CuaHang("Tất cả", "", "cửa hàng", true));
         for (CuaHang ch : list) {
@@ -1435,7 +1418,13 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         System.out.println(row);
         thanhTien = 0;
         float tong;
-        float giamGia = Float.parseFloat(txtGiamgia.getText());
+        float giamGia;
+        try {
+            giamGia = Float.parseFloat(txtGiamgia.getText());
+        } catch (Exception e) {
+            giamGia = 0f;
+        }
+
         SanPham sp = (SanPham) cboTenSanPham.getSelectedItem();
         HoaDonChiTiet_DAO dao = new HoaDonChiTiet_DAO();
         HoaDonChiTiet hdct = new HoaDonChiTiet();
@@ -1449,6 +1438,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
             thanhTien = thanhTien + soLuong * donGia;
         }
+        txtThanhTien.setText(DesignHelper.formatCurrency(thanhTien));
 //        tong = thanhTien - (thanhTien * giamGia / 100);
         if (txtGiamgia.getText().isEmpty()) {
             tong = thanhTien;
@@ -1520,7 +1510,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         }
     }
 
-    private void themTableHoaDon() {
+    private void themHoaDonMoi() {
         HoaDonBanHang_Dao hdbhdao = new HoaDonBanHang_Dao();
         HoaDonBanHang hd = new HoaDonBanHang();
         KhachHang kh = (KhachHang) cboTenKhachHang.getSelectedItem();
@@ -1533,6 +1523,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         hd.setMaCuaHang(Auth.user.getMaCuaHang());
         hd.setMaGiamGia("1");
         hd.setThanhTien(0f);
+        fillComboBoxCuaHang();
         try {
             hdbhdao.insert(hd);
             try {
