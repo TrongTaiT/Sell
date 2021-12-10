@@ -15,13 +15,13 @@ import java.util.List;
 public class HoaDonChiTiet_DAO {
 
     String INSERT_SQL = "INSERT INTO [HoaDonChiTiet] VALUES (?, ?, ?, ? )";
-    String UPDATE_SQL = "UPDATE HoaDonChiTiet SET MaSanPham = ?, SoLuong= ?, ThanhTien = ? where MaHDBan= ?";
+    String UPDATE_SQL = "UPDATE HoaDonChiTiet SET SoLuong= ? where MaHDBan= ? and MaSanPham = ?";
     String DELETE_SQL = "DELETE FROM HoaDonChiTiet WHERE MaHDBan = ? and  MaSanPham=?";
     //dang sua
     String SELECT_ALL_SQL = "SELECT * FROM HoaDonChiTiet WHERE MaHDBan = ?";
-    
+
     String SELECT_BY_ID_SQL = "SELECT * FROM HoaDonChiTiet WHERE MaHDBan = ?";
-    
+
     String SELECT_IN = "SELECT * FROM HOADONCHITIET WHERE MASANPHAM = ?";
 
     public void insert(HoaDonChiTiet entity) {
@@ -40,19 +40,18 @@ public class HoaDonChiTiet_DAO {
     public void update(HoaDonChiTiet entity) {
         try {
             JdbcHelper.executeUpdate(UPDATE_SQL,
-                    entity.getMaSanPham(),
                     entity.getSoLuong(),
-                    entity.getThanhTien(),
-                    entity.getMaHDBan()
+                    entity.getMaHDBan(),
+                    entity.getMaSanPham()
             );
         } catch (Exception e) {
             System.out.println(e + "loi dong 55 hoa phieu giam gia vien dao");
         }
     }
 
-    public void delete(String key,String key2) {
+    public void delete(String key, String key2) {
         try {
-            JdbcHelper.executeUpdate(DELETE_SQL, key,key2);
+            JdbcHelper.executeUpdate(DELETE_SQL, key, key2);
         } catch (Exception ex) {
             System.out.println(ex + " loi dong 64 nhan vien dao");
         }

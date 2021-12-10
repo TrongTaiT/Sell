@@ -126,6 +126,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         btnNextHinh = new javax.swing.JButton();
         btnPrevHinh = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         panelHoaDonChiTiet = new javax.swing.JPanel();
         kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -686,7 +687,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             }
         });
         jPanel10.add(btnThemSPToHoaDon);
-        btnThemSPToHoaDon.setBounds(363, 232, 170, 30);
+        btnThemSPToHoaDon.setBounds(433, 232, 100, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -712,6 +713,15 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         });
         jPanel10.add(btnPrevHinh);
         btnPrevHinh.setBounds(320, 100, 20, 33);
+
+        btnUpdate.setText("jButton1");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        jPanel10.add(btnUpdate);
+        btnUpdate.setBounds(340, 230, 79, 25);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -932,7 +942,9 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     private void btnThemSPToHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSPToHoaDonActionPerformed
         // TODO add your handling code here:
+
         this.themSPToHoaDon();
+
     }//GEN-LAST:event_btnThemSPToHoaDonActionPerformed
 
     private void cboTenKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTenKhachHangActionPerformed
@@ -1040,6 +1052,8 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         // TODO add your handling code here:
         panelHoaDonChiTiet.setVisible(true);
         panelBanHang.setVisible(false);
+        fillTableHoaDonBan();
+        
     }//GEN-LAST:event_btnXemTableChiTiet1ActionPerformed
 
     private void tblHoaDonChiTietMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonChiTietMouseEntered
@@ -1104,22 +1118,40 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTienKhachDuaKeyReleased
 
     private void btnXoaHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaHoaDonActionPerformed
-        int row =tblHoaDonChiTiet.getSelectedRow();
-        String maHD = (String)tblChiTietHoaDon.getValueAt(row, 0);
+        int row = tblHoaDonChiTiet.getSelectedRow();
+        String maHD = (String) tblChiTietHoaDon.getValueAt(row, 0);
         if (MsgBox.confirm(this, "Bạn có muốn xóa hay không?")) {
             try {
                 HoaDonBanHang_Dao hdctdao = new HoaDonBanHang_Dao();
                 hdctdao.delete(maHD);
                 fillTableHoaDonBan();
-                
+
                 MsgBox.alert(this, "Xóa thành công!");
             } catch (Exception e) {
                 MsgBox.alert(this, "Xóa thất bại!");
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_btnXoaHoaDonActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        try {
+            int row = tblChiTietHoaDon.getSelectedRow();
+            String maSP = (String) tblChiTietHoaDon.getValueAt(row, 0);
+
+            HoaDonChiTiet hd = new HoaDonChiTiet();
+
+            hd.setMaHDBan(txtMaHoaDon.getText());
+            hd.setMaSanPham(maSP);
+            hd.setSoLuong(lblSoLuong.getText());
+
+            hdctdao.update(hd);
+            loadHoaDonChiTietTable();
+            thanhTien();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1131,6 +1163,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     private javax.swing.JButton btnPrevHinh;
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnThemSPToHoaDon;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnXemTableChiTiet1;
     private javax.swing.JButton btnXoaHD;
     private javax.swing.JButton btnXoaHoaDon;
@@ -1393,20 +1426,22 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     private void thanhTien() {
         int row = tblChiTietHoaDon.getRowCount();
         System.out.println(row);
-//        float thanhTien = 0;
+        thanhTien = 0;
         float tong;
         float giamGia = Float.parseFloat(txtGiamgia.getText());
         for (int i = 0; i < row; i++) {
             float soLuong = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 1) + "");
             System.out.println("soluong:" + soLuong);
+
             float donGia = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 2).toString());
             System.out.println("don gia:" + donGia);
+
             thanhTien = thanhTien + soLuong * donGia;
         }
         txtThanhTien.setText(DesignHelper.formatCurrency(thanhTien));
 //        tong = thanhTien - (thanhTien * giamGia / 100);
         if (txtGiamgia.getText().isEmpty()) {
-            tong = thanhTien ;
+            tong = thanhTien;
         } else {
             tong = thanhTien - (thanhTien * giamGia / 100);
         }
@@ -1457,6 +1492,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         HoaDonChiTiet_DAO hdctdao = new HoaDonChiTiet_DAO();
         HoaDonChiTiet hd = new HoaDonChiTiet();
         SanPham sp = (SanPham) cboTenSanPham.getSelectedItem();
+
         hd.setMaHDBan(txtMaHoaDon.getText());
         hd.setMaSanPham(sp.getMaSanPham());
         hd.setSoLuong(lblSoLuong.getText());
@@ -1511,7 +1547,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                     ch.getMaKhachHang(),
                     DateHelper.toString(ch.getNgayBan()),
                     ch.getNoiDung(),
-                    ch.getTrangThai(),
+                    ch.getTrangThai()?"Đã thanh toán":"Chưa thanh toán",
                     ch.getMaNhanVien(),
                     ch.getMaCuaHang(),
                     ch.getMaGiamGia(),
