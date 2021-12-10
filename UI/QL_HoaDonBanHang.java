@@ -30,10 +30,37 @@ import com.Sell.entity.LoaiHang;
 import com.Sell.entity.NhanVien;
 import com.Sell.entity.PhieuGiamGia;
 import com.Sell.entity.SanPham;
+import java.awt.Color;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import static java.nio.file.Files.list;
+import static java.rmi.Naming.list;
 import java.util.ArrayList;
+import static java.util.Collections.list;
 import java.util.List;
+import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import sun.misc.FloatingDecimal;
 
 /**
@@ -355,6 +382,11 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
         btnXuatHoaDon.setText("Xuất hóa đơn");
         btnXuatHoaDon.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnXuatHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatHoaDonActionPerformed(evt);
+            }
+        });
 
         btnThanhToan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnThanhToan.setText("THANH TOÁN");
@@ -1148,6 +1180,11 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnXoaHoaDonActionPerformed
 
+    private void btnXuatHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatHoaDonActionPerformed
+        // TODO add your handling code here:
+        this.outPutExcel();
+    }//GEN-LAST:event_btnXuatHoaDonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddKHToHoaDon;
@@ -1624,6 +1661,68 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             loadHoaDonChiTietTable();
             thanhTien();
         } catch (Exception e) {
+        }
+    }
+
+    private void outPutExcel() {
+        TableModel model = tblChiTietHoaDon.getModel();
+        JFileChooser excelExportChooser = new JFileChooser();
+        excelExportChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        excelExportChooser.setDialogTitle("Save Excel File");
+        //filter the file
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Files", "*.xls", "xls", "xlsx", "xlsn");
+        excelExportChooser.addChoosableFileFilter(filter);
+        excelExportChooser.setFileFilter(filter);
+        int excelchooser = excelExportChooser.showSaveDialog(null);
+        if (excelchooser == JFileChooser.APPROVE_OPTION) {
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("SalesReturnsDetails");
+            XSSFRow row;
+            XSSFCellStyle cellStyle = sheet.getWorkbook().createCellStyle();
+            cellStyle.setFillBackgroundColor(IndexedColors.GREY_50_PERCENT.index);
+            cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            XSSFCell cell;
+            try {
+                // write the column headers
+                row = sheet.createRow(0);
+                for (int j = 0; j < model.getColumnCount(); j++) {
+                    cell = row.createCell(j);
+                    cell.setCellValue(model.getColumnName(j));
+                }
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    row = sheet.createRow(i + 1);
+                    for (int j = 0; j < model.getColumnCount(); j++) {
+                        cell = row.createCell(j);
+                        cell.setCellValue(model.getValueAt(i, j).toString());
+                    }
+                }
+            } catch (Exception e) {
+                //JOptionPane.showMessageDialog(null, "xuất file thành công");
+            }
+             Font headerFont = workbook.createFont();
+  headerFont.setColor(IndexedColors.WHITE.index);
+            CellStyle headerCellStyle = sheet.getWorkbook().createCellStyle();
+  // fill foreground color ...
+  headerCellStyle.setFillForegroundColor(IndexedColors.GREY_50_PERCENT.index);
+  // and solid fill pattern produces solid grey cell fill
+  headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+  headerCellStyle.setFont(headerFont);
+  int rownum = 0; 
+  int cellnum = 0;
+   Row rows = sheet.createRow(rownum++);
+   Cell cells = rows.createCell(cellnum++); 
+    if (rownum == 1) cells.setCellStyle(headerCellStyle);
+            FileOutputStream excelFIS;
+            try {
+                excelFIS = new FileOutputStream(excelExportChooser.getSelectedFile() + ".xlsx");
+                workbook.write(excelFIS);
+                workbook.close();
+                MsgBox.alert(this, "Xuât File thành công!");
+            } catch (FileNotFoundException ex) {
+                System.out.println(ex);
+            } catch (IOException ex) {
+                System.out.println(ex);
+            }
         }
     }
 }
