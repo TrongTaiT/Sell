@@ -46,17 +46,23 @@ public class SlideShowJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         lblSlide = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
         lblSlide.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSlide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/Images/slide0.jpg"))); // NOI18N
-        add(lblSlide, java.awt.BorderLayout.CENTER);
+        jPanel1.add(lblSlide, java.awt.BorderLayout.CENTER);
+
+        add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblSlide;
     // End of variables declaration//GEN-END:variables
 

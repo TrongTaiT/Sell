@@ -1017,6 +1017,8 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
         panelMain.setLayout(new java.awt.BorderLayout());
+
+        lblSlide.setBackground(new java.awt.Color(51, 255, 51));
         panelMain.add(lblSlide, java.awt.BorderLayout.CENTER);
         lblSlide.getAccessibleContext().setAccessibleParent(this);
 
@@ -1169,10 +1171,11 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lblHomeTextMouseExited
 
     private void lblHomeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeIconMouseClicked
-//        initSlideShow();
-        showPanel(new SlideShowJPanel());
+        
+//        showPanel(new SlideShowJPanel());
         click = true;
         animationMenu();
+        initSlideShow();
     }//GEN-LAST:event_lblHomeIconMouseClicked
 
     private void lblMenuFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblMenuFocusLost
@@ -1428,33 +1431,32 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void init() {
         this.setLocationRelativeTo(null);
-        showPanel(new SlideShowJPanel());
         click = true;
         animationMenu();
+//        showPanel(new Test());
         this.hello();
-        
-//        initSlideShow();
-    }
-    
-    public void showPanel(JPanel panel) {
-        panelMain.removeAll();
-        panelMain.add(panel);
-        panelMain.validate();
-//        lblSlide.setVisible(false);
+        initSlideShow();
     }
     
 //    public void showPanel(JPanel panel) {
-//        try {                        
-//            for (int i = 1; i < panelMain.getComponentCount(); i++) {
-//                panelMain.remove(1);
-//            }
-//        } catch (ArrayIndexOutOfBoundsException e) {
-//        }
 //        panelMain.removeAll();
 //        panelMain.add(panel);
 //        panelMain.validate();
-//        lblSlide.setVisible(false);
+////        lblSlide.setVisible(false);
 //    }
+    
+    public void showPanel(JPanel panel) {
+        try {                        
+            for (int i = 1; i < panelMain.getComponentCount(); i++) {
+                panelMain.remove(1);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+        panelMain.removeAll();
+        panelMain.add(panel);
+        panelMain.validate();
+        lblSlide.setVisible(false);
+    }
     
     private void initSlideShow() {
         setBackGround(imageList[0]);
@@ -1470,11 +1472,11 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     private void setBackGround(String fileName) {
-        lblSlide.setIcon(ImageHelper.readAndResize(lblSlide, fileName));
+        lblSlide.setIcon(ImageHelper.readAndResize(panelMain, fileName));
     }
 
     private void startSlideShow() {
-        new Timer(3000, (ActionEvent e) -> {
+        new Timer(2000, (ActionEvent e) -> {
             setBackGround(imageList[indexSlide]);
             indexSlide++;
             if (indexSlide == imageList.length) {

@@ -7,6 +7,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -114,6 +116,19 @@ public class ImageHelper {
             BufferedImage image = ImageIO.read(new File("src\\com\\SELL\\Images", fileName));
             return new ImageIcon(image.getScaledInstance(container.getWidth(),
                     container.getHeight(), BufferedImage.SCALE_SMOOTH));
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    
+    public static ImageIcon ResizeImage(JComponent container, String ImagePath){
+        try {
+            BufferedImage images = ImageIO.read(new File("src\\com\\SELL\\Images", ImagePath));
+            ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(container.getWidth(), container.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
