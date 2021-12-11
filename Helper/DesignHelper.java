@@ -43,7 +43,7 @@ public class DesignHelper {
     public static void addPlaceHolderTextField(JTextComponent textField, String placeholderString) {
         textField.setText(placeholderString);
         textField.setToolTipText(placeholderString);
-        Font font = textField.getFont();        
+        Font font = textField.getFont();
         font = font.deriveFont(Font.ITALIC);
         textField.setFont(font);
         textField.setForeground(Color.GRAY);
@@ -56,18 +56,23 @@ public class DesignHelper {
         textField.setFont(font);
         textField.setForeground(Color.BLACK);
     }
-    
+
     public static void deletePlaceHolderTextField2(JTextComponent textField) {
         Font font = textField.getFont();
         font = font.deriveFont(Font.PLAIN);
         textField.setFont(font);
         textField.setForeground(Color.BLACK);
     }
-    
+
     public static String formatCurrency(float money) {
-        DecimalFormat formatter = new DecimalFormat("###,###.##");
+        DecimalFormat formatter = new DecimalFormat("###,###,###.##");
         return formatter.format(money);
     }
+    
+    public static String revertCurrency(String money) {
+        return money.replace(",", "").replace(".", "");
+    }
+
     @Deprecated
     public static void setTable(JTable table) {
         table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -78,7 +83,7 @@ public class DesignHelper {
         table.setGridColor(new Color(255, 255, 255));
         table.setRowHeight(25);
     }
-    
+
     public static void setTable(JTable table, String[] columns) {
         DefaultTableModel tblModel = new DefaultTableModel() {
             @Override

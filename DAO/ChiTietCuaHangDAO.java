@@ -57,6 +57,11 @@ public class ChiTietCuaHangDAO extends SellDAO<ChiTietCuaHang, String> {
         }
         return list.get(0);
     }
+    
+    public List<ChiTietCuaHang> selectAllByID(String maCH) {
+        List<ChiTietCuaHang> list = this.selectBySql(SELECT_BY_ID_SQL, maCH);
+        return list;
+    }
 
     @Override
     protected List<ChiTietCuaHang> selectBySql(String sql, Object... args) {
