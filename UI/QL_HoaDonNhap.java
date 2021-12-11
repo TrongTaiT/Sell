@@ -928,9 +928,9 @@ this.resetBorder();
         txtMaQuanLy.setText(hd.getMaquanly());
         lblNgayNhap.setText(DateHelper.toString(hd.getNgayNhap()));
 //        txtMaCuaHang.setText(hd.getMaCuaHang());
-        cboMaCuaHang.setSelectedIndex(0);
+//        cboMaCuaHang.setSelectedIndex(0);
         lblMaSanPham.setText(hd.getMaSanPham());
-
+        CuaHang ch = chDAO.selectById(hd.getMaCuaHang());
         SanPham sp = spDao.selectById(hd.getMaSanPham());
 
 //        System.out.println(hd.getMaSanPham());
@@ -939,6 +939,11 @@ this.resetBorder();
             cboTenSanPham.setSelectedItem(sp);
         } else {
             cboTenSanPham.setSelectedIndex(0);
+        }
+        if (ch != null) {
+            cboMaCuaHang.setSelectedItem(ch);
+        } else {
+            cboMaCuaHang.setSelectedIndex(0);
         }
     }
 
@@ -994,6 +999,7 @@ this.resetBorder();
 
         hd.setNgayNhap(DateHelper.now());
         this.setForm(hd);
+        this.setTextField();
         this.row = -1;
         this.updateStatus();
         this.resetBorder();

@@ -30,13 +30,8 @@ import com.Sell.entity.LoaiHang;
 import com.Sell.entity.NhanVien;
 import com.Sell.entity.PhieuGiamGia;
 import com.Sell.entity.SanPham;
-import java.awt.Color;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import static java.nio.file.Files.list;
-import static java.rmi.Naming.list;
 import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.List;
@@ -45,7 +40,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
@@ -53,11 +48,8 @@ import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -1181,8 +1173,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaHoaDonActionPerformed
 
     private void btnXuatHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatHoaDonActionPerformed
-        // TODO add your handling code here:
-        this.outPutExcel();
+        outPutExcel();
     }//GEN-LAST:event_btnXuatHoaDonActionPerformed
 
 
@@ -1664,8 +1655,46 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         }
     }
 
+//    float fixCuaChinh(){
+//        int row = tblChiTietHoaDon.getRowCount();
+//        System.out.println(row);
+////        float thanhTien = 0;
+//        int soLuong = 0;
+//        float donGia = 0;
+//        float tong;
+//        float giamGia = Float.parseFloat(txtGiamgia.getText());
+//        for (int i = 0; i < row; i++) {
+//            String maSP = tblChiTietHoaDon.getValueAt(i, 0).toString();
+//            soLuong = Integer.parseInt(tblChiTietHoaDon.getValueAt(i, 1) + "");
+//            System.out.println("soluong:" + soLuong);
+//            SanPham sp = (SanPham) cboTenSanPham.getSelectedItem();
+//            HoaDonChiTiet_DAO dao = new HoaDonChiTiet_DAO();
+//            HoaDonChiTiet hdct = new HoaDonChiTiet();
+//            int soLuongThem = Integer.parseInt(lblSoLuong.getText());
+//            if(sp.getMaSanPham().equals(maSP)){
+//                soLuong = soLuong + soLuongThem;
+//                hdct.setMaHDBan(txtMaHoaDon.getText());
+//                hdct.setSoLuong(String.valueOf(soLuong));
+//                hdct.setMaSanPham(sp.getMaSanPham());
+//                dao.updateSL(hdct);
+//                loadHoaDonChiTietTable();
+//            }
+//            donGia = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 2).toString());
+//            System.out.println("don gia:" + donGia);
+//        }
+//        thanhTien = thanhTien + soLuong * donGia;
+//            txtThanhTien.setText(DesignHelper.formatCurrency(thanhTien));
+////        tong = thanhTien - (thanhTien * giamGia / 100);
+//        if (txtGiamgia.getText().isEmpty()) {
+//            tong = thanhTien ;
+//        } else {
+//            tong = thanhTien - (thanhTien * giamGia / 100);
+//        }
+//        txtTongTien.setText(DesignHelper.formatCurrency(tong));
+//        tienthuve = tong;
+//        return tienthuve;
+//    }
     private void outPutExcel() {
-        TableModel model = tblChiTietHoaDon.getModel();
         JFileChooser excelExportChooser = new JFileChooser();
         excelExportChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         excelExportChooser.setDialogTitle("Save Excel File");
@@ -1675,54 +1704,135 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         excelExportChooser.setFileFilter(filter);
         int excelchooser = excelExportChooser.showSaveDialog(null);
         if (excelchooser == JFileChooser.APPROVE_OPTION) {
-            XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet sheet = workbook.createSheet("SalesReturnsDetails");
-            XSSFRow row;
-            XSSFCellStyle cellStyle = sheet.getWorkbook().createCellStyle();
-            cellStyle.setFillBackgroundColor(IndexedColors.GREY_50_PERCENT.index);
-            cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-            XSSFCell cell;
             try {
-                // write the column headers
+                XSSFWorkbook workbook = new XSSFWorkbook();
+                XSSFSheet sheet = workbook.createSheet();
+                XSSFRow row = null;
+                Cell cell = null;
+
+                //meger title
+                sheet.addMergedRegion(new CellRangeAddress(0, 1, 0, 2));
+
+                //create CellStyle
+                CellStyle cellStyle = createStyleForHeader(sheet);
+                CellStyle cellStyle2 = createStyleForTittle(sheet);
+
                 row = sheet.createRow(0);
-                for (int j = 0; j < model.getColumnCount(); j++) {
-                    cell = row.createCell(j);
-                    cell.setCellValue(model.getColumnName(j));
-                }
-                for (int i = 0; i < model.getRowCount(); i++) {
-                    row = sheet.createRow(i + 1);
-                    for (int j = 0; j < model.getColumnCount(); j++) {
-                        cell = row.createCell(j);
-                        cell.setCellValue(model.getValueAt(i, j).toString());
+                cell = row.createCell(0, CellType.STRING);
+                cell.setCellStyle(cellStyle2);
+                cell.setCellValue("HÓA ĐƠN CHI TIẾT");
+
+                //create column headings
+                row = sheet.createRow(2);
+                cell = row.createCell(0, CellType.STRING);
+                cell.setCellStyle(cellStyle);
+                cell.setCellValue("MÃ SẢN PHẨM");
+
+                cell = row.createCell(1, CellType.STRING);
+                cell.setCellStyle(cellStyle);
+                cell.setCellValue("SỐ LƯỢNG");
+
+                cell = row.createCell(2, CellType.NUMERIC);
+                cell.setCellStyle(cellStyle);
+                cell.setCellValue("ĐƠN GIÁ");
+
+//                cell = row.createCell(3, CellType.NUMERIC);
+//                cell.setCellStyle(cellStyle);
+//                cell.setCellValue("THÀNH TIỀN");
+                //Auto resize column width
+                int numberOfColumn = sheet.getRow(2).getPhysicalNumberOfCells();
+                autosizeColumn(sheet, numberOfColumn);
+
+                HoaDonChiTiet_DAO dao = new HoaDonChiTiet_DAO();
+                List<HoaDonChiTiet> list = dao.selectAll(txtMaHoaDon.getText());
+                if (list != null) {
+                    int i = -1;
+                    HoaDonChiTiet_DAO dao2 = new HoaDonChiTiet_DAO();
+    // j 0  i 0
+    // j 1  i 1
+    // j 2  i 2
+                    for (int j = 0; j < list.size(); j++) {
+                        HoaDonChiTiet hdct = dao2.selectById(txtMaHoaDon.getText());
+                        i++;
+                        row = sheet.createRow(3 + i);
+
+                        cell = row.createCell(0);
+                        cell.setCellValue(list.get(j).getMaSanPham());
+
+                        cell = row.createCell(1);
+                        cell.setCellValue(list.get(j).getSoLuong());
+                        cell = row.createCell(2);
+                        cell.setCellValue(list.get(j).getThanhTien());
+
+                        if (j == list.size() - 1) {
+                            row = sheet.createRow(i + 6);
+//                            row = sheet.createRowi);
+                            cell = row.createCell(0, CellType.STRING);
+//                            cell.setCellStyle(cellStyle2);
+                            cell.setCellValue("TỔNG: ");
+                            
+                            cell = row.createCell(2, CellType.STRING);
+//                            cell.setCellStyle(cellStyle2);
+                            cell.setCellValue(txtThanhTien.getText());
+                        }
                     }
+
+//                    row = sheet.createRow(i+3);
+//                    cell = row.createCell(0, CellType.STRING);
+//                    cell.setCellStyle(cellStyle2);
+//                    cell.setCellValue("TỔNG: " + txtThanhTien.getText());
                 }
-            } catch (Exception e) {
-                //JOptionPane.showMessageDialog(null, "xuất file thành công");
-            }
-             Font headerFont = workbook.createFont();
-  headerFont.setColor(IndexedColors.WHITE.index);
-            CellStyle headerCellStyle = sheet.getWorkbook().createCellStyle();
-  // fill foreground color ...
-  headerCellStyle.setFillForegroundColor(IndexedColors.GREY_50_PERCENT.index);
-  // and solid fill pattern produces solid grey cell fill
-  headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-  headerCellStyle.setFont(headerFont);
-  int rownum = 0; 
-  int cellnum = 0;
-   Row rows = sheet.createRow(rownum++);
-   Cell cells = rows.createCell(cellnum++); 
-    if (rownum == 1) cells.setCellStyle(headerCellStyle);
-            FileOutputStream excelFIS;
-            try {
+
+                FileOutputStream excelFIS;
                 excelFIS = new FileOutputStream(excelExportChooser.getSelectedFile() + ".xlsx");
                 workbook.write(excelFIS);
                 workbook.close();
-                MsgBox.alert(this, "Xuât File thành công!");
-            } catch (FileNotFoundException ex) {
-                System.out.println(ex);
-            } catch (IOException ex) {
-                System.out.println(ex);
+                MsgBox.alert(this, "Xuất file thành công!");
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
+        }
+    }
+
+    private static CellStyle createStyleForTittle(Sheet sheet) {
+        // Create font
+        Font font = sheet.getWorkbook().createFont();
+        font.setFontName("Calibri");
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 16); // font size
+        font.setColor(IndexedColors.BLACK.getIndex()); // text color
+
+        // Create CellStyle
+        CellStyle cellStyle = sheet.getWorkbook().createCellStyle();
+        cellStyle.setFont(font);
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        cellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        cellStyle.setBorderBottom(BorderStyle.THIN);
+        return cellStyle;
+    }
+
+    private static CellStyle createStyleForHeader(Sheet sheet) {
+        // Create font
+        Font font = sheet.getWorkbook().createFont();
+        font.setFontName("Calibri");
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 12); // font size
+        font.setColor(IndexedColors.WHITE.getIndex()); // text color
+
+        // Create CellStyle
+        CellStyle cellStyle = sheet.getWorkbook().createCellStyle();
+        cellStyle.setFont(font);
+        cellStyle.setFillForegroundColor(IndexedColors.GREEN.getIndex());
+        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        cellStyle.setBorderBottom(BorderStyle.THIN);
+        return cellStyle;
+    }
+
+    void autosizeColumn(Sheet sheet, int lastColumn) {
+        for (int columnIndex = 0; columnIndex < lastColumn; columnIndex++) {
+            sheet.autoSizeColumn(columnIndex);
         }
     }
 }
