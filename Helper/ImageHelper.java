@@ -110,9 +110,9 @@ public class ImageHelper {
         }
     }
 
-    public static ImageIcon readAndResize(JComponent container, String fileName) {
+    public static ImageIcon readAndNoResize(JComponent container, String fileName) {
         try {
-            BufferedImage image = ImageIO.read(new File("Images", fileName));
+            BufferedImage image = ImageIO.read(new File("src\\com\\SELL\\Images", fileName));
             return new ImageIcon(image);
         } catch (Exception e) {
             throw new RuntimeException(e);

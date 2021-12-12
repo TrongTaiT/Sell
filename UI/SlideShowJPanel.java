@@ -82,7 +82,7 @@ public class SlideShowJPanel extends javax.swing.JPanel {
     }
 
     private void setBackGround(String fileName) {
-        lblSlide.setIcon(ImageHelper.readAndResize(lblSlide, fileName));
+        lblSlide.setIcon(ImageHelper.readAndNoResize(lblSlide, fileName));
     }
     
     private void startSlideShow() {

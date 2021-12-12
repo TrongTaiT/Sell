@@ -225,6 +225,9 @@ public class MainJFrame extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblHomeIconMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblHomeIconMouseEntered(evt);
+            }
         });
 
         javax.swing.GroupLayout panelHomeItemLayout = new javax.swing.GroupLayout(panelHomeItem);
@@ -1138,7 +1141,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void lblHomeTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeTextMouseClicked
 
-        showPanel(new HomeJPanel());
+        showPanel(new SlideShowJPanel());
         click = true;
         animationMenu();
     }//GEN-LAST:event_lblHomeTextMouseClicked
@@ -1155,7 +1158,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void lblHomeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeIconMouseClicked
 
-        showPanel(new HomeJPanel());
+        showPanel(new SlideShowJPanel());
         click = true;
         animationMenu();
     }//GEN-LAST:event_lblHomeIconMouseClicked
@@ -1312,6 +1315,10 @@ public class MainJFrame extends javax.swing.JFrame {
         click = true;
         animationMenu();
     }//GEN-LAST:event_lblDoanhThuTextMouseClicked
+
+    private void lblHomeIconMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeIconMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblHomeIconMouseEntered
 
     public void showPanel(JPanel panel) {
         childPanel = panel;
