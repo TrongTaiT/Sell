@@ -35,7 +35,7 @@ public class ImageHelper {
             throw new RuntimeException(ex);
         }
     }
-    
+
     static public ImageIcon loadImage(JLabel container, String image) {
         ImageIcon imageI = new ImageIcon(image);
         Image img = imageI.getImage();
@@ -43,7 +43,6 @@ public class ImageHelper {
         container.setIcon(icon);
         return icon;
     }
-    
 
     static public byte[] convertToByteArray(String path) {
         try {
@@ -110,11 +109,14 @@ public class ImageHelper {
             throw new RuntimeException(ex);
         }
     }
-    
-    public static ImageIcon readAndResize(JComponent container, String fileName) throws IOException {
-        BufferedImage image = ImageIO.read(new File("Images", fileName));
-        return new ImageIcon(image.getScaledInstance(container.getWidth(),
-                container.getHeight(), BufferedImage.SCALE_SMOOTH));
+
+    public static ImageIcon readAndResize(JComponent container, String fileName) {
+        try {
+            BufferedImage image = ImageIO.read(new File("Images", fileName));
+            return new ImageIcon(image);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

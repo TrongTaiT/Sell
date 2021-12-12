@@ -1415,7 +1415,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void init() {
         this.setLocationRelativeTo(null);
 //        clock();
-        showPanel(new HomeJPanel());
+        showPanel(new SlideShowJPanel());
         click = true;
         animationMenu();
         this.hello();
