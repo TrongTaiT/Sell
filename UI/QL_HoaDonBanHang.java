@@ -7,6 +7,7 @@ package com.Sell.UI;
 
 import com.Sell.DAO.ChiTietCuaHangDAO;
 import com.Sell.DAO.HinhAnhDao;
+import com.Sell.DAO.HoaDonChiTiet_DAO;
 import com.Sell.DAO.KhachHangDAO;
 import com.Sell.DAO.LoaiHangDAO;
 import com.Sell.DAO.SanPhamDAO;
@@ -18,6 +19,7 @@ import com.Sell.Helper.RegexValidation;
 import com.Sell.Helper.ValidationHelper;
 import com.Sell.entity.ChiTietCuaHang;
 import com.Sell.entity.HinhAnh;
+import com.Sell.entity.HoaDonChiTiet;
 import com.Sell.entity.KhachHang;
 import com.Sell.entity.SanPham;
 import java.io.File;
@@ -26,6 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.apache.poi.ss.usermodel.BorderStyle;
@@ -189,6 +193,8 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
         pnlBanHang.add(panelTitle, java.awt.BorderLayout.PAGE_START);
 
+        pnlContent1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         pnlThongTinKH.setBackground(new java.awt.Color(255, 255, 255));
         pnlThongTinKH.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "1. THÔNG TIN KHÁCH HÀNG", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Light", 1, 14))); // NOI18N
 
@@ -262,10 +268,14 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        pnlContent1.add(pnlThongTinKH, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 61, -1, -1));
+
         txtMaHoaDon.requestFocus();
+        pnlContent1.add(txtMaHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 13, 200, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Mã hóa đơn");
+        pnlContent1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 30));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "3. THÔNG TIN SẢN PHẨM", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Light", 1, 14))); // NOI18N
@@ -391,6 +401,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                     .addComponent(cboTenSanPham, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(btnPrevHinh, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(lblHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnNextHinh, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -438,6 +449,8 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        pnlContent1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(567, 61, 598, 290));
+
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "2. DANH SÁCH SẢN PHẨM", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Light", 1, 14))); // NOI18N
         jPanel4.setPreferredSize(new java.awt.Dimension(550, 352));
         jPanel4.setLayout(new java.awt.BorderLayout());
@@ -460,6 +473,8 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jScrollPane3.setViewportView(tblChiTietCuaHang);
 
         jPanel4.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+
+        pnlContent1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 245, 500, 417));
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "4. HÓA ĐƠN", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Light", 1, 14))); // NOI18N
         jPanel9.setLayout(new java.awt.BorderLayout());
@@ -506,6 +521,8 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         );
 
         jPanel9.add(jPanel5, java.awt.BorderLayout.SOUTH);
+
+        pnlContent1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(567, 369, -1, 291));
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "5. THANH TOÁN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Light", 1, 14))); // NOI18N
@@ -590,50 +607,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jLabel22.setText("VNĐ");
         jPanel11.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 124, -1, -1));
 
-        javax.swing.GroupLayout pnlContent1Layout = new javax.swing.GroupLayout(pnlContent1);
-        pnlContent1.setLayout(pnlContent1Layout);
-        pnlContent1Layout.setHorizontalGroup(
-            pnlContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlContent1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 1164, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlContent1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtMaHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlContent1Layout.createSequentialGroup()
-                        .addGroup(pnlContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                            .addComponent(pnlThongTinKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(57, 57, 57)
-                        .addGroup(pnlContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(820, Short.MAX_VALUE))
-        );
-        pnlContent1Layout.setVerticalGroup(
-            pnlContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlContent1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMaHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlContent1Layout.createSequentialGroup()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
-                    .addGroup(pnlContent1Layout.createSequentialGroup()
-                        .addComponent(pnlThongTinKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)))
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(622, Short.MAX_VALUE))
-        );
+        pnlContent1.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 680, 1164, -1));
 
         jPanel7.add(pnlContent1);
 
@@ -684,6 +658,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setMaximumSize(new java.awt.Dimension(2000, 64));
         jScrollPane2.setViewportView(jTable1);
 
         jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
@@ -1081,45 +1056,48 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             }
         } else {
             txtSoLuong.setText("0");
-//    float fixCuaChinh(){
-//        int row = tblChiTietHoaDon.getRowCount();
-//        System.out.println(row);
-////        float thanhTien = 0;
-//        int soLuong = 0;
-//        float donGia = 0;
-//        float tong;
-//        float giamGia = Float.parseFloat(txtGiamgia.getText());
-//        for (int i = 0; i < row; i++) {
-//            String maSP = tblChiTietHoaDon.getValueAt(i, 0).toString();
-//            soLuong = Integer.parseInt(tblChiTietHoaDon.getValueAt(i, 1) + "");
-//            System.out.println("soluong:" + soLuong);
-//            SanPham sp = (SanPham) cboTenSanPham.getSelectedItem();
-//            HoaDonChiTiet_DAO dao = new HoaDonChiTiet_DAO();
-//            HoaDonChiTiet hdct = new HoaDonChiTiet();
-//            int soLuongThem = Integer.parseInt(lblSoLuong.getText());
-//            if(sp.getMaSanPham().equals(maSP)){
-//                soLuong = soLuong + soLuongThem;
-//                hdct.setMaHDBan(txtMaHoaDon.getText());
-//                hdct.setSoLuong(String.valueOf(soLuong));
-//                hdct.setMaSanPham(sp.getMaSanPham());
-//                dao.updateSL(hdct);
-//                loadHoaDonChiTietTable();
-//            }
-//            donGia = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 2).toString());
-//            System.out.println("don gia:" + donGia);
-//        }
-//        thanhTien = thanhTien + soLuong * donGia;
-//            txtThanhTien.setText(DesignHelper.formatCurrency(thanhTien));
-////        tong = thanhTien - (thanhTien * giamGia / 100);
-//        if (txtGiamgia.getText().isEmpty()) {
-//            tong = thanhTien ;
-//        } else {
-//            tong = thanhTien - (thanhTien * giamGia / 100);
-//        }
-//        txtTongTien.setText(DesignHelper.formatCurrency(tong));
-//        tienthuve = tong;
-//        return tienthuve;
-//    }
+        }
+    }
+
+    //    float fixCuaChinh(){
+    //        int row = tblChiTietHoaDon.getRowCount();
+    //        System.out.println(row);
+    ////        float thanhTien = 0;
+    //        int soLuong = 0;
+    //        float donGia = 0;
+    //        float tong;
+    //        float giamGia = Float.parseFloat(txtGiamgia.getText());
+    //        for (int i = 0; i < row; i++) {
+    //            String maSP = tblChiTietHoaDon.getValueAt(i, 0).toString();
+    //            soLuong = Integer.parseInt(tblChiTietHoaDon.getValueAt(i, 1) + "");
+    //            System.out.println("soluong:" + soLuong);
+    //            SanPham sp = (SanPham) cboTenSanPham.getSelectedItem();
+    //            HoaDonChiTiet_DAO dao = new HoaDonChiTiet_DAO();
+    //            HoaDonChiTiet hdct = new HoaDonChiTiet();
+    //            int soLuongThem = Integer.parseInt(lblSoLuong.getText());
+    //            if(sp.getMaSanPham().equals(maSP)){
+    //                soLuong = soLuong + soLuongThem;
+    //                hdct.setMaHDBan(txtMaHoaDon.getText());
+    //                hdct.setSoLuong(String.valueOf(soLuong));
+    //                hdct.setMaSanPham(sp.getMaSanPham());
+    //                dao.updateSL(hdct);
+    //                loadHoaDonChiTietTable();
+    //            }
+    //            donGia = Float.parseFloat(tblChiTietHoaDon.getValueAt(i, 2).toString());
+    //            System.out.println("don gia:" + donGia);
+    //        }
+    //        thanhTien = thanhTien + soLuong * donGia;
+    //            txtThanhTien.setText(DesignHelper.formatCurrency(thanhTien));
+    ////        tong = thanhTien - (thanhTien * giamGia / 100);
+    //        if (txtGiamgia.getText().isEmpty()) {
+    //            tong = thanhTien ;
+    //        } else {
+    //            tong = thanhTien - (thanhTien * giamGia / 100);
+    //        }
+    //        txtTongTien.setText(DesignHelper.formatCurrency(tong));
+    //        tienthuve = tong;
+    //        return tienthuve;
+    //    }
     private void outPutExcel() {
         JFileChooser excelExportChooser = new JFileChooser();
         excelExportChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
@@ -1174,9 +1152,9 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 if (list != null) {
                     int i = -1;
                     HoaDonChiTiet_DAO dao2 = new HoaDonChiTiet_DAO();
-    // j 0  i 0
-    // j 1  i 1
-    // j 2  i 2
+                    // j 0  i 0
+                    // j 1  i 1
+                    // j 2  i 2
                     for (int j = 0; j < list.size(); j++) {
                         HoaDonChiTiet hdct = dao2.selectById(txtMaHoaDon.getText());
                         i++;
@@ -1196,7 +1174,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                             cell = row.createCell(0, CellType.STRING);
 //                            cell.setCellStyle(cellStyle2);
                             cell.setCellValue("TỔNG: ");
-                            
+
                             cell = row.createCell(2, CellType.STRING);
 //                            cell.setCellStyle(cellStyle2);
                             cell.setCellValue(txtThanhTien.getText());
@@ -1220,7 +1198,6 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             }
         }
     }
-
 
     private static CellStyle createStyleForTittle(Sheet sheet) {
         // Create font
