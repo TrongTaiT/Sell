@@ -1356,8 +1356,8 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 }
             } else {
                 tblModel.setValueAt(txtSoLuong.getText(), row, 2);
+                tblModel.setValueAt(DesignHelper.formatCurrency(thanhTien), row, 4);
             }
-            tblModel.setValueAt(DesignHelper.formatCurrency(thanhTien), row, 4);
         }
 
         tblChiTietHoaDonForm.setModel(tblModel);
