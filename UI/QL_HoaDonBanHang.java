@@ -508,6 +508,11 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
         btnXoaKhoiGioHang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnXoaKhoiGioHang.setText("Xoá khỏi giỏ hàng");
+        btnXoaKhoiGioHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaKhoiGioHangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -850,6 +855,14 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                     soLuong++;
                     txtSoLuong.setText(String.valueOf(soLuong));
                     lblTruSoLuong.setEnabled(true);
+
+                    //update tblChiTietCuaHang
+                    int row = tblChiTietCuaHang.getSelectedRow();
+                    int soSP = (int) tblChiTietCuaHang.getValueAt(row, 3);
+
+                    DefaultTableModel tblModel = (DefaultTableModel) tblChiTietCuaHang.getModel();
+                    tblModel.setValueAt(--soSP, tblChiTietCuaHang.getSelectedRow(), 3);
+                    tblChiTietCuaHang.setModel(tblModel);
                 }
             } catch (NumberFormatException e) {
                 MsgBox.alert(this, "Nhập số lượng phải chưa hợp lệ");
@@ -870,6 +883,14 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                     soLuong--;
                     txtSoLuong.setText(String.valueOf(soLuong));
                     lblCongSoLuong.setEnabled(true);
+
+                    //update tblChiTietCuaHang
+                    int row = tblChiTietCuaHang.getSelectedRow();
+                    int soSP = (int) tblChiTietCuaHang.getValueAt(row, 3);
+
+                    DefaultTableModel tblModel = (DefaultTableModel) tblChiTietCuaHang.getModel();
+                    tblModel.setValueAt(++soSP, tblChiTietCuaHang.getSelectedRow(), 3);
+                    tblChiTietCuaHang.setModel(tblModel);
                 }
             } catch (NumberFormatException e) {
                 MsgBox.alert(this, "Nhập số lượng phải chưa hợp lệ");
@@ -959,6 +980,10 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_cboMaSanPhamActionPerformed
 
     private void btnXoaKhoiGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaKhoiGioHangActionPerformed
+        deleteRowInTblChiTietHoaDon();
+    }//GEN-LAST:event_btnXoaKhoiGioHangActionPerformed
+
+    private void deleteRowInTblChiTietHoaDon() {
         int row = tblChiTietHoaDonForm.getSelectedRow();
         if (row >= 0) {
             DefaultTableModel model = (DefaultTableModel) tblChiTietHoaDonForm.getModel();
@@ -966,7 +991,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             setHinh();
             setTextSoLuong();
         }
-    }//GEN-LAST:event_btnXoaKhoiGioHangActionPerformed
+    }
 
     private void tblHoaDonBanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonBanMouseClicked
         if (evt.getClickCount() == 2) {
@@ -1287,7 +1312,14 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 DesignHelper.formatCurrency(thanhTien)
             });
         } else {
-            tblModel.setValueAt(txtSoLuong.getText(), row, 2);
+            if (Integer.valueOf(txtSoLuong.getText()) == 0) {
+                boolean confirm = MsgBox.confirm(this, "Bạn muốn xoá sản phẩm này khỏi giỏ?");
+                if (confirm == true) {
+                    deleteRowInTblChiTietHoaDon();
+                }
+            } else {
+                tblModel.setValueAt(txtSoLuong.getText(), row, 2);
+            }
             tblModel.setValueAt(DesignHelper.formatCurrency(thanhTien), row, 4);
         }
 
@@ -1630,7 +1662,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         if (Auth.isManager() == false) {
             MsgBox.alert(this, "Bạn không có quyền xoá hoá đơn");
         }
-        
+
         int selectedRow = tblHoaDonBan.getSelectedRow();
         if (selectedRow >= 0) {
             String maHD = (String) tblHoaDonBan.getValueAt(selectedRow, 0);

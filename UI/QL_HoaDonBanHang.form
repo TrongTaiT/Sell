@@ -860,6 +860,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="Xo&#xe1; kh&#x1ecf;i gi&#x1ecf; h&#xe0;ng"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaKhoiGioHangActionPerformed"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>

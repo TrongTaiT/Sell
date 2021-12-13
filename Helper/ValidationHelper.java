@@ -229,7 +229,7 @@ public class ValidationHelper {
         }
 
         // check condition : greater than min
-        boolean condition = (Double.parseDouble(txtField.getText()) > min);
+        boolean condition = (Double.parseDouble(txtField.getText()) >= min);
         if (condition == false) {
             setErrorFor(txtField);
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase() + " phải lớn hơn " + min);
@@ -251,7 +251,7 @@ public class ValidationHelper {
 
         // check condition : greater than min and smaller than max
         Double number = Double.parseDouble(txtField.getText());
-        boolean condition = (number > min) && (number < max);
+        boolean condition = (number >= min) && (number <= max);
         if (condition == false) {
             setErrorFor(txtField);
             MsgBox.alert(parent, "Nhập " + fieldName.toLowerCase() + " phải lớn hơn " + min
