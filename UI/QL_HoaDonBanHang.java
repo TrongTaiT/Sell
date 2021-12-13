@@ -1383,6 +1383,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 }
 
                 filltblHoaDonBan();
+                fillTblChiTietCuaHang();
                 MsgBox.alert(this, "Thêm đơn hàng thành công!");
             } catch (Exception e) {
                 MsgBox.alert(this, "Thêm đơn hàng thất bại!");
