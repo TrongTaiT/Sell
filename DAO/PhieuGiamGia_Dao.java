@@ -30,7 +30,6 @@ public class PhieuGiamGia_Dao {
                     entity.getTrangThai()
             );
         } catch (Exception e) {
-            System.out.println(e + "loi dong 45 hoa don dao");
         }
     }
 

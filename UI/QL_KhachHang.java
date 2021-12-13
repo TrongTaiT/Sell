@@ -1135,7 +1135,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
     }
 
     KhachHang getForm() {
-        
+
         KhachHang kh = new KhachHang();
         kh.setMaKhachHang(txtMaKH.getText());
         kh.setHoTen(txtHoTen.getText());
@@ -1188,7 +1188,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
     }
 
     void update() {
-        if(validates()==false){
+        if (validates() == false) {
             return;
         }
         KhachHang kh = getForm();
@@ -1320,17 +1320,20 @@ public class QL_KhachHang extends javax.swing.JPanel {
     PhieuGiamGia_Dao ggDAO = new PhieuGiamGia_Dao();
 
     void insertGiamGia() {
-        PhieuGiamGia giamGia = getData();
-        PhieuGiamGia pgg = ggDAO.selectByMaKH(giamGia.getMaKhachHang());
-        if (pgg == null) {
-            try {
-                ggDAO.insert(giamGia);
-                this.fillTable();
-            } catch (Exception e) {
+        try {
+            PhieuGiamGia giamGia = getData();
+            PhieuGiamGia pgg = ggDAO.selectByMaKH(giamGia.getMaKhachHang());
+            if (pgg == null) {
+                try {
+                    ggDAO.insert(giamGia);
+                    this.fillTable();
+                } catch (Exception e) {
+                    MsgBox.alert(this, "Hôm nay không có thêm phiếu giảm giá");
+                }
+            } else {
                 MsgBox.alert(this, "Hôm nay không có thêm phiếu giảm giá");
             }
-        } else {
-            MsgBox.alert(this, "Hôm nay không có thêm phiếu giảm giá");
+        } catch (Exception e) {
         }
     }
 
@@ -1411,7 +1414,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
 
     private void resetBorder() {
         ValidationHelper.resetBorderColor(txtMaKH, txtHoTen, txtDienThoai,
-                 txtEmail, txtDiaChi, txtNgaySinh);
+                txtEmail, txtDiaChi, txtNgaySinh);
     }
 
     private boolean validates() {

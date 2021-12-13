@@ -92,12 +92,10 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         btgFilterTblHoaDon = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
+        panelLayout = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         pnlBanHang = new javax.swing.JPanel();
-        panelTitle = new com.k33ptoo.components.KGradientPanel();
-        jLabel1 = new javax.swing.JLabel();
-        btnBangHoaDon = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
+        panelFix = new javax.swing.JPanel();
         pnlContent1 = new javax.swing.JPanel();
         pnlThongTinKH = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
@@ -156,6 +154,9 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         txtNoiDung = new javax.swing.JTextArea();
         btnXuatHoaDon1 = new javax.swing.JButton();
+        panelTitle = new com.k33ptoo.components.KGradientPanel();
+        jLabel1 = new javax.swing.JLabel();
+        btnBangHoaDon = new javax.swing.JButton();
         pnlDanhSachHoaDon = new javax.swing.JPanel();
         kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
         jLabel = new javax.swing.JLabel();
@@ -178,37 +179,11 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
         jPanel6.setLayout(new java.awt.BorderLayout());
 
+        panelLayout.setLayout(new java.awt.BorderLayout());
+
         jPanel1.setLayout(new java.awt.CardLayout());
 
         pnlBanHang.setLayout(new java.awt.BorderLayout());
-
-        panelTitle.setkBorderRadius(0);
-        panelTitle.setkEndColor(new java.awt.Color(102, 216, 211));
-        panelTitle.setkGradientFocus(1000);
-        panelTitle.setkStartColor(new java.awt.Color(0, 185, 215));
-        panelTitle.setPreferredSize(new java.awt.Dimension(1150, 50));
-        panelTitle.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TRANG CHỦ/ QUẢN LÝ BÁN HÀNG");
-        jLabel1.setPreferredSize(new java.awt.Dimension(210, 50));
-        panelTitle.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, -1));
-
-        btnBangHoaDon.setBackground(new java.awt.Color(255, 153, 51));
-        btnBangHoaDon.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnBangHoaDon.setText("Bảng hoá đơn");
-        btnBangHoaDon.setPreferredSize(new java.awt.Dimension(200, 30));
-        btnBangHoaDon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBangHoaDonActionPerformed(evt);
-            }
-        });
-        panelTitle.add(btnBangHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 10, -1, -1));
-
-        pnlBanHang.add(panelTitle, java.awt.BorderLayout.PAGE_START);
-        pnlBanHang.add(jPanel7, java.awt.BorderLayout.PAGE_END);
 
         pnlThongTinKH.setBackground(new java.awt.Color(255, 255, 255));
         pnlThongTinKH.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "1. THÔNG TIN KHÁCH HÀNG", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Light", 1, 14))); // NOI18N
@@ -256,13 +231,13 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                             .addComponent(jLabel24))
                         .addGap(18, 18, 18)
                         .addGroup(pnlThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboKhachHang, 0, 374, Short.MAX_VALUE)
+                            .addComponent(cboKhachHang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cboDienThoai, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(pnlThongTinKHLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60)
-                        .addComponent(cboEmail, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cboEmail, 0, 372, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlThongTinKHLayout.setVerticalGroup(
@@ -446,7 +421,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                             .addComponent(lblCongSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addContainerGap(12, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel10Layout.createSequentialGroup()
@@ -519,7 +494,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(424, Short.MAX_VALUE)
+                .addContainerGap(422, Short.MAX_VALUE)
                 .addComponent(btnXoaKhoiGioHang)
                 .addContainerGap())
         );
@@ -684,7 +659,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                         .addGroup(pnlContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         pnlContent1Layout.setVerticalGroup(
             pnlContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -704,7 +679,50 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        pnlBanHang.add(pnlContent1, java.awt.BorderLayout.CENTER);
+        panelFix.add(pnlContent1);
+
+        pnlBanHang.add(panelFix, java.awt.BorderLayout.PAGE_END);
+
+        panelTitle.setkBorderRadius(0);
+        panelTitle.setkEndColor(new java.awt.Color(102, 216, 211));
+        panelTitle.setkGradientFocus(1000);
+        panelTitle.setkStartColor(new java.awt.Color(0, 185, 215));
+        panelTitle.setPreferredSize(new java.awt.Dimension(1150, 50));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("TRANG CHỦ/ QUẢN LÝ BÁN HÀNG");
+        jLabel1.setPreferredSize(new java.awt.Dimension(210, 50));
+
+        btnBangHoaDon.setBackground(new java.awt.Color(255, 153, 51));
+        btnBangHoaDon.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnBangHoaDon.setText("Bảng hoá đơn");
+        btnBangHoaDon.setPreferredSize(new java.awt.Dimension(200, 30));
+        btnBangHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBangHoaDonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelTitleLayout = new javax.swing.GroupLayout(panelTitle);
+        panelTitle.setLayout(panelTitleLayout);
+        panelTitleLayout.setHorizontalGroup(
+            panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTitleLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 734, Short.MAX_VALUE)
+                .addComponent(btnBangHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
+        );
+        panelTitleLayout.setVerticalGroup(
+            panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBangHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        pnlBanHang.add(panelTitle, java.awt.BorderLayout.NORTH);
 
         jPanel1.add(pnlBanHang, "card2");
 
@@ -715,14 +733,12 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         kGradientPanel1.setkGradientFocus(1000);
         kGradientPanel1.setkStartColor(new java.awt.Color(0, 185, 215));
         kGradientPanel1.setPreferredSize(new java.awt.Dimension(1010, 50));
-        kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel.setForeground(new java.awt.Color(0, 0, 204));
         jLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel.setText("TRANG CHỦ/ QUẢN LÝ HOÁ ĐƠN CHI TIẾT");
         jLabel.setPreferredSize(new java.awt.Dimension(210, 50));
-        kGradientPanel1.add(jLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 303, -1));
 
         btnHoaDonBanHang.setBackground(new java.awt.Color(255, 153, 0));
         btnHoaDonBanHang.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -732,7 +748,23 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 btnHoaDonBanHangActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(btnHoaDonBanHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(1006, 12, -1, -1));
+
+        javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
+        kGradientPanel1.setLayout(kGradientPanel1Layout);
+        kGradientPanel1Layout.setHorizontalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 720, Short.MAX_VALUE)
+                .addComponent(btnHoaDonBanHang)
+                .addGap(36, 36, 36))
+        );
+        kGradientPanel1Layout.setVerticalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHoaDonBanHang))
+        );
 
         pnlDanhSachHoaDon.add(kGradientPanel1, java.awt.BorderLayout.PAGE_START);
 
@@ -835,7 +867,9 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
         jPanel1.add(pnlDanhSachHoaDon, "card3");
 
-        jPanel6.add(jPanel1, java.awt.BorderLayout.CENTER);
+        panelLayout.add(jPanel1, java.awt.BorderLayout.CENTER);
+
+        jPanel6.add(panelLayout, java.awt.BorderLayout.PAGE_START);
 
         jScrollPane1.setViewportView(jPanel6);
 
@@ -1023,6 +1057,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     private void btnHoanThanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoanThanhActionPerformed
         insertHoaDon(true);
+        clearForm();
     }//GEN-LAST:event_btnHoanThanhActionPerformed
 
     private void btnXuatHoaDon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatHoaDon1ActionPerformed
@@ -1039,6 +1074,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     private void btnXoaHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaHoaDonActionPerformed
         deleteHoaDonBan();
+        filltblHoaDonBan();
     }//GEN-LAST:event_btnXoaHoaDonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1090,7 +1126,6 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1101,6 +1136,8 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     private javax.swing.JLabel lblCongSoLuong;
     private javax.swing.JLabel lblHinhAnh;
     private javax.swing.JLabel lblTruSoLuong;
+    private javax.swing.JPanel panelFix;
+    private javax.swing.JPanel panelLayout;
     private com.k33ptoo.components.KGradientPanel panelTitle;
     private javax.swing.JPanel pnlBanHang;
     private javax.swing.JPanel pnlContent1;
@@ -1247,7 +1284,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
 //        listHinhSP.removeAll(listHinhSP);
         listHinhSP = haDAO.selectAllById(sp.getMaSanPham());
-        System.out.println(listHinhSP); // bug load 5 times at tblSanPham click event
+//        System.out.println(listHinhSP); // bug load 5 times at tblSanPham click event
         setHinh();
         setTextSoLuong();
     }
