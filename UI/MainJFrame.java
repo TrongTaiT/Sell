@@ -113,8 +113,8 @@ public class MainJFrame extends javax.swing.JFrame {
         lblSanPhamIcon = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         panelKhoItem = new javax.swing.JPanel();
-        lblKhoText = new javax.swing.JLabel();
-        lblKhoIcon = new javax.swing.JLabel();
+        lblLoaiHangText = new javax.swing.JLabel();
+        lblLoaiHangIcon = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         panelKhachHangItem = new javax.swing.JPanel();
         lblKhachHangText = new javax.swing.JLabel();
@@ -434,30 +434,30 @@ public class MainJFrame extends javax.swing.JFrame {
         panelKhoItem.setBackground(new java.awt.Color(0, 153, 255));
         panelKhoItem.setPreferredSize(new java.awt.Dimension(240, 50));
 
-        lblKhoText.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblKhoText.setForeground(new java.awt.Color(255, 255, 255));
-        lblKhoText.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblKhoText.setText("QUẢN LÝ LOẠI HÀNG");
-        lblKhoText.setPreferredSize(new java.awt.Dimension(76, 76));
-        lblKhoText.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblLoaiHangText.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblLoaiHangText.setForeground(new java.awt.Color(255, 255, 255));
+        lblLoaiHangText.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblLoaiHangText.setText("QUẢN LÝ LOẠI HÀNG");
+        lblLoaiHangText.setPreferredSize(new java.awt.Dimension(76, 76));
+        lblLoaiHangText.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblKhoTextMouseClicked(evt);
+                lblLoaiHangTextMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblKhoTextMouseEntered(evt);
+                lblLoaiHangTextMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblKhoTextMouseExited(evt);
+                lblLoaiHangTextMouseExited(evt);
             }
         });
 
-        lblKhoIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblKhoIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/type-icon.png"))); // NOI18N
-        lblKhoIcon.setToolTipText("Quản lý Loại hàng");
-        lblKhoIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblKhoIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblLoaiHangIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLoaiHangIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/Sell/icons/type-icon.png"))); // NOI18N
+        lblLoaiHangIcon.setToolTipText("Quản lý Loại hàng");
+        lblLoaiHangIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblLoaiHangIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblKhoIconMouseClicked(evt);
+                lblLoaiHangIconMouseClicked(evt);
             }
         });
 
@@ -466,14 +466,14 @@ public class MainJFrame extends javax.swing.JFrame {
         panelKhoItemLayout.setHorizontalGroup(
             panelKhoItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelKhoItemLayout.createSequentialGroup()
-                .addComponent(lblKhoIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblLoaiHangIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblKhoText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblLoaiHangText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelKhoItemLayout.setVerticalGroup(
             panelKhoItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblKhoText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(lblKhoIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addComponent(lblLoaiHangText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(lblLoaiHangIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
         jPanel16.setOpaque(false);
@@ -1077,15 +1077,15 @@ public class MainJFrame extends javax.swing.JFrame {
         DesignHelper.hoverMenuExit(lblSanPhamText, panelSanPhamItem);
     }//GEN-LAST:event_lblSanPhamTextMouseExited
 
-    private void lblKhoTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKhoTextMouseEntered
+    private void lblLoaiHangTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoaiHangTextMouseEntered
 
-        DesignHelper.hoverMenuEnter(lblKhoText, panelKhoItem);
-    }//GEN-LAST:event_lblKhoTextMouseEntered
+        DesignHelper.hoverMenuEnter(lblLoaiHangText, panelKhoItem);
+    }//GEN-LAST:event_lblLoaiHangTextMouseEntered
 
-    private void lblKhoTextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKhoTextMouseExited
+    private void lblLoaiHangTextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoaiHangTextMouseExited
 
-        DesignHelper.hoverMenuExit(lblKhoText, panelKhoItem);
-    }//GEN-LAST:event_lblKhoTextMouseExited
+        DesignHelper.hoverMenuExit(lblLoaiHangText, panelKhoItem);
+    }//GEN-LAST:event_lblLoaiHangTextMouseExited
 
     private void lblKhachHangTextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKhachHangTextMouseEntered
 
@@ -1175,15 +1175,23 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMenuFocusLost
 
     private void lblCuaHangTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCuaHangTextMouseClicked
-        showPanel(new QL_CuaHang());
-        click = true;
-        animationMenu();
+        if (Auth.isManager()) {            
+            showPanel(new QL_CuaHang());
+            click = true;
+            animationMenu();            
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập");
+        }
     }//GEN-LAST:event_lblCuaHangTextMouseClicked
 
     private void lblCuaHangIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCuaHangIconMouseClicked
-        showPanel(new QL_CuaHang());
-        click = true;
-        animationMenu();
+        if (Auth.isManager()) {            
+            showPanel(new QL_CuaHang());
+            click = true;
+            animationMenu();            
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập");
+        }
     }//GEN-LAST:event_lblCuaHangIconMouseClicked
 
     private void lblKhachHangIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKhachHangIconMouseClicked
@@ -1199,10 +1207,13 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lblSanPhamIconMouseClicked
 
     private void lblNhapHangIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNhapHangIconMouseClicked
-
-        showPanel(new QL_HoaDonNhap());
-        click = true;
-        animationMenu();
+        if (Auth.isManager()) {            
+            showPanel(new QL_HoaDonNhap());
+            click = true;
+            animationMenu();            
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập");
+        }
     }//GEN-LAST:event_lblNhapHangIconMouseClicked
 
     private void lblDoanhThuIconMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoanhThuIconMouseEntered
@@ -1236,12 +1247,12 @@ public class MainJFrame extends javax.swing.JFrame {
         DesignHelper.hoverMenuExit(lblBanHangText, panelBanHangItem);
     }//GEN-LAST:event_lblBanHangTextMouseExited
 
-    private void lblKhoIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKhoIconMouseClicked
+    private void lblLoaiHangIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoaiHangIconMouseClicked
         // TODO add your handling code here:
         showPanel(new QL_LoaiHang());
         click = true;
         animationMenu();
-    }//GEN-LAST:event_lblKhoIconMouseClicked
+    }//GEN-LAST:event_lblLoaiHangIconMouseClicked
 
     private void lblNhapHangIconMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNhapHangIconMouseEntered
         // TODO add your handling code here:
@@ -1256,9 +1267,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void lblNhapHangTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNhapHangTextMouseClicked
         // TODO add your handling code here:
-        showPanel(new QL_HoaDonNhap());
-        click = true;
-        animationMenu();
+        if (Auth.isManager()) {            
+            showPanel(new QL_HoaDonNhap());
+            click = true;
+            animationMenu();            
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập");
+        }
     }//GEN-LAST:event_lblNhapHangTextMouseClicked
 
     private void lblKhachHangTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKhachHangTextMouseClicked
@@ -1292,12 +1307,12 @@ public class MainJFrame extends javax.swing.JFrame {
         lblDangXuat.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblDangXuatMouseExited
 
-    private void lblKhoTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKhoTextMouseClicked
+    private void lblLoaiHangTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoaiHangTextMouseClicked
         // TODO add your handling code here:
         showPanel(new QL_LoaiHang());
         click = true;
         animationMenu();
-    }//GEN-LAST:event_lblKhoTextMouseClicked
+    }//GEN-LAST:event_lblLoaiHangTextMouseClicked
 
     private void lblDoiMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoiMatKhauMouseClicked
         // TODO add your handling code here:
@@ -1317,9 +1332,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void lblDoanhThuTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoanhThuTextMouseClicked
         // TODO add your handling code here:
-        showPanel(new ThongKeJPanel());
-        click = true;
-        animationMenu();
+        if (Auth.isManager()) {            
+            showPanel(new ThongKeJPanel());
+            click = true;
+            animationMenu();            
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập");
+        }
     }//GEN-LAST:event_lblDoanhThuTextMouseClicked
 
     private void lblHomeIconMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeIconMouseEntered
@@ -1398,8 +1417,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblKhachHangIcon;
     private javax.swing.JLabel lblKhachHangText;
-    private javax.swing.JLabel lblKhoIcon;
-    private javax.swing.JLabel lblKhoText;
+    private javax.swing.JLabel lblLoaiHangIcon;
+    private javax.swing.JLabel lblLoaiHangText;
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblMiniMize;
     private javax.swing.JLabel lblNhanVienIcon;
@@ -1431,7 +1450,6 @@ public class MainJFrame extends javax.swing.JFrame {
         showPanel(new SlideShowJPanel());
         click = true;
         animationMenu();
-        Auth.user = new NhanVien_Dao().selectById("NV01");
         this.hello();
     }
     

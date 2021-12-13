@@ -988,6 +988,7 @@ public class QL_NhanVien extends javax.swing.JPanel {
         Font font = txtMaNV.getFont();
         font = font.deriveFont(Font.BOLD);
         txtMaNV.setFont(font);
+        txtMatKhau.setEchoChar('\u25cf');
         DesignHelper.deletePlaceHolderTextField(txtHoTen);
         DesignHelper.deletePlaceHolderTextField(txtEmail);
         DesignHelper.deletePlaceHolderTextField(txtDienThoai);
@@ -1209,8 +1210,9 @@ public class QL_NhanVien extends javax.swing.JPanel {
         nv.setLuong(0f);
         tblNhanVien.clearSelection();
        
-        this.setForm(nv);
         this.setTextStartAndNew();
+        this.setForm(nv);
+        txtMatKhau.setEchoChar('\u25cf');
         this.row = -1;
         this.updateStatus();
         resetBorder();
