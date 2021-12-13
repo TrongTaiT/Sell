@@ -761,12 +761,22 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(1203, 50));
 
         btnXoaHoaDon.setText("Xoá hoá đơn");
+        btnXoaHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaHoaDonActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("TÌM KIẾM");
         jLabel5.setPreferredSize(new java.awt.Dimension(100, 40));
 
         txtTimKiem.setPreferredSize(new java.awt.Dimension(400, 30));
+        txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTimKiemCaretUpdate(evt);
+            }
+        });
 
         btgFilterTblHoaDon.add(rdoTatCa);
         rdoTatCa.setSelected(true);
@@ -778,7 +788,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         });
 
         btgFilterTblHoaDon.add(rdoChuaThanhKhoan);
-        rdoChuaThanhKhoan.setText("Chưa thánh khoản");
+        rdoChuaThanhKhoan.setText("Chưa thanh khoản");
         rdoChuaThanhKhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdoTatCaActionPerformed(evt);
@@ -960,7 +970,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     private void tblHoaDonBanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonBanMouseClicked
         if (evt.getClickCount() == 2) {
-            
+
         }
     }//GEN-LAST:event_tblHoaDonBanMouseClicked
 
@@ -997,6 +1007,14 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     private void rdoTatCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoTatCaActionPerformed
         filltblHoaDonBan();
     }//GEN-LAST:event_rdoTatCaActionPerformed
+
+    private void txtTimKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCaretUpdate
+        filltblHoaDonBan();
+    }//GEN-LAST:event_txtTimKiemCaretUpdate
+
+    private void btnXoaHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaHoaDonActionPerformed
+        deleteHoaDonBan();
+    }//GEN-LAST:event_btnXoaHoaDonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btgFilterTblHoaDon;
@@ -1552,55 +1570,11 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     // panel Danh sách hoá đơn
     private void filltblHoaDonBan() {
-//        "MÃ HÓA ĐƠN", "MÃ KHÁCH HÀNG", "NGÀY BÁN",
-//            "GIẢM GIÁ", "NỘI DUNG", "TRẠNG THÁI", "MÃ NV", "MÃ CH", "THÀNH TIỀN"
         DefaultTableModel tblModel = (DefaultTableModel) tblHoaDonBan.getModel();
         tblModel.setRowCount(0);
         String keyword = txtTimKiem.getText();
         try {
             List<HoaDonBanHang> listHD = hdbhDAO.selectByKeyWord(keyword);
-//            for (HoaDonBanHang hd : listHD) {
-//                if (rdoTatCa.isSelected()) {
-//                    int giamGia = 0;
-//                    if (pggDAO.selectByMaKH(hd.getMaKhachHang()) != null) {
-//                        giamGia = 10;
-//                    } else if (hd.getMaKhachHang() != null) {
-//                        giamGia = 5;
-//                    }
-//
-//                    tblModel.addRow(new Object[]{
-//                        hd.getMaHDBan(),
-//                        hd.getMaKhachHang(),
-//                        DateHelper.toString(hd.getNgayBan()),
-//                        giamGia,
-//                        hd.getNoiDung(),
-//                        hd.getTrangThai() ? "Đã thanh toán" : "Chưa thanh toán",
-//                        hd.getMaNhanVien(),
-//                        hd.getMaCuaHang(),
-//                        hd.getThanhTien()
-//                    });
-//                } else if (rdoChuaThanhKhoan.isSelected() && hd.getTrangThai() == false) {
-//                    int giamGia = 0;
-//                    if (pggDAO.selectByMaKH(hd.getMaKhachHang()) != null) {
-//                        giamGia = 10;
-//                    } else if (hd.getMaKhachHang() != null) {
-//                        giamGia = 5;
-//                    }
-//
-//                    tblModel.addRow(new Object[]{
-//                        hd.getMaHDBan(),
-//                        hd.getMaKhachHang(),
-//                        DateHelper.toString(hd.getNgayBan()),
-//                        giamGia,
-//                        hd.getNoiDung(),
-//                        hd.getTrangThai() ? "Đã thanh toán" : "Chưa thanh toán",
-//                        hd.getMaNhanVien(),
-//                        hd.getMaCuaHang(),
-//                        hd.getThanhTien()
-//                    });
-//                }
-//
-//            }
             if (rdoTatCa.isSelected()) {
                 for (HoaDonBanHang hd : listHD) {
                     int giamGia = 0;
@@ -1648,6 +1622,24 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void deleteHoaDonBan() {
+        if (Auth.isManager() == false) {
+            MsgBox.alert(this, "Bạn không có quyền xoá hoá đơn");
+        }
+        
+        int selectedRow = tblHoaDonBan.getSelectedRow();
+        if (selectedRow >= 0) {
+            String maHD = (String) tblHoaDonBan.getValueAt(selectedRow, 0);
+            try {
+                hdbhDAO.delete(maHD);
+
+                MsgBox.alert(this, "Đã xoá hoá đơn thành công");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Đã xoá hoá đơn thất bại");
+            }
         }
     }
 }
