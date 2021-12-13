@@ -14,6 +14,7 @@ import com.Sell.Helper.MsgBox;
 import com.Sell.Helper.ValidationHelper;
 import com.Sell.entity.ChiTietCuaHang;
 import com.Sell.entity.CuaHang;
+import com.Sell.entity.NhanVien;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
@@ -1052,14 +1053,15 @@ public class QL_CuaHang extends javax.swing.JPanel {
         if (ValidationHelper.isValidLength(this, txtMaQuanLy, "Mã quản lý", 7) == false) {
             return false;
         }
+//        NhanVien nv = new NhanVien_Dao().selectById(txtMaQuanLy.getText());
         if (ValidationHelper.isExistEntity(this, txtMaQuanLy, "Mã quản lý",
-                new NhanVien_Dao().selectById(txtMaQuanLy.getText())) != false) {
+                new NhanVien_Dao().selectById(txtMaQuanLy.getText())) == false) {
             return false;
         }
         if (ValidationHelper.isPickedCombobox(this, cboTrangThai, "Trạng thái") == false) {
             return false;
         }
-        if (ValidationHelper.isValidLengthNullableField(this, txtDiaChi, "Địa chỉ", 225) == false) {
+        if (ValidationHelper.isValidLength(this, txtDiaChi, "Địa chỉ", 225) == false) {
             return false;
         }
         return true;
