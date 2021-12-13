@@ -57,7 +57,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author trongtai
  */
 public class QL_HoaDonBanHang extends javax.swing.JPanel {
-    
+
     LoaiHangDAO lhDAO = new LoaiHangDAO();
     SanPhamDAO spDAO = new SanPhamDAO();
     ChiTietCuaHangDAO ctchDAO = new ChiTietCuaHangDAO();
@@ -66,7 +66,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     PhieuGiamGia_Dao pggDAO = new PhieuGiamGia_Dao();
     HoaDonChiTiet_DAO hdctDAO = new HoaDonChiTiet_DAO();
     HoaDonBanHang_Dao hdbhDAO = new HoaDonBanHang_Dao();
-    
+
     List<KhachHang> listKhachHang;
     List<SanPham> listSanPham;
     List<HinhAnh> listHinhSP = new ArrayList<>();
@@ -421,7 +421,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                             .addComponent(lblCongSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(12, Short.MAX_VALUE)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblHinhAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel10Layout.createSequentialGroup()
@@ -655,7 +655,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                         .addGroup(pnlContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pnlThongTinKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50)
+                        .addGap(47, 47, 47)
                         .addGroup(pnlContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
@@ -893,7 +893,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                     //update tblChiTietCuaHang
                     int row = tblChiTietCuaHang.getSelectedRow();
                     int soSP = (int) tblChiTietCuaHang.getValueAt(row, 3);
-                    
+
                     DefaultTableModel tblModel = (DefaultTableModel) tblChiTietCuaHang.getModel();
                     tblModel.setValueAt(--soSP, tblChiTietCuaHang.getSelectedRow(), 3);
                     tblChiTietCuaHang.setModel(tblModel);
@@ -921,7 +921,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                     //update tblChiTietCuaHang
                     int row = tblChiTietCuaHang.getSelectedRow();
                     int soSP = (int) tblChiTietCuaHang.getValueAt(row, 3);
-                    
+
                     DefaultTableModel tblModel = (DefaultTableModel) tblChiTietCuaHang.getModel();
                     tblModel.setValueAt(++soSP, tblChiTietCuaHang.getSelectedRow(), 3);
                     tblChiTietCuaHang.setModel(tblModel);
@@ -937,7 +937,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         if (listHinhSP.size() <= 0) {
             return;
         }
-        
+
         if (this.hinhIndex < listHinhSP.size() - 1) {
             this.hinhIndex++;
         } else {
@@ -950,7 +950,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         if (listHinhSP.size() <= 0) {
             return;
         }
-        
+
         if (this.hinhIndex < listHinhSP.size() - 1) {
             this.hinhIndex++;
         } else {
@@ -1016,7 +1016,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     private void btnXoaKhoiGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaKhoiGioHangActionPerformed
         deleteRowInTblChiTietHoaDon();
     }//GEN-LAST:event_btnXoaKhoiGioHangActionPerformed
-    
+
     private void deleteRowInTblChiTietHoaDon() {
         int row = tblChiTietHoaDonForm.getSelectedRow();
         if (row >= 0) {
@@ -1029,7 +1029,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     private void tblHoaDonBanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonBanMouseClicked
         if (evt.getClickCount() == 2) {
-            
+            fillFormPanelBanHang();
         }
     }//GEN-LAST:event_tblHoaDonBanMouseClicked
 
@@ -1164,20 +1164,20 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     private void init() {
         ImageHelper.setDefaultImage(lblHinhAnh);
-        
+
         listKhachHang = khDAO.selectAll();
         fillCboFormKhachHang();
-        
+
         DesignHelper.setTable(tblChiTietCuaHang, new String[]{"MÃ SP", "TÊN SP", "ĐƠN GIÁ", "TỒN KHO"});
         fillTblChiTietCuaHang();
-        
+
         DesignHelper.setTable(tblChiTietHoaDonForm, new String[]{"MÃ SP", "TÊN SP",
             "SỐ LƯỢNG", "ĐƠN GIÁ", "THÀNH TIỀN"});
-        
+
         txtGiamGia.setText("0");
-        
+
         String[] hoaDonChiTietColumns = {"MÃ HÓA ĐƠN", "MÃ KHÁCH HÀNG", "NGÀY BÁN",
-            "GIẢM GIÁ", "NỘI DUNG", "TRẠNG THÁI", "MÃ NV", "MÃ CH", "THÀNH TIỀN"};
+            "GIẢM GIÁ", "TRẠNG THÁI", "MÃ NV", "MÃ CH", "THÀNH TIỀN"};
         DesignHelper.setTable(tblHoaDonBan, hoaDonChiTietColumns);
         filltblHoaDonBan();
     }
@@ -1187,30 +1187,30 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         DefaultComboBoxModel model1 = new DefaultComboBoxModel();
         DefaultComboBoxModel model2 = new DefaultComboBoxModel();
         DefaultComboBoxModel model3 = new DefaultComboBoxModel();
-        
+
         model1.removeAllElements();
         model2.removeAllElements();
         model3.removeAllElements();
-        
+
         model1.addElement("Họ và tên");
         model2.addElement("Điện thoại");
         model3.addElement("Email");
-        
+
         for (KhachHang kh : listKhachHang) {
             model1.addElement(kh.getHoTen());
             model2.addElement(kh.getDienThoai());
             model3.addElement(kh.getEmail());
         }
-        
+
         cboKhachHang.setModel(model1);
         cboDienThoai.setModel(model2);
         cboEmail.setModel(model3);
-        
+
         AutoCompleteDecorator.decorate(cboKhachHang);
         AutoCompleteDecorator.decorate(cboDienThoai);
         AutoCompleteDecorator.decorate(cboEmail);
     }
-    
+
     private void setFormKhachHang(KhachHang kh) {
         cboDienThoai.setSelectedItem(kh.getDienThoai());
         cboKhachHang.setSelectedItem(kh.getHoTen());
@@ -1221,7 +1221,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     private void fillTblChiTietCuaHang() {
         DefaultTableModel tblModel = (DefaultTableModel) tblChiTietCuaHang.getModel();
         tblModel.setRowCount(0);
-        
+
         List<ChiTietCuaHang> listCTCuaHang = ctchDAO.selectAllByID(Auth.user.getMaCuaHang());
         if (!listCTCuaHang.isEmpty()) {
             for (ChiTietCuaHang ctch : listCTCuaHang) {
@@ -1236,7 +1236,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             }
         }
         tblChiTietCuaHang.setModel(tblModel);
-        
+
         if (tblChiTietCuaHang.getRowCount() > 0) {
             fillCboFormSanPham();
         }
@@ -1246,28 +1246,28 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
     private void fillCboFormSanPham() {
         DefaultComboBoxModel cboModel = new DefaultComboBoxModel();
         DefaultComboBoxModel cboModel1 = new DefaultComboBoxModel();
-        
+
         cboModel.removeAllElements();
         cboModel1.removeAllElements();
-        
+
         cboModel.addElement("Mã sản phẩm");
         cboModel1.addElement("Tên sản phẩm");
-        
+
         for (int i = 0; i < tblChiTietCuaHang.getRowCount(); i++) {
             String maSP = (String) tblChiTietCuaHang.getValueAt(i, 0);
             cboModel.addElement(maSP);
-            
+
             String tenSP = (String) tblChiTietCuaHang.getValueAt(i, 1);
             cboModel1.addElement(tenSP);
         }
-        
+
         cboMaSanPham.setModel(cboModel);
         cboTenSanPham.setModel(cboModel1);
-        
+
         AutoCompleteDecorator.decorate(cboMaSanPham);
         AutoCompleteDecorator.decorate(cboTenSanPham);
     }
-    
+
     private void setHinh() {
         if (!listHinhSP.isEmpty()) {
             lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh, listHinhSP.get(0).getHinhAnh()));
@@ -1275,7 +1275,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             ImageHelper.setDefaultImage(lblHinhAnh);
         }
     }
-    
+
     private void fillFormThongTinSanPham(SanPham sp) {
         cboMaSanPham.setSelectedItem(sp.getMaSanPham());
 //        cboTenSanPham.setSelectedItem(sp.getTenSP());
@@ -1288,7 +1288,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         setHinh();
         setTextSoLuong();
     }
-    
+
     private void setTextSoLuong() {
         for (int i = 0; i < tblChiTietHoaDonForm.getRowCount(); i++) {
             String maSPCombobox = (String) cboMaSanPham.getSelectedItem();
@@ -1302,12 +1302,12 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         // if not exit in tblChiTietHoaDon
         txtSoLuong.setText("0");
     }
-    
+
     private boolean validateSoLuong() {
         if (ValidationHelper.isNumberField(this, txtSoLuong, "Số lượng", 0.0) == false) {
             return false;
         }
-        
+
         int soLuong = Integer.parseInt(txtSoLuong.getText());
         int tonKho = (int) tblChiTietCuaHang.getValueAt(tblChiTietCuaHang.getSelectedRow(), 3);
         if (soLuong > tonKho) {
@@ -1315,7 +1315,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             ValidationHelper.setErrorFor(txtSoLuong);
             return false;
         }
-        
+
         return true;
     }
 
@@ -1359,7 +1359,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 tblModel.setValueAt(DesignHelper.formatCurrency(thanhTien), row, 4);
             }
         }
-        
+
         tblChiTietHoaDonForm.setModel(tblModel);
     }
 
@@ -1376,7 +1376,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             txtGiamGia.setText("0");
         }
     }
-    
+
     private void calculateTienHang() {
         int rowCount = tblChiTietHoaDonForm.getRowCount();
         float productCost = 0;
@@ -1387,11 +1387,11 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             }
         }
         txtTienHang.setText(DesignHelper.formatCurrency(productCost));
-        
+
         float total = (float) (productCost - (productCost * Float.parseFloat(txtGiamGia.getText()) / 100));
         txtTongTien.setText(DesignHelper.formatCurrency(total));
     }
-    
+
     private void calculateTienTraLai() {
         if (RegexValidation.isNumber(txtTienKhachDua.getText()) == false) {
             return;
@@ -1401,7 +1401,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         float tienTraLai = tienKhachDua - tongTien;
         txtTienTraLai.setText(DesignHelper.formatCurrency(tienTraLai));
     }
-    
+
     private boolean validates() {
         if (ValidationHelper.isValidLength(this, txtMaHoaDon, "Mã hoá đơn", 7) == false) {
             return false;
@@ -1409,10 +1409,10 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         if (ValidationHelper.isValidLengthNullableField(this, txtNoiDung, "Nội dung", 225) == false) {
             return false;
         }
-        
+
         return true;
     }
-    
+
     private void insertHoaDon(boolean trangThai) {
         if (validates() == false) {
             return;
@@ -1421,7 +1421,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             MsgBox.alert(this, "Nhập hoặc chọn hoá đơn để xuất Excel");
             return;
         }
-        
+
         if (hdbhDAO.selectById(txtMaHoaDon.getText()) == null) {
             // add HDCT to database
             try {
@@ -1443,7 +1443,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 hd.setMaCuaHang(Auth.user.getMaCuaHang());
                 hd.setThanhTien(Float.valueOf(DesignHelper.revertCurrency(txtTongTien.getText())));
                 hdbhDAO.insert(hd);
-                
+
                 HoaDonChiTiet hdct = new HoaDonChiTiet();
                 hdct.setMaHDBan(hd.getMaHDBan());
                 for (int i = 0; i < tblChiTietHoaDonForm.getRowCount(); i++) {
@@ -1452,7 +1452,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                     hdct.setThanhTien(Float.valueOf(DesignHelper.revertCurrency((String) tblChiTietHoaDonForm.getValueAt(i, 4))));
                     hdctDAO.insert(hdct);
                 }
-                
+
                 filltblHoaDonBan();
                 fillTblChiTietCuaHang();
                 MsgBox.alert(this, "Thêm đơn hàng thành công!");
@@ -1461,10 +1461,25 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 e.printStackTrace();
             }
         } else {
+            if (Auth.isManager() == false) {
+                MsgBox.alert(this, "Liên hệ cấp quản lý để sửa hoá đơn");
+            }
+
             // update exists HD
             HoaDonBanHang hd = hdbhDAO.selectById(txtMaHoaDon.getText());
             hd.setTrangThai(trangThai);
+
+            HoaDonChiTiet hdct = new HoaDonChiTiet();
+            hdct.setMaHDBan(hd.getMaHDBan());
+
             try {
+                for (int i = 0; i < tblChiTietHoaDonForm.getRowCount(); i++) {
+                    hdct.setMaSanPham((String) tblChiTietHoaDonForm.getValueAt(i, 0));
+                    hdct.setSoLuong((String) tblChiTietHoaDonForm.getValueAt(i, 2));
+                    hdct.setThanhTien(Float.valueOf(DesignHelper.revertCurrency((String) tblChiTietHoaDonForm.getValueAt(i, 4))));
+                    hdctDAO.update(hdct);
+                }
+
                 hdbhDAO.update(hd);
                 filltblHoaDonBan();
                 MsgBox.alert(this, "Cập nhật đơn hàng thành công");
@@ -1474,17 +1489,18 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             }
         }
     }
-    
+
     private void clearForm() {
         cboDienThoai.setSelectedIndex(0);
-        
+
         cboMaSanPham.setSelectedIndex(0);
         txtLoaiSanPham.setText("");
         txtDonGia.setText("");
         txtSoLuong.setText("0");
         listHinhSP.removeAll(listHinhSP);
         setHinh();
-        
+        txtMaHoaDon.setEditable(true);
+
         DefaultTableModel tblModel1 = (DefaultTableModel) tblChiTietHoaDonForm.getModel();
         tblModel1.setRowCount(0);
         tblChiTietHoaDonForm.setModel(tblModel1);
@@ -1499,11 +1515,11 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     // from byhere is Excel's code
     private void outPutExcel() {
-        if (tblChiTietHoaDonForm.getRowCount() < 0) {
+        if (tblChiTietHoaDonForm.getRowCount() <= 0) {
             MsgBox.alert(this, "Chưa nhập/chọn hoá đơn");
             return;
         }
-        
+
         JFileChooser excelExportChooser = new JFileChooser();
         excelExportChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         excelExportChooser.setDialogTitle("Save Excel File");
@@ -1520,12 +1536,12 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 Cell cell = null;
 
                 //meger title
-                sheet.addMergedRegion(new CellRangeAddress(0, 1, 0, 2));
+                sheet.addMergedRegion(new CellRangeAddress(0, 1, 0, tblChiTietHoaDonForm.getColumnCount() - 1));
 
                 //create CellStyle
                 CellStyle cellStyle = createStyleForHeader(sheet);
                 CellStyle cellStyle2 = createStyleForTittle(sheet);
-                
+
                 row = sheet.createRow(0);
                 cell = row.createCell(0, CellType.STRING);
                 cell.setCellStyle(cellStyle2);
@@ -1557,7 +1573,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                         row = sheet.createRow(j + 5);
                         cell = row.createCell(0, CellType.STRING);
                         cell.setCellValue("Tiền hàng: ");
-                        
+
                         cell = row.createCell(tblChiTietHoaDonForm.getColumnCount() - 1, CellType.STRING);
                         cell.setCellValue(txtTienHang.getText());
 
@@ -1565,7 +1581,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                         row = sheet.createRow(j + 6);
                         cell = row.createCell(0, CellType.STRING);
                         cell.setCellValue("Giảm giá: ");
-                        
+
                         cell = row.createCell(tblChiTietHoaDonForm.getColumnCount() - 1, CellType.STRING);
                         cell.setCellValue(txtGiamGia.getText());
 
@@ -1574,13 +1590,13 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                         cell = row.createCell(0, CellType.STRING);
                         cell.setCellStyle(cellStyle2);
                         cell.setCellValue("Tổng: ");
-                        
+
                         cell = row.createCell(tblChiTietHoaDonForm.getColumnCount() - 1, CellType.STRING);
                         cell.setCellStyle(cellStyle2);
                         cell.setCellValue(txtTongTien.getText());
                     }
                 }
-                
+
                 FileOutputStream excelFIS;
                 excelFIS = new FileOutputStream(excelExportChooser.getSelectedFile() + ".xlsx");
                 workbook.write(excelFIS);
@@ -1599,7 +1615,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             }
         }
     }
-    
+
     private static CellStyle createStyleForTittle(Sheet sheet) {
         // Create font
         Font font = sheet.getWorkbook().createFont();
@@ -1617,7 +1633,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         cellStyle.setBorderBottom(BorderStyle.THIN);
         return cellStyle;
     }
-    
+
     private static CellStyle createStyleForHeader(Sheet sheet) {
         // Create font
         Font font = sheet.getWorkbook().createFont();
@@ -1634,7 +1650,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         cellStyle.setBorderBottom(BorderStyle.THIN);
         return cellStyle;
     }
-    
+
     void autosizeColumn(Sheet sheet, int lastColumn) {
         for (int columnIndex = 0; columnIndex < lastColumn; columnIndex++) {
             sheet.autoSizeColumn(columnIndex);
@@ -1656,17 +1672,16 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                     } else if (hd.getMaKhachHang() != null) {
                         giamGia = 5;
                     }
-                    
+
                     tblModel.addRow(new Object[]{
                         hd.getMaHDBan(),
                         hd.getMaKhachHang(),
                         DateHelper.toString(hd.getNgayBan()),
                         giamGia,
-                        hd.getNoiDung(),
                         hd.getTrangThai() ? "Đã thanh toán" : "Chưa thanh toán",
                         hd.getMaNhanVien(),
                         hd.getMaCuaHang(),
-                        hd.getThanhTien()
+                        DesignHelper.formatCurrency(hd.getThanhTien())
                     });
                 }
             } else if (rdoChuaThanhKhoan.isSelected()) {
@@ -1678,13 +1693,12 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                         } else if (hd.getMaKhachHang() != null) {
                             giamGia = 5;
                         }
-                        
+
                         tblModel.addRow(new Object[]{
                             hd.getMaHDBan(),
                             hd.getMaKhachHang(),
                             DateHelper.toString(hd.getNgayBan()),
                             giamGia,
-                            hd.getNoiDung(),
                             hd.getTrangThai() ? "Đã thanh toán" : "Chưa thanh toán",
                             hd.getMaNhanVien(),
                             hd.getMaCuaHang(),
@@ -1697,22 +1711,70 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-    
+
     private void deleteHoaDonBan() {
         if (Auth.isManager() == false) {
             MsgBox.alert(this, "Bạn không có quyền xoá hoá đơn");
         }
-        
+
         int selectedRow = tblHoaDonBan.getSelectedRow();
         if (selectedRow >= 0) {
             String maHD = (String) tblHoaDonBan.getValueAt(selectedRow, 0);
             try {
                 hdbhDAO.delete(maHD);
-                
+
                 MsgBox.alert(this, "Đã xoá hoá đơn thành công");
             } catch (Exception e) {
                 MsgBox.alert(this, "Đã xoá hoá đơn thất bại");
             }
         }
+    }
+
+    private void fillFormPanelBanHang() {
+//        "MÃ HÓA ĐƠN", "MÃ KHÁCH HÀNG", "NGÀY BÁN",
+//            "GIẢM GIÁ", "NỘI DUNG", "TRẠNG THÁI", "MÃ NV", "MÃ CH", "THÀNH TIỀN"
+        int row = tblHoaDonBan.getSelectedRow();
+        if (row < 0) {
+            MsgBox.alert(this, "hehe");
+            return;
+        }
+
+        HoaDonBanHang hd = hdbhDAO.selectById((String) tblHoaDonBan.getValueAt(row, 0));
+
+        // panel 1. Thông tin KH
+        if (hd.getMaKhachHang() == null || hd.getMaCuaHang().equals("")) {
+            cboDienThoai.setSelectedIndex(0);
+        } else {
+            for (int i = 0; i < listKhachHang.size(); i++) {
+                if (listKhachHang.get(i).getMaKhachHang().equals(hd.getMaKhachHang())) {
+                    cboDienThoai.setSelectedIndex(i + 1);
+                    break;
+                }
+            }
+        }
+
+        // panel 4. Hoá đơn
+        DefaultTableModel tblModel = (DefaultTableModel) tblChiTietHoaDonForm.getModel();
+        List<HoaDonChiTiet> listHDCT = hdctDAO.selectAll(hd.getMaHDBan());
+        for (HoaDonChiTiet hdct : listHDCT) {
+            SanPham sp = spDAO.selectById(hdct.getMaSanPham());
+            tblModel.addRow(new Object[]{
+                sp.getMaSanPham(),
+                sp.getTenSP(),
+                hdct.getSoLuong(),
+                DesignHelper.formatCurrency(sp.getGiaTien()),
+                DesignHelper.formatCurrency(sp.getGiaTien() * Float.valueOf(hdct.getSoLuong()))
+            });
+        }
+
+        // panel 5. Thanh toán
+        txtMaHoaDon.setText(hd.getMaHDBan());
+        txtMaHoaDon.setEditable(false);
+        calculateTienHang();
+
+        txtNoiDung.setText(hd.getNoiDung());
+
+        panelFix.setVisible(true);
+        pnlDanhSachHoaDon.setVisible(false);
     }
 }
