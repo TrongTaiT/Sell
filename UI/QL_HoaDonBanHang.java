@@ -1641,7 +1641,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                             hd.getTrangThai() ? "Đã thanh toán" : "Chưa thanh toán",
                             hd.getMaNhanVien(),
                             hd.getMaCuaHang(),
-                            hd.getThanhTien()
+                            DesignHelper.formatCurrency(hd.getThanhTien())
                         });
                     }
                 }

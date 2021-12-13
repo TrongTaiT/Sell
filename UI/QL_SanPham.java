@@ -1101,21 +1101,29 @@ public class QL_SanPham extends javax.swing.JPanel {
 
         try {
             if (cboLoaiSP.getSelectedIndex() == 0) {
-
                 List<SanPham> loaiHangALL = spDAO.selectByMaLoaiHang("");
                 for (SanPham sp : loaiHangALL) {
-                    Object[] rowData = {sp.getMaSanPham(), sp.getTenSP(), sp.getNhaSX(), sp.getGiaTien(), sp.getGhiChu()};
+                    Object[] rowData = {
+                        sp.getMaSanPham(), 
+                        sp.getTenSP(), 
+                        sp.getNhaSX(), 
+                        DesignHelper.formatCurrency(sp.getGiaTien()), 
+                        sp.getGhiChu()
+                    };
                     model.addRow(rowData);
                 }
             } else {
-
                 LoaiHang loaiHang = (LoaiHang) cboLoaiSP.getSelectedItem();
-
                 if (loaiHang != null) {
-
                     List<SanPham> list = spDAO.selectByMaLoaiHang(loaiHang.getMaLoai());
                     for (SanPham sp : list) {
-                        Object[] rowData = {sp.getMaSanPham(), sp.getTenSP(), sp.getNhaSX(), sp.getGiaTien(), sp.getGhiChu()};
+                        Object[] rowData = {
+                            sp.getMaSanPham(), 
+                            sp.getTenSP(), 
+                            sp.getNhaSX(), 
+                            DesignHelper.formatCurrency(sp.getGiaTien()), 
+                            sp.getGhiChu()
+                        };
                         model.addRow(rowData);
                     }
                 }
