@@ -5,19 +5,16 @@
  */
 package com.Sell.UI;
 
+import com.Sell.DAO.NhanVien_Dao;
 import com.Sell.Helper.Auth;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.FrameDragListener;
+import com.Sell.Helper.MsgBox;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 /**
  *
@@ -1126,17 +1123,23 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMiniMizeMouseClicked
     private JPanel childPanel;
     private void lblNhanVienIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNhanVienIconMouseClicked
-
-        showPanel(new QL_NhanVien());
-        click = true;
-        animationMenu();
+        if (Auth.isManager()) {            
+            showPanel(new QL_NhanVien());
+            click = true;
+            animationMenu();            
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập");
+        }
     }//GEN-LAST:event_lblNhanVienIconMouseClicked
 
     private void lblNhanVienTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNhanVienTextMouseClicked
-
-        showPanel(new QL_NhanVien());
-        click = true;
-        animationMenu();
+        if (Auth.isManager()) {            
+            showPanel(new QL_NhanVien());
+            click = true;
+            animationMenu();
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập");
+        }
     }//GEN-LAST:event_lblNhanVienTextMouseClicked
 
     private void lblHomeTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeTextMouseClicked
@@ -1207,10 +1210,13 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lblDoanhThuIconMouseEntered
 
     private void lblDoanhThuIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoanhThuIconMouseClicked
-        // TODO add your handling code here:
-        showPanel(new ThongKeJPanel());
-        click = true;
-        animationMenu();
+        if (Auth.isManager()) {            
+            showPanel(new ThongKeJPanel());
+            click = true;
+            animationMenu();            
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập");
+        }
     }//GEN-LAST:event_lblDoanhThuIconMouseClicked
 
     private void lblBanHangIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBanHangIconMouseClicked
@@ -1425,6 +1431,7 @@ public class MainJFrame extends javax.swing.JFrame {
         showPanel(new SlideShowJPanel());
         click = true;
         animationMenu();
+        Auth.user = new NhanVien_Dao().selectById("NV01");
         this.hello();
     }
     

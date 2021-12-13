@@ -6,12 +6,9 @@
 package com.Sell.UI;
 
 import com.Sell.DAO.HoaDonBanHang_Dao;
-import com.Sell.DAO.KhachHangDAO;
 import com.Sell.DAO.SanPhamDAO;
 import com.Sell.DAO.ThongKeDAO;
-import com.Sell.Helper.DateHelper;
 import com.Sell.Helper.DesignHelper;
-import com.Sell.entity.KhachHang;
 import com.Sell.entity.SanPham;
 import java.text.SimpleDateFormat;
 import java.util.Date;

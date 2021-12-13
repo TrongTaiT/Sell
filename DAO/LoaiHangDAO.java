@@ -7,7 +7,6 @@ package com.Sell.DAO;
 
 import com.Sell.Helper.JdbcHelper;
 import com.Sell.entity.LoaiHang;
-import com.Sell.entity.SanPham;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;

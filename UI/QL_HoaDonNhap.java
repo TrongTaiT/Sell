@@ -12,7 +12,6 @@ import com.Sell.Helper.DateHelper;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.MsgBox;
 import com.Sell.Helper.ValidationHelper;
-import com.Sell.entity.ChiTietCuaHang;
 import com.Sell.entity.CuaHang;
 import com.Sell.entity.HoaDonNhap;
 import com.Sell.entity.SanPham;

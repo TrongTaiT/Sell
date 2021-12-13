@@ -5,15 +5,12 @@
  */
 package com.Sell.UI;
 
-import com.Sell.DAO.HoaDonBanHang_Dao;
 import com.Sell.DAO.KhachHangDAO;
 import com.Sell.DAO.PhieuGiamGia_Dao;
 import com.Sell.Helper.DateHelper;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.MsgBox;
 import com.Sell.Helper.ValidationHelper;
-import com.Sell.entity.HoaDonBanHang;
-import com.Sell.entity.HoaDonChiTiet;
 import com.Sell.entity.KhachHang;
 import com.Sell.entity.PhieuGiamGia;
 import java.awt.Color;
@@ -23,7 +20,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;

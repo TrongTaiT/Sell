@@ -5,11 +5,9 @@
  */
 package com.Sell.DAO;
 
-import com.Sell.Helper.DateHelper;
 import com.Sell.Helper.JdbcHelper;
 import com.Sell.entity.KhachHang;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
