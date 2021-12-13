@@ -26,6 +26,9 @@ public class HoaDonBanHang_Dao {
     String SELECT_ALL_SQL = "SELECT * FROM HoaDonBanHang";
     String SELECT_BY_ID_SQL = "SELECT * FROM HoaDonBanHang WHERE MaHDBan = ?";
     String SELECT_BY_MAKH = "SELECT * FROM HOADONBANHANG WHERE MAKHACHHANG = ?";
+    String SELECT_BY_KEYWORD = "SELECT * FROM HOADONBANHANG WHERE MaHDBan LIKE ? OR"
+            + " MaKhachHang LIKE ? OR MaCuaHang LIKE ?";
+    String SELECT_BY_FILTER = "SELECT * FROM HOADONBANHANG WHERE TrangThai=?";
 
     public void insert(HoaDonBanHang entity) {
         try {
@@ -39,7 +42,6 @@ public class HoaDonBanHang_Dao {
                     entity.getMaCuaHang(),
                     entity.getMaGiamGia(),
                     entity.getThanhTien()
-                    
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,7 +77,7 @@ public class HoaDonBanHang_Dao {
     public List<HoaDonBanHang> selectAll() {
         return this.selectBySql(SELECT_ALL_SQL);
     }
-    
+
     public HoaDonBanHang selectByMaKH(String key) {
         List<HoaDonBanHang> list = this.selectBySql(SELECT_BY_MAKH, key);
         if (list.isEmpty()) {
@@ -126,6 +128,19 @@ public class HoaDonBanHang_Dao {
         model.setMaGiamGia(rs.getString(8));
         model.setThanhTien(rs.getFloat(9));
         return model;
+    }
+
+    public List<HoaDonBanHang> selectByKeyWord(String keyword) {
+        List<HoaDonBanHang> list = this.selectBySql(SELECT_BY_KEYWORD,
+                "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%");
+//        , "%" + keyword + "%", "%" + keyword + "%"
+        return list;
+    }
+
+    public List<HoaDonBanHang> selectByTrangThai(boolean trangThai) {
+        List<HoaDonBanHang> list = this.selectBySql(SELECT_BY_FILTER, trangThai);
+//        ,"%" + keyword + "%","%" + keyword + "%"
+        return list;
     }
 
 }
