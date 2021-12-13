@@ -803,6 +803,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
         panelThongTin.setVisible(true);
         panelDanhSach.setVisible(false);
         panelPhieuGiamGia.setVisible(false);
+        txtFocus.requestFocus();
     }//GEN-LAST:event_btnThongTinActionPerformed
 
     private void btnDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDanhSachActionPerformed
@@ -961,6 +962,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
         panelThongTin.setVisible(true);
         panelDanhSach.setVisible(false);
         panelPhieuGiamGia.setVisible(false);
+        txtFocus.requestFocus();
     }//GEN-LAST:event_btnThongTin1ActionPerformed
 
     private void tblPhieuGiamGiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPhieuGiamGiaMouseClicked
@@ -972,6 +974,7 @@ public class QL_KhachHang extends javax.swing.JPanel {
         panelDanhSach.setVisible(false);
         panelThongTin.setVisible(false);
         panelPhieuGiamGia.setVisible(false);
+        txtFocus.requestFocus();
     }//GEN-LAST:event_btnThongTin2ActionPerformed
 
     private void btnPhieuGiamGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhieuGiamGiaActionPerformed

@@ -16,6 +16,7 @@ import com.Sell.entity.ChiTietCuaHang;
 import com.Sell.entity.CuaHang;
 import com.Sell.entity.NhanVien;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -59,6 +60,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         panelInput = new javax.swing.JPanel();
+        txtFocus = new javax.swing.JTextField();
         txtMaCuaHang = new javax.swing.JTextField();
         txtMaQuanLy = new javax.swing.JTextField();
         cboTrangThai = new javax.swing.JComboBox<>();
@@ -182,6 +184,8 @@ public class QL_CuaHang extends javax.swing.JPanel {
             }
         });
 
+        txtFocus.setText("");
+
         txtMaCuaHang.setPreferredSize(new java.awt.Dimension(80, 35));
         txtMaCuaHang.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -224,10 +228,15 @@ public class QL_CuaHang extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtMaCuaHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtMaQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                    .addComponent(txtMaQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                     .addComponent(cboTrangThai, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addContainerGap())
+            .addGroup(panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelInputLayout.createSequentialGroup()
+                    .addGap(148, 148, 148)
+                    .addComponent(txtFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(149, Short.MAX_VALUE)))
         );
         panelInputLayout.setVerticalGroup(
             panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +250,14 @@ public class QL_CuaHang extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelInputLayout.createSequentialGroup()
+                    .addGap(118, 118, 118)
+                    .addComponent(txtFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(118, Short.MAX_VALUE)))
         );
+
+        txtFocus.setPreferredSize(new Dimension(0,0));
 
         btnMoi.setBackground(new java.awt.Color(51, 255, 255));
         btnMoi.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -449,7 +465,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -629,6 +645,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
     private void btnThongTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongTinActionPerformed
         panelCuaHang.setVisible(true);
         panelChiTiet.setVisible(false);
+        txtFocus.requestFocus();
     }//GEN-LAST:event_btnThongTinActionPerformed
 
     private void txtMaCuaHangFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaCuaHangFocusGained
@@ -775,6 +792,7 @@ public class QL_CuaHang extends javax.swing.JPanel {
     private javax.swing.JTable tblListCuaHang;
     private javax.swing.JTable tblListCuaHangChiTiet;
     private javax.swing.JTextArea txtDiaChi;
+    private javax.swing.JTextField txtFocus;
     private javax.swing.JTextField txtMaCuaHang;
     private javax.swing.JTextField txtMaQuanLy;
     private javax.swing.JTextField txtTimKiemChiTiet;
@@ -825,6 +843,8 @@ public class QL_CuaHang extends javax.swing.JPanel {
 //        tblListCuaHang.setModel(model);
         String columns[] = {"MÃ CỬA HÀNG", "MÃ QUẢN LÝ", "ĐỊA CHỈ", "TRẠNG THÁI"};
         DesignHelper.setTable(tblListCuaHang, columns);
+        String columns1[]={"MÃ CỬA HÀNG","MÃ SẢN PHẨM","SỐ LƯỢNG"};
+        DesignHelper.setTable(tblListCuaHangChiTiet, columns1);
     }
 
     private void fillTable() {

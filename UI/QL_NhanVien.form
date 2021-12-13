@@ -226,7 +226,7 @@
                                   <Component id="panelInput" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="panelFunction" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -332,6 +332,9 @@
                                   <Border info="null"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFocusActionPerformed"/>
+                              </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtFocus.setPreferredSize(new Dimension(0,0));"/>
                               </AuxValues>
@@ -436,7 +439,7 @@
                                           <Component id="rdoNam" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="rdoNu" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="19" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="33" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -501,7 +504,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel3" min="-2" pref="83" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="txtNgaySinh" pref="225" max="32767" attributes="0"/>
+                                          <Component id="txtNgaySinh" pref="227" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -590,7 +593,7 @@
                                               <Component id="btnSua" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="btnMoi" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace pref="172" max="32767" attributes="0"/>
+                                              <EmptySpace pref="176" max="32767" attributes="0"/>
                                               <Component id="btnXuatExcel" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
@@ -601,8 +604,6 @@
                                               <Component id="btnNext" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                               <Component id="btnLast" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                                              <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Component id="jButton1" min="-2" pref="250" max="-2" attributes="0"/>
                                           </Group>
@@ -625,19 +626,16 @@
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="jButton1" pref="40" max="32767" attributes="0"/>
-                                                  <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                                  <Component id="btnLast" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="btnNext" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="btnPrev" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="btnFirst" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="jButton1" pref="40" max="32767" attributes="0"/>
+                                              <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                              <Component id="btnLast" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnNext" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnPrev" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnFirst" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
@@ -845,11 +843,6 @@
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
                               </Events>
-                            </Component>
-                            <Component class="javax.swing.JTextField" name="jTextField1">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="jTextField1"/>
-                              </Properties>
                             </Component>
                           </SubComponents>
                         </Container>
