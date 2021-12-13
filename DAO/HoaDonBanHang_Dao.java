@@ -5,6 +5,7 @@
  */
 package com.Sell.DAO;
 
+import com.Sell.Helper.Auth;
 import com.Sell.Helper.JdbcHelper;
 import com.Sell.entity.HoaDonBanHang;
 import java.sql.ResultSet;
@@ -26,8 +27,7 @@ public class HoaDonBanHang_Dao {
     String SELECT_BY_ID_SQL = "SELECT * FROM HoaDonBanHang WHERE MaHDBan = ?";
     String SELECT_BY_MAKH = "SELECT * FROM HOADONBANHANG WHERE MAKHACHHANG = ?";
     String SELECT_BY_KEYWORD = "SELECT * FROM HOADONBANHANG WHERE MaHDBan LIKE ? OR"
-            + " MaKhachHang LIKE ? OR MaCuaHang LIKE ?";
-    String SELECT_BY_FILTER = "SELECT * FROM HOADONBANHANG WHERE TrangThai=?";
+            + " MaKhachHang LIKE ? AND MaCuaHang LIKE ?";
 
     public void insert(HoaDonBanHang entity) {
         try {
@@ -129,16 +129,9 @@ public class HoaDonBanHang_Dao {
         return model;
     }
 
-    public List<HoaDonBanHang> selectByKeyWord(String keyword) {
+    public List<HoaDonBanHang> selectByKeyWord(String keyword, String keyword1) {
         List<HoaDonBanHang> list = this.selectBySql(SELECT_BY_KEYWORD,
-                "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%");
-//        , "%" + keyword + "%", "%" + keyword + "%"
-        return list;
-    }
-
-    public List<HoaDonBanHang> selectByTrangThai(boolean trangThai) {
-        List<HoaDonBanHang> list = this.selectBySql(SELECT_BY_FILTER, trangThai);
-//        ,"%" + keyword + "%","%" + keyword + "%"
+                "%" + keyword + "%", "%" + keyword + "%", "%" + keyword1 + "%");
         return list;
     }
 
