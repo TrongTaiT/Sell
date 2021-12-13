@@ -1663,7 +1663,11 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
         tblModel.setRowCount(0);
         String keyword = txtTimKiem.getText();
         try {
+<<<<<<< Updated upstream
             List<HoaDonBanHang> listHD = hdbhDAO.selectByKeyWord(keyword);
+=======
+            List<HoaDonBanHang> listHD = hdbhDAO.selectByKeyWord(Auth.user.getMaCuaHang(), keyword);
+>>>>>>> Stashed changes
             if (rdoTatCa.isSelected()) {
                 for (HoaDonBanHang hd : listHD) {
                     int giamGia = 0;
