@@ -6,6 +6,8 @@
 package com.Sell.UI;
 
 import com.Sell.DAO.HinhAnhDao;
+import com.Sell.DAO.HoaDonBanHang_Dao;
+import com.Sell.DAO.HoaDonNhap_Dao;
 import com.Sell.DAO.LoaiHangDAO;
 import com.Sell.DAO.SanPhamDAO;
 import com.Sell.Helper.DesignHelper;
@@ -14,6 +16,7 @@ import com.Sell.entity.SanPham;
 import com.Sell.Helper.ImageHelper;
 import com.Sell.Helper.MsgBox;
 import com.Sell.Helper.ValidationHelper;
+import com.Sell.entity.HoaDonBanHang;
 import com.Sell.entity.LoaiHang;
 import java.awt.Color;
 import java.awt.Font;
@@ -41,6 +44,8 @@ public class QL_SanPham extends javax.swing.JPanel {
     List<HinhAnh> listHinhAnhXoa = new ArrayList<>();
     HinhAnhDao haDAO = new HinhAnhDao();
     LoaiHangDAO lhDAO = new LoaiHangDAO();
+    HoaDonBanHang_Dao hdbhDAO;
+    HoaDonNhap_Dao hdnDAO;   
 
     /**
      * Creates new form CuaHangJPanel
@@ -559,6 +564,7 @@ public class QL_SanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_panelSanPhamMouseClicked
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
+        
         this.row = tblSanPham.getSelectedRow();
         this.edit();
     }//GEN-LAST:event_tblSanPhamMouseClicked
@@ -881,6 +887,7 @@ public class QL_SanPham extends javax.swing.JPanel {
         listHinhAnhXoa.removeAll(listHinhAnhXoa);
         listHinhAnh.removeAll(listHinhAnh);
         listHinhAnh = haDAO.selectAllById(maSP);
+        System.out.println(listHinhAnh);
         fillElementToJListHinhAnh();
 //        if (!listHinhAnh.isEmpty()) {
 //            lblHinhAnh.setIcon(ImageHelper.revertFromArrayByte(lblHinhAnh, listHinhAnh.get(0).getHinhAnh()));
@@ -985,8 +992,7 @@ public class QL_SanPham extends javax.swing.JPanel {
 
             MsgBox.alert(this, "Xoá sản phẩm thành công");
         } catch (Exception e) {
-            MsgBox.alert(this, "Xoá sản phẩm thất bại");
-            e.printStackTrace();
+            MsgBox.alert(this, "Đã tồn tại sản phẩm này ở Hoá đơn bán hoặc Hoá đơn nhập hàng");
         }
     }
 
