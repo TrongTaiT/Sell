@@ -10,7 +10,7 @@ import com.Sell.DAO.NhanVien_Dao;
 import com.Sell.Helper.Auth;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.FrameDragListener;
-import com.Sell.Helper.PasswordHelper;
+//import com.Sell.Helper.PasswordHelper;
 import com.Sell.entity.NhanVien;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -611,7 +611,7 @@ int a = 0;
     boolean validates() {
 
         String taiKhoan = txtTaiKhoan.getText();
-        String matKhau = (PasswordHelper.doHashing(txtmatKhau.getText()));
+        String matKhau = (txtmatKhau.getText());
         NhanVien nhanVien = dao.selectById(taiKhoan);
         String tb = "";
         if (taiKhoan.equals("Mã nhân viên")) {

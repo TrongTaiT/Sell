@@ -9,6 +9,7 @@ import com.Sell.DAO.NhanVien_Dao;
 import com.Sell.entity.NhanVien;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.MsgBox;
+//import com.Sell.Helper.PasswordHelper;
 import java.awt.Cursor;
 import java.util.Properties;
 import java.util.Random;
@@ -338,7 +339,7 @@ public class QuenMatKhauJDialog extends java.awt.Dialog {
                     final String subject = "Đặt lại mật khẩu";
                     final String boy = "Mã nhân viên: " + nv.getMaNV() + ". Mật khẩu được đặt lại là: ";
                     final String body = nv.getMatKhau();
-
+                    
                     Session s = Session.getInstance(p,
                             new javax.mail.Authenticator() {
                         protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
@@ -351,7 +352,7 @@ public class QuenMatKhauJDialog extends java.awt.Dialog {
                     msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
                     msg.setSubject(subject);
                     msg.setText(boy + body);
-
+//                    nv.setMatKhau(PasswordHelper.doHashing(body));
                     Transport.send(msg);
                     MsgBox.alert(this, "Mật khẩu đã gửi về email của bạn!");
                     style();
