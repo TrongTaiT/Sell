@@ -1057,7 +1057,6 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
 
     private void btnHoanThanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoanThanhActionPerformed
         insertHoaDon(true);
-        clearForm();
     }//GEN-LAST:event_btnHoanThanhActionPerformed
 
     private void btnXuatHoaDon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatHoaDon1ActionPerformed
@@ -1456,6 +1455,7 @@ public class QL_HoaDonBanHang extends javax.swing.JPanel {
                 filltblHoaDonBan();
                 fillTblChiTietCuaHang();
                 MsgBox.alert(this, "Thêm đơn hàng thành công!");
+                clearForm();
             } catch (Exception e) {
                 MsgBox.alert(this, "Thêm đơn hàng thất bại!");
                 e.printStackTrace();
