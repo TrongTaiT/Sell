@@ -10,6 +10,7 @@ import com.Sell.DAO.NhanVien_Dao;
 import com.Sell.Helper.DateHelper;
 import com.Sell.Helper.DesignHelper;
 import com.Sell.Helper.MsgBox;
+import com.Sell.Helper.PasswordHelper;
 import com.Sell.Helper.ValidationHelper;
 import com.Sell.entity.CuaHang;
 import com.Sell.entity.NhanVien;
@@ -1239,6 +1240,7 @@ public class QL_NhanVien extends javax.swing.JPanel {
         }
         NhanVien nv = getForm();
         try {
+            nv.setMatKhau(PasswordHelper.doHashing(nv.getMatKhau()));
             dao.insert(nv);
             this.fillTable();
             this.clearForm();
@@ -1255,6 +1257,7 @@ public class QL_NhanVien extends javax.swing.JPanel {
         }
         NhanVien nv = getForm();
         try {
+            nv.setMatKhau(PasswordHelper.doHashing(nv.getMatKhau()));
             dao.update(nv);
             this.fillTable();
             MsgBox.alert(this, "Cập nhật thành công!");

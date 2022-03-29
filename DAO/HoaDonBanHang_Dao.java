@@ -25,14 +25,13 @@ public class HoaDonBanHang_Dao {
     String SELECT_ALL_SQL = "SELECT * FROM HoaDonBanHang";
     String SELECT_BY_ID_SQL = "SELECT * FROM HoaDonBanHang WHERE MaHDBan = ?";
     String SELECT_BY_MAKH = "SELECT * FROM HOADONBANHANG WHERE MAKHACHHANG = ?";
-<<<<<<< Updated upstream
     String SELECT_BY_KEYWORD = "SELECT * FROM HOADONBANHANG WHERE MaHDBan LIKE ? OR"
             + " MaKhachHang LIKE ? OR MaCuaHang LIKE ?";
     String SELECT_BY_FILTER = "SELECT * FROM HOADONBANHANG WHERE TrangThai=?";
-=======
+/*
     String SELECT_BY_KEYWORD = "SELECT * FROM HOADONBANHANG WHERE MaCuaHang=? "
             + "AND (MaHDBan LIKE ? OR MaKhachHang LIKE ?)";
->>>>>>> Stashed changes
+>>>>>>> Stashed changes */
 
     public void insert(HoaDonBanHang entity) {
         try {
@@ -134,7 +133,6 @@ public class HoaDonBanHang_Dao {
         return model;
     }
 
-<<<<<<< Updated upstream
     public List<HoaDonBanHang> selectByKeyWord(String keyword) {
         List<HoaDonBanHang> list = this.selectBySql(SELECT_BY_KEYWORD,
                 "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%");
@@ -142,7 +140,7 @@ public class HoaDonBanHang_Dao {
         return list;
     }
 
-    public List<HoaDonBanHang> selectByTrangThai(boolean trangThai) {
+/*    public List<HoaDonBanHang> selectByTrangThai(boolean trangThai) {
         List<HoaDonBanHang> list = this.selectBySql(SELECT_BY_FILTER, trangThai);
 //        ,"%" + keyword + "%","%" + keyword + "%"
 =======
@@ -150,7 +148,7 @@ public class HoaDonBanHang_Dao {
         List<HoaDonBanHang> list = this.selectBySql(SELECT_BY_KEYWORD,
                 maCH, "%" + keyword + "%", "%" + keyword + "%");
 >>>>>>> Stashed changes
-        return list;
-    }
+        return list;*/
+    
 
 }
